@@ -19,15 +19,25 @@
 # 회의방식/시간
 - 매주 수,금 오전 업무 스케줄 조정
 - 금요일 오전 회고
-
+---
 # 코딩스타일
-- APP-Github 스타일 가이드라인 [Link](https://github.com/github/swift-style-guide/blob/master/README.md)
-- WEB-Airbnb 스타일 가이드라인 [Link](https://github.com/airbnb/javascript)
+- APP
+	- 기본룰: Github 스타일 가이드라인 [Link](https://github.com/github/swift-style-guide/blob/master/README.md)
+	- 상수 변수 줄임말 쓰지 않음
+	- 		saveButton(o) sabeBtn(x)
+	- 		touchedTap(o) tapTouched(x)
+- WEB
+	- 기본룰: Airbnb 스타일 가이드라인 [Link](https://github.com/airbnb/javascript)
+	- HTML 줄바꿈 1탭 = 2스페이스
+	- 상수, 변수, 함수 줄임말 쓰지 않음
+	- 기능구현 class화 기본 + 전역변수 최소화
+	- 라이브러리 최소화
+	- css에서  .m-r-1{margin-right:10px} 같은 단축 
 - Github  dev올리기 전 주석 체크
-
+---
 # 브랜치 규칙
+- master 브랜치 별도, dev브랜치에서 브랜치 파생
 - 기능별 브랜치
 - 충돌시 충돌발생인이 해결 후 merge
-
 # 기획서
 [Link](https://docs.google.com/presentation/d/1X0DZ7KrfJBNRsEIMur7PXl-nVw3cDcgI-WwJkiFKfWM/edit?usp=sharing)
