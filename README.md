@@ -16,10 +16,15 @@
 - 첫주는 6시 이후 자율 try out, 이후 업무 스케줄 조정
 - 첫주말 또한 자율, 이후 업무 스케줄 조정
 
-# 회의방식/시간
+# 커뮤니케이션 방식/시간
 - 매주 수,금 오전 업무 스케줄 조정
 - 금요일 오전 회고
----
+- 9-6 합동 작업으로 계속적인 커뮤니케이션
+- 조장:
+	- Back-end 전담
+	- 계속적인 issue bring up
+	- 잡다한 업무 전담
+
 # 코딩스타일
 - APP
 	- 기본룰: Github 스타일 가이드라인 [Link](https://github.com/github/swift-style-guide/blob/master/README.md)
@@ -34,10 +39,11 @@
 	- 라이브러리 최소화
 	- css에서  .m-r-1{margin-right:10px} 같은 단축 
 - Github  dev올리기 전 주석 체크
----
+
 # 브랜치 규칙
 - master 브랜치 별도, dev브랜치에서 브랜치 파생
 - 기능별 브랜치
 - 충돌시 충돌발생인이 해결 후 merge
+ 
 # 기획서
 [Link](https://docs.google.com/presentation/d/1X0DZ7KrfJBNRsEIMur7PXl-nVw3cDcgI-WwJkiFKfWM/edit?usp=sharing)
