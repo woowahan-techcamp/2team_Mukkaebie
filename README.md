@@ -47,3 +47,6 @@
  
 # 기획서
 [Link](https://docs.google.com/presentation/d/1X0DZ7KrfJBNRsEIMur7PXl-nVw3cDcgI-WwJkiFKfWM/edit?usp=sharing)
+
+# 백로그
+[Link](https://docs.google.com/spreadsheets/d/1zuKqgo1mT8wM-E5ifqy-KtCJtq0rlh7at_edtdypBlQ/edit#gid=0)
