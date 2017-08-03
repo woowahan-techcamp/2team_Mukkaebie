@@ -339,5 +339,8 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
+# MongoDB
+mongodb/
+
 # End of https://www.gitignore.io/api/less,node,macos,linux,swift,python,webstorm,cocoapods
 .idea/
