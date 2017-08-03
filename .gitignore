@@ -270,11 +270,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-### Swift.SwiftPackageManager Stack ###
-Packages
-.build
-xcuserdata
-*.xcodeproj
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
