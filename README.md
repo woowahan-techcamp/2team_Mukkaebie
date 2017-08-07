@@ -46,7 +46,7 @@
 - 충돌시 충돌발생인이 해결 후 merge
  
 # 기획서
-[Link](https://docs.google.com/presentation/d/1X0DZ7KrfJBNRsEIMur7PXl-nVw3cDcgI-WwJkiFKfWM/edit?usp=sharing)
+[Link](https://docs.google.com/presentation/d/1bONN96E_VlYV0avebcv1sVgio55d7_kNEum1BP8DNOI/edit#slide=id.g241cd29e37_0_0)
 
 # 백로그
-[Link](https://docs.google.com/spreadsheets/d/1zuKqgo1mT8wM-E5ifqy-KtCJtq0rlh7at_edtdypBlQ/edit#gid=0)
+[Link](https://docs.google.com/spreadsheets/d/1_QHCNvqrEN_MwbqzYJK6CxNQQ7oLvExSOWSW9LNYADs/edit#gid=0)
