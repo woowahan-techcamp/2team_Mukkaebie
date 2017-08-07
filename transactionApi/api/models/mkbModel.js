@@ -7,7 +7,9 @@ let UserSchema = new Schema({
   name: String,
   userId: {type: String, required:true},
   createdDate: {type: Date, default: Date.now, required:true},
-  spent : {type: Number, default:0}
+  spent : {type: Number, default:0},
+  baeminLevel: String,
+  mkbBadges : Array
 },{versionKey: false});
 
 
@@ -19,6 +21,14 @@ let StoreSchema = new Schema({
     mkb1: String,
     mkb2: String,
     mkb3: String
+  },
+  top6Menus :{
+    top1: String,
+    top2: String,
+    top3: String,
+    top4: String,
+    top5: String,
+    top6: String,
   }
 },{versionKey: false});
 
