@@ -30,7 +30,7 @@ let StoreSchema = new Schema({
     top5: String,
     top6: String,
   },
-  menu: [
+  menu: {
   {
     title: String,
     price: 17000,
@@ -46,7 +46,7 @@ let StoreSchema = new Schema({
     price: Number,
     orders: Number
   }
-]
+}
 
 },{versionKey: false});
 
