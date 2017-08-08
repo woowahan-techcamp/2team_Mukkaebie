@@ -9,10 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodeman": "^1.1.2"
+    "nodeman": "^1.1.2",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "mongoose": "^4.11.5"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.6"
   }
 }

@@ -30,23 +30,42 @@ let StoreSchema = new Schema({
     top5: String,
     top6: String,
   },
-  menu: {
-  {
-    title: String,
-    price: 17000,
-    orders: 40
-  },
-  {
-    title: String,
-    price: 18000,
-    orders: 20
-  },
-  {
-    title: String,
-    price: Number,
-    orders: Number
-  }
-}
+
+  menu : { type : Array , "default" : [
+    {
+      title: String,
+      price: 17000,
+      orders: 40
+    },
+    {
+      title: String,
+      price: 18000,
+      orders: 20
+    },
+    {
+      title: String,
+      price: Number,
+      orders: Number
+    }
+  ] }
+
+//   menu: [
+//   {
+//     title: String,
+//     price: 17000,
+//     orders: 40
+//   },
+//   {
+//     title: String,
+//     price: 18000,
+//     orders: 20
+//   },
+//   {
+//     title: String,
+//     price: Number,
+//     orders: Number
+//   }
+// ]
 
 },{versionKey: false});
 
