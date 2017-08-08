@@ -29,7 +29,25 @@ let StoreSchema = new Schema({
     top4: String,
     top5: String,
     top6: String,
+  },
+  menu: [
+  {
+    title: String,
+    price: 17000,
+    orders: 40
+  },
+  {
+    title: String,
+    price: 18000,
+    orders: 20
+  },
+  {
+    title: String,
+    price: Number,
+    orders: Number
   }
+]
+
 },{versionKey: false});
 
 

@@ -10,6 +10,10 @@ module.exports = function(app) {
     .get(mkb.list_all_stores)
     .post(mkb.create_a_store);
 
+  app.route('/stores/:storeId')
+    .get(mkb.list_a_store)
+
+
   app.route('/orders')
     .get(mkb.list_all_orders)
     .post(mkb.create_an_order);

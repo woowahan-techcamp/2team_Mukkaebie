@@ -33,6 +33,9 @@ exports.read_an_order = function(req, res) {
   });
 };
 
+
+
+
 exports.update_an_order = function(req, res) {
   Order.findOneAndUpdate({_id: req.params.orderId}, req.body, {new: true}, function(err, order) {
     if (err)
@@ -115,7 +118,7 @@ exports.create_a_store = function(req, res) {
   });
 };
 
-exports.read_a_store = function(req, res) {
+exports.list_a_store = function(req, res) {
   Store.find({storeId: req.params.storeId}, { _id: 0 }, function(err, store) {
     if (err)
       res.send(err);
