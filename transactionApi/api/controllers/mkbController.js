@@ -7,6 +7,10 @@ let mongoose = require('mongoose'),
   Order = mongoose.model('Orders');
 
 
+
+
+
+
 // Order methods
 exports.list_all_orders = function(req, res) {
   Order.find({},{ _id: 0 }, function(err, task) {
@@ -101,6 +105,7 @@ exports.delete_a_user = function(req, res) {
 
 // Store methods
 
+
 exports.list_all_stores = function(req, res) {
   Store.find({}, { _id: 0 }, function(err, store) {
     if (err)
@@ -110,7 +115,11 @@ exports.list_all_stores = function(req, res) {
 };
 
 exports.create_a_store = function(req, res) {
-  var new_store = new Store(req.body);
+  var new_store = new Store({
+    name: req.body.name,
+    storeId : req.body.storeId,
+    menu: req.body.menu
+  });
   new_store.save(function(err, store) {
     if (err)
       res.send(err);
