@@ -1,24 +1,36 @@
-.wrap{
-  background: yellow;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-.content {
-  max-width: 960px;
-  background: white;
-  margin: 100px auto;
-  margin-top:100px;
-}
-.col-50 {
-  border:1px solid black;
-  background: red;
-  height: 300px;
-  float: left;
-  width: 50%;
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+
+body {
+    font-family: "Hanna", "Dotum", Droid serif, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #222;
+    background-color: #f4ebdd
 }
 
-@media screen and (max-width:600px) {
-  .col-50 {
-    width: 100%;
-  }
+.wrap {
+    background: yellow;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.content {
+    max-width: 960px;
+    background: white;
+    margin: 100px;
+}
+
+.col-50 {
+    border: 1px solid black;
+    background: red;
+    height: 300px;
+    float: left;
+    width: 50%;
+}
+
+@media screen and (max-width: 600px) {
+    .col-50 {
+        width: 100%;
+    }
 }
