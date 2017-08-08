@@ -1,0 +1,193 @@
+.wrap{
+  background: yellow;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.content {
+  max-width: 960px;
+  background: white;
+  margin: 100px auto;
+  margin-top:100px;
+}
+.col-50 {
+  border:1px solid black;
+  background: red;
+  height: 300px;
+  float: left;
+  width: 50%;
+}
+
+@media screen and (max-width:600px) {
+  .col-50 {
+    width: 100%;
+  }
+}
+
+
+/*메뉴탭 폴드 메뉴*/
+
+
+
+.menuTabGraph {
+  width: 100%;
+  background: green;
+  height: 500px;
+}
+
+
+.foldableLevel1 {
+    background-color: #817c74;
+    color: #fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    border-bottom: 1px solid #cccccc;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.foldableLevel1.active{
+    background-color: black;
+    clear:both;
+}
+
+.foldableLevel1 h6, p {
+  padding:0;
+  margin:0;
+}
+.foldableLevel1 p {
+  font-size: 11px;
+}
+/* Style the accordion panel. Note: hidden by default */
+div.foldableLevel2 {
+    padding: 0;
+    background-color: white;
+    max-height: 0px;
+    height: auto;
+    transition: all 0.25s ease-in-out;
+    overflow: hidden;
+
+}
+.foldableLevel2 .foldableLevel1 {
+  background: #fff;
+  color: black;
+}
+.foldableLevel2 .foldableLevel1.active {
+  background: #fff;
+  color: black;
+}
+
+.menuTabContent * {
+  clear: both;
+}
+
+
+.storeDetailHead{
+  border: 1px solid #cccccc;
+  padding:15px;
+  font-size:11px;
+  font-weight:bold;
+  background: #fff;
+}
+.storeDetailTable {
+  background: #fff;
+}
+.storeDetailTable {
+  padding:10px;
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+}
+/*업소상세 박스*/
+
+@media screen and (max-width:768px){
+  .storeDetailBox {
+    display: none;
+  }
+  .tabAreaWrap {
+    width: 100%;
+  }
+}
+
+.storeDetailTable table {
+  font-size: 11px;
+
+}
+.phoneFontColor{
+  color: #ff4200;
+  font-weight: bold;
+}
+
+tr {border-bottom: 10px solid transparent;}
+
+.storeDetailTableLeft {width:30%}
+.storeDetailTableRight {width:70%}
+
+.float-left {
+  float: left;
+}
+.p-x-1 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.p-a-1{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+
+
+
+
+/*리뷰 관련*/
+
+.reviewCard {
+  padding:15px;
+  display: flex;
+  align-items:flex-start;
+  background: #fff;
+}
+.reviewCardPic {
+  background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width:65px;
+  height:65px;
+  float: left;
+}
+
+.reviewCardContent {
+  max-width: 580px;
+  float:left;
+}
+.reviewCardBtm {
+  font-size: 11px;
+}
+.reviewCardMid{
+  clear: both;
+}
+.reviewCardTop>span{
+  font-size: 11px;
+  color:#8a8b8f;
+}
+.reviewCardStar{
+  color:#ff6927;
+}
+.reviewCardId {
+  font-size: 12px;
+  color:#222;
+}
+.reviewCardDate {
+  font-size: 11px;
+  color:#8a8b8f;
+}
+.reviewCardBtm {
+  clear: both;
+  width: 100%;
+}
