@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>그래프페이지 레이아웃</title>
+    <link rel="stylesheet" type="text/css" href="./src/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./src/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="./src/main.css">
+    <link rel="stylesheet" type="text/css" href="./src/yg.css">
+</head>
+<body>
+
+<!--메뉴 레이아웃-->
+<div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
+    <div class="tabAreaWrap col-xs-9">
+        <div class="menuReviewWrap row">
+            <ul>
+            </ul>
+
+            <div class="menuTabContent col-xs-12">
+                <div class="menuTabGraph" style="background-color: #fff;">
+                    <div class="competition-podium well">
+                        <div class="podium-block silver">
+                            <div class="name">youngun</div>
+                            <div class="podium"><span>2등</span></div>
+                        </div>
+                        <div class="podium-block gold">
+                            <div class="name">danb</div>
+                            <div class="podium"><span>1등</span></div>
+                        </div>
+                        <div class="podium-block bronze">
+                            <div class="name">hjk</div>
+                            <div class="podium"><span>3등</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mkbTabContent col-xs-12">
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--옆에 업소 상세 플롯-->
+    <div class="col-xs-3 storeDetailBox">
+        <div class="storeDetailHead">
+            업소상세정보
+        </div>
+        <div class="storeDetailTable">
+            <table>
+                <tr>
+                    <td class="storeDetailTableLeft">최소금액</td>
+                    <td class="storeDetailTableRight">13,000원 부터</td>
+                </tr>
+                <tr>
+                    <td class="storeDetailTableLeft">운영시간</td>
+                    <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
+                </tr>
+                <tr>
+                    <td class="storeDetailTableLeft">전화번호</td>
+                    <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
+                </tr>
+                <tr>
+                    <td class="storeDetailTableLeft">업소소개</td>
+                    <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="./dist/index.bundle.js"></script>
+<script src="./src/index.js"></script>
+<script src="./src/yg.js"></script>
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded", function () {
+        podiumAnimate();
+
+        function podiumAnimate() {
+            var gold = document.querySelector('.gold .podium');
+            gold.style.transition = 'all 1.5s';
+            gold.style.height = '160px';
+
+            var silver = document.querySelector('.silver .podium');
+            silver.style.transition = 'all 1.5s';
+            silver.style.height = '100px';
+
+            var bronze = document.querySelector('.bronze .podium');
+            bronze.style.transition = 'all 1.5s';
+            bronze.style.height = '60px';
+        }
+    })
+
+</script>
+</body>
+</html>
