@@ -8,7 +8,7 @@
 
 import UIKit
 
-class mainHeaderCollectionReusableView: UICollectionReusableView {
+class MainHeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var headerScrollView: UIScrollView!
     
