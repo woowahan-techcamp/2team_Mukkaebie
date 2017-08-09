@@ -4,22 +4,32 @@ module.exports = function(app) {
 
   app.route('/users')
     .get(mkb.list_all_users)
-    .post(mkb.create_a_user);
+    .post(mkb.create_a_user)
+
+  app.route('/users/:userId')
+    .get(mkb.read_a_user)
+    .put(mkb.update_a_user);
 
   app.route('/stores')
     .get(mkb.list_all_stores)
-    .post(mkb.create_a_store);
+    .post(mkb.create_a_store)
 
   app.route('/stores/:storeId')
     .get(mkb.list_a_store)
+    .put(mkb.update_a_store);
 
   app.route('/orders')
     .get(mkb.list_all_orders)
     .post(mkb.create_an_order);
 
+  app.route('/orders/bystore/:sellerId')
+    .get(mkb.read_an_order_by_store);
+
+  app.route('/orders/byuser/:buyerId')
+    .get(mkb.read_an_order_by_user);
+
   app.route('/orders/:sellerId/:buyerId')
     .get(mkb.read_an_order);
 
-  app.route('/orders/:sellerId')
-    .get(mkb.read_an_order_by_store);
+
 };

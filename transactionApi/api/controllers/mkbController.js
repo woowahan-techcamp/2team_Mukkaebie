@@ -45,6 +45,14 @@ exports.read_an_order_by_store = function(req, res) {
   });
 };
 
+exports.read_an_order_by_user = function(req, res) {
+  Order.find({buyerId: req.params.buyerId},{ _id: 0 }, function(err, order) {
+    if (err)
+      res.send(err);
+    res.json(order);
+  });
+};
+
 
 
 exports.update_an_order = function(req, res) {
@@ -144,12 +152,34 @@ exports.list_a_store = function(req, res) {
 };
 
 exports.update_a_store = function(req, res) {
-  Store.findOneAndUpdate({storeId: req.params.storeId}, req.body, {new: true}, { _id: 0 }, function(err, store) {
+  Store.findOneAndUpdate({storeId: req.params.storeId}, req.body, {new: true}, function(err, store) {
     if (err)
       res.send(err);
     res.json(store);
   });
 };
+
+// exports.update_a_store = function(req, res) {
+//   Store.findById(req.params.id, function(err, store) {
+//   if (!store)
+//     return next(new Error('Could not load Document'));
+//   else {
+//     // do your updates here
+//     store.review = req.body.review;
+//     store.menu = req.body.menu;
+//     store.modified = new Date();
+//
+//     store.save(function(err) {
+//       if (err)
+//         console.log('error')
+//       else
+//         console.log('success')
+//     });
+//   }
+// });
+// }
+
+
 
 exports.delete_a_store = function(req, res) {
   Store.remove({
