@@ -46,7 +46,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind:kind , withReuseIdentifier: "header", for: indexPath) as? mainHeaderCollectionReusableView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind:kind , withReuseIdentifier: "header", for: indexPath) as? MainHeaderCollectionReusableView
         return header!
 
     }
