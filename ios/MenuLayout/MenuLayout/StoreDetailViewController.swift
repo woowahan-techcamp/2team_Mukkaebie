@@ -16,14 +16,15 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     var reviewViewController: ReviewViewController?
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var tabView: UIView!
-    @IBOutlet weak var tabSubView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var uppperBarView: UIView!
-    @IBOutlet weak var scoreView: UIView!
-    
     @IBOutlet weak var imageView: UIImageView!
-    
+    @IBOutlet weak var scoreView: UIView!
+    @IBOutlet weak var tabView: UIView!
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var tabSubView: UIView!
+
     @IBOutlet weak var mukkabieTabItem: UITabBarItem!
     @IBOutlet weak var menuTabItem: UITabBarItem!
     @IBOutlet weak var infoTabItem: UITabBarItem!
@@ -34,20 +35,38 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         self.tabBar.delegate=self;
 
         mukkabieTabItem.tag = 0
-        mukkabieTabItem.image = makeThumbnailFromText(text: "먹깨비")
+        mukkabieTabItem.image = makeThumbnailFromText(text: "먹깨비", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         mukkabieTabItem.title = nil;
         
         menuTabItem.tag = 1
-        menuTabItem.image = makeThumbnailFromText(text: "메뉴")
+        menuTabItem.image = makeThumbnailFromText(text: "메뉴", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         menuTabItem.title = nil;
         
         infoTabItem.tag = 2
-        infoTabItem.image = makeThumbnailFromText(text: "정보")
+        infoTabItem.image = makeThumbnailFromText(text: "정보", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         infoTabItem.title = nil;
         
         reviewTabItem.tag = 3
-        reviewTabItem.image = makeThumbnailFromText(text: "리뷰")
+        reviewTabItem.image = makeThumbnailFromText(text: "리뷰", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         reviewTabItem.title = nil;
+        
+        //change icon and title color
+        UITabBar.appearance().tintColor = UIColor(white: 136/255, alpha: 1)
+
+        //change background default color
+        UITabBar.appearance().barTintColor = UIColor.white
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height), false, 0)
+        UIColor.white.setFill()
+        UIRectFill(CGRect(x: 0, y: 0, width: tabBar.frame.width / CGFloat((tabBar.items?.count)!
+            ), height: tabBar.frame.height))
+        UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1).setFill()
+        UIRectFill(CGRect(x: 0, y: tabBar.frame.height - 5, width: tabBar.frame.width / CGFloat((tabBar.items?.count)!
+            ), height: 5))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        UITabBar.appearance().selectionIndicatorImage = image
         
         // Do any additional setup after loading the view.
     }
@@ -63,81 +82,67 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         case 0:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             mukkabieViewController = storyboard.instantiateViewController(withIdentifier: "mukkabieViewController") as? MukkabieViewController
-            self.view.insertSubview((mukkabieViewController?.view.subviews[0])!, belowSubview: self.tabSubView)
+            tabSubView.addSubview((mukkabieViewController?.view.subviews[0])!)
+            
+            tabSubView.frame.size.height = (mukkabieViewController?.view.frame.size.height)!
+            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            
+            scrollView.contentSize.width = contentView.frame.size.width
+            scrollView.contentSize.height = contentView.frame.size.height
         case 1:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             menuViewController = storyboard.instantiateViewController(withIdentifier: "menuViewController") as? MenuViewController
             tabSubView.addSubview((menuViewController?.view.subviews[0])!)
-            print((menuViewController?.view.subviews[0])!.frame.size.height)
-            scrollView.contentSize.width = self.view.frame.size.width
-            scrollView.contentSize.height = 1000
-            tabView.sizeToFit()
-            print(tabSubView.frame.size)
+            
+            tabSubView.frame.size.height = (menuViewController?.view.frame.size.height)!
+           tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            
+            scrollView.contentSize.width = contentView.frame.size.width
+            scrollView.contentSize.height = contentView.frame.size.height
         case 2:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             infoViewController = storyboard.instantiateViewController(withIdentifier: "infoViewController") as? InfoViewController
-            self.tabSubView.addSubview((infoViewController?.view.subviews[0])!)
+            tabSubView.addSubview((infoViewController?.view.subviews[0])!)
+            tabSubView.frame.size.height = (infoViewController?.view.frame.size.height)!
+            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            
+            scrollView.contentSize.width = contentView.frame.size.width
+            scrollView.contentSize.height = contentView.frame.size.height
         case 3:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             reviewViewController = storyboard.instantiateViewController(withIdentifier: "reviewViewController") as? ReviewViewController
-            self.view.insertSubview((reviewViewController?.view.subviews[0])!, belowSubview: self.tabSubView)
+            tabSubView.addSubview((reviewViewController?.view.subviews[0])!)
+            
+            tabSubView.frame.size.height = (reviewViewController?.view.frame.size.height)!
+            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            
+            scrollView.contentSize.width = contentView.frame.size.width
+            scrollView.contentSize.height = contentView.frame.size.height
         default:
             break
             
         }
     }
     
-    func makeThumbnailFromText(text: String) -> UIImage {
+    func makeThumbnailFromText(text: String, size: CGSize) -> UIImage {
         // some variables that control the size of the image we create, what font to use, etc.
         
-        struct LineOfText {
-            var string: String
-            var size: CGSize
-        }
-        
-        let imageSize = CGSize(width: 60, height: 80)
-        let fontSize: CGFloat = 13.0
+        let imageSize = size
+        let fontSize: CGFloat = 15.0
         let fontName = "AppleSDGothicNeo-Bold"
         let font = UIFont(name: fontName, size: fontSize)!
-        let lineSpacing = fontSize * 1.2
-        
+      
         // set up the context and the font
-        
         UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)
         let attributes = [NSFontAttributeName: font]
         
-        // some variables we use for figuring out the words in the string and how to arrange them on lines of text
-        
-        let words = text.components(separatedBy: " ")
-        
-        var lines = [LineOfText]()
-        var lineThusFar: LineOfText?
-        
-        // let's figure out the lines by examining the size of the rendered text and seeing whether it fits or not and
-        // figure out where we should break our lines (as well as using that to figure out how to center the text)
-        
-        for word in words {
-            let currentLine = lineThusFar?.string == nil ? word : "\(lineThusFar!.string) \(word)"
-            let size = currentLine.size(attributes: attributes)
-            if size.width > imageSize.width && lineThusFar != nil {
-                lines.append(lineThusFar!)
-                lineThusFar = LineOfText(string: word, size: word.size(attributes: attributes))
-            } else {
-                lineThusFar = LineOfText(string: currentLine, size: size)
-            }
-        }
-        if lineThusFar != nil { lines.append(lineThusFar!) }
-        
-        // now write the lines of text we figured out above
-        
-        let totalSize = CGFloat(lines.count - 1) * lineSpacing + fontSize
-        let topMargin = (imageSize.height - totalSize) / 2.0
-        
-        for (index, line) in lines.enumerated() {
-            let x = (imageSize.width - line.size.width) / 2.0
-            let y = topMargin + CGFloat(index) * lineSpacing
-            line.string.draw(at: CGPoint(x: x, y: y), withAttributes: attributes)
-        }
+        let x = (imageSize.width - text.size(attributes: attributes).width) / 2.0
+        let y = (imageSize.height - fontSize) / 2.0
+        text.draw(at: CGPoint(x: x, y: y), withAttributes: attributes)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()

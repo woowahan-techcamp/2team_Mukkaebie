@@ -17,6 +17,7 @@
 		985D08E61F39A5A100A1F475 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08E51F39A5A100A1F475 /* MenuViewController.swift */; };
 		985D08E81F39A5AB00A1F475 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08E71F39A5AB00A1F475 /* ReviewViewController.swift */; };
 		985D08EA1F39A5B800A1F475 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08E91F39A5B800A1F475 /* InfoViewController.swift */; };
+		985D08EC1F3AAE0800A1F475 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08EB1F3AAE0800A1F475 /* extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		985D08E51F39A5A100A1F475 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		985D08E71F39A5AB00A1F475 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		985D08E91F39A5B800A1F475 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		985D08EB1F3AAE0800A1F475 /* extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				985D08D11F398DAB00A1F475 /* ViewController.swift */,
 				985D08D31F398DAB00A1F475 /* Main.storyboard */,
 				985D08E11F399B2500A1F475 /* StoreDetailViewController.swift */,
+				985D08EB1F3AAE0800A1F475 /* extension.swift */,
 				985D08E31F39A58900A1F475 /* MukkabieViewController.swift */,
 				985D08E71F39A5AB00A1F475 /* ReviewViewController.swift */,
 				985D08E91F39A5B800A1F475 /* InfoViewController.swift */,
@@ -159,6 +162,7 @@
 				985D08D21F398DAB00A1F475 /* ViewController.swift in Sources */,
 				985D08D01F398DAB00A1F475 /* AppDelegate.swift in Sources */,
 				985D08E41F39A58900A1F475 /* MukkabieViewController.swift in Sources */,
+				985D08EC1F3AAE0800A1F475 /* extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.woowahan.MenuLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -300,6 +305,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.woowahan.MenuLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -322,6 +328,7 @@
 				985D08E01F398DAB00A1F475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
