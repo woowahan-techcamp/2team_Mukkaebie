@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aE5-Zg-1TS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Menu View Controller-->
+        <scene sceneID="16G-Cu-ILr">
+            <objects>
+                <viewController id="aE5-Zg-1TS" customClass="MenuViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SLA-71-cCe"/>
+                        <viewControllerLayoutGuide type="bottom" id="s4N-sk-EUO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="daP-fT-1n7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTb-oG-gl1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0y-nk-Jzt" customClass="PieChartView" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="62.5" width="375" height="211"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="X0y-nk-Jzt" secondAttribute="height" multiplier="375:211" id="6q0-OV-5Op"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfL-Yy-XrU">
+                                        <rect key="frame" x="21" y="19" width="20" height="20"/>
+                                        <color key="backgroundColor" red="1" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="Wfp-Ln-khx"/>
+                                            <constraint firstAttribute="height" constant="20" id="ZIF-PG-umJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 가게 인기 메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-M2-dnX">
+                                        <rect key="frame" x="55" y="23.5" width="131" height="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" id="0Ko-Ye-kMO"/>
+                                    <constraint firstItem="SfL-Yy-XrU" firstAttribute="centerY" secondItem="bp7-M2-dnX" secondAttribute="centerY" constant="-1.25" id="7Cf-kU-axM" userLabel="Image View.centerY = 우리 가게 인기 메뉴.centerY"/>
+                                    <constraint firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="I9b-Zu-Sib"/>
+                                    <constraint firstItem="bp7-M2-dnX" firstAttribute="leading" secondItem="SfL-Yy-XrU" secondAttribute="trailing" constant="14" id="Pck-Rz-Zlm"/>
+                                    <constraint firstItem="SfL-Yy-XrU" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" constant="21" id="Xrk-4l-nnj"/>
+                                    <constraint firstItem="SfL-Yy-XrU" firstAttribute="top" secondItem="mTb-oG-gl1" secondAttribute="top" constant="19" id="iDa-0p-jbn"/>
+                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="SfL-Yy-XrU" secondAttribute="bottom" constant="23.399999999999999" id="wfq-yz-6Lo"/>
+                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="bp7-M2-dnX" secondAttribute="bottom" constant="26" id="xog-1d-HWo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mTb-oG-gl1" firstAttribute="leading" secondItem="daP-fT-1n7" secondAttribute="leading" id="XLv-0c-2jV"/>
+                            <constraint firstAttribute="trailing" secondItem="mTb-oG-gl1" secondAttribute="trailing" id="dkd-KK-DiR"/>
+                            <constraint firstItem="mTb-oG-gl1" firstAttribute="top" secondItem="daP-fT-1n7" secondAttribute="top" id="fnM-dj-zGY"/>
+                            <constraint firstItem="mTb-oG-gl1" firstAttribute="bottom" secondItem="s4N-sk-EUO" secondAttribute="top" id="rTh-ew-3Pm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T1z-d5-7I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.600000000000001" y="137.18140929535232"/>
+        </scene>
+    </scenes>
+</document>
