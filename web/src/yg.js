@@ -61,32 +61,3 @@ class YBarChart {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 }
-
-
-class Foldable {
-  constructor(level1Class) {
-    this.level1 = document.getElementsByClassName(level1Class);
-  }
-
-  makeFoldable() {
-    for (let i = 0; i < this.level1.length; i++) {
-        this.level1[i].onclick = function(){
-            /* Toggle between adding and removing the "active" class,
-            to highlight the button that controls the panel */
-            this.classList.toggle("active");
-
-            /* Toggle between hiding and showing the active panel */
-            let level2 = this.nextElementSibling;
-            if (level2.style.maxHeight === "150px") {
-                level2.style.maxHeight = "0px";
-            } else {
-                level2.style.maxHeight = "150px";
-            }
-        }
-      }
-    }
-}
-
-let test = new Foldable("foldableLevel1");
-
-test.makeFoldable()

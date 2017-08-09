@@ -1,28 +1,15 @@
-.wrap {
-    background: yellow;
-    padding-top: 50px;
-    padding-bottom: 50px;
+/* 메뉴 탭 관련 */
+
+.menuTabContent {
+  background: #fff;
 }
 
-.content {
-    max-width: 960px;
-    background: white;
-    margin: 100px auto;
-}
+/*폴더블메뉴*/
+.menuTabGraph {
+  width: 100%;
+  padding-bottom: 100px;
+  padding-top:100px;
 
-.col-50 {
-    border: 1px solid black;
-    background: red;
-    height: 300px;
-    float: left;
-    width: 50%;
-}
-
-@media screen and (max-width: 600px) {
-    .col-50 {
-        width: 100%;
-    }
-}
 
 /*메뉴탭 폴드 메뉴*/
 
@@ -45,7 +32,6 @@
     border-bottom: 1px solid #cccccc;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .foldableLevel1.active {
     background-color: black;
     clear: both;
@@ -60,15 +46,13 @@
     font-size: 11px;
 }
 
-/* Style the accordion panel. Note: hidden by default */
-div.foldableLevel2 {
+.foldableLevel2 {
     padding: 0;
     background-color: white;
     max-height: 0px;
     height: auto;
     transition: all 0.25s ease-in-out;
     overflow: hidden;
-
 }
 
 .foldableLevel2 .foldableLevel1 {
@@ -85,13 +69,32 @@ div.foldableLevel2 {
     clear: both;
 }
 
-.storeDetailHead {
-    border: 1px solid #cccccc;
-    padding: 15px;
-    font-size: 11px;
-    font-weight: bold;
-    background: #fff;
+
+
+/* 업소상세 박스 */
+
+@media screen and (max-width:768px){
+  .storeDetailBox {
+    display: none;
+  }
+  .tabAreaWrap {
+    width: 100%;
+  }
 }
+
+.storeDetailTable table {
+  font-size: 11px;
+
+}
+
+.storeDetailHead{
+  border: 1px solid #cccccc;
+  padding:15px;
+  font-size:11px;
+  font-weight:bold;
+  background: #fff;
+
+
 
 .storeDetailTable {
     background: #fff;
@@ -104,31 +107,14 @@ div.foldableLevel2 {
     border-width: 0px 1px 1px 1px;
 }
 
-/*업소상세 박스*/
 
-@media screen and (max-width: 768px) {
-    .storeDetailBox {
-        display: none;
-    }
-
-    .tabAreaWrap {
-        width: 100%;
-    }
+.phoneFontColor{
+  color: #ff4200;
+  font-weight: bold;
 }
 
-.storeDetailTable table {
-    font-size: 11px;
-
-}
-
-.phoneFontColor {
-    color: #ff4200;
-    font-weight: bold;
-}
-
-tr {
-    border-bottom: 10px solid transparent;
-}
+.storeDetailTable tr {
+  border-bottom: 10px solid transparent;
 
 .storeDetailTableLeft {
     width: 30%
@@ -138,21 +124,14 @@ tr {
     width: 70%
 }
 
-.float-left {
-    float: left;
+
+
+
+
+/* 리뷰 탭 관련 */
+.reviewTabContent {
+  background: #fff;
 }
-
-.p-x-1 {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.p-a-1 {
-    padding: 10px;
-}
-
-/*리뷰 관련*/
-
 .reviewCard {
     padding: 15px;
     display: flex;
@@ -375,3 +354,21 @@ tr {
 
 
 }
+/* 탭 기능 관련 CSS */
+storeTab {
+  width: 33.333%;
+  float:left;
+  background: #ddd7c7;
+  text-align: center;
+  height:40px;
+  line-height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
+}
+.selectedTab {background: white;}
+.storeTabContent {display: none}
+.selectedContent {display: block;}
+#storeTabWrapper {cursor: pointer; padding-left: 0; margin: 0; overflow: auto; width: 100%}
+#storeTabContentWrapper {clear: both;}
