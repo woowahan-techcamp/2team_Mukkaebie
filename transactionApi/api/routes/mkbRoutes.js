@@ -13,11 +13,13 @@ module.exports = function(app) {
   app.route('/stores/:storeId')
     .get(mkb.list_a_store)
 
-
   app.route('/orders')
     .get(mkb.list_all_orders)
     .post(mkb.create_an_order);
 
   app.route('/orders/:sellerId/:buyerId')
     .get(mkb.read_an_order);
+
+  app.route('/orders/:sellerId')
+    .get(mkb.read_an_order_by_store);
 };

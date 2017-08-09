@@ -37,6 +37,13 @@ exports.read_an_order = function(req, res) {
   });
 };
 
+exports.read_an_order_by_store = function(req, res) {
+  Order.find({sellerId: req.params.sellerId},{ _id: 0 }, function(err, order) {
+    if (err)
+      res.send(err);
+    res.json(order);
+  });
+};
 
 
 
@@ -118,7 +125,8 @@ exports.create_a_store = function(req, res) {
   var new_store = new Store({
     name: req.body.name,
     storeId : req.body.storeId,
-    menu: req.body.menu
+    menu: req.body.menu,
+    review: req.body.review
   });
   new_store.save(function(err, store) {
     if (err)

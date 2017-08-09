@@ -4,17 +4,10 @@ let Schema = mongoose.Schema;
 
 
 
-let MenuSchema = new Schema({
-  title: String,
-  price: Number,
-  orders: Number
-});
-
-
-
 let UserSchema = new Schema({
   name: String,
   userId: {type: String, required:true},
+  profilePic: {type: String, default:"http://file.smartbaedal.com/usr/memphoto/mamber_2.jpg"}
   createdDate: {type: Date, default: Date.now, required:true},
   spent : {type: Number, default:0},
   baeminLevel: String,
@@ -27,17 +20,16 @@ let StoreSchema = new Schema({
   storeId: {type: Number,required:true, unique: true},
   ceatedDate: {type: Date,default: Date.now},
   menu: [{}],
+  review: [{}]
 }, {versionKey: false});
-
-
 
 
 let OrderSchema = new Schema({
   createdDate: {type: Date, default: Date.now, required:true},
   buyerId: {type:String, required:true},
-  sellerId: {type:String, required:true},
+  sellerId: {type:Number, required:true},
   price: {type:Number, required:true},
-  content: {type:String, required:true}
+  content: {type:[String], required:true}
 },{versionKey: false});
 
 
