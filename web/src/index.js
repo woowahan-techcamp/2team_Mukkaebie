@@ -82,7 +82,7 @@ inputObj = {
 	generalContentPrefix : "#cont-",
 	baseUrl: "",
 }
-let test1 = new TabUiWithAjax(inputObj);
+
 
 
 
