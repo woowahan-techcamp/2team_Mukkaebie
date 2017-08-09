@@ -9,14 +9,6 @@
   width: 100%;
   padding-bottom: 100px;
   padding-top:100px;
-
-
-/*메뉴탭 폴드 메뉴*/
-
-.menuTabGraph {
-    width: 100%;
-    background: green;
-    height: 500px;
 }
 
 .foldableLevel1 {
@@ -93,7 +85,7 @@
   font-size:11px;
   font-weight:bold;
   background: #fff;
-
+}
 
 
 .storeDetailTable {
@@ -115,7 +107,7 @@
 
 .storeDetailTable tr {
   border-bottom: 10px solid transparent;
-
+}
 .storeDetailTableLeft {
     width: 30%
 }
@@ -355,7 +347,7 @@
 
 }
 /* 탭 기능 관련 CSS */
-storeTab {
+.storeTab {
   width: 33.333%;
   float:left;
   background: #ddd7c7;
