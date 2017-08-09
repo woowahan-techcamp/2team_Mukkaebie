@@ -134,8 +134,17 @@ figure {
 }
 
 .shape-4 {
+    background-color: rgb(251,136,136);
+}
+
+.shape-5 {
+    background-color: rgb(251,229,136);
+}
+
+.shape-6 {
     background-color: #d2d3d4;
 }
+
 
 .sr-only {
     position: absolute;
