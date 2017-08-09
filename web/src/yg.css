@@ -1,39 +1,36 @@
-.wrap{
-  background: yellow;
-  padding-top: 50px;
-  padding-bottom: 50px;
+.wrap {
+    background: yellow;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+
 .content {
-  max-width: 960px;
-  background: white;
-  margin: 100px auto;
-  margin-top:100px;
+    max-width: 960px;
+    background: white;
+    margin: 100px auto;
 }
+
 .col-50 {
-  border:1px solid black;
-  background: red;
-  height: 300px;
-  float: left;
-  width: 50%;
+    border: 1px solid black;
+    background: red;
+    height: 300px;
+    float: left;
+    width: 50%;
 }
 
-@media screen and (max-width:600px) {
-  .col-50 {
-    width: 100%;
-  }
+@media screen and (max-width: 600px) {
+    .col-50 {
+        width: 100%;
+    }
 }
-
 
 /*메뉴탭 폴드 메뉴*/
 
-
-
 .menuTabGraph {
-  width: 100%;
-  background: green;
-  height: 500px;
+    width: 100%;
+    background: green;
+    height: 500px;
 }
-
 
 .foldableLevel1 {
     background-color: #817c74;
@@ -49,18 +46,20 @@
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.foldableLevel1.active{
+.foldableLevel1.active {
     background-color: black;
-    clear:both;
+    clear: both;
 }
 
 .foldableLevel1 h6, p {
-  padding:0;
-  margin:0;
+    padding: 0;
+    margin: 0;
 }
+
 .foldableLevel1 p {
-  font-size: 11px;
+    font-size: 11px;
 }
+
 /* Style the accordion panel. Note: hidden by default */
 div.foldableLevel2 {
     padding: 0;
@@ -71,123 +70,308 @@ div.foldableLevel2 {
     overflow: hidden;
 
 }
+
 .foldableLevel2 .foldableLevel1 {
-  background: #fff;
-  color: black;
+    background: #fff;
+    color: black;
 }
+
 .foldableLevel2 .foldableLevel1.active {
-  background: #fff;
-  color: black;
+    background: #fff;
+    color: black;
 }
 
 .menuTabContent * {
-  clear: both;
+    clear: both;
 }
 
+.storeDetailHead {
+    border: 1px solid #cccccc;
+    padding: 15px;
+    font-size: 11px;
+    font-weight: bold;
+    background: #fff;
+}
 
-.storeDetailHead{
-  border: 1px solid #cccccc;
-  padding:15px;
-  font-size:11px;
-  font-weight:bold;
-  background: #fff;
-}
 .storeDetailTable {
-  background: #fff;
+    background: #fff;
 }
+
 .storeDetailTable {
-  padding:10px;
-  border-color: #cccccc;
-  border-style: solid;
-  border-width: 0px 1px 1px 1px;
+    padding: 10px;
+    border-color: #cccccc;
+    border-style: solid;
+    border-width: 0px 1px 1px 1px;
 }
+
 /*업소상세 박스*/
 
-@media screen and (max-width:768px){
-  .storeDetailBox {
-    display: none;
-  }
-  .tabAreaWrap {
-    width: 100%;
-  }
+@media screen and (max-width: 768px) {
+    .storeDetailBox {
+        display: none;
+    }
+
+    .tabAreaWrap {
+        width: 100%;
+    }
 }
 
 .storeDetailTable table {
-  font-size: 11px;
+    font-size: 11px;
 
 }
-.phoneFontColor{
-  color: #ff4200;
-  font-weight: bold;
+
+.phoneFontColor {
+    color: #ff4200;
+    font-weight: bold;
 }
 
-tr {border-bottom: 10px solid transparent;}
+tr {
+    border-bottom: 10px solid transparent;
+}
 
-.storeDetailTableLeft {width:30%}
-.storeDetailTableRight {width:70%}
+.storeDetailTableLeft {
+    width: 30%
+}
+
+.storeDetailTableRight {
+    width: 70%
+}
 
 .float-left {
-  float: left;
+    float: left;
 }
+
 .p-x-1 {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.p-a-1{
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-
-
-
-
+.p-a-1 {
+    padding: 10px;
+}
 
 /*리뷰 관련*/
 
 .reviewCard {
-  padding:15px;
-  display: flex;
-  align-items:flex-start;
-  background: #fff;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
 }
+
 .reviewCardPic {
-  background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  min-width:65px;
-  height:65px;
-  float: left;
+    background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-width: 65px;
+    height: 65px;
+    float: left;
 }
 
 .reviewCardContent {
-  max-width: 580px;
-  float:left;
+    max-width: 580px;
+    float: left;
 }
+
 .reviewCardBtm {
-  font-size: 11px;
+    font-size: 11px;
 }
-.reviewCardMid{
-  clear: both;
+
+.reviewCardMid {
+    clear: both;
 }
-.reviewCardTop>span{
-  font-size: 11px;
-  color:#8a8b8f;
+
+.reviewCardTop > span {
+    font-size: 11px;
+    color: #8a8b8f;
 }
-.reviewCardStar{
-  color:#ff6927;
+
+.reviewCardStar {
+    color: #ff6927;
 }
+
 .reviewCardId {
-  font-size: 12px;
-  color:#222;
+    font-size: 12px;
+    color: #222;
 }
+
 .reviewCardDate {
-  font-size: 11px;
-  color:#8a8b8f;
+    font-size: 11px;
+    color: #8a8b8f;
 }
+
 .reviewCardBtm {
-  clear: both;
-  width: 100%;
+    clear: both;
+    width: 100%;
+}
+
+.competition-podium {
+    height: 250px;
+    position: relative;
+    width: 350px;
+    top: 100px;
+    left: 25%;
+    display: inline-block;
+    background: #f6f3ed;
+}
+
+.competition-podium .podium-block {
+    width: 110px;
+    text-align: left;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+}
+
+.competition-podium .podium-block .place {
+    font-size: 1em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 15px;
+}
+
+.competition-podium .podium-block .sum {
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 70px;
+}
+
+.competition-podium .podium-block.bronze {
+    color: #e6d6bf;
+    left: 230px;
+}
+
+.competition-podium .podium-block.bronze .podium {
+    background: #e6d6bf;
+    height: 0px;
+}
+
+.competition-podium .podium-block.bronze .name {
+    color: #856e4e;
+    text-align: center
+}
+
+.competition-podium .podium-block.gold {
+    color: #E87E04;
+    left: 120px;
+}
+
+.competition-podium .podium-block.gold .podium {
+    background: #ead679;
+    height: 0px;
+}
+
+.competition-podium .podium-block.gold .name {
+    color: #856e4e;
+    text-align: center
+}
+
+.competition-podium .podium-block.silver {
+    color: #cbd9de;
+    left: 10px;
+}
+
+.competition-podium .podium-block.silver .podium {
+    background: #cbd9de;
+    height: 0px;
+}
+
+.competition-podium .podium-block.silver .name {
+    color: #856e4e;
+    text-align: center
+}
+
+.podium {
+    display: table;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.podium > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 1.5em;
+}
+
+@media only screen and (max-width: 770px) {
+
+    .competition-podium {
+        width: 350px;
+        left: 10%;
+
+    }
+
+    .podium > * {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        color: #4D4D4D;
+        font-size: 1.0em;
+    }
+
+    .competition-podium .podium-block {
+        width: 100px;
+        text-align: left;
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .competition-podium .podium-block.gold {
+        left: 125px;
+    }
+
+    .competition-podium .podium-block.silver {
+        left: 25px;
+    }
+
+    .competition-podium .podium-block.bronze {
+        left:225px;
+    }
+
+
+}
+
+@media only screen and (max-width: 420px) {
+
+    .competition-podium {
+        width: 90%;
+        left: 5%;
+
+    }
+
+    .podium > * {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        color: #4D4D4D;
+        font-size: 1.0em;
+    }
+
+    .competition-podium .podium-block {
+        width: 30%;
+        text-align: left;
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .competition-podium .podium-block.gold {
+        left: 35%;
+    }
+
+    .competition-podium .podium-block.silver {
+        left: 5%;
+    }
+
+    .competition-podium .podium-block.bronze {
+        left: 65%;
+    }
+
+
 }
