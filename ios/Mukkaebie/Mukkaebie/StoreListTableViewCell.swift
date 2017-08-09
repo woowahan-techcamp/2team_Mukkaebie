@@ -1,0 +1,33 @@
+//
+//  StoreListTableViewCell.swift
+//  Mukkaebie
+//
+//  Created by woowabrothers on 2017. 8. 9..
+//  Copyright © 2017년 woowabrothers. All rights reserved.
+//
+
+import UIKit
+
+class StoreListTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var storeLogoImage: UIImageView!
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var reviewNumaberLabel: UILabel!
+    @IBOutlet weak var directPaymentLabel: UILabel!
+    @IBOutlet weak var meetPaymentLabel: UILabel!
+    @IBOutlet weak var arrowImage: UIImageView!
+    
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
