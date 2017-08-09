@@ -24,6 +24,8 @@
 		98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE41F3A991C00243F31 /* StoreListViewController.swift */; };
 		98B67CE71F3A9C2A00243F31 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE61F3A9C2A00243F31 /* Extension.swift */; };
 		98B67CE91F3AA24800243F31 /* StoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */; };
+		98B67CF81F3AF09900243F31 /* StoreListMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CF71F3AF09900243F31 /* StoreListMenuBar.swift */; };
+		98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		98B67CE41F3A991C00243F31 /* StoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListViewController.swift; sourceTree = "<group>"; };
 		98B67CE61F3A9C2A00243F31 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListTableViewCell.swift; sourceTree = "<group>"; };
+		98B67CF71F3AF09900243F31 /* StoreListMenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListMenuBar.swift; sourceTree = "<group>"; };
+		98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListMenuBarCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				98B67CE41F3A991C00243F31 /* StoreListViewController.swift */,
+				98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */,
+				98B67CF71F3AF09900243F31 /* StoreListMenuBar.swift */,
 				98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */,
 				98B67CE21F3A990A00243F31 /* StoreList.storyboard */,
 			);
@@ -173,8 +179,8 @@
 		98B67CEC1F3AD57C00243F31 /* StoreDetail */ = {
 			isa = PBXGroup;
 			children = (
-				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
+				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 			);
 			name = StoreDetail;
 			sourceTree = "<group>";
@@ -326,7 +332,9 @@
 				983248151F32FD2C00ABFBFB /* AppDelegate.swift in Sources */,
 				983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */,
 				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
+				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,
 				98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */,
+				98B67CF81F3AF09900243F31 /* StoreListMenuBar.swift in Sources */,
 				98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
