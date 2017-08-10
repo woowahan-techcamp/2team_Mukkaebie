@@ -1,309 +1,277 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>지점 페이지</title>
-    <link rel="stylesheet" type="text/css" href="./src/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./src/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="./src/main.css">
-    <link rel="stylesheet" type="text/css" href="./src/yg.css">
-    <link rel="stylesheet" type="text/css" href="./src/chart.css">
+  <meta charset="utf-8">
+  <title>지점 페이지</title>
+  <link rel="stylesheet" type="text/css" href="./src/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/main.css">
+  <link rel="stylesheet" type="text/css" href="./src/yg.css">
+  <link rel="stylesheet" type="text/css" href="./src/chart.css">
 </head>
 
 <body>
-  <script id="reviewTemplate" type="text/template">
-    <div class="reviewCard">
-      <div class="reviewCardPic">
-      </div>
-      <div class="reviewCardContent">
-        <div class="reviewCardTop p-x-1">
-          <div class="reviewCardId float-left">
-            ${userId}
-          </div>
-          <span class="float-left p-x-1">
+<script id="reviewTemplate" type="text/template">
+  <div class="reviewCard">
+    <div class="reviewCardPic">
+    </div>
+    <div class="reviewCardContent">
+      <div class="reviewCardTop p-x-1">
+        <div class="reviewCardId float-left">
+          ${userId}
+        </div>
+        <span class="float-left p-x-1">
             |
           </span>
-          <div class="reviewCardDate float-left">
-            ${createdDate}
-          </div>
-        </div>
-        <div class="reviewCardMid p-x-1">
-          <span class="reviewCardStar float-left">${orangeStar}</span>
-          <span class="reviewCardNostar float-left">${greyStar}</span>
-        </div>
-        <div class="reviewCardBtm p-a-1">
-          ${reviewContent}
+        <div class="reviewCardDate float-left">
+          ${createdDate}
         </div>
       </div>
-    </div>
-  </script>
-
-  <!--메뉴 레이아웃-->
-  <div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
-    <div class="tabAreaWrap col-xs-9">
-      <div class="menuReviewWrap row">
-        <ul id="storeTabWrapper">
-            <li class="storeTab selectedTab" id="menuTab">
-                메뉴
-            </li>
-            <li class="storeTab" id="mkbTab">
-                먹깨비
-            </li>
-            <li class="storeTab" id="reviewTab">
-                리뷰
-            </li>
-        </ul>
-
-
-        <div id="storeTabContentWrapper">
-          <div class="selectedContent menuTabContent col-xs-12 storeTabContent" id="cont-menuTab" >
-            <!--그래프 시작-->
-            <div class="menuTabGraph">
-              <figure>
-                  <div class="figure-content">
-                      <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut" aria-labelledby="menu-title menu-desc"
-                           role="img">
-                          <title id="menu-title">도넛 차트</title>
-                          <desc id="menu-desc">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</desc>
-
-                          <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"
-                                  role="presentation"></circle>
-                          <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4"
-                                  stroke-width="8" role="presentation"></circle>
-                          <!-- unused remain share -->
-
-                      </svg>
-                  </div>
-                  <figcaption class="figure-key">
-                      <p class="sr-only">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</p>
-
-                      <ul class="figure-key-list" aria-hidden="true" role="presentation">
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-1"></span>
-                          </li>
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-2"></span>
-                          </li>
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-3"></span>
-                          </li>
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-4"></span>
-                          </li>
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-5"></span>
-                          </li>
-                          <li class="donutLabel">
-                              <span class="shape-rect shape-6"></span>기타
-                          </li>
-                      </ul>
-                  </figcaption>
-              </figure>
-            </div>
-            <!--그래프 끝-->
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <div class="foldableLevel1">순살세트</div>
-              <div class="foldableLevel2">
-                <p>Lorem ipsum..</p>
-              </div>
-            </div>
-
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <p>Lorem ipsum...</p>
-            </div>
-
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <p>Lorem ipsum...</p>
-            </div>
-
-          </div>
-          <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
-          <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
-
-            <div class="reviewWriteBox p-a-3">
-              <form id="reviewSubmit" action="http://52.78.184.77:3000/stores/101010" method="PUT">
-                <p name="userId" value="ygtech">ygtech</p>
-                <textarea name="content" style="width:100%; height:100px"></textarea>
-                <button class="float-right">작성</button>
-              </form>
-            </div>
-
-          </div>
-        </div>
+      <div class="reviewCardMid p-x-1">
+        <span class="reviewCardStar float-left">${orangeStar}</span>
+        <span class="reviewCardNostar float-left">${greyStar}</span>
       </div>
-
-    </div>
-
-    <!--옆에 업소 상세 플롯-->
-    <div class="col-xs-3 storeDetailBox">
-      <div class="storeDetailHead">
-        업소상세정보
-      </div>
-      <div class="storeDetailTable">
-        <table>
-          <tr>
-            <td class="storeDetailTableLeft">최소금액</td>
-            <td class="storeDetailTableRight">13,000원 부터</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">운영시간</td>
-            <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">전화번호</td>
-            <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">업소소개</td>
-            <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
-          </tr>
-        </table>
+      <div class="reviewCardBtm p-a-1">
+        ${reviewContent}
       </div>
     </div>
   </div>
+</script>
 
+<!--메뉴 레이아웃-->
+<div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
+  <div class="tabAreaWrap col-xs-9">
+    <div class="menuReviewWrap row">
+      <ul id="storeTabWrapper">
+        <li class="storeTab selectedTab" id="menuTab">
+          메뉴
+        </li>
+        <li class="storeTab" id="mkbTab">
+          먹깨비
+        </li>
+        <li class="storeTab" id="reviewTab">
+          리뷰
+        </li>
+      </ul>
+
+
+      <div id="storeTabContentWrapper">
+        <div class="selectedContent menuTabContent col-xs-12 storeTabContent" id="cont-menuTab">
+          <!--그래프 시작-->
+          <div class="menuTabGraph">
+            <figure>
+              <div class="figure-content">
+                <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut" aria-labelledby="menu-title menu-desc"
+                     role="img">
+                  <title id="menu-title">도넛 차트</title>
+                  <desc id="menu-desc">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</desc>
+
+                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"
+                          role="presentation"></circle>
+                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4"
+                          stroke-width="8" role="presentation"></circle>
+                  <!-- unused remain share -->
+
+                </svg>
+              </div>
+              <figcaption class="figure-key">
+                <p class="sr-only">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</p>
+
+                <ul class="figure-key-list" aria-hidden="true" role="presentation">
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-1"></span>
+                  </li>
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-2"></span>
+                  </li>
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-3"></span>
+                  </li>
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-4"></span>
+                  </li>
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-5"></span>
+                  </li>
+                  <li class="donutLabel">
+                    <span class="shape-rect shape-6"></span>기타
+                  </li>
+                </ul>
+              </figcaption>
+            </figure>
+          </div>
+          <!--그래프 끝-->
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <div class="foldableLevel1">순살세트</div>
+            <div class="foldableLevel2">
+              <p>Lorem ipsum..</p>
+            </div>
+          </div>
+
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <p>Lorem ipsum...</p>
+          </div>
+
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <p>Lorem ipsum...</p>
+          </div>
+
+        </div>
+        <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
+        <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
+
+          <div class="reviewWriteBox p-a-3">
+
+            <p name="userId" value="ygtech">ygtech</p>
+            <input id="reviewTextInput" type="text" name="content" style="width:100%; height:100px">
+            <button id="reviewTextInputBtn" class="float-right">작성</button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--옆에 업소 상세 플롯-->
+  <div class="col-xs-3 storeDetailBox">
+    <div class="storeDetailHead">
+      업소상세정보
+    </div>
+    <div class="storeDetailTable">
+      <table>
+        <tr>
+          <td class="storeDetailTableLeft">최소금액</td>
+          <td class="storeDetailTableRight">13,000원 부터</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">운영시간</td>
+          <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">전화번호</td>
+          <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">업소소개</td>
+          <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 
 <script src="./dist/index.bundle.js"></script>
 <script src="./src/index.js"></script>
-<!-- <script src="./src/yg.js"></script> -->
-  <script>
-    var form=document.querySelector("#reviewSubmit");
+<script src="./src/yg.js"></script>
 
-    form.onsubmit = function (e) {
-      // stop the regular form submission
-      e.preventDefault();
+<script>
 
-      // collect the form data while iterating over the inputs
-      var data = {};
-      for (var i = 0, ii = form.length; i < ii; ++i) {
-        var input = form[i];
-        if (input.name) {
-          data[input.name] = input.value;
+</script>
+
+
+<script>
+
+  function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const blogResult = JSON.parse(this.responseText);
+
+        blogResult[0].review.reverse().forEach(function (oneReview) {
+          const review = oneReview;
+          const userId = review.user;
+          const createdDate = review.time;
+          const reviewContent = review.content;
+          const orangeStar = "***"
+          const greyStar = "**"
+          const tempGrab = document.querySelector("#reviewTemplate").text;
+          const renderTarget = document.querySelector("#cont-reviewTab");
+          const result = eval('`' + tempGrab + '`');
+          renderTarget.innerHTML += result;
+        })
+
+
+      }
+    };
+    xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
+    xhttp.send();
+  }
+
+  loadDoc();
+</script>
+
+
+<script type="text/javascript">
+  //tab operate
+  let test1 = new TabUiWithAjax(inputObj);
+</script>
+<!-- 원그래프 자바스크립트 -->
+
+<script type="text/javascript">
+
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      let responseObject = JSON.parse(xhr.responseText);
+      let menu = responseObject[0].menu;
+      let top5 = menu.sort(function (a, b) {
+        return a.orders < b.orders ? 1 : -1;
+      }).slice(0, 5);
+      let circleContent = '';
+      let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
+      let total = 0;
+      let share = 0;
+      let reverse = 0;
+      let offset = 25;
+      let totalLength = 0;
+      let label = document.querySelectorAll('.donutLabel');
+
+      for (let i = 0; i < menu.length; i++) {
+        total += menu[i].orders;
+      }
+
+      for (let i = 0; i < 5; i++) {
+        share = top5[i].orders / total * 100;
+        reverse = 100 - share;
+        circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
+        circleContent += '<title class="donut-segment-title">' + top5[i].title + '</title>';
+        circleContent += '<desc class="donut-segment-desc">' + top5[i].price + '원</desc>';
+        circleContent += '</circle>';
+
+        label[i].insertAdjacentHTML('beforeend', top5[i].title + ' ' + share.toFixed(2) + '%');
+        totalLength = totalLength + share;
+        offset = 100 - totalLength + 25;
+        if (i == 4) {
+          label[5].insertAdjacentHTML('beforeend', (100 - totalLength).toFixed(2) + '%');
         }
       }
-      data["time"] =   new Date().toLocaleString();
-      data["storeId"] = 101010;
-
-      // construct an HTTP request
-      var xhr = new XMLHttpRequest();
-      xhr.open(form.method, form.action, true);
-      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
-      // send the collected data as JSON
-      xhr.send(JSON.stringify(data));
-
-      xhr.onloadend = function () {
-        // done
-      };
-    };
-  </script>
 
 
-  <script>
+      var svg = document.querySelector('svg');
+      svg.insertAdjacentHTML('beforeend', circleContent);
 
-
-
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          const blogResult = JSON.parse(this.responseText);
-
-          blogResult[0].review.reverse().forEach(function(oneReview){
-            const review = oneReview;
-            console.log(oneReview)
-            const userId = review.user;
-            const createdDate = review.time;
-            const reviewContent = review.content;
-            const orangeStar = "***"
-            const greyStar = "**"
-            const tempGrab = document.querySelector("#reviewTemplate").text;
-            const renderTarget = document.querySelector("#cont-reviewTab");
-            const result = eval('`'+tempGrab+'`');
-            renderTarget.innerHTML += result;
-          })
-
-
-        }
-      };
-      xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
-      xhttp.send();
     }
+  };
 
-    loadDoc();
-  </script>
-
-
-
-
-
-
-<script type="text/javascript">
-//tab operate
-let test1 = new TabUiWithAjax(inputObj);
-</script>
-  <!-- 원그래프 자바스크립트 -->
-<script type="text/javascript">
-
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            let responseObject = JSON.parse(xhr.responseText);
-            let menu = responseObject[0].menu;
-            let top5 = menu.sort(function (a, b) {return a.orders < b.orders ? 1 : -1;}).slice(0, 5);
-            let circleContent = '';
-            let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
-            let total = 0;
-            let share = 0;
-            let reverse = 0;
-            let offset = 25;
-            let totalLength = 0;
-            let label = document.querySelectorAll('.donutLabel');
-
-            for (let i = 0; i < menu.length; i++) {
-                total += menu[i].orders;
-            }
-
-            for (let i = 0; i < 5; i++) {
-                share = top5[i].orders / total * 100;
-                reverse = 100 - share;
-                circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
-                circleContent += '<title class="donut-segment-title">' + top5[i].title +'</title>';
-                circleContent += '<desc class="donut-segment-desc">' + top5[i].price + '원</desc>';
-                circleContent += '</circle>';
-
-                label[i].insertAdjacentHTML('beforeend', top5[i].title + ' ' + share.toFixed(2) + '%');
-                totalLength = totalLength + share;
-                offset = 100 - totalLength + 25;
-                if(i == 4) {
-                  label[5].insertAdjacentHTML('beforeend',  (100-totalLength).toFixed(2) + '%');
-                }
-            }
-
-
-            let svg = document.querySelector('svg');
-            svg.insertAdjacentHTML('beforeend', circleContent);
-
-        }
-    };
-
-    xhr.open('GET', 'http://52.78.184.77:3000/stores/101010', true);
-    xhr.send(null);
+  xhr.open('GET', 'http://52.78.184.77:3000/stores/101010', true);
+  xhr.send(null);
 
 
 </script>
