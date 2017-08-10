@@ -26,6 +26,8 @@ class StoreListViewController: UIViewController {
         tableView.allowsSelection = true
         collectionView.allowsSelection = true
         
+        self.navigationController?.navigationBar.isHidden = false
+
         
     }
 
