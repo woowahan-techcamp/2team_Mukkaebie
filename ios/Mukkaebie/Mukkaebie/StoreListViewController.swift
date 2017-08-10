@@ -11,12 +11,20 @@ import UIKit
 class StoreListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    let foodCategoryArray = ["치킨","중식","피자","한식","분식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "치킨췤췤"
         tableView.dataSource = self
         tableView.delegate = self
-        // Do any additional setup after loading the view.
+        collectionView.dataSource = self
+//        collectionView.delegate = self
+        collectionView.backgroundColor = UIColor(hexString: "3B342C")
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +32,6 @@ class StoreListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
 }
 
 extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -35,7 +41,7 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,5 +50,40 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
         cell.reviewNumaberLabel.text = "최근리뷰 10  최근사장님댓글 33"
         return cell
     }
+    
+}
+
+extension StoreListViewController : UICollectionViewDataSource {
+
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return foodCategoryArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! StoreListMenuBarCollectionViewCell
+        cell.foodCategoryLabel.text = foodCategoryArray[indexPath.row]
+        return cell
+    }
+    
+    
+}
+
+extension StoreListViewController : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let size = (foodCategoryArray[indexPath.row] as NSString).size(attributes: nil)
+        return CGSize(width: size.width * 1.5 , height: 35)
+        
+        //        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
+        //        return CGSize(width: width, height: 35)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
     
 }
