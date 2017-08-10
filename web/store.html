@@ -131,6 +131,15 @@
           </div>
           <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
           <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
+
+            <div class="reviewWriteBox p-a-3">
+              <form id="reviewSubmit" action="http://52.78.184.77:3000/stores/101010" method="PUT">
+                <p name="userId" value="ygtech">ygtech</p>
+                <textarea name="content" style="width:100%; height:100px"></textarea>
+                <button class="float-right">작성</button>
+              </form>
+            </div>
+
           </div>
         </div>
       </div>
@@ -170,7 +179,37 @@
 <script src="./dist/index.bundle.js"></script>
 <script src="./src/index.js"></script>
 <!-- <script src="./src/yg.js"></script> -->
+  <script>
+    var form=document.querySelector("#reviewSubmit");
 
+    form.onsubmit = function (e) {
+      // stop the regular form submission
+      e.preventDefault();
+
+      // collect the form data while iterating over the inputs
+      var data = {};
+      for (var i = 0, ii = form.length; i < ii; ++i) {
+        var input = form[i];
+        if (input.name) {
+          data[input.name] = input.value;
+        }
+      }
+      data["time"] =   new Date().toLocaleString();
+      data["storeId"] = 101010;
+
+      // construct an HTTP request
+      var xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action, true);
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+      // send the collected data as JSON
+      xhr.send(JSON.stringify(data));
+
+      xhr.onloadend = function () {
+        // done
+      };
+    };
+  </script>
 
 
   <script>
