@@ -634,7 +634,7 @@
 		};
 		9832483E1F32FD2C00ABFBFB /* Build configuration list for PBXNativeTarget "MukkaebieTests" */ = {
 			isa = XCConfigurationList;
-			buildConfigurations = (ƒh
+			buildConfigurations = (
 				9832483F1F32FD2C00ABFBFB /* Debug */,
 				983248401F32FD2C00ABFBFB /* Release */,
 			);
