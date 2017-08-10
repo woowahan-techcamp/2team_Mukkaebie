@@ -10,7 +10,7 @@ import UIKit
 
 class StoreDetailViewController: UIViewController, UITabBarDelegate {
     
-//    var mukkabieViewController : MukkabieViewController?
+//    var mukkaebieRankViewController : MukkaebieRankViewController?
 //    var menuViewController: MenuViewController?
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
@@ -68,6 +68,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         
         UITabBar.appearance().selectionIndicatorImage = image
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         // Do any additional setup after loading the view.
     }
     
@@ -80,6 +82,21 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         switch item.tag {
             
         case 0:
+            let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
+            let mukkaebieRankViewController = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+            addChildViewController(mukkaebieRankViewController!)
+            
+            
+            tabSubView.addSubview((mukkaebieRankViewController?.view)!)
+            mukkaebieRankViewController?.didMove(toParentViewController: self)
+            
+            tabSubView.frame.size.height = (mukkaebieRankViewController?.view.frame.size.height)!
+            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            
+            scrollView.contentSize.width = contentView.frame.size.width
+            scrollView.contentSize.height = contentView.frame.size.height
+            
 //            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
 //            mukkabieViewController = storyboard.instantiateViewController(withIdentifier: "mukkabieViewController") as? MukkabieViewController
 //            tabSubView.addSubview((mukkabieViewController?.view.subviews[0])!)
