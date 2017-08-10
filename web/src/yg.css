@@ -116,9 +116,33 @@
     width: 70%
 }
 
-
-
-
+/* 주문하기 박스 */
+.storeCart {
+    border:1px solid #cccccc;
+    margin-top:20px;
+    background: #fff;
+    transition: all 1s ease-in-out;
+}
+.storeCartHead{
+    padding:10px;
+    border-bottom:1px solid #cccccc;
+}
+.storeCartContent {
+    padding:10px;
+    border-bottom:1px solid #cccccc;
+}
+.storeCartTotal{
+    padding:10px;
+}
+.cartOrderButton {
+    background: #ff6c00;
+    font-size:30px;
+    padding:20px;
+    color: #fff;
+    text-align: center;
+    font-weight: normal;
+    cursor: pointer;
+}
 
 /* 리뷰 탭 관련 */
 .reviewTabContent {

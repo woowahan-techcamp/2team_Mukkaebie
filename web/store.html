@@ -40,7 +40,41 @@
 
 <!--메뉴 레이아웃-->
 <div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
-  <div class="tabAreaWrap col-xs-9">
+  <!--옆에 업소 상세 플롯-->
+  <div class="col-xs-3 float-right">
+    <div class="storeDetailBox">
+      <div class="storeDetailHead">
+        업소상세정보
+      </div>
+      <div class="storeDetailTable">
+        <table>
+          <tr>
+            <td class="storeDetailTableLeft">최소금액</td>
+            <td class="storeDetailTableRight">13,000원 부터</td>
+          </tr>
+          <tr>
+            <td class="storeDetailTableLeft">운영시간</td>
+            <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
+          </tr>
+          <tr>
+            <td class="storeDetailTableLeft">전화번호</td>
+            <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
+          </tr>
+          <tr>
+            <td class="storeDetailTableLeft">업소소개</td>
+            <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="storeCart">
+      <div class="storeCartHead">장바구니</div>
+      <div class="storeCartContent">랜덤 주문 1개</div>
+      <div class="storeCartTotal">주문금액합계 0원</div>
+      <div class="cartOrderButton" id="cartOrderButton">주문하기</div>
+    </div>
+  </div>
+  <div class="tabAreaWrap float-right col-xs-9">
     <div class="menuReviewWrap row">
       <ul id="storeTabWrapper">
         <li class="storeTab selectedTab" id="menuTab">
@@ -131,66 +165,86 @@
         </div>
         <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
+          <div class="reviewWriteBox p-a-3">
 
+            <p name="userId" value="ygtech">ygtech</p>
+            <textarea id="reviewTextInput" type="text" name="content" style="width:100%; height:100px"></textarea>
+            <button id="reviewTextInputBtn" class="float-right">작성</button>
+
+          </div>
+          <div id="reviewList">
+
+          </div>
 
 
         </div>
-        <div class="reviewWriteBox p-a-3">
 
-          <p name="userId" value="ygtech">ygtech</p>
-          <input id="reviewTextInput" type="text" name="content" style="width:100%; height:100px">
-          <button id="reviewTextInputBtn" class="float-right">작성</button>
-
-        </div>
       </div>
     </div>
 
   </div>
 
-  <!--옆에 업소 상세 플롯-->
-  <div class="col-xs-3 storeDetailBox">
-    <div class="storeDetailHead">
-      업소상세정보
-    </div>
-    <div class="storeDetailTable">
-      <table>
-        <tr>
-          <td class="storeDetailTableLeft">최소금액</td>
-          <td class="storeDetailTableRight">13,000원 부터</td>
-        </tr>
-        <tr>
-          <td class="storeDetailTableLeft">운영시간</td>
-          <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
-        </tr>
-        <tr>
-          <td class="storeDetailTableLeft">전화번호</td>
-          <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
-        </tr>
-        <tr>
-          <td class="storeDetailTableLeft">업소소개</td>
-          <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+
+
 </div>
 
 
 <script src="./dist/index.bundle.js"></script>
 <script src="./src/index.js"></script>
 <script src="./src/yg.js"></script>
+<script>
+
+  var userList = ["ygtech", "dbtech", "jhtech", "mhtech"]
+  var orderButton = document.querySelector("#cartOrderButton");
+  orderButton.addEventListener("click", function(){
+    var randNum = Math.floor(Math.random() * 4);
+    console.log(randNum);
+    var packet = {};
+    packet["sellerId"] = 101010;
+    packet["buyerId"] = userList[randNum];
+    packet["content"] = ["testcase"];
+    packet["price"] =   1000;
+    console.log(packet);
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open("POST", "http://52.78.184.77:3000/orders", true);
+    xhr1.setRequestHeader('Content-Type', 'application/json');
+
+    // send the collected data as JSON
+    xhr1.send(JSON.stringify(packet));
+
+    xhr1.onloadend = function () {
+
+    };
+  });
+</script>
+<script>
+  document.addEventListener("scroll", function(){
+    if (window.scrollY > 385) {
+      var cart = document.querySelector(".storeCart");
+      cart.style.position = "fixed";
+      cart.style.top="5px";
+      cart.style.width="200px"
+    }
+    else {
+      var cart = document.querySelector(".storeCart");
+      cart.style.position = "inherit";
+      cart.style.top="";
+      cart.style.width=""
+    }
+  })
+</script>
 
 <script>
 
         var theButton = document.querySelector("#reviewTextInputBtn");
         theButton.addEventListener("click", function(){
-          console.log('dsfsdf');
           var packet = {"review":{}};
           packet["storeId"] = 101010;
           packet.review["content"] = document.querySelector("#reviewTextInput").value;
           packet.review["time"] =   new Date().toLocaleString();
           packet.review["user"] = "ygtech";
           console.log(packet);
+
         var xhr1 = new XMLHttpRequest();
         xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
         xhr1.setRequestHeader('Content-Type', 'application/json');
@@ -198,9 +252,10 @@
         // send the collected data as JSON
         xhr1.send(JSON.stringify(packet));
 
-//        xhr1.onloadend = function () {
-//          // done
-//        };
+        xhr1.onloadend = function () {
+          loadDoc();
+          document.querySelector("#reviewTextInput").value = "";
+        };
       });
 
 
@@ -215,7 +270,8 @@
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const blogResult = JSON.parse(this.responseText);
-
+        const renderTarget = document.querySelector("#reviewList");
+        renderTarget.innerHTML = "";
         blogResult[0].review.reverse().forEach(function (oneReview) {
           const review = oneReview;
           const userId = review.user;
@@ -224,7 +280,6 @@
           const orangeStar = "***"
           const greyStar = "**"
           const tempGrab = document.querySelector("#reviewTemplate").text;
-          const renderTarget = document.querySelector("#cont-reviewTab");
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
         })
