@@ -10,30 +10,26 @@ import Foundation
 
 class ModelStores {
     
-    private var id = String()
+    private var id = Int()
     private var name = String()
-    private var spent = Int()
     private var createdDate = String()
+//    private var order = []
     
     init() {}
     
-    init(id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
+    init(id: Int, name: String, createdDate: String) {
         self.id = id
         self.name = name
-        self.spent = spent
         self.createdDate = createdDate
-        self.baeminLevel = baeminLevel
     }
     
-    func getUser() -> [String : Any] {
-        var userDic = [String : Any]()
-        userDic["id"] = id
-        userDic["name"] = name
-        userDic["spent"] = spent
-        userDic["createdDate"] = createdDate
-        userDic["baeminLevel"] = baeminLevel
+    func getStore() -> [String : Any] {
+        var storeDic = [String : Any]()
+        storeDic["id"] = id
+        storeDic["name"] = name
+        storeDic["createdDate"] = createdDate
         
-        return userDic
+        return storeDic
     }
     
 }
