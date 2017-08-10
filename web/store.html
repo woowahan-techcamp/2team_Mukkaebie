@@ -132,13 +132,14 @@
         <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
 
-          <div class="reviewWriteBox p-a-3">
 
-            <p name="userId" value="ygtech">ygtech</p>
-            <input id="reviewTextInput" type="text" name="content" style="width:100%; height:100px">
-            <button id="reviewTextInputBtn" class="float-right">작성</button>
 
-          </div>
+        </div>
+        <div class="reviewWriteBox p-a-3">
+
+          <p name="userId" value="ygtech">ygtech</p>
+          <input id="reviewTextInput" type="text" name="content" style="width:100%; height:100px">
+          <button id="reviewTextInputBtn" class="float-right">작성</button>
 
         </div>
       </div>
@@ -180,6 +181,29 @@
 <script src="./src/yg.js"></script>
 
 <script>
+
+        var theButton = document.querySelector("#reviewTextInputBtn");
+        theButton.addEventListener("click", function(){
+          console.log('dsfsdf');
+          var packet = {"review":{}};
+          packet["storeId"] = 101010;
+          packet.review["content"] = document.querySelector("#reviewTextInput").value;
+          packet.review["time"] =   new Date().toLocaleString();
+          packet.review["user"] = "ygtech";
+          console.log(packet);
+        var xhr1 = new XMLHttpRequest();
+        xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
+        xhr1.setRequestHeader('Content-Type', 'application/json');
+
+        // send the collected data as JSON
+        xhr1.send(JSON.stringify(packet));
+
+//        xhr1.onloadend = function () {
+//          // done
+//        };
+      });
+
+
 
 </script>
 

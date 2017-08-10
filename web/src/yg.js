@@ -63,9 +63,6 @@ class YBarChart {
 }
 
 
-var theButton = document.querySelector("#reviewTextInputBtn");
-theButton.addEventListener("click", console.log('dsfsdf'))
-
 
 
 
