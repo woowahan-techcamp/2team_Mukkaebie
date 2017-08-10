@@ -20,13 +20,13 @@
             <div class="menuTabContent col-xs-12">
                 <div class="menuTabGraph" style="background-color: #fff;">
                     <div class="competition-podium well">
-                        <div class="podium-block silver">
-                            <div class="name">youngun</div>
-                            <div class="podium"><span>2등</span></div>
-                        </div>
                         <div class="podium-block gold">
                             <div class="name">danb</div>
                             <div class="podium"><span>1등</span></div>
+                        </div>
+                        <div class="podium-block silver">
+                            <div class="name">youngun</div>
+                            <div class="podium"><span>2등</span></div>
                         </div>
                         <div class="podium-block bronze">
                             <div class="name">hjk</div>
@@ -96,6 +96,46 @@
             bronze.style.transition = 'all 1.5s';
             bronze.style.height = '60px';
         }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                let orders = JSON.parse(xhr.responseText);
+                let rankers = {};
+                for (var i = 0; i < orders.length; i++) {
+                    if (orders[i].buyerId in rankers) {
+                        rankers[orders[i].buyerId] += 1;
+                    } else {
+                        rankers[orders[i].buyerId] = 1;
+                    }
+                }
+                console.log(rankers);
+
+                var items = Object.keys(rankers).map(function (key) {
+                    return [key, rankers[key]];
+                });
+
+                items.sort(function (first, second) {
+                    return second[1] - first[1];
+                });
+
+                var top3 = items.slice(0, 3);
+                console.log(top3);
+
+                var top3_name = document.querySelectorAll('.name');
+
+                for (var i = 0; i < 3; i++) {
+                    var ele = top3[i].toString().split(",")[0];
+                    top3_name[i].innerHTML = ele;
+                }
+
+            }
+
+        }
+
+        xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+        xhr.send(null);
+
     })
 
 </script>
