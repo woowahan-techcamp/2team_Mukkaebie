@@ -14,6 +14,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
 //    var menuViewController: MenuViewController?
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
+    @IBOutlet weak var meetPaymentLabel: UILabel!
+    @IBOutlet weak var directPaymentLabel: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -33,6 +35,14 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.delegate=self;
+        
+        meetPaymentLabel.layer.borderWidth = 1
+        meetPaymentLabel.layer.borderColor = UIColor.white.cgColor
+        meetPaymentLabel.layer.cornerRadius = meetPaymentLabel.frame.height/2
+        
+        directPaymentLabel.layer.borderWidth = 1
+        directPaymentLabel.layer.borderColor = UIColor.white.cgColor
+        directPaymentLabel.layer.cornerRadius = directPaymentLabel.frame.height/2
         
         mukkabieTabItem.tag = 0
         mukkabieTabItem.image = makeThumbnailFromText(text: "먹깨비", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))

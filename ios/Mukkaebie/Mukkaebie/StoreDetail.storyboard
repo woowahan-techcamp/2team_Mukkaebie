@@ -58,13 +58,21 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="바로결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX5-iZ-rY5">
-                                                        <rect key="frame" x="290.5" y="8" width="31.5" height="18"/>
+                                                        <rect key="frame" x="246" y="8" width="52" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="Aeq-Xn-DLJ"/>
+                                                            <constraint firstAttribute="width" constant="52" id="dhN-sI-8EL"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="9"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만나서결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vm-re-PDr">
-                                                        <rect key="frame" x="326" y="8" width="39" height="18"/>
+                                                        <rect key="frame" x="303" y="8" width="57" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="WF9-59-hM2"/>
+                                                            <constraint firstAttribute="width" constant="57" id="ndP-3D-ZIu"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="9"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -72,20 +80,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.23137254900000001" green="0.20392156859999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="nX5-iZ-rY5" firstAttribute="centerY" secondItem="1bt-ac-mJl" secondAttribute="centerY" id="21f-NP-9Y7"/>
                                                     <constraint firstItem="WRZ-6s-YV4" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="10" id="2W2-Zs-nMQ"/>
-                                                    <constraint firstItem="nX5-iZ-rY5" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="8" id="4l7-De-fhw"/>
                                                     <constraint firstAttribute="bottom" secondItem="WRZ-6s-YV4" secondAttribute="bottom" constant="11" id="7v5-sG-Plj"/>
                                                     <constraint firstItem="owD-tV-RHo" firstAttribute="leading" secondItem="1bt-ac-mJl" secondAttribute="leading" constant="17" id="83L-sz-zyM"/>
                                                     <constraint firstAttribute="bottom" secondItem="owD-tV-RHo" secondAttribute="bottom" constant="11" id="9p2-Mc-74I"/>
+                                                    <constraint firstItem="6vm-re-PDr" firstAttribute="centerY" secondItem="1bt-ac-mJl" secondAttribute="centerY" id="BFd-oW-WQ0"/>
                                                     <constraint firstItem="pVj-Mo-RWE" firstAttribute="leading" secondItem="4Rn-kE-CZA" secondAttribute="trailing" constant="5" id="J4E-Jh-tRs"/>
-                                                    <constraint firstAttribute="bottom" secondItem="nX5-iZ-rY5" secondAttribute="bottom" constant="10" id="JND-Oj-nXj"/>
-                                                    <constraint firstItem="6vm-re-PDr" firstAttribute="leading" secondItem="nX5-iZ-rY5" secondAttribute="trailing" constant="4" id="LW6-jP-a1U"/>
                                                     <constraint firstItem="4Rn-kE-CZA" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="10" id="NU3-jC-ufE"/>
                                                     <constraint firstItem="WRZ-6s-YV4" firstAttribute="leading" secondItem="pVj-Mo-RWE" secondAttribute="trailing" constant="5" id="Xdb-xY-evx"/>
                                                     <constraint firstItem="owD-tV-RHo" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="10" id="Zkx-KC-D7I"/>
-                                                    <constraint firstItem="6vm-re-PDr" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="8" id="a7I-GA-Ub0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="6vm-re-PDr" secondAttribute="trailing" constant="10" id="ozH-ks-sF6"/>
-                                                    <constraint firstAttribute="bottom" secondItem="6vm-re-PDr" secondAttribute="bottom" constant="10" id="px0-MM-fiQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6vm-re-PDr" secondAttribute="trailing" constant="15" id="igM-Hf-khH"/>
+                                                    <constraint firstItem="6vm-re-PDr" firstAttribute="leading" secondItem="nX5-iZ-rY5" secondAttribute="trailing" constant="5" id="oRh-cU-ZWX"/>
                                                     <constraint firstAttribute="bottom" secondItem="4Rn-kE-CZA" secondAttribute="bottom" constant="11" id="rqz-zD-U9n"/>
                                                     <constraint firstItem="pVj-Mo-RWE" firstAttribute="top" secondItem="1bt-ac-mJl" secondAttribute="top" constant="10" id="wg4-L0-QfZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="pVj-Mo-RWE" secondAttribute="bottom" constant="11" id="wna-EF-Z3i"/>
@@ -292,8 +298,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentView" destination="DjM-Bw-D23" id="VQ7-i0-KB7"/>
+                        <outlet property="directPaymentLabel" destination="nX5-iZ-rY5" id="krj-Lf-ccR"/>
                         <outlet property="imageView" destination="6ew-pK-V0A" id="vGl-VX-LGb"/>
                         <outlet property="infoTabItem" destination="W6k-rB-ote" id="lNh-yk-52q"/>
+                        <outlet property="meetPaymentLabel" destination="6vm-re-PDr" id="YSb-Ha-lRW"/>
                         <outlet property="menuTabItem" destination="jc3-4u-J3e" id="XCf-bf-MyS"/>
                         <outlet property="mukkabieTabItem" destination="qdQ-PC-kaz" id="qdk-Gw-Uvz"/>
                         <outlet property="reviewTabItem" destination="yMb-y1-bsT" id="T3d-2s-k7s"/>
@@ -307,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omD-ZR-kbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807.2" y="-824.43778110944538"/>
+            <point key="canvasLocation" x="1783" y="-824"/>
         </scene>
     </scenes>
 </document>
