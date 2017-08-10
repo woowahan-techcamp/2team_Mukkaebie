@@ -15,13 +15,15 @@ class StoreListMenuBarCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         
     }
-    
+        
     override func layoutSubviews() {
         
+        self.backgroundColor = .gray
         foodCategoryLabel.textColor = UIColor.white
-        foodCategoryLabel.textAlignment = .center
-        foodCategoryLabel.invalidateIntrinsicContentSize()
-        foodCategoryLabel.layoutIfNeeded()
+//        foodCategoryLabel.textAlignment = .center
+//        foodCategoryLabel.sizeToFit()
+//        foodCategoryLabel.invalidateIntrinsicContentSize()
+//        foodCategoryLabel.layoutIfNeeded()
     }
 }
 

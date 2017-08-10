@@ -21,7 +21,7 @@ class StoreListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
-        collectionView.delegate = self
+//        collectionView.delegate = self
         collectionView.backgroundColor = UIColor(hexString: "3B342C")
         
         
@@ -41,7 +41,7 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,11 +53,8 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension StoreListViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+extension StoreListViewController : UICollectionViewDataSource {
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return foodCategoryArray.count
@@ -69,31 +66,24 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
         return cell
     }
     
+    
+}
+
+extension StoreListViewController : UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
+        let size = (foodCategoryArray[indexPath.row] as NSString).size(attributes: nil)
+        return CGSize(width: size.width * 1.5 , height: 35)
         
-        
-        let attString = NSAttributedString(string: foodCategoryArray[indexPath.row], attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15.0)])
-        
-        var r = attString.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 35),options: .usesLineFragmentOrigin, context: nil)
-        
-        r.size.height = 35
-        r.size.width += 13
-        
-        print(r)
-        return r.size
-//        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
-//        return CGSize(width: width, height: 35)
+        //        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
+        //        return CGSize(width: width, height: 35)
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-    
-    
-    
     
     
 }
