@@ -23,6 +23,8 @@ class StoreListViewController: UIViewController {
         collectionView.dataSource = self
 //        collectionView.delegate = self
         collectionView.backgroundColor = UIColor(hexString: "3B342C")
+        tableView.allowsSelection = true
+        collectionView.allowsSelection = true
         
         
     }
