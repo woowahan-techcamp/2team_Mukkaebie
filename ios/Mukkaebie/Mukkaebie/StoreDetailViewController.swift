@@ -97,27 +97,22 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             scrollView.contentSize.width = contentView.frame.size.width
             scrollView.contentSize.height = contentView.frame.size.height
             
-//            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
-//            mukkabieViewController = storyboard.instantiateViewController(withIdentifier: "mukkabieViewController") as? MukkabieViewController
-//            tabSubView.addSubview((mukkabieViewController?.view.subviews[0])!)
-//            
-//            tabSubView.frame.size.height = (mukkabieViewController?.view.frame.size.height)!
-//            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-//            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-            
-            scrollView.contentSize.width = contentView.frame.size.width
-            scrollView.contentSize.height = contentView.frame.size.height
         case 1:
-//            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
-//            menuViewController = storyboard.instantiateViewController(withIdentifier: "menuViewController") as? MenuViewController
-//            tabSubView.addSubview((menuViewController?.view.subviews[0])!)
-//            
-//            tabSubView.frame.size.height = (menuViewController?.view.frame.size.height)!
-//            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-//            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+            let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+            addChildViewController(menuViewController!)
             
+
+            tabSubView.addSubview((menuViewController?.view)!)
+            menuViewController?.didMove(toParentViewController: self)
+            
+            tabSubView.frame.size.height = (menuViewController?.view.frame.size.height)!
+            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+
             scrollView.contentSize.width = contentView.frame.size.width
             scrollView.contentSize.height = contentView.frame.size.height
+            
         case 2:
 //            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
 //            infoViewController = storyboard.instantiateViewController(withIdentifier: "infoViewController") as? InfoViewController
