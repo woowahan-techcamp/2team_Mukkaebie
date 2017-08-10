@@ -11,6 +11,32 @@
 </head>
 
 <body>
+  <script id="reviewTemplate" type="text/template">
+    <div class="reviewCard">
+      <div class="reviewCardPic">
+      </div>
+      <div class="reviewCardContent">
+        <div class="reviewCardTop p-x-1">
+          <div class="reviewCardId float-left">
+            ${userId}
+          </div>
+          <span class="float-left p-x-1">
+            |
+          </span>
+          <div class="reviewCardDate float-left">
+            ${createdDate}
+          </div>
+        </div>
+        <div class="reviewCardMid p-x-1">
+          <span class="reviewCardStar float-left">${orangeStar}</span>
+          <span class="reviewCardNostar float-left">${greyStar}</span>
+        </div>
+        <div class="reviewCardBtm p-a-1">
+          ${reviewContent}
+        </div>
+      </div>
+    </div>
+  </script>
 
   <!--메뉴 레이아웃-->
   <div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
@@ -40,7 +66,7 @@
                           <title id="menu-title">도넛 차트</title>
                           <desc id="menu-desc">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</desc>
 
-                          <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#f4ebdd"
+                          <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"
                                   role="presentation"></circle>
                           <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4"
                                   stroke-width="8" role="presentation"></circle>
@@ -52,22 +78,22 @@
                       <p class="sr-only">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</p>
 
                       <ul class="figure-key-list" aria-hidden="true" role="presentation">
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-1"></span>
                           </li>
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-2"></span>
                           </li>
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-3"></span>
                           </li>
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-4"></span>
                           </li>
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-5"></span>
                           </li>
-                          <li class="label">
+                          <li class="donutLabel">
                               <span class="shape-rect shape-6"></span>기타
                           </li>
                       </ul>
@@ -105,30 +131,6 @@
           </div>
           <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
           <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
-            <div class="reviewCard">
-                <div class="reviewCardPic">
-                </div>
-                <div class="reviewCardContent">
-                  <div class="reviewCardTop p-x-1">
-                    <div class="reviewCardId float-left">
-                      thisisId
-                    </div>
-                    <span class="float-left p-x-1">
-                      |
-                    </span>
-                    <div class="reviewCardDate float-left">
-                      2017-06-13
-                    </div>
-                  </div>
-                  <div class="reviewCardMid p-x-1">
-                    <span class="reviewCardStar float-left">★★★</span>
-                    <span class="reviewCardNostar float-left">★★</span>
-                  </div>
-                  <div class="reviewCardBtm p-a-1">
-                     리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳
-                  </div>
-                </div>
-            </div>
           </div>
         </div>
       </div>
@@ -168,11 +170,53 @@
 <script src="./dist/index.bundle.js"></script>
 <script src="./src/index.js"></script>
 <!-- <script src="./src/yg.js"></script> -->
-<!-- 원그래프 자바스크립트 -->
+
+
+
+  <script>
+
+
+
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          const blogResult = JSON.parse(this.responseText);
+
+          blogResult[0].review.reverse().forEach(function(oneReview){
+            const review = oneReview;
+            console.log(oneReview)
+            const userId = review.user;
+            const createdDate = review.time;
+            const reviewContent = review.content;
+            const orangeStar = "***"
+            const greyStar = "**"
+            const tempGrab = document.querySelector("#reviewTemplate").text;
+            const renderTarget = document.querySelector("#cont-reviewTab");
+            const result = eval('`'+tempGrab+'`');
+            renderTarget.innerHTML += result;
+          })
+
+
+        }
+      };
+      xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
+      xhttp.send();
+    }
+
+    loadDoc();
+  </script>
+
+
+
+
+
+
 <script type="text/javascript">
 //tab operate
 let test1 = new TabUiWithAjax(inputObj);
 </script>
+  <!-- 원그래프 자바스크립트 -->
 <script type="text/javascript">
 
 
@@ -190,7 +234,7 @@ let test1 = new TabUiWithAjax(inputObj);
             let reverse = 0;
             let offset = 25;
             let totalLength = 0;
-            let label = document.querySelectorAll('.label');
+            let label = document.querySelectorAll('.donutLabel');
 
             for (let i = 0; i < menu.length; i++) {
                 total += menu[i].orders;
@@ -200,14 +244,18 @@ let test1 = new TabUiWithAjax(inputObj);
                 share = top5[i].orders / total * 100;
                 reverse = 100 - share;
                 circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
-                circleContent += '<title class="donut-segment-title">' + top5[i].title + '</title>';
+                circleContent += '<title class="donut-segment-title">' + top5[i].title +'</title>';
                 circleContent += '<desc class="donut-segment-desc">' + top5[i].price + '원</desc>';
                 circleContent += '</circle>';
 
-                label[i].insertAdjacentHTML('beforeend', top5[i].title);
+                label[i].insertAdjacentHTML('beforeend', top5[i].title + ' ' + share.toFixed(2) + '%');
                 totalLength = totalLength + share;
                 offset = 100 - totalLength + 25;
+                if(i == 4) {
+                  label[5].insertAdjacentHTML('beforeend',  (100-totalLength).toFixed(2) + '%');
+                }
             }
+
 
             let svg = document.querySelector('svg');
             svg.insertAdjacentHTML('beforeend', circleContent);
@@ -215,7 +263,7 @@ let test1 = new TabUiWithAjax(inputObj);
         }
     };
 
-    xhr.open('GET', 'http://52.78.220.217:3000/stores/50', true);
+    xhr.open('GET', 'http://52.78.184.77:3000/stores/101010', true);
     xhr.send(null);
 
 
