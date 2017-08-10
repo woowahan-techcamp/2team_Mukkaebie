@@ -35,6 +35,9 @@
 		98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */; };
 		98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */; };
 		98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */; };
+		98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CFF1F3C7BA100243F31 /* ModelUsers.swift */; };
+		98B67D031F3C7EDC00243F31 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67D021F3C7EDC00243F31 /* NetworkUser.swift */; };
+		98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67D051F3C7F2000243F31 /* ModelStores.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 		98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListMenuBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MukkaebieRankViewController.swift; sourceTree = "<group>"; };
 		98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MukkaebieRank.storyboard; sourceTree = "<group>"; };
+		98B67CFF1F3C7BA100243F31 /* ModelUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUsers.swift; sourceTree = "<group>"; };
+		98B67D021F3C7EDC00243F31 /* NetworkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
+		98B67D051F3C7F2000243F31 /* ModelStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStores.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,8 @@
 			children = (
 				983248141F32FD2C00ABFBFB /* AppDelegate.swift */,
 				98B67CE61F3A9C2A00243F31 /* Extension.swift */,
+				98B67D041F3C7EE700243F31 /* Networking */,
+				98B67D011F3C7BAD00243F31 /* Model */,
 				985D09011F3C28C500A1F475 /* Menu */,
 				98B67CEA1F3AD55000243F31 /* Main */,
 				98B67CEB1F3AD56400243F31 /* StoreList */,
@@ -218,6 +226,23 @@
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
 			);
 			name = StoreDetail;
+			sourceTree = "<group>";
+		};
+		98B67D011F3C7BAD00243F31 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				98B67CFF1F3C7BA100243F31 /* ModelUsers.swift */,
+				98B67D051F3C7F2000243F31 /* ModelStores.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		98B67D041F3C7EE700243F31 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				98B67D021F3C7EDC00243F31 /* NetworkUser.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */,
+				98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */,
 				985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */,
 				985D08FA1F3AED8000A1F475 /* MenuViewModelItem.swift in Sources */,
 				98B67CE11F39D7B100243F31 /* MainHeaderCollectionReusableView.swift in Sources */,
@@ -375,10 +401,12 @@
 				983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */,
 				985D08FC1F3AF93100A1F475 /* MenuTableViewCell.swift in Sources */,
 				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
+				98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */,
 				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,
 				98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */,
 				98B67CF81F3AF09900243F31 /* StoreListMenuBar.swift in Sources */,
 				98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */,
+				98B67D031F3C7EDC00243F31 /* NetworkUser.swift in Sources */,
 				98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
