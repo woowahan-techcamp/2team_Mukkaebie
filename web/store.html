@@ -1,167 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>지점 페이지</title>
-    <link rel="stylesheet" type="text/css" href="./src/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./src/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="./src/main.css">
-    <link rel="stylesheet" type="text/css" href="./src/yg.css">
-    <link rel="stylesheet" type="text/css" href="./src/chart.css">
+  <meta charset="utf-8">
+  <title>지점 페이지</title>
+  <link rel="stylesheet" type="text/css" href="./src/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="./src/main.css">
+  <link rel="stylesheet" type="text/css" href="./src/yg.css">
+  <link rel="stylesheet" type="text/css" href="./src/chart.css">
 </head>
 
 <body>
 
-  <!--메뉴 레이아웃-->
-  <div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
-    <div class="tabAreaWrap col-xs-9">
-      <div class="menuReviewWrap row">
-        <ul id="storeTabWrapper">
-            <li class="storeTab selectedTab" id="menuTab">
-                메뉴
-            </li>
-            <li class="storeTab" id="mkbTab">
-                먹깨비
-            </li>
-            <li class="storeTab" id="reviewTab">
-                리뷰
-            </li>
-        </ul>
+<!--메뉴 레이아웃-->
+<div class="row" style="max-width:960px; margin:200px auto;background:#f4ebdd">
+  <div class="tabAreaWrap col-xs-9">
+    <div class="menuReviewWrap row">
+      <ul id="storeTabWrapper">
+        <li class="storeTab selectedTab" id="menuTab">
+          메뉴
+        </li>
+        <li class="storeTab" id="mkbTab">
+          먹깨비
+        </li>
+        <li class="storeTab" id="reviewTab">
+          리뷰
+        </li>
+      </ul>
 
 
-        <div id="storeTabContentWrapper">
-          <div class="selectedContent menuTabContent col-xs-12 storeTabContent" id="cont-menuTab" >
-            <!--그래프 시작-->
-            <div class="menuTabGraph">
-              <figure>
-                  <div class="figure-content">
-                      <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut" aria-labelledby="menu-title menu-desc"
-                           role="img">
-                          <title id="menu-title">도넛 차트</title>
-                          <desc id="menu-desc">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</desc>
+      <div id="storeTabContentWrapper">
+        <div class="selectedContent menuTabContent col-xs-12 storeTabContent" id="cont-menuTab" >
+          <!--그래프 시작-->
+          <div class="menuTabGraph">
+            <figure>
+              <div class="figure-content">
+                <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut" aria-labelledby="menu-title menu-desc"
+                     role="img">
+                  <title id="menu-title">도넛 차트</title>
+                  <desc id="menu-desc">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</desc>
 
-                          <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#f4ebdd"
-                                  role="presentation"></circle>
-                          <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4"
-                                  stroke-width="8" role="presentation"></circle>
-                          <!-- unused remain share -->
+                  <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#f4ebdd"
+                          role="presentation"></circle>
+                  <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4"
+                          stroke-width="8" role="presentation"></circle>
+                  <!-- unused remain share -->
 
-                      </svg>
-                  </div>
-                  <figcaption class="figure-key">
-                      <p class="sr-only">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</p>
-
-                      <ul class="figure-key-list" aria-hidden="true" role="presentation">
-                          <li class="label">
-                              <span class="shape-rect shape-1"></span>
-                          </li>
-                          <li class="label">
-                              <span class="shape-rect shape-2"></span>
-                          </li>
-                          <li class="label">
-                              <span class="shape-rect shape-3"></span>
-                          </li>
-                          <li class="label">
-                              <span class="shape-rect shape-4"></span>
-                          </li>
-                          <li class="label">
-                              <span class="shape-rect shape-5"></span>
-                          </li>
-                          <li class="label">
-                              <span class="shape-rect shape-6"></span>기타
-                          </li>
-                      </ul>
-                  </figcaption>
-              </figure>
-            </div>
-            <!--그래프 끝-->
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <div class="foldableLevel1">순살세트</div>
-              <div class="foldableLevel2">
-                <p>Lorem ipsum..</p>
+                </svg>
               </div>
-            </div>
+              <figcaption class="figure-key">
+                <p class="sr-only">도넛 차트는 해당 업소의 주문량 기준 상위 3개 인기 메뉴를 보여준다.</p>
 
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <p>Lorem ipsum...</p>
-            </div>
-
-            <div class="foldableLevel1">
-              <h6>순살세트</h6>
-              <p>순살에 대한 설명이 들어갑니다.</p>
-            </div>
-            <div class="foldableLevel2">
-              <p>Lorem ipsum...</p>
-            </div>
-
+                <ul class="figure-key-list" aria-hidden="true" role="presentation">
+                  <li class="label">
+                    <span class="shape-rect shape-1"></span>
+                  </li>
+                  <li class="label">
+                    <span class="shape-rect shape-2"></span>
+                  </li>
+                  <li class="label">
+                    <span class="shape-rect shape-3"></span>
+                  </li>
+                  <li class="label">
+                    <span class="shape-rect shape-4"></span>
+                  </li>
+                  <li class="label">
+                    <span class="shape-rect shape-5"></span>
+                  </li>
+                  <li class="label">
+                    <span class="shape-rect shape-6"></span>기타
+                  </li>
+                </ul>
+              </figcaption>
+            </figure>
           </div>
-          <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
-          <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
-            <div class="reviewCard">
-                <div class="reviewCardPic">
+          <!--그래프 끝-->
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <div class="foldableLevel1">순살세트</div>
+            <div class="foldableLevel2">
+              <p>Lorem ipsum..</p>
+            </div>
+          </div>
+
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <p>Lorem ipsum...</p>
+          </div>
+
+          <div class="foldableLevel1">
+            <h6>순살세트</h6>
+            <p>순살에 대한 설명이 들어갑니다.</p>
+          </div>
+          <div class="foldableLevel2">
+            <p>Lorem ipsum...</p>
+          </div>
+
+        </div>
+        <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab"></div>
+        <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
+          <div class="reviewCard">
+            <div class="reviewCardPic">
+            </div>
+            <div class="reviewCardContent">
+              <div class="reviewCardTop p-x-1">
+                <div class="reviewCardId float-left">
+                  thisisId
                 </div>
-                <div class="reviewCardContent">
-                  <div class="reviewCardTop p-x-1">
-                    <div class="reviewCardId float-left">
-                      thisisId
-                    </div>
-                    <span class="float-left p-x-1">
+                <span class="float-left p-x-1">
                       |
                     </span>
-                    <div class="reviewCardDate float-left">
-                      2017-06-13
-                    </div>
-                  </div>
-                  <div class="reviewCardMid p-x-1">
-                    <span class="reviewCardStar float-left">★★★</span>
-                    <span class="reviewCardNostar float-left">★★</span>
-                  </div>
-                  <div class="reviewCardBtm p-a-1">
-                     리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳
-                  </div>
+                <div class="reviewCardDate float-left">
+                  2017-06-13
                 </div>
+              </div>
+              <div class="reviewCardMid p-x-1">
+                <span class="reviewCardStar float-left">★★★</span>
+                <span class="reviewCardNostar float-left">★★</span>
+              </div>
+              <div class="reviewCardBtm p-a-1">
+                리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳리뷰내용 들어가는 곳
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!--옆에 업소 상세 플롯-->
-    <div class="col-xs-3 storeDetailBox">
-      <div class="storeDetailHead">
-        업소상세정보
-      </div>
-      <div class="storeDetailTable">
-        <table>
-          <tr>
-            <td class="storeDetailTableLeft">최소금액</td>
-            <td class="storeDetailTableRight">13,000원 부터</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">운영시간</td>
-            <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">전화번호</td>
-            <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
-          </tr>
-          <tr>
-            <td class="storeDetailTableLeft">업소소개</td>
-            <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
-          </tr>
-        </table>
-      </div>
+  </div>
+
+  <!--옆에 업소 상세 플롯-->
+  <div class="col-xs-3 storeDetailBox">
+    <div class="storeDetailHead">
+      업소상세정보
+    </div>
+    <div class="storeDetailTable">
+      <table>
+        <tr>
+          <td class="storeDetailTableLeft">최소금액</td>
+          <td class="storeDetailTableRight">13,000원 부터</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">운영시간</td>
+          <td class="storeDetailTableRight">낮 12:00 ~ 오후 11:50</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">전화번호</td>
+          <td class="storeDetailTableRight phoneFontColor">050-4824-9382</td>
+        </tr>
+        <tr>
+          <td class="storeDetailTableLeft">업소소개</td>
+          <td class="storeDetailTableRight">맛있는 치킨 코리엔탈 깻잎치킨 평촌1호점 입니다^^</td>
+        </tr>
+      </table>
     </div>
   </div>
+</div>
 
 
 
@@ -170,8 +170,8 @@
 <!-- <script src="./src/yg.js"></script> -->
 <!-- 원그래프 자바스크립트 -->
 <script type="text/javascript">
-//tab operate
-let test1 = new TabUiWithAjax(inputObj);
+    //tab operate
+    let test1 = new TabUiWithAjax(inputObj);
 </script>
 <script type="text/javascript">
 

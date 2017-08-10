@@ -13,10 +13,10 @@ body {
 
 /* 전체에서 쓰이는 CSS component */
 .float-left {
-  float: left;
+    float: left;
 }
 .float-right {
-  float: right;
+    float: right;
 }
 
 .p-l-1 {padding-left: 10px;}
