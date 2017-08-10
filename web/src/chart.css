@@ -114,6 +114,10 @@ figure {
 
 }
 
+.donutLabel {
+    color:#000000;
+}
+
 .shape-rect {
     display: inline-block;
     vertical-align: middle;
