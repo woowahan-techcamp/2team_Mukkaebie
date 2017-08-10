@@ -46,9 +46,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="MLF-A4-Rbp" kind="presentation" id="qxp-PI-N86"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="pf5-3w-6NE" customClass="mainHeaderCollectionReusableView" customModule="Mukkaebie" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="pf5-3w-6NE" customClass="MainHeaderCollectionReusableView" customModule="Mukkaebie" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -87,8 +90,8 @@
                                         <constraint firstItem="iCA-7i-Z2X" firstAttribute="leading" secondItem="pf5-3w-6NE" secondAttribute="leading" id="yq9-B0-2G7"/>
                                     </constraints>
                                     <connections>
-                                        <outlet property="headerImageView" destination="GMk-EN-ZEl" id="29k-xi-QUy"/>
-                                        <outlet property="headerScrollView" destination="iCA-7i-Z2X" id="YFq-hm-Sx5"/>
+                                        <outlet property="headerImageView" destination="GMk-EN-ZEl" id="h1q-vl-7pg"/>
+                                        <outlet property="headerScrollView" destination="iCA-7i-Z2X" id="wyc-kh-ogp"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -105,6 +108,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1117.5999999999999" y="-322.03898050974516"/>
+        </scene>
+        <!--StoreList-->
+        <scene sceneID="zyx-zR-p65">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StoreList" id="MLF-A4-Rbp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PfA-WH-gft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1913" y="-369"/>
         </scene>
         <!--단골매장-->
         <scene sceneID="wg7-f3-ORb">

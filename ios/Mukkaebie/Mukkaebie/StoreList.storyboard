@@ -14,7 +14,7 @@
         <!--Store List View Controller-->
         <scene sceneID="3ec-Uy-Xnz">
             <objects>
-                <viewController id="nQE-wR-Xs8" customClass="StoreListViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="storeList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nQE-wR-Xs8" customClass="StoreListViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KfX-u8-QXt"/>
                         <viewControllerLayoutGuide type="bottom" id="dBJ-nf-BCi"/>
@@ -196,7 +196,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9g7-AD-uaT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CiX-Vc-9jn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="CiX-Vc-9jn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

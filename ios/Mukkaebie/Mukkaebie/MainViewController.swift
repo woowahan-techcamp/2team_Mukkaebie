@@ -12,10 +12,13 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
+    var selectionRow = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
+        mainCollectionView.allowsSelection = true
         mainCollectionView.allowsSelection = true
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -25,7 +28,13 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "storeList") {
+//            let nextVC = segue.destination as? StoreListViewController
+//        
+//        }
+//    }
 
 }
 
@@ -50,6 +59,12 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         return header!
 
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        selectionRow = indexPath.row
+//        self.performSegue(withIdentifier: "storeList", sender: self)
+//        
+//    }
     
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
