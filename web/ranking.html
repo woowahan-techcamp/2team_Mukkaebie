@@ -87,17 +87,17 @@
         podiumAnimate();
 
         function podiumAnimate() {
-            var gold = document.querySelector('.gold .podium');
-            gold.style.transition = 'all 1.5s';
-            gold.style.height = '160px';
+            let gold = document.querySelector('.gold .podium');
+            gold.style.transition = 'all 1.5s ease';
+            gold.style.height = '180px';
 
-            var silver = document.querySelector('.silver .podium');
-            silver.style.transition = 'all 1.5s';
-            silver.style.height = '100px';
+            let silver = document.querySelector('.silver .podium');
+            silver.style.transition = 'all 1.5s ease';
+            silver.style.height = '120px';
 
-            var bronze = document.querySelector('.bronze .podium');
-            bronze.style.transition = 'all 1.5s';
-            bronze.style.height = '60px';
+            let bronze = document.querySelector('.bronze .podium');
+            bronze.style.transition = 'all 1.5s ease';
+            bronze.style.height = '80px';
         }
 
         var xhr = new XMLHttpRequest();
@@ -105,16 +105,15 @@
             if (xhr.status === 200) {
                 let orders = JSON.parse(xhr.responseText);
                 let rankers = {};
-                for (var i = 0; i < orders.length; i++) {
+                for (let i = 0; i < orders.length; i++) {
                     if (orders[i].buyerId in rankers) {
                         rankers[orders[i].buyerId] += 1;
                     } else {
                         rankers[orders[i].buyerId] = 1;
                     }
                 }
-                console.log(rankers);
 
-                var items = Object.keys(rankers).map(function (key) {
+                let items = Object.keys(rankers).map(function (key) {
                     return [key, rankers[key]];
                 });
 
@@ -122,17 +121,16 @@
                     return second[1] - first[1];
                 });
 
-                var top3 = items.slice(0, 3);
-                console.log(top3);
+                let top3 = items.slice(0, 3);
 
-                var top3_name = document.querySelectorAll('.name');
-                var top3_order = document.querySelectorAll('.orders');
+                let top3_name = document.querySelectorAll('.name');
+                let top3_order = document.querySelectorAll('.orders');
 
-                for (var i = 0; i < 3; i++) {
-                    var ele1 = top3[i].toString().split(",")[0];
-                    var ele2 = top3[i].toString().split(",")[1];
-                    top3_name[i].innerHTML = ele1;
-                    top3_order[i].innerHTML = ele2;
+                for (let i = 0; i < 3; i++) {
+                    let name = top3[i].toString().split(",")[0];
+                    let order = top3[i].toString().split(",")[1];
+                    top3_name[i].innerHTML = name;
+                    top3_order[i].innerHTML = order;
                 }
 
             }
