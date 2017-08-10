@@ -219,19 +219,27 @@
     height: 0px;
 }
 
+.competition-podium .podium-block.bronze .orders {
+    text-align: center
+}
+
 .competition-podium .podium-block.bronze .name {
     color: #856e4e;
     text-align: center
 }
 
 .competition-podium .podium-block.gold {
-    color: #E87E04;
+    color: #ead679;
     left: 120px;
 }
 
 .competition-podium .podium-block.gold .podium {
     background: #ead679;
     height: 0px;
+}
+
+.competition-podium .podium-block.gold .orders {
+    text-align: center
 }
 
 .competition-podium .podium-block.gold .name {
@@ -247,6 +255,10 @@
 .competition-podium .podium-block.silver .podium {
     background: #cbd9de;
     height: 0px;
+}
+
+.competition-podium .podium-block.silver .orders {
+    text-align: center
 }
 
 .competition-podium .podium-block.silver .name {

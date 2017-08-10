@@ -21,14 +21,17 @@
                 <div class="menuTabGraph" style="background-color: #fff;">
                     <div class="competition-podium well">
                         <div class="podium-block gold">
+                            <div class="orders"></div>
                             <div class="name">danb</div>
                             <div class="podium"><span>1등</span></div>
                         </div>
                         <div class="podium-block silver">
+                            <div class="orders"></div>
                             <div class="name">youngun</div>
                             <div class="podium"><span>2등</span></div>
                         </div>
                         <div class="podium-block bronze">
+                            <div class="orders"></div>
                             <div class="name">hjk</div>
                             <div class="podium"><span>3등</span></div>
                         </div>
@@ -123,10 +126,13 @@
                 console.log(top3);
 
                 var top3_name = document.querySelectorAll('.name');
+                var top3_order = document.querySelectorAll('.orders');
 
                 for (var i = 0; i < 3; i++) {
-                    var ele = top3[i].toString().split(",")[0];
-                    top3_name[i].innerHTML = ele;
+                    var ele1 = top3[i].toString().split(",")[0];
+                    var ele2 = top3[i].toString().split(",")[1];
+                    top3_name[i].innerHTML = ele1;
+                    top3_order[i].innerHTML = ele2;
                 }
 
             }
