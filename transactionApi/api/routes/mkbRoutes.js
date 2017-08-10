@@ -4,19 +4,21 @@ module.exports = function(app) {
 
   app.route('/users')
     .get(mkb.list_all_users)
-    .post(mkb.create_a_user)
+    .post(mkb.create_a_user);
 
   app.route('/users/:userId')
     .get(mkb.read_a_user)
-    .put(mkb.update_a_user);
+    .put(mkb.update_a_user)
+    .post(mkb.update_a_user);
 
   app.route('/stores')
     .get(mkb.list_all_stores)
-    .post(mkb.create_a_store)
+    .post(mkb.create_a_store);
 
   app.route('/stores/:storeId')
     .get(mkb.list_a_store)
-    .put(mkb.update_a_store);
+    .put(mkb.update_a_store)
+    .post(mkb.update_a_store);
 
   app.route('/orders')
     .get(mkb.list_all_orders)
