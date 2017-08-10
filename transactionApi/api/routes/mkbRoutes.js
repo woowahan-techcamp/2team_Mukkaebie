@@ -8,7 +8,6 @@ module.exports = function(app) {
 
   app.route('/users/:userId')
     .get(mkb.read_a_user)
-    .put(mkb.update_a_user)
     .post(mkb.update_a_user);
 
   app.route('/stores')
@@ -17,7 +16,6 @@ module.exports = function(app) {
 
   app.route('/stores/:storeId')
     .get(mkb.list_a_store)
-    .put(mkb.update_a_store)
     .post(mkb.update_a_store);
 
   app.route('/orders')

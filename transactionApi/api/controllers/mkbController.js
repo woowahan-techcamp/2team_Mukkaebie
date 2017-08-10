@@ -54,14 +54,19 @@ exports.read_an_order_by_user = function(req, res) {
 };
 
 
-
 exports.update_an_order = function(req, res) {
-  Order.findOneAndUpdate({_id: req.params.orderId}, req.body, {new: true}, function(err, order) {
-    if (err)
-      res.send(err);
-    res.json(order);
-  });
-};
+  Order.findOneAndUpdate(
+      {orderId: req.body.orderId},
+      {$push: {content: req.body.content}},
+      {safe: true, upsert: true},
+      function(err, order) {
+        if (err)
+          res.send(err);
+        res.json(order);
+      }
+  )
+}
+
 
 exports.delete_an_order = function(req, res) {
   Order.remove({
@@ -101,12 +106,17 @@ exports.read_a_user = function(req, res) {
 };
 
 exports.update_a_user = function(req, res) {
-  User.findOneAndUpdate({userId: req.params.userId}, req.body, {new: true}, function(err, user) {
-    if (err)
-      res.send(err);
-    res.json(user);
-  });
-};
+  User.findOneAndUpdate(
+      {userId: req.body.userId},
+      {$push: {mkbBadges: req.body.mkbBadges}},
+      {safe: true, upsert: true},
+      function(err, user) {
+        if (err)
+          res.send(err);
+        res.json(user);
+      }
+  )
+}
 
 exports.delete_a_user = function(req, res) {
   User.remove({
@@ -151,34 +161,19 @@ exports.list_a_store = function(req, res) {
   });
 };
 
+
 exports.update_a_store = function(req, res) {
-  Store.findOneAndUpdate({storeId: req.params.storeId}, req.body, {new: true}, function(err, store) {
-    if (err)
-      res.send(err);
-    res.json(store);
-  });
-};
-
-// exports.update_a_store = function(req, res) {
-//   Store.findById(req.params.id, function(err, store) {
-//   if (!store)
-//     return next(new Error('Could not load Document'));
-//   else {
-//     // do your updates here
-//     store.review = req.body.review;
-//     store.menu = req.body.menu;
-//     store.modified = new Date();
-//
-//     store.save(function(err) {
-//       if (err)
-//         console.log('error')
-//       else
-//         console.log('success')
-//     });
-//   }
-// });
-// }
-
+  Store.findOneAndUpdate(
+      {storeId: req.body.storeId},
+      {$push: {review: req.body.review}},
+      {safe: true, upsert: true},
+      function(err, store) {
+        if (err)
+          res.send(err);
+        res.json(store);
+      }
+  )
+}
 
 
 exports.delete_a_store = function(req, res) {
