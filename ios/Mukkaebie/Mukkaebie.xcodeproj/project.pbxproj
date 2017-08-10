@@ -24,6 +24,8 @@
 		98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE41F3A991C00243F31 /* StoreListViewController.swift */; };
 		98B67CE71F3A9C2A00243F31 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE61F3A9C2A00243F31 /* Extension.swift */; };
 		98B67CE91F3AA24800243F31 /* StoreListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */; };
+		98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */; };
+		98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		98B67CE41F3A991C00243F31 /* StoreListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListViewController.swift; sourceTree = "<group>"; };
 		98B67CE61F3A9C2A00243F31 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListTableViewCell.swift; sourceTree = "<group>"; };
+		98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MukkaebieRankViewController.swift; sourceTree = "<group>"; };
+		98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MukkaebieRank.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 				98B67CE41F3A991C00243F31 /* StoreListViewController.swift */,
 				98B67CE81F3AA24800243F31 /* StoreListTableViewCell.swift */,
 				98B67CE21F3A990A00243F31 /* StoreList.storyboard */,
+				98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */,
+				98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */,
 			);
 			name = StoreList;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
 				9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */,
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
+				98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */,
 				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
 				9832481C1F32FD2C00ABFBFB /* Main.storyboard in Resources */,
 				985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */,
@@ -328,6 +335,7 @@
 				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
 				98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */,
 				98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */,
+				98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
