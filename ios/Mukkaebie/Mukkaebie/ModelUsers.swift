@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum level {
     case white
     case purple

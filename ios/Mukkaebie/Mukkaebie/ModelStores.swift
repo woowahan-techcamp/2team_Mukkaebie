@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class ModelStores {
-    
+class ModelStores: Mappable {
     private var id = Int()
     private var name = String()
     private var createdDate = String()
 //    private var order = []
     
     init() {}
+    
+    required init?(map: Map) {}
     
     init(id: Int, name: String, createdDate: String) {
         self.id = id
@@ -31,5 +33,16 @@ class ModelStores {
         
         return storeDic
     }
+    
+    func mapping(map: Map) {
+        id <- map["storeId"]
+        name <- map["name"]
+        createdDate <- map["createdDate"]
+    }
+    
+    
+
+    
+    
     
 }
