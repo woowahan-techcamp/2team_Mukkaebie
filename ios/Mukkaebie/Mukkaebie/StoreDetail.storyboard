@@ -98,7 +98,7 @@
                                                     <constraint firstItem="4Rn-kE-CZA" firstAttribute="leading" secondItem="owD-tV-RHo" secondAttribute="trailing" constant="6" id="zEP-p9-w7x"/>
                                                 </constraints>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-pK-V0A">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woowatech" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-pK-V0A">
                                                 <rect key="frame" x="0.0" y="36" width="375" height="155"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="155" id="tGh-ua-7ta"/>
@@ -320,4 +320,7 @@
             <point key="canvasLocation" x="1781.5999999999999" y="-824.43778110944538"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="woowatech" width="942" height="656"/>
+    </resources>
 </document>

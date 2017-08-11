@@ -10,9 +10,9 @@ import Foundation
 import ObjectMapper
 
 class ModelStores: Mappable {
-    private var id = Int()
-    private var name = String()
-    private var createdDate = String()
+    private(set) var id = Int()
+    private(set) var name = String()
+    private(set) var createdDate = String()
 //    private var order = []
     
     init() {}
@@ -25,14 +25,14 @@ class ModelStores: Mappable {
         self.createdDate = createdDate
     }
     
-    func getStore() -> [String : Any] {
-        var storeDic = [String : Any]()
-        storeDic["id"] = id
-        storeDic["name"] = name
-        storeDic["createdDate"] = createdDate
-        
-        return storeDic
-    }
+//    func getStore() -> [String : Any] {
+//        var storeDic = [String : Any]()
+//        storeDic["id"] = id
+//        storeDic["name"] = name
+//        storeDic["createdDate"] = createdDate
+//        
+//        return storeDic
+//    }
     
     func mapping(map: Map) {
         id <- map["storeId"]

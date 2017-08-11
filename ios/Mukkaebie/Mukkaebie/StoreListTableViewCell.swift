@@ -18,10 +18,17 @@ class StoreListTableViewCell: UITableViewCell {
     @IBOutlet weak var arrowImage: UIImageView!
     
     
+    override func prepareForReuse() {
+    
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    override func layoutSubviews() {
+        storeLogoImage.layer.cornerRadius = storeLogoImage.frame.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

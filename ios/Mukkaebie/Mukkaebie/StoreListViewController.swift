@@ -13,7 +13,11 @@ class StoreListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let networkStore = NetworkStore()
+    
     let foodCategoryArray = ["치킨","중식","피자","한식","분식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
+//    var storeList = [[String : Any]]()
+    var storeList = [ModelStores]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,15 +31,26 @@ class StoreListViewController: UIViewController {
         collectionView.allowsSelection = true
         
         self.navigationController?.navigationBar.isHidden = false
-
+        networkStore.getStoreList()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         
     }
+    
+    func getStoreList(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
+            self.storeList = storeInfo
+        print(storeList[3].name)
+        print(storeList.count)
+        tableView.reloadData()
+        }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -45,12 +60,16 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return storeList.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StoreListTableViewCell
-        cell.storeNameLabel.text = "중국성"
+        cell.storeNameLabel.text = storeList[indexPath.row].name as String
+        
+        
+        
         cell.reviewNumaberLabel.text = "최근리뷰 10  최근사장님댓글 33"
         return cell
     }

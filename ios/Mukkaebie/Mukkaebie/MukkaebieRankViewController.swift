@@ -9,11 +9,27 @@
 import UIKit
 
 class MukkaebieRankViewController: UIViewController {
+    @IBOutlet weak var mukkaebieMessage: UILabel!
+    @IBOutlet weak var mukkaebieCommentTextField: UITextField!
 
-    var count = 0
+    @IBOutlet weak var firstMukkaebieImage: UIImageView!
+    @IBOutlet weak var secondMukkaebieImage: UIImageView!
+    @IBOutlet weak var thirdMukkaebieImage: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstMukkaebieImage.layer.cornerRadius = firstMukkaebieImage.frame.height/2
+        secondMukkaebieImage.layer.cornerRadius = secondMukkaebieImage.frame.height/2
+        thirdMukkaebieImage.layer.cornerRadius = thirdMukkaebieImage.frame.height/2
+        firstMukkaebieImage.layer.borderWidth = 4
+        firstMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
+        secondMukkaebieImage.layer.borderWidth = 4
+        secondMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
+        thirdMukkaebieImage.layer.borderWidth = 4
+        thirdMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
+
 
         // Do any additional setup after loading the view.
     }
