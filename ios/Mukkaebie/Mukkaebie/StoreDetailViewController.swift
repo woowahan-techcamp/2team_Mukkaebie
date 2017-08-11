@@ -10,10 +10,11 @@ import UIKit
 
 class StoreDetailViewController: UIViewController, UITabBarDelegate {
     
-//    var mukkaebieRankViewController : MukkaebieRankViewController?
+    var mukkaebieRankViewController : MukkaebieRankViewController?
     var menuViewController: MenuViewController?
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
+    
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
     
@@ -34,7 +35,13 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         self.tabBar.delegate=self;
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+        scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
         
         meetPaymentLabel.layer.borderWidth = 1
         meetPaymentLabel.layer.borderColor = UIColor.white.cgColor
@@ -44,6 +51,49 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         directPaymentLabel.layer.borderColor = UIColor.white.cgColor
         directPaymentLabel.layer.cornerRadius = directPaymentLabel.frame.height/2
         
+        tabBarInit()
+        tabBarAppearanceInit()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+            
+        case 0:
+            let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
+            mukkaebieRankViewController = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+            addChildViewController(mukkaebieRankViewController!)
+            
+            tabSubView.addSubview((mukkaebieRankViewController?.view)!)
+            mukkaebieRankViewController?.didMove(toParentViewController: self)
+            
+            adjustContentHeight(tabSubViewHeight: (mukkaebieRankViewController?.view.frame.size.height)!)
+            adjustContentConstraint()
+            
+        case 1:
+            let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
+            menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+            addChildViewController(menuViewController!)
+            
+            tabSubView.addSubview((menuViewController?.view)!)
+            menuViewController?.didMove(toParentViewController: self)
+            
+            menuViewController?.view.frame.size.height = (menuViewController?.view.frame.size.height)! - (menuViewController?.menuTableView.frame.size.height)! + (menuViewController?.menuTableView.contentSize.height)!
+            adjustContentHeight(tabSubViewHeight: (menuViewController?.view.frame.size.height)!)
+            adjustContentConstraint()
+        case 2:
+            break
+        case 3:
+            break
+        default:
+            break
+        }
+    }
+    
+    func tabBarInit() {
         mukkabieTabItem.tag = 0
         mukkabieTabItem.image = makeThumbnailFromText(text: "먹깨비", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         mukkabieTabItem.title = nil;
@@ -59,13 +109,13 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         reviewTabItem.tag = 3
         reviewTabItem.image = makeThumbnailFromText(text: "리뷰", size: CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height))
         reviewTabItem.title = nil;
-        
-        //change icon and title color
+    }
+    
+    func tabBarAppearanceInit() {
         UITabBar.appearance().tintColor = UIColor(white: 136/255, alpha: 1)
-        
-        //change background default color
         UITabBar.appearance().barTintColor = UIColor.white
         
+        //make image for selection - green rectagle
         UIGraphicsBeginImageContextWithOptions(CGSize(width: tabBar.frame.width / CGFloat((tabBar.items?.count)!), height: tabBar.frame.height), false, 0)
         UIColor.white.setFill()
         UIRectFill(CGRect(x: 0, y: 0, width: tabBar.frame.width / CGFloat((tabBar.items?.count)!
@@ -77,96 +127,6 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         UIGraphicsEndImageContext()
         
         UITabBar.appearance().selectionIndicatorImage = image
-        
-        self.tabBarController?.tabBar.isHidden = true
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch item.tag {
-            
-        case 0:
-            let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
-            let mukkaebieRankViewController = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
-            addChildViewController(mukkaebieRankViewController!)
-            
-            
-            tabSubView.addSubview((mukkaebieRankViewController?.view)!)
-            mukkaebieRankViewController?.didMove(toParentViewController: self)
-            
-            tabSubView.frame.size.height = (mukkaebieRankViewController?.view.frame.size.height)!
-            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-            
-            scrollView.contentSize.width = contentView.frame.size.width
-            scrollView.contentSize.height = contentView.frame.size.height
-            
-        case 1:
-            let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
-            menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
-            addChildViewController(menuViewController!)
-            
-            tabSubView.addSubview((menuViewController?.view)!)
-            menuViewController?.didMove(toParentViewController: self)
-            
-            tabSubView.bounds.size.height = (menuViewController?.view.frame.size.height)!
-            tabSubView.frame.size.height = (menuViewController?.view.frame.size.height)!
-            
-            if let constraint = (tabSubView.constraints.filter{$0.firstAttribute == .height}.first) {
-                constraint.constant = tabSubView.frame.size.height
-            }
-            
-            tabView.bounds.size.height = tabBar.bounds.size.height+tabSubView.bounds.size.height
-            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-            
-            if let constraint = (tabView.constraints.filter{$0.firstAttribute == .height}.first) {
-                constraint.constant = tabView.frame.size.height
-            }
-            
-            contentView.bounds.size.height = tabView.bounds.size.height+imageView.bounds.size.height+scoreView.bounds.size.height+uppperBarView.bounds.size.height
-            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-
-            if let constraint = (contentView.constraints.filter{$0.firstAttribute == .height}.first) {
-                constraint.constant = contentView.frame.size.height
-            }
-            
-            scrollView.contentSize.width = contentView.frame.size.width
-            scrollView.contentSize.height = contentView.frame.size.height
-            
-            
-            
-            
-        case 2:
-//            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
-//            infoViewController = storyboard.instantiateViewController(withIdentifier: "infoViewController") as? InfoViewController
-//            tabSubView.addSubview((infoViewController?.view.subviews[0])!)
-//            tabSubView.frame.size.height = (infoViewController?.view.frame.size.height)!
-//            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-//            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-            
-            scrollView.contentSize.width = contentView.frame.size.width
-            scrollView.contentSize.height = contentView.frame.size.height
-        case 3:
-//            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
-//            reviewViewController = storyboard.instantiateViewController(withIdentifier: "reviewViewController") as? ReviewViewController
-//            tabSubView.addSubview((reviewViewController?.view.subviews[0])!)
-//            
-//            tabSubView.frame.size.height = (reviewViewController?.view.frame.size.height)!
-//            tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
-//            contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-            
-            scrollView.contentSize.width = contentView.frame.size.width
-            scrollView.contentSize.height = contentView.frame.size.height
-        default:
-            break
-            
-        }
     }
     
     func makeThumbnailFromText(text: String, size: CGSize) -> UIImage {
@@ -191,15 +151,23 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         return image!
     }
     
+    func adjustContentHeight(tabSubViewHeight: CGFloat) {
+        tabSubView.frame.size.height = tabSubViewHeight
+        tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+        contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
+        scrollView.contentSize.width = contentView.frame.size.width
+        scrollView.contentSize.height = contentView.frame.size.height
+    }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func adjustContentConstraint() {
+        if let constraint = (tabSubView.constraints.filter{$0.firstAttribute == .height}.first) {
+            constraint.constant = tabSubView.frame.size.height
+        }
+        if let constraint = (tabView.constraints.filter{$0.firstAttribute == .height}.first) {
+            constraint.constant = tabView.frame.size.height
+        }
+        if let constraint = (contentView.constraints.filter{$0.firstAttribute == .height}.first) {
+            constraint.constant = contentView.frame.size.height
+        }
+    }
 }

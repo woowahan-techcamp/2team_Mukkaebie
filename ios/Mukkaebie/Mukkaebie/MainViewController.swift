@@ -94,8 +94,5 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         return 1.0
     }
     
-    
-    
-    
 }
 

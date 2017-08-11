@@ -127,14 +127,6 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             menuTableView.reloadData()
         }
     }
-    
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(count)
-        count += 1
-        print("hi")
-    }
-    
 }
 
 
