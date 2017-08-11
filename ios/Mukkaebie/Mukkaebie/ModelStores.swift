@@ -39,10 +39,4 @@ class ModelStores: Mappable {
         name <- map["name"]
         createdDate <- map["createdDate"]
     }
-    
-    
-
-    
-    
-    
 }

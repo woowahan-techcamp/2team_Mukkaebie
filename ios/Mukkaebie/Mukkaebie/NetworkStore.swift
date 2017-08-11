@@ -23,13 +23,15 @@ class NetworkStore {
                 for item in response {
                     var store = ModelStores(JSON: item)
                     storeList.append(store!)
+
                 }
 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getStore"), object: nil, userInfo: ["storeList":storeList])
             }
         }
-        
     }
+    
+
     
     
 }

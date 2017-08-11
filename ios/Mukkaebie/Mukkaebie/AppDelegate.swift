@@ -24,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-//        NetworkStore.getStoreList()
-        
+
         // Override point for customization after application launch.
         return true
     }
