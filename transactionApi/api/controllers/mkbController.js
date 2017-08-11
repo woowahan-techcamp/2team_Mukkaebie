@@ -70,7 +70,7 @@ exports.update_an_order = function(req, res) {
 
 exports.delete_an_order_by_store = function(req, res) {
   Order.remove({
-    orderId: req.body.storeId
+    sellerId: req.body.storeId
   }, function(err) {
     if (err)
       res.send(err);
@@ -80,7 +80,7 @@ exports.delete_an_order_by_store = function(req, res) {
 
 exports.delete_an_order_by_user = function(req, res) {
   Order.remove({
-    orderId: req.body.userId
+    buyerId: req.body.userId
   }, function(err) {
     if (err)
       res.send(err);
