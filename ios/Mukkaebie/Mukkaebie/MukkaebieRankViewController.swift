@@ -10,6 +10,8 @@ import UIKit
 
 class MukkaebieRankViewController: UIViewController {
 
+    var count = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,4 +34,10 @@ class MukkaebieRankViewController: UIViewController {
     }
     */
 
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(count)
+        count += 1
+        print("hi")
+    }
 }

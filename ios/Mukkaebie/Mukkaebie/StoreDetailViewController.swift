@@ -11,7 +11,7 @@ import UIKit
 class StoreDetailViewController: UIViewController, UITabBarDelegate {
     
 //    var mukkaebieRankViewController : MukkaebieRankViewController?
-//    var menuViewController: MenuViewController?
+    var menuViewController: MenuViewController?
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
     @IBOutlet weak var meetPaymentLabel: UILabel!
@@ -109,19 +109,38 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             
         case 1:
             let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
-            let menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+            menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
             addChildViewController(menuViewController!)
             
-
             tabSubView.addSubview((menuViewController?.view)!)
             menuViewController?.didMove(toParentViewController: self)
             
+            tabSubView.bounds.size.height = (menuViewController?.view.frame.size.height)!
             tabSubView.frame.size.height = (menuViewController?.view.frame.size.height)!
+            
+            if let constraint = (tabSubView.constraints.filter{$0.firstAttribute == .height}.first) {
+                constraint.constant = tabSubView.frame.size.height
+            }
+            
+            tabView.bounds.size.height = tabBar.bounds.size.height+tabSubView.bounds.size.height
             tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
+            
+            if let constraint = (tabView.constraints.filter{$0.firstAttribute == .height}.first) {
+                constraint.constant = tabView.frame.size.height
+            }
+            
+            contentView.bounds.size.height = tabView.bounds.size.height+imageView.bounds.size.height+scoreView.bounds.size.height+uppperBarView.bounds.size.height
             contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
 
+            if let constraint = (contentView.constraints.filter{$0.firstAttribute == .height}.first) {
+                constraint.constant = contentView.frame.size.height
+            }
+            
             scrollView.contentSize.width = contentView.frame.size.width
             scrollView.contentSize.height = contentView.frame.size.height
+            
+            
+            
             
         case 2:
 //            let storyboard = UIStoryboard(name: "StoreDetail", bundle: nil)
@@ -172,6 +191,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         return image!
     }
     
+    
+    
     /*
      // MARK: - Navigation
      
@@ -181,5 +202,4 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
      // Pass the selected object to the new view controller.
      }
      */
-    
 }

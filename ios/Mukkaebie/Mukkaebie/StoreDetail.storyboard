@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2G8-1k-EoP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2G8-1k-EoP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -216,23 +216,25 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35M-7b-ljY">
                                                         <rect key="frame" x="0.0" y="49" width="375" height="202"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="202" id="SaP-lQ-WmM"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstItem="CEw-LG-Ek9" firstAttribute="top" secondItem="pYN-tB-V7y" secondAttribute="top" id="AAZ-7a-tVI"/>
                                                     <constraint firstAttribute="trailing" secondItem="CEw-LG-Ek9" secondAttribute="trailing" id="JLf-rg-5kL"/>
+                                                    <constraint firstAttribute="height" constant="251" id="Lh8-wB-fHM"/>
                                                     <constraint firstItem="CEw-LG-Ek9" firstAttribute="leading" secondItem="pYN-tB-V7y" secondAttribute="leading" id="S7y-w5-t4U"/>
                                                     <constraint firstItem="CEw-LG-Ek9" firstAttribute="trailing" secondItem="35M-7b-ljY" secondAttribute="trailing" id="Upf-NN-pj9"/>
                                                     <constraint firstItem="35M-7b-ljY" firstAttribute="top" secondItem="CEw-LG-Ek9" secondAttribute="bottom" id="aQX-HG-5W8"/>
                                                     <constraint firstItem="CEw-LG-Ek9" firstAttribute="leading" secondItem="35M-7b-ljY" secondAttribute="leading" id="mTD-Vc-NsG"/>
-                                                    <constraint firstAttribute="bottom" secondItem="35M-7b-ljY" secondAttribute="bottom" id="xJq-At-tt2"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="pYN-tB-V7y" secondAttribute="bottom" id="Ckv-IX-BKk"/>
                                             <constraint firstItem="66a-Bw-IGb" firstAttribute="trailing" secondItem="pYN-tB-V7y" secondAttribute="trailing" id="F30-Kg-GLJ"/>
                                             <constraint firstItem="pYN-tB-V7y" firstAttribute="top" secondItem="DjM-Bw-D23" secondAttribute="top" constant="287" id="JWV-vX-I1o"/>
                                             <constraint firstItem="66a-Bw-IGb" firstAttribute="top" secondItem="6ew-pK-V0A" secondAttribute="bottom" id="Mbb-kH-67M"/>
