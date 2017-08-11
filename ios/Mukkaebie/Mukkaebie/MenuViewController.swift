@@ -22,6 +22,7 @@ class MenuViewController: UIViewController {
     let item6 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     var items: Array<MenuViewModelItem> = []
     
+        var count = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
@@ -35,9 +36,9 @@ class MenuViewController: UIViewController {
             Segment(color: UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), value: 30, title: "후라이드"),
             Segment(color: UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), value: 25, title: "고추치킨"),
             Segment(color: UIColor(white: 179/255, alpha: 1), value: 25, title: "기타")
-        ]
+            ]
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
