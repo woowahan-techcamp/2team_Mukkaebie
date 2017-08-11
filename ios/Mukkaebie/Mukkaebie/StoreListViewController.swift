@@ -41,8 +41,6 @@ class StoreListViewController: UIViewController {
         guard let userInfo = notification.userInfo,
             let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
             self.storeList = storeInfo
-        print(storeList[3].name)
-        print(storeList.count)
         tableView.reloadData()
         }
 

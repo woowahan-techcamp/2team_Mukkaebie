@@ -10,6 +10,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Menu View Controller-->
         <scene sceneID="16G-Cu-ILr">
@@ -27,28 +32,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0y-nk-Jzt" customClass="PieChartView" customModule="Mukkaebie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="63" width="375" height="211"/>
+                                        <rect key="frame" x="0.0" y="66.5" width="375" height="211"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="X0y-nk-Jzt" secondAttribute="height" multiplier="375:211" id="6q0-OV-5Op"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfL-Yy-XrU">
-                                        <rect key="frame" x="21" y="19" width="20" height="20"/>
-                                        <color key="backgroundColor" red="1" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SfL-Yy-XrU">
+                                        <rect key="frame" x="21" y="19" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="Wfp-Ln-khx"/>
-                                            <constraint firstAttribute="height" constant="20" id="ZIF-PG-umJ"/>
+                                            <constraint firstAttribute="width" secondItem="SfL-Yy-XrU" secondAttribute="height" multiplier="1:1" id="LOC-0M-8uu"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 가게 인기 메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-M2-dnX">
-                                        <rect key="frame" x="55" y="24" width="131" height="13"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="55" y="19" width="131" height="18"/>
+                                        <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Bz-b8-Vfs">
-                                        <rect key="frame" x="0.0" y="274" width="375" height="393"/>
+                                        <rect key="frame" x="0.0" y="307.5" width="375" height="359.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="37" id="rig-zW-Ect" customClass="MenuTableViewHeader" customModule="Mukkaebie" customModuleProvider="target">
@@ -125,16 +128,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="X0y-nk-Jzt" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" id="0Ko-Ye-kMO"/>
-                                    <constraint firstItem="SfL-Yy-XrU" firstAttribute="centerY" secondItem="bp7-M2-dnX" secondAttribute="centerY" constant="-1.25" id="7Cf-kU-axM" userLabel="Image View.centerY = 우리 가게 인기 메뉴.centerY"/>
+                                    <constraint firstItem="SfL-Yy-XrU" firstAttribute="centerY" secondItem="bp7-M2-dnX" secondAttribute="centerY" constant="3.25" id="7Cf-kU-axM" userLabel="Image View.centerY = 우리 가게 인기 메뉴.centerY"/>
                                     <constraint firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="I9b-Zu-Sib"/>
-                                    <constraint firstItem="bp7-M2-dnX" firstAttribute="leading" secondItem="SfL-Yy-XrU" secondAttribute="trailing" constant="14" id="Pck-Rz-Zlm"/>
+                                    <constraint firstItem="bp7-M2-dnX" firstAttribute="leading" secondItem="SfL-Yy-XrU" secondAttribute="trailing" constant="9.5" id="Pck-Rz-Zlm"/>
                                     <constraint firstItem="SfL-Yy-XrU" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" constant="21" id="Xrk-4l-nnj"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="leading" secondItem="X0y-nk-Jzt" secondAttribute="leading" id="b1j-jE-fOL"/>
                                     <constraint firstAttribute="bottom" secondItem="6Bz-b8-Vfs" secondAttribute="bottom" id="gID-l2-e2b"/>
-                                    <constraint firstItem="6Bz-b8-Vfs" firstAttribute="top" secondItem="X0y-nk-Jzt" secondAttribute="bottom" id="heF-at-oix"/>
+                                    <constraint firstItem="6Bz-b8-Vfs" firstAttribute="top" secondItem="X0y-nk-Jzt" secondAttribute="bottom" constant="30" id="heF-at-oix"/>
                                     <constraint firstItem="SfL-Yy-XrU" firstAttribute="top" secondItem="mTb-oG-gl1" secondAttribute="top" constant="19" id="iDa-0p-jbn"/>
                                     <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="SfL-Yy-XrU" secondAttribute="bottom" constant="23.399999999999999" id="wfq-yz-6Lo"/>
-                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="bp7-M2-dnX" secondAttribute="bottom" constant="26" id="xog-1d-HWo"/>
+                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="bp7-M2-dnX" secondAttribute="bottom" constant="30" id="xog-1d-HWo"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="zmg-ND-psy"/>
                                 </constraints>
                             </view>
@@ -157,4 +160,7 @@
             <point key="canvasLocation" x="37.600000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="graphIcon" width="24" height="24"/>
+    </resources>
 </document>

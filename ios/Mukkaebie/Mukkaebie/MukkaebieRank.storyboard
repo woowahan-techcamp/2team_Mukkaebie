@@ -55,30 +55,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test_Kkaebie" translatesAutoresizingMaskIntoConstraints="NO" id="P0r-tc-ECv" userLabel="mukkaebieRank">
-                                <rect key="frame" x="0.0" y="180" width="375" height="461"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="461"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="q01-VE-Imk" userLabel="thirdProfile">
-                                <rect key="frame" x="265" y="318" width="86" height="86"/>
+                                <rect key="frame" x="265" y="288" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hj.png" translatesAutoresizingMaskIntoConstraints="NO" id="oGp-KY-J0V" userLabel="secondProfile">
-                                <rect key="frame" x="21" y="316" width="86" height="86"/>
+                                <rect key="frame" x="21" y="286" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ygNa.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="i68-20-dDV" userLabel="firstProfile">
-                                <rect key="frame" x="127" y="215" width="118" height="118"/>
+                                <rect key="frame" x="127" y="185" width="118" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="먹깨비 랭킹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYL-Ar-HOG">
-                                <rect key="frame" x="49" y="37" width="110" height="21"/>
+                                <rect key="frame" x="49" y="22" width="110" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
-                                <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
-                                <rect key="frame" x="16" y="34" width="26" height="25"/>
+                                <rect key="frame" x="16" y="19" width="26" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

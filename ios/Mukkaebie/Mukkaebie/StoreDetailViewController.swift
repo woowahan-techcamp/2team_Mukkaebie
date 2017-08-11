@@ -53,6 +53,11 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         
         tabBarInit()
         tabBarAppearanceInit()
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor(hexString: "EEEEEE").cgColor
+        
+        tabBar.selectedItem = tabBar.items![0] as UITabBarItem
+        tabBar(tabBar, didSelect: mukkabieTabItem)
     }
     
     override func didReceiveMemoryWarning() {
