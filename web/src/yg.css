@@ -65,7 +65,16 @@
 }
 .storeTitleLabel{padding:3px 5px 3px 5px; background: #877b63; color:#fff}
 
-
+.storeTitle {
+    font-size:15px;
+}
+.storeAddress{
+    font-size: 11px;
+}
+.storeStars{
+    font-size: 11px;
+    margin-top:5px
+}
 /* 메뉴 탭 관련 */
 
 .menuTabContent {
@@ -146,7 +155,6 @@
         clear: both;
         width: 100%;
         margin-bottom:20px;
-
     }
 
     .tabAreaWrap {
@@ -158,6 +166,7 @@
     }
     .storeTitleArea>.float-left, .storeTitleArea>.float-right {
         float:none;
+        margin-left:0;
     }
 
     .mobileTitleArea {
@@ -169,6 +178,9 @@
     }
     .blackMenuArea {
         display: none;
+    }
+    .storeStars{
+        margin-top: 0;
     }
 
 }
