@@ -3,6 +3,25 @@
 // const dummy = new Dummy();
 // dummy.printHello();
 
+document.addEventListener("DOMContentLoaded", function () {
+        podiumAnimate();
+        mkbLoad();
+        postReview()
+        getReview();
+
+        //tab operate
+        let test1 = new TabUiWithAjax(inputObj);
+
+        let test = new Foldable("foldableLevel1");
+
+        test.makeFoldable();
+
+        scrollWithCart();
+
+        makeOrder();
+        makeDonutgraph()
+    });
+
 
 class TabUiWithAjax {
 
@@ -16,7 +35,7 @@ class TabUiWithAjax {
         this.generalContentPrefix = inputObj.generalContentPrefix;
         this.tabId = [];
         this.cache = [];
-        this.baseUrl = inputObj.baseUrl //"http://52.78.212.27:8080/woowa/";
+        this.baseUrl = inputObj.baseUrl;
         this.init();
     }
 
@@ -268,7 +287,7 @@ function makeOrder() {
         xhr1.send(JSON.stringify(packet));
 
         xhr1.onloadend = function () {
-            // alert('주문해주셔서 감사합니다.');
+            alert('주문해주셔서 감사합니다.');
             mkbLoad();
             makeDonutgraph();
         };
@@ -307,7 +326,7 @@ function makeDonutgraph() {
                 }
 
             }
-            console.log(topMenu);
+
 
             let items = Object.keys(topMenu).map(function (key) {
                 return [key, topMenu[key]];
@@ -318,7 +337,7 @@ function makeDonutgraph() {
             })
 
             let top5 = items.slice(0, 5);
-            console.log(top5);
+
 
             let circleContent = '';
             let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
@@ -332,7 +351,6 @@ function makeDonutgraph() {
 
             for (let key in topMenu) {
                 total += topMenu[key];
-                console.log(total);
             }
 
             for (let i = 0; i < 5; i++) {

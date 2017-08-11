@@ -20,7 +20,7 @@
     "install": "^0.10.1",
     "mocha": "^3.5.0",
     "style-loader": "^0.18.2",
-    "webpack": "^3.4.1",
+    "webpack": "^3.5.3",
     "webpack-dev-server": "^2.6.1"
   }
 }
