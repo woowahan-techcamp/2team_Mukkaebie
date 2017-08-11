@@ -120,8 +120,8 @@ exports.update_a_user = function(req, res) {
 
 exports.delete_a_user = function(req, res) {
   User.remove({
-    userId: req.params.userId
-  }, function(err, user) {
+    userId: req.body.userId
+  }, function(err) {
     if (err)
       res.send(err);
     res.json({ message: 'User successfully deleted' });

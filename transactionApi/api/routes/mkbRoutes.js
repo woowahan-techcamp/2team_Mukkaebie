@@ -6,13 +6,18 @@ module.exports = function(app) {
     .get(mkb.list_all_users)
     .post(mkb.create_a_user);
 
+  app.route('/users/delete')
+    .post(mkb.delete_a_user);
+
   app.route('/users/:userId')
     .get(mkb.read_a_user)
     .post(mkb.update_a_user);
 
   app.route('/stores')
     .get(mkb.list_all_stores)
-    .post(mkb.create_a_store)
+    .post(mkb.create_a_store);
+
+  app.route('/stores/delete')
     .post(mkb.delete_a_store);
 
   app.route('/stores/:storeId')
