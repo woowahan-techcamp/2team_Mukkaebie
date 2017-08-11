@@ -60,6 +60,15 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
+        for child in self.childViewControllers {
+            child.removeFromParentViewController()
+        }
+        
+        for subview in tabSubView.subviews {
+            subview.removeFromSuperview()
+        }
+        
         switch item.tag {
             
         case 0:
@@ -72,7 +81,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             
             adjustContentHeight(tabSubViewHeight: (mukkaebieRankViewController?.view.frame.size.height)!)
             adjustContentConstraint()
-            
+            break
         case 1:
             let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
             menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
@@ -80,10 +89,11 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             
             tabSubView.addSubview((menuViewController?.view)!)
             menuViewController?.didMove(toParentViewController: self)
-            
-            menuViewController?.view.frame.size.height = (menuViewController?.view.frame.size.height)! - (menuViewController?.menuTableView.frame.size.height)! + (menuViewController?.menuTableView.contentSize.height)!
-            adjustContentHeight(tabSubViewHeight: (menuViewController?.view.frame.size.height)!)
+                
+            let tabSubviewHeight = (menuViewController?.view.frame.size.height)! - (menuViewController?.menuTableView.frame.size.height)! + (menuViewController?.menuTableView.contentSize.height)!
+            adjustContentHeight(tabSubViewHeight: tabSubviewHeight)
             adjustContentConstraint()
+            break
         case 2:
             break
         case 3:
@@ -151,11 +161,14 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         return image!
     }
     
+    func removeSub() {
+        
+    }
+    
     func adjustContentHeight(tabSubViewHeight: CGFloat) {
         tabSubView.frame.size.height = tabSubViewHeight
         tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
         contentView.frame.size.height = tabView.frame.size.height+imageView.frame.size.height+scoreView.frame.size.height+uppperBarView.frame.size.height
-        scrollView.contentSize.width = contentView.frame.size.width
         scrollView.contentSize.height = contentView.frame.size.height
     }
     
