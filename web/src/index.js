@@ -41,8 +41,9 @@ class TabUiWithAjax {
             event.target.classList.add(this.selectedTabName);
             currentTabId += event.target.id;
         } else {
-            event.target.children[2].classList.add(this.selectedTabName);
-            currentTabId += event.target.children[2].id;
+          let correctedTarget = document.querySelector("#mkbTab");
+          correctedTarget.classList.add(this.selectedTabName);
+          currentTabId += correctedTarget.id;
         }
 
         const targetContentName = this.generalContentPrefix + currentTabId;
@@ -113,6 +114,218 @@ class Foldable {
     }
 }
 
-let test = new Foldable("foldableLevel1");
+/* 리뷰관련 */
 
-test.makeFoldable()
+function postReview() {
+  var theButton = document.querySelector("#reviewTextInputBtn");
+  theButton.addEventListener("click", function(){
+    var packet = {"review":{}};
+    packet["storeId"] = 101010;
+    packet.review["content"] = document.querySelector("#reviewTextInput").value;
+    packet.review["time"] =   new Date().toLocaleString();
+    packet.review["user"] = "ygtech";
+
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
+    xhr1.setRequestHeader('Content-Type', 'application/json');
+    // send the collected data as JSON
+    xhr1.send(JSON.stringify(packet));
+    xhr1.onloadend = function () {
+      alert("소중한 리뷰 감사합니다.")
+      getReview();
+      document.querySelector("#reviewTextInput").value = "";
+    };
+  });
+}
+
+function getReview() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const response = JSON.parse(this.responseText);
+      const renderTarget = document.querySelector("#reviewList");
+      renderTarget.innerHTML = "";
+      response[0].review.reverse().forEach(function (oneReview) {
+        const review = oneReview;
+        const userId = review.user;
+        const createdDate = review.time;
+        const reviewContent = review.content;
+        const orangeStar = "***"
+        const greyStar = "**"
+        const tempGrab = document.querySelector("#reviewTemplate").text;
+        const result = eval('`' + tempGrab + '`');
+        renderTarget.innerHTML += result;
+      })
+    }
+  };
+  xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
+  xhttp.send();
+}
+
+
+/* 먹깨비 관련 */
+
+function mkbLoad() {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      let orders = JSON.parse(xhr.responseText);
+      let rankers = {};
+      for (let i = 0; i < orders.length; i++) {
+        if (orders[i].buyerId in rankers) {
+          rankers[orders[i].buyerId] += 1;
+        } else {
+          rankers[orders[i].buyerId] = 1;
+        }
+      }
+
+      let items = Object.keys(rankers).map(function (key) {
+        return [key, rankers[key]];
+      });
+
+      items.sort(function (first, second) {
+        return second[1] - first[1];
+      });
+
+      let top3 = items.slice(0, 3);
+
+      let top3_name = document.querySelectorAll('.name');
+      let top3_order = document.querySelectorAll('.orders');
+
+      for (let i = 0; i < 3; i++) {
+        let name = top3[i].toString().split(",")[0];
+        let order = top3[i].toString().split(",")[1];
+        top3_name[i].innerHTML = name;
+        top3_order[i].innerHTML = order;
+      }
+
+    }
+
+  }
+
+  xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+  xhr.send(null);
+}
+function podiumAnimate() {
+  let gold = document.querySelector('.gold .podium');
+  gold.style.transition = 'all 1.5s ease';
+  gold.style.height = '180px';
+
+  let silver = document.querySelector('.silver .podium');
+  silver.style.transition = 'all 1.5s ease';
+  silver.style.height = '120px';
+
+  let bronze = document.querySelector('.bronze .podium');
+  bronze.style.transition = 'all 1.5s ease';
+  bronze.style.height = '80px';
+}
+
+
+/* 장바구니 스크롤 반응 */
+function scrollWithCart(){
+  document.addEventListener("scroll", function(){
+    if (window.scrollY > 583) {
+      var cart = document.querySelector(".storeCart");
+      cart.style.position = "fixed";
+      cart.style.top="10px";
+      cart.style.width="200px"
+    }
+    else {
+      var cart = document.querySelector(".storeCart");
+      cart.style.position = "inherit";
+      cart.style.top="";
+      cart.style.width=""
+    }
+  })
+}
+
+function makeOrder(){
+  var userList = ["ygtech", "dbtech", "jhtech", "mhtech"]
+  var orderButton = document.querySelector("#cartOrderButton");
+
+  orderButton.addEventListener("click", function(){
+    var randNum = Math.floor(Math.random() * 4);
+    console.log(randNum);
+    var packet = {};
+    packet["sellerId"] = 101010;
+    packet["buyerId"] = userList[randNum];
+    packet["content"] = ["testcase"];
+    packet["price"] =   1000;
+    console.log(packet);
+    var xhr1 = new XMLHttpRequest();
+    xhr1.open("POST", "http://52.78.184.77:3000/orders", true);
+    xhr1.setRequestHeader('Content-Type', 'application/json');
+
+    // send the collected data as JSON
+    xhr1.send(JSON.stringify(packet));
+
+    xhr1.onloadend = function () {
+      alert("저희 업소를 이용해 주셔서 감사합니다.")
+      mkbLoad();
+    };
+  });
+}
+
+/* 모바일 카테고리 토글 */
+function toggleMobileCategory() {
+  var x = document.querySelector('.mobileCategory');
+  var btn = document.querySelector(".mobileTitleButton");
+  if (btn.classList.contains("unfolded")) {
+    x.style.display = 'none';
+    btn.classList.remove("unfolded");
+  } else {
+    x.style.display = 'block';
+    btn.classList.add("unfolded");
+  }
+}
+
+/* 도넛 그래프 만들기 */
+function makeDonutgraph(){
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      let responseObject = JSON.parse(xhr.responseText);
+      let menu = responseObject[0].menu;
+      let top5 = menu.sort(function (a, b) {
+        return a.orders < b.orders ? 1 : -1;
+      }).slice(0, 5);
+      let circleContent = '';
+      let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
+      let total = 0;
+      let share = 0;
+      let reverse = 0;
+      let offset = 25;
+      let totalLength = 0;
+      let label = document.querySelectorAll('.donutLabel');
+
+      for (let i = 0; i < menu.length; i++) {
+        total += menu[i].orders;
+      }
+
+      for (let i = 0; i < 5; i++) {
+        share = top5[i].orders / total * 100;
+        reverse = 100 - share;
+        circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
+        circleContent += '<title class="donut-segment-title">' + top5[i].title + '</title>';
+        circleContent += '<desc class="donut-segment-desc">' + top5[i].price + '원</desc>';
+        circleContent += '</circle>';
+
+        label[i].insertAdjacentHTML('beforeend', top5[i].title + ' ' + share.toFixed(2) + '%');
+        totalLength = totalLength + share;
+        offset = 100 - totalLength + 25;
+        if (i == 4) {
+          label[5].insertAdjacentHTML('beforeend', (100 - totalLength).toFixed(2) + '%');
+        }
+      }
+
+
+      var svg = document.querySelector('svg');
+      svg.insertAdjacentHTML('beforeend', circleContent);
+
+    }
+  };
+
+  xhr.open('GET', 'http://52.78.184.77:3000/stores/101010', true);
+  xhr.send(null);
+}
