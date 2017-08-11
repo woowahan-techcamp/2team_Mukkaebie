@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 enum level {
     case white
@@ -15,7 +16,7 @@ enum level {
     case black
 }
 
-class ModelUsers {
+class ModelUsers: Mappable {
     
     private var id = String()
     private var name = String()
@@ -24,6 +25,8 @@ class ModelUsers {
     private var baeminLevel = [level]()
     
     init() {}
+    
+    required init?(map: Map) {}
     
     init(id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
         self.id = id
@@ -42,6 +45,14 @@ class ModelUsers {
         userDic["baeminLevel"] = baeminLevel
         
         return userDic
+    }
+    
+    func mapping(map: Map) {
+        id <- map["userId"]
+        name <- map["name"]
+        spent <- map["spent"]
+        createdDate <- map["createdDate"]
+        baeminLevel <- map["baeminLevel"]
     }
     
 }
