@@ -68,10 +68,20 @@ exports.update_an_order = function(req, res) {
 }
 
 
-exports.delete_an_order = function(req, res) {
+exports.delete_an_order_by_store = function(req, res) {
   Order.remove({
-    orderId: req.params.orderId
-  }, function(err, task) {
+    orderId: req.body.storeId
+  }, function(err) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Order successfully deleted' });
+  });
+};
+
+exports.delete_an_order_by_user = function(req, res) {
+  Order.remove({
+    orderId: req.body.userId
+  }, function(err) {
     if (err)
       res.send(err);
     res.json({ message: 'Order successfully deleted' });

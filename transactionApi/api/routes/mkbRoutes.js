@@ -29,10 +29,12 @@ module.exports = function(app) {
     .post(mkb.create_an_order);
 
   app.route('/orders/bystore/:sellerId')
-    .get(mkb.read_an_order_by_store);
+    .get(mkb.read_an_order_by_store)
+    .post(mkb.delete_an_order_by_store);
 
   app.route('/orders/byuser/:buyerId')
-    .get(mkb.read_an_order_by_user);
+    .get(mkb.read_an_order_by_user)
+    .post(mkb.delete_an_order_by_user);
 
   app.route('/orders/:sellerId/:buyerId')
     .get(mkb.read_an_order);
