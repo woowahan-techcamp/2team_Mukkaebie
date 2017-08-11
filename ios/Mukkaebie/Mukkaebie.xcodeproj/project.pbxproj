@@ -18,6 +18,9 @@
 		983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */; };
 		9832482C1F32FD2C00ABFBFB /* MukkaebieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9832482B1F32FD2C00ABFBFB /* MukkaebieTests.swift */; };
 		983248371F32FD2C00ABFBFB /* MukkaebieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */; };
+		9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9844286D1F3D755A0003CDF1 /* ygNa.jpeg */; };
+		984428701F3D76390003CDF1 /* hj.png in Resources */ = {isa = PBXBuildFile; fileRef = 9844286F1F3D76390003CDF1 /* hj.png */; };
+		984428721F3D76660003CDF1 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 984428711F3D76660003CDF1 /* flash.png */; };
 		985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */; };
 		985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */; };
 		985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08F11F3AD4E800A1F475 /* MenuViewController.swift */; };
@@ -81,6 +84,9 @@
 		983248321F32FD2C00ABFBFB /* MukkaebieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MukkaebieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukkaebieUITests.swift; sourceTree = "<group>"; };
 		983248381F32FD2C00ABFBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9844286D1F3D755A0003CDF1 /* ygNa.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ygNa.jpeg; sourceTree = "<group>"; };
+		9844286F1F3D76390003CDF1 /* hj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hj.png; sourceTree = "<group>"; };
+		984428711F3D76660003CDF1 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
 		985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		985D08F11F3AD4E800A1F475 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +189,8 @@
 				98B67CEB1F3AD56400243F31 /* StoreList */,
 				98B67CEC1F3AD57C00243F31 /* StoreDetail */,
 				98B67CDC1F39C8D600243F31 /* bm_ad2.png */,
+				984428711F3D76660003CDF1 /* flash.png */,
+				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
 				9832481D1F32FD2C00ABFBFB /* Assets.xcassets */,
 				9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */,
 				983248221F32FD2C00ABFBFB /* Info.plist */,
@@ -253,6 +261,7 @@
 			children = (
 				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
+				9844286F1F3D76390003CDF1 /* hj.png */,
 			);
 			name = StoreDetail;
 			sourceTree = "<group>";
@@ -412,8 +421,11 @@
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
 				9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */,
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
+				984428701F3D76390003CDF1 /* hj.png in Resources */,
+				984428721F3D76660003CDF1 /* flash.png in Resources */,
 				98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */,
 				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
+				9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */,
 				9832481C1F32FD2C00ABFBFB /* Main.storyboard in Resources */,
 				985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */,
 			);

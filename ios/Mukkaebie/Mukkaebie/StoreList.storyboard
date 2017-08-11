@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,81 +27,57 @@
                                 <rect key="frame" x="0.0" y="55" width="375" height="612"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="130" id="NMh-WJ-AEJ" customClass="StoreListTableViewCell" customModule="Mukkaebie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="130"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="95" id="NMh-WJ-AEJ" customClass="StoreListTableViewCell" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NMh-WJ-AEJ" id="Vr7-7m-buk">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가게이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2L-lA-WVm">
-                                                    <rect key="frame" x="121" y="36" width="179" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="179" id="2nR-RZ-4wC"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="가게이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2L-lA-WVm">
+                                                    <rect key="frame" x="90.5" y="21" width="179" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u5B-Hq-ZrC">
-                                                    <rect key="frame" x="8" y="16" width="100" height="100"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="eNY-ga-VRs"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="woowatech" translatesAutoresizingMaskIntoConstraints="NO" id="u5B-Hq-ZrC">
+                                                    <rect key="frame" x="13" y="18.5" width="57.5" height="57.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근리뷰 10   최근사장님댓글 33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b18-GW-hrD">
-                                                    <rect key="frame" x="121" y="62" width="190" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="최근리뷰 10   최근사장님댓글 33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b18-GW-hrD">
+                                                    <rect key="frame" x="90.5" y="47" width="212.5" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sh0-6d-lmx">
-                                                    <rect key="frame" x="319" y="21" width="48" height="87"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="바로결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBa-Mp-XTx">
+                                                    <rect key="frame" x="90.5" y="68" width="42" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.78371040194910679" blue="0.86052400194209788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="만나서결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACU-Np-plF">
+                                                    <rect key="frame" x="134.5" y="68" width="50" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.78371040194910679" blue="0.86052400194209788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tableArrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sh0-6d-lmx">
+                                                    <rect key="frame" x="344" y="38" width="10" height="19"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="nTL-BW-66T"/>
+                                                        <constraint firstAttribute="width" secondItem="sh0-6d-lmx" secondAttribute="height" multiplier="9:17" id="2P4-fH-czi"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="바로결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBa-Mp-XTx">
-                                                    <rect key="frame" x="121" y="88" width="42" height="18"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.78371040194910679" blue="0.86052400194209788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="YJc-YT-jdo"/>
-                                                        <constraint firstAttribute="width" constant="42" id="pDH-Jl-OVU"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만나서결제" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACU-Np-plF">
-                                                    <rect key="frame" x="165" y="88" width="50" height="18"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.78371040194910679" blue="0.86052400194209788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="lQR-Gg-e9N"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="10"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="xBa-Mp-XTx" secondAttribute="bottom" constant="15.5" id="3Gc-pO-7hg"/>
-                                                <constraint firstItem="b18-GW-hrD" firstAttribute="top" secondItem="Vr7-7m-buk" secondAttribute="topMargin" constant="54" id="436-Bx-16f"/>
-                                                <constraint firstItem="xBa-Mp-XTx" firstAttribute="top" secondItem="b18-GW-hrD" secondAttribute="bottom" constant="5" id="6kd-S2-Uhl"/>
-                                                <constraint firstItem="n2L-lA-WVm" firstAttribute="leading" secondItem="u5B-Hq-ZrC" secondAttribute="trailing" constant="13" id="I16-ue-zRY"/>
-                                                <constraint firstItem="u5B-Hq-ZrC" firstAttribute="leading" secondItem="Vr7-7m-buk" secondAttribute="leadingMargin" id="Kiq-f4-NHc"/>
-                                                <constraint firstItem="b18-GW-hrD" firstAttribute="leading" secondItem="xBa-Mp-XTx" secondAttribute="leading" id="Mtm-hc-CVB"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="u5B-Hq-ZrC" secondAttribute="bottom" constant="5.5" id="P2u-Z8-Kbr"/>
-                                                <constraint firstItem="sh0-6d-lmx" firstAttribute="leading" secondItem="b18-GW-hrD" secondAttribute="trailing" constant="8" symbolic="YES" id="Plv-rq-drk"/>
-                                                <constraint firstItem="n2L-lA-WVm" firstAttribute="leading" secondItem="b18-GW-hrD" secondAttribute="leading" id="Vc9-NM-fOf"/>
-                                                <constraint firstItem="sh0-6d-lmx" firstAttribute="top" secondItem="Vr7-7m-buk" secondAttribute="topMargin" constant="13" id="Voz-b2-5yv"/>
-                                                <constraint firstItem="sh0-6d-lmx" firstAttribute="centerY" secondItem="Vr7-7m-buk" secondAttribute="centerY" id="XER-0g-7y9"/>
-                                                <constraint firstItem="u5B-Hq-ZrC" firstAttribute="top" secondItem="Vr7-7m-buk" secondAttribute="topMargin" constant="8" id="ZT9-Ie-cAd"/>
-                                                <constraint firstItem="ACU-Np-plF" firstAttribute="top" secondItem="n2L-lA-WVm" secondAttribute="bottom" constant="22" id="ghR-2t-vkg"/>
-                                                <constraint firstItem="xBa-Mp-XTx" firstAttribute="baseline" secondItem="ACU-Np-plF" secondAttribute="baseline" id="j2P-tb-7X6"/>
-                                                <constraint firstItem="n2L-lA-WVm" firstAttribute="top" secondItem="Vr7-7m-buk" secondAttribute="topMargin" constant="28" id="pho-Ge-2Rs"/>
-                                                <constraint firstItem="sh0-6d-lmx" firstAttribute="trailing" secondItem="Vr7-7m-buk" secondAttribute="trailingMargin" id="rlu-0S-b62"/>
-                                                <constraint firstItem="ACU-Np-plF" firstAttribute="leading" secondItem="xBa-Mp-XTx" secondAttribute="trailing" constant="2" id="ubv-5u-NvU"/>
-                                                <constraint firstItem="xBa-Mp-XTx" firstAttribute="firstBaseline" secondItem="ACU-Np-plF" secondAttribute="firstBaseline" id="xDX-sY-VCv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sh0-6d-lmx" secondAttribute="trailing" constant="13" id="2oj-n6-Ewg"/>
+                                                <constraint firstItem="sh0-6d-lmx" firstAttribute="centerY" secondItem="Vr7-7m-buk" secondAttribute="centerY" id="3cm-HA-d3B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -182,7 +158,9 @@
                             <constraint firstAttribute="trailing" secondItem="LuD-v9-Vg3" secondAttribute="trailing" id="zBZ-AE-0jw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VoS-Lq-gyP"/>
+                    <navigationItem key="navigationItem" id="VoS-Lq-gyP">
+                        <barButtonItem key="backBarButtonItem" image="backButton" id="n85-yv-BoK"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="LuD-v9-Vg3" id="Yxc-Tj-iG0"/>
                         <outlet property="tableView" destination="pXO-cb-lmR" id="QJF-2v-w7L"/>
@@ -201,4 +179,9 @@
             <point key="canvasLocation" x="709" y="-358"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backButton" width="18" height="17"/>
+        <image name="tableArrowIcon" width="10" height="17"/>
+        <image name="woowatech" width="942" height="656"/>
+    </resources>
 </document>

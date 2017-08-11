@@ -31,7 +31,6 @@ class StoreListViewController: UIViewController {
         collectionView.allowsSelection = true
         
         self.navigationController?.navigationBar.isHidden = false
-        
         networkStore.getStoreList()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
