@@ -178,8 +178,8 @@ exports.update_a_store = function(req, res) {
 
 exports.delete_a_store = function(req, res) {
   Store.remove({
-    storeId: req.params.storeId
-  }, function(err, user) {
+    storeId: req.body.storeId
+  }, function(err) {
     if (err)
       res.send(err);
     res.json({ message: 'Store successfully deleted' });
