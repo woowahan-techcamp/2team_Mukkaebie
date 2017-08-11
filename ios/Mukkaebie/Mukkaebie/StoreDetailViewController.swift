@@ -80,6 +80,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         
         self.tabBarController?.tabBar.isHidden = true
         
+        
         // Do any additional setup after loading the view.
     }
     
