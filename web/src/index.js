@@ -123,15 +123,16 @@ class Foldable {
 /* 리뷰관련 */
 
 function postReview() {
-    var theButton = document.querySelector("#reviewTextInputBtn");
+    let theButton = document.querySelector("#reviewTextInputBtn");
     theButton.addEventListener("click", function () {
-        var packet = {"review": {}};
+        let packet = {"review": {}};
         packet["storeId"] = 101010;
         packet.review["content"] = document.querySelector("#reviewTextInput").value;
         packet.review["time"] = new Date().toLocaleString();
         packet.review["user"] = "ygtech";
+        packet.review["stars"] = Math.floor(Math.random() * 6);
 
-        var xhr1 = new XMLHttpRequest();
+        let xhr1 = new XMLHttpRequest();
         xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
         xhr1.setRequestHeader('Content-Type', 'application/json');
         // send the collected data as JSON
@@ -145,7 +146,7 @@ function postReview() {
 }
 
 function getReview() {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const response = JSON.parse(this.responseText);
@@ -156,8 +157,8 @@ function getReview() {
                 const userId = review.user;
                 const createdDate = review.time;
                 const reviewContent = review.content;
-                const orangeStar = "***"
-                const greyStar = "**"
+                const orangeStar = "*".repeat(review.stars);
+                const greyStar = "*".repeat(5-review.stars);
                 const tempGrab = document.querySelector("#reviewTemplate").text;
                 const result = eval('`' + tempGrab + '`');
                 renderTarget.innerHTML += result;
@@ -172,7 +173,7 @@ function getReview() {
 /* 먹깨비 관련 */
 
 function mkbLoad() {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         if (xhr.status === 200) {
             let orders = JSON.parse(xhr.responseText);
@@ -232,13 +233,13 @@ function podiumAnimate() {
 function scrollWithCart() {
     document.addEventListener("scroll", function () {
         if (window.scrollY > 583) {
-            var cart = document.querySelector(".storeCart");
+            let cart = document.querySelector(".storeCart");
             cart.style.position = "fixed";
             cart.style.top = "10px";
             cart.style.width = "200px"
         }
         else {
-            var cart = document.querySelector(".storeCart");
+            let cart = document.querySelector(".storeCart");
             cart.style.position = "inherit";
             cart.style.top = "";
             cart.style.width = ""
@@ -247,19 +248,19 @@ function scrollWithCart() {
 }
 
 function makeOrder() {
-    var userList = ["ygtech", "dbtech", "jhtech", "mhtech"];
-    var menuList = ["양념, 17000", "후라이드, 16000", "반반, 17000", "땡초, 18000", "스노윙, 19000", "허니콤보: 20000"];
-    var orderButton = document.querySelector("#cartOrderButton");
+    let userList = ["dbtech", "jhtech", "mhtech"];
+    let menuList = ["양념, 17000", "후라이드, 16000", "반반, 17000", "땡초, 18000", "스노윙, 19000", "허니콤보: 20000"];
+    let orderButton = document.querySelector("#cartOrderButton");
 
     orderButton.addEventListener("click", function () {
-        var randNum1 = Math.floor(Math.random() * 4);
-        var randNum2 = Math.floor(Math.random() * 6);
-        var packet = {};
+        let randNum1 = Math.floor(Math.random() * 3);
+        let randNum2 = Math.floor(Math.random() * 6);
+        let packet = {};
         packet["sellerId"] = 101010;
         packet["buyerId"] = userList[randNum1];
         packet["content"] = [menuList[randNum2].toString().split(',')[0]];
         packet["price"] = menuList[randNum2].toString().split(',')[1];
-        var xhr1 = new XMLHttpRequest();
+        let xhr1 = new XMLHttpRequest();
         xhr1.open("POST", "http://52.78.184.77:3000/orders", true);
         xhr1.setRequestHeader('Content-Type', 'application/json');
 
@@ -276,8 +277,8 @@ function makeOrder() {
 
 /* 모바일 카테고리 토글 */
 function toggleMobileCategory() {
-    var x = document.querySelector('.mobileCategory');
-    var btn = document.querySelector(".mobileTitleButton");
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
     if (btn.classList.contains("unfolded")) {
         x.style.display = 'none';
         btn.classList.remove("unfolded");
@@ -289,7 +290,7 @@ function toggleMobileCategory() {
 
 /* 도넛 그래프 만들기 */
 function makeDonutgraph() {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -351,7 +352,7 @@ function makeDonutgraph() {
                 }
             }
 
-            var svg = document.querySelector('svg');
+            let svg = document.querySelector('svg');
             svg.insertAdjacentHTML('beforeend', circleContent);
 
         }
@@ -360,3 +361,4 @@ function makeDonutgraph() {
     xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
     xhr.send(null);
 }
+

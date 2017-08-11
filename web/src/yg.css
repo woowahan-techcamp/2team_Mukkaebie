@@ -82,6 +82,7 @@
     width: 100%;
     padding-bottom: 100px;
     padding-top:100px;
+    position:relative;
 }
 
 .foldableLevel1 {
@@ -312,9 +313,8 @@
     position: relative;
     width: 350px;
     top: 100px;
-    left: 25%;
-    display: inline-block;
     background: #f6f3ed;
+    margin:100px auto;
 }
 
 .competition-podium .podium-block {
@@ -415,8 +415,7 @@
 
     .competition-podium {
         width: 350px;
-        left: 10%;
-
+        margin:0 auto;
     }
 
     .podium > * {
@@ -454,8 +453,8 @@
 
     .competition-podium {
         width: 90%;
-        left: 5%;
 
+        margin:0 auto;
     }
 
     .podium > * {

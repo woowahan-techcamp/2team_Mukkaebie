@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.orders {
+    color:red;
+}
+
 .chart-text {
     fill: #000;
     -moz-transform: translateY(0.25em);
