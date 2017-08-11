@@ -35,11 +35,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가게이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2L-lA-WVm">
-                                                    <rect key="frame" x="121" y="36" width="75" height="30"/>
+                                                    <rect key="frame" x="121" y="36" width="179" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="2nR-RZ-4wC"/>
+                                                        <constraint firstAttribute="width" constant="179" id="2nR-RZ-4wC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -106,12 +106,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="arrowImage" destination="sh0-6d-lmx" id="Xf1-mp-HWz"/>
-                                            <outlet property="directPaymentLabel" destination="xBa-Mp-XTx" id="Zwn-L8-3Vt"/>
-                                            <outlet property="meetPaymentLabel" destination="ACU-Np-plF" id="n6A-qB-r0r"/>
-                                            <outlet property="reviewNumaberLabel" destination="b18-GW-hrD" id="ILu-Rc-qAj"/>
-                                            <outlet property="storeLogoImage" destination="u5B-Hq-ZrC" id="JlB-h5-5bJ"/>
-                                            <outlet property="storeNameLabel" destination="n2L-lA-WVm" id="A66-5y-n1y"/>
+                                            <outlet property="arrowImage" destination="sh0-6d-lmx" id="oON-B9-ebk"/>
+                                            <outlet property="directPaymentLabel" destination="xBa-Mp-XTx" id="LW4-wF-OUe"/>
+                                            <outlet property="meetPaymentLabel" destination="ACU-Np-plF" id="TXd-IB-vVD"/>
+                                            <outlet property="reviewNumaberLabel" destination="b18-GW-hrD" id="Nb5-zs-DLY"/>
+                                            <outlet property="storeLogoImage" destination="u5B-Hq-ZrC" id="cYw-uM-fRL"/>
+                                            <outlet property="storeNameLabel" destination="n2L-lA-WVm" id="geY-bE-iIU"/>
                                             <segue destination="0Pq-3N-Vn6" kind="show" id="y9m-RR-dpN"/>
                                         </connections>
                                     </tableViewCell>

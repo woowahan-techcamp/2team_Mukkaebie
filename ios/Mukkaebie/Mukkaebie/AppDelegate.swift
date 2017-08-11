@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarApearace.barTintColor = UIColor(hexString: "3B342C")
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        NetworkStore.getStoreList()
+//        NetworkStore.getStoreList()
+        
         // Override point for customization after application launch.
         return true
     }

@@ -12,17 +12,20 @@ import Alamofire
 
 class NetworkStore {
     
-    private static let url = URLpath.getURL()
+    private let url = URLpath.getURL()
     
     
     
-    static func getStoreList() {
+    func getStoreList() {
         Alamofire.request("\(url)stores").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
+                var storeList = [ModelStores]()
                 for item in response {
-                    let store = ModelStores(JSON: item)
-                    dump(store)
+                    var store = ModelStores(JSON: item)
+                    storeList.append(store!)
                 }
+
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getStore"), object: nil, userInfo: ["storeList":storeList])
             }
         }
         
