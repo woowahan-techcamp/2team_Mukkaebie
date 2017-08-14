@@ -30,11 +30,11 @@
                                 <rect key="frame" x="33" y="119" width="309" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이 세상 먹깨비가 아니다.. ㄷㄷ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD7-oo-ECK">
-                                <rect key="frame" x="0.0" y="75" width="375" height="34"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="18"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,15 +81,51 @@
                                 <rect key="frame" x="16" y="19" width="26" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJK-Ez-mgv">
+                                <rect key="frame" x="124" y="478" width="127" height="189"/>
+                                <color key="backgroundColor" red="0.96831368610000002" green="1" blue="0.53181353990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="189" id="NTX-Yj-fmS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9z2-bu-EOD">
+                                <rect key="frame" x="20" y="545" width="104" height="122"/>
+                                <color key="backgroundColor" red="1" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCe-lr-35m">
+                                <rect key="frame" x="251" y="545" width="104" height="122"/>
+                                <color key="backgroundColor" red="0.80065021569999995" green="0.92156862750000001" blue="0.90883073950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="122" id="TBl-mB-QgH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pCe-lr-35m" firstAttribute="leading" secondItem="UJK-Ez-mgv" secondAttribute="trailing" id="GW9-lW-r5n"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="9z2-bu-EOD" secondAttribute="bottom" id="I9r-SV-G0r"/>
+                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="centerX" secondItem="G5O-Um-ko7" secondAttribute="centerX" id="JyS-Hb-DIF"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="pCe-lr-35m" secondAttribute="bottom" id="SwM-yw-Hwx"/>
+                            <constraint firstItem="pCe-lr-35m" firstAttribute="top" secondItem="9z2-bu-EOD" secondAttribute="top" id="Yig-JU-gMv"/>
+                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="9z2-bu-EOD" secondAttribute="trailing" id="ZBj-xm-t5p"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="UJK-Ez-mgv" secondAttribute="bottom" id="mxy-cW-ilL"/>
+                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="124" id="tVN-jS-yBY"/>
+                            <constraint firstAttribute="trailing" secondItem="pCe-lr-35m" secondAttribute="trailing" constant="20" id="uva-HF-gFg"/>
+                            <constraint firstItem="9z2-bu-EOD" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="20" id="yOn-Ao-uq9"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="firstMukkaebieImage" destination="i68-20-dDV" id="NqP-hE-eNu"/>
+                        <outlet property="firstAward" destination="UJK-Ez-mgv" id="O4y-jf-LNp"/>
+                        <outlet property="firstBottomConstraint" destination="mxy-cW-ilL" id="Ra0-rj-yzb"/>
+                        <outlet property="firstMukkaebieImage" destination="i68-20-dDV" id="csa-bA-QGw"/>
                         <outlet property="mukkaebieCommentTextField" destination="uLE-gu-RwF" id="kTn-w0-1nC"/>
                         <outlet property="mukkaebieMessage" destination="iD7-oo-ECK" id="4lL-hD-jLh"/>
-                        <outlet property="secondMukkaebieImage" destination="oGp-KY-J0V" id="6wc-Y8-0AE"/>
-                        <outlet property="thirdMukkaebieImage" destination="q01-VE-Imk" id="3cn-mc-dCg"/>
+                        <outlet property="secondAward" destination="9z2-bu-EOD" id="qhH-vb-LNO"/>
+                        <outlet property="secondBottomConstraint" destination="I9r-SV-G0r" id="B4c-vs-YrE"/>
+                        <outlet property="secondMukkaebieImage" destination="oGp-KY-J0V" id="Bah-mG-p17"/>
+                        <outlet property="thirdAward" destination="pCe-lr-35m" id="rjR-MY-l0V"/>
+                        <outlet property="thirdBottomConstraint" destination="SwM-yw-Hwx" id="fxU-qc-MfT"/>
+                        <outlet property="thirdMukkaebieImage" destination="q01-VE-Imk" id="mql-jB-YXj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9x-5m-HJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
