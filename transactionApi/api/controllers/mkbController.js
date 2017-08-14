@@ -175,7 +175,7 @@ exports.list_a_store = function(req, res) {
 exports.update_a_store = function(req, res) {
   Store.update(
       {storeId: req.body.storeId},
-      {$set: {name: req.body.name}},
+      {$push: {review: req.body.review}},
       {safe: true, upsert: true},
       function(err, store) {
         if (err)
