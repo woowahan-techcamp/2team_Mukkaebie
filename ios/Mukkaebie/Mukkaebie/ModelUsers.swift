@@ -36,16 +36,16 @@ class ModelUsers: Mappable {
         self.baeminLevel = baeminLevel
     }
     
-    func getUser() -> [String : Any] {
-        var userDic = [String : Any]()
-        userDic["id"] = id
-        userDic["name"] = name
-        userDic["spent"] = spent
-        userDic["createdDate"] = createdDate
-        userDic["baeminLevel"] = baeminLevel
-        
-        return userDic
-    }
+//    func getUser() -> [String : Any] {
+//        var userDic = [String : Any]()
+//        userDic["id"] = id
+//        userDic["name"] = name
+//        userDic["spent"] = spent
+//        userDic["createdDate"] = createdDate
+//        userDic["baeminLevel"] = baeminLevel
+//        
+//        return userDic
+//    }
     
     func mapping(map: Map) {
         id <- map["userId"]
