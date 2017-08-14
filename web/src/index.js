@@ -1,7 +1,11 @@
+// web week 2
+
 //import Dummy from './dummy.js'
 
 // const dummy = new Dummy();
 // dummy.printHello();
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
         podiumAnimate();
