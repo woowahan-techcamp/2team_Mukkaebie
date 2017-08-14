@@ -40,14 +40,23 @@ class StoreListViewController: UIViewController {
     func getStoreList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
-            self.storeList = storeInfo
+        self.storeList = storeInfo
         tableView.reloadData()
-        }
+    }
 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStoreDetail"{
+            if let storeDetailViewController = segue.destination as? StoreDetailViewController{
+                let indexPath = self.tableView.indexPathForSelectedRow
+                storeDetailViewController.modelStore = self.storeList[(indexPath?.row)!]
+            }
+        }
     }
 }
 
