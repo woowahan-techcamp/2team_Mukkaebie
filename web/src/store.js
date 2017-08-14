@@ -216,6 +216,7 @@ function podiumAnimate() {
     bronze.classList.add('bronzeAnimate');
     // bronze.style.transition = 'all 1.5s ease';
     // bronze.style.height = '80px';
+    mkbLoad()
 }
 
 

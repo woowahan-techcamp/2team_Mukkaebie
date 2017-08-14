@@ -15,22 +15,24 @@ import {
 import style from './scss/main.scss';
 
 
-let inputObj = {
-    containerName: "storeTabWrapper",
-    selectedTabName: "selectedTab",
-    selectedContentName: "selectedContent",
-    generalTabName: "storeTab",
-    generalContentPrefix: "#cont-",
-    baseUrl: "",
-}
 
 
-document.addEventListener("DOMContentLoaded", function () {
-        postReview()
+document.addEventListener("DOMContentLoaded", function(){
+        postReview();
+
         getReview();
 
         //tab operate
-        let test1 = new TabUiWithAjax(inputObj);
+        let test1 = new TabUiWithAjax(
+            {
+              containerName: "storeTabWrapper",
+              selectedTabName: "selectedTab",
+              selectedContentName: "selectedContent",
+              generalTabName: "storeTab",
+              generalContentPrefix: "#cont-",
+              baseUrl: "",
+            }
+        );
 
         let test = new Foldable("foldableLevel1");
 
@@ -39,10 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollWithCart();
 
         makeOrder();
-        makeDonutgraph()
+
+        makeDonutgraph();
     });
 
-document.querySelector('#mkbTab').addEventListener('click', function() {
-    podiumAnimate();
-
-})
+document.querySelector('#mkbTab').addEventListener('click', podiumAnimate);
