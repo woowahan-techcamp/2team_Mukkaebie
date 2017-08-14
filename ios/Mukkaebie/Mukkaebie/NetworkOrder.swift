@@ -28,6 +28,11 @@ class NetworkOrder {
         }
     }
     
+    func postOrder(sellderId: Int, buyerId: String, price: Int, content: [String]) {
+        let parameters = ["sellerId": sellderId, "buyerId": buyerId, "price": price, "content": content] as [String : Any]
+        Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+    }
+    
     
 }
 

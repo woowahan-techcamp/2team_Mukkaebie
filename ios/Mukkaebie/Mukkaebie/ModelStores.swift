@@ -13,6 +13,7 @@ class ModelStores: Mappable {
     private(set) var id = Int()
     private(set) var name = String()
     private(set) var createdDate = String()
+    private(set) var menu = [[String:Any?]]()
     private(set) var orders = [ModelOrders]()
 //    private var order = []
     
@@ -39,5 +40,6 @@ class ModelStores: Mappable {
         id <- map["storeId"]
         name <- map["name"]
         createdDate <- map["createdDate"]
+        menu <- map["menu"]
     }
 }
