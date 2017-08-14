@@ -14,6 +14,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     var menuViewController: MenuViewController?
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
+    var modelStore : ModelStores?
     
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
@@ -36,8 +37,9 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        self.tabBar.delegate=self;
+        self.tabBar.delegate=self
         
+
         self.automaticallyAdjustsScrollViewInsets = false
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
