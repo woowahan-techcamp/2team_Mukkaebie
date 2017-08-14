@@ -12,7 +12,7 @@ import ObjectMapper
 class ModelOrders: Mappable {
     
     private var buyerId = String()
-    private var sellerId = String()
+    private var sellerId = Int()
     private var price = Int()
     private var content = [String]()
     private var createdDate = String()
@@ -21,7 +21,7 @@ class ModelOrders: Mappable {
     
     required init?(map: Map) {}
     
-    init(buyerId: String, sellerId: String, price: Int, content: [String], createdDate: String) {
+    init(buyerId: String, sellerId: Int, price: Int, content: [String], createdDate: String) {
         self.buyerId = buyerId
         self.sellerId = sellerId
         self.price = price
@@ -29,16 +29,16 @@ class ModelOrders: Mappable {
         self.createdDate = createdDate
     }
     
-    func getOrder() -> [String : Any] {
-        var userDic = [String : Any]()
-        userDic["buyerId"] = buyerId
-        userDic["sellerId"] = sellerId
-        userDic["price"] = price
-        userDic["content"] = content
-        userDic["createdDate"] = createdDate
-        
-        return userDic
-    }
+//    func getOrder() -> [String : Any] {
+//        var userDic = [String : Any]()
+//        userDic["buyerId"] = buyerId
+//        userDic["sellerId"] = sellerId
+//        userDic["price"] = price
+//        userDic["content"] = content
+//        userDic["createdDate"] = createdDate
+//        
+//        return userDic
+//    }
     
     func mapping(map: Map) {
         buyerId <- map["buyerId"]
