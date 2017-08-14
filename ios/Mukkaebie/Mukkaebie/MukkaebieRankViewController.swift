@@ -42,40 +42,33 @@ class MukkaebieRankViewController: UIViewController {
         secondBottomConstraint.constant -= view.bounds.height
         thirdBottomConstraint.constant -= view.bounds.height
 
-        
-        // Do any additional setup after loading the view.
+
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
             self.firstBottomConstraint.constant += self.view.bounds.height
             self.view.layoutIfNeeded()
         }, completion: nil)
         
-        UIView.animate(withDuration: 2, delay: 0.3, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 2, delay: 0.5, options: .curveEaseInOut, animations: {
             self.secondBottomConstraint.constant += self.view.bounds.height
             self.view.layoutIfNeeded()
         }, completion: nil)
         
-        var bounds = thirdAward.bounds
-        
-        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseInOut, animations: {
-            bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y - 20, width: bounds.size.width, height: bounds.size.height + 60)
+        UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+            self.thirdBottomConstraint.constant += self.view.bounds.height
             self.view.layoutIfNeeded()
-        },completion: nil)
-        
-        
+        }, completion: nil)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
     
 

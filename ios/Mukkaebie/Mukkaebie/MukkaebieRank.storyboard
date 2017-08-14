@@ -89,8 +89,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9z2-bu-EOD">
-                                <rect key="frame" x="20" y="545" width="104" height="122"/>
+                                <rect key="frame" x="20" y="557" width="104" height="110"/>
                                 <color key="backgroundColor" red="1" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="pCG-pf-bGn"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCe-lr-35m">
                                 <rect key="frame" x="251" y="545" width="104" height="122"/>
@@ -106,7 +109,6 @@
                             <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="9z2-bu-EOD" secondAttribute="bottom" id="I9r-SV-G0r"/>
                             <constraint firstItem="UJK-Ez-mgv" firstAttribute="centerX" secondItem="G5O-Um-ko7" secondAttribute="centerX" id="JyS-Hb-DIF"/>
                             <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="pCe-lr-35m" secondAttribute="bottom" id="SwM-yw-Hwx"/>
-                            <constraint firstItem="pCe-lr-35m" firstAttribute="top" secondItem="9z2-bu-EOD" secondAttribute="top" id="Yig-JU-gMv"/>
                             <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="9z2-bu-EOD" secondAttribute="trailing" id="ZBj-xm-t5p"/>
                             <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="UJK-Ez-mgv" secondAttribute="bottom" id="mxy-cW-ilL"/>
                             <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="124" id="tVN-jS-yBY"/>
@@ -124,7 +126,7 @@
                         <outlet property="secondBottomConstraint" destination="I9r-SV-G0r" id="B4c-vs-YrE"/>
                         <outlet property="secondMukkaebieImage" destination="oGp-KY-J0V" id="Bah-mG-p17"/>
                         <outlet property="thirdAward" destination="pCe-lr-35m" id="rjR-MY-l0V"/>
-                        <outlet property="thirdBottomConstraint" destination="SwM-yw-Hwx" id="fxU-qc-MfT"/>
+                        <outlet property="thirdBottomConstraint" destination="SwM-yw-Hwx" id="N86-ra-IW8"/>
                         <outlet property="thirdMukkaebieImage" destination="q01-VE-Imk" id="mql-jB-YXj"/>
                     </connections>
                 </viewController>
