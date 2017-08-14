@@ -65,6 +65,18 @@ figure {
     height: auto;
 }
 
+circle {
+    animation-name: animateStart;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animateStart {
+    from {
+        stroke-dashoffset: 0;
+    }
+}
+
 .figure-key {
     min-width: calc(8/12);
 }
