@@ -65,6 +65,18 @@ figure {
     height: auto;
 }
 
+circle {
+    animation-name: animateStart;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animateStart {
+    from {
+        stroke-dashoffset: 0;
+    }
+}
+
 .figure-key {
     min-width: calc(8/12);
 }
@@ -121,14 +133,31 @@ figure {
 
 @media only screen and (max-width: 640px) {
 
+    .figure-key-list {
+        column-count: 3;
+    }
+
 
     .figure-key-list li{
-
-        display: inline;
-        list-style: none;
+        display: inline-block;
     }
 
 }
+
+
+@media only screen and (max-width: 450px) {
+
+    .figure-key-list {
+        column-count: 2;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
 
 .donutLabel {
     color:#000000;
