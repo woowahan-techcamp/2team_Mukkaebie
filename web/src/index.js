@@ -11,12 +11,8 @@ import {
   makeDonutgraph
 } from './store.js'
 
-import './css/main.css';
 
-import './css/store.css';
-
-import './css/chart.css';
-
+import style from './scss/main.scss';
 
 
 let inputObj = {
