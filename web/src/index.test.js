@@ -1,4 +1,4 @@
-import Dummy from './dummy.js'
+
 
 const assert = chai.assert;
 
