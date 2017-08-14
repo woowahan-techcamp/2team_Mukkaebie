@@ -75,7 +75,7 @@ figure {
 
 .figure-key-list {
     margin: auto;
-    padding: 0;
+    padding: 10;
     list-style: none;
 }
 
@@ -85,6 +85,7 @@ figure {
     width: 80%;
     height: 80%;
     margin-right: 10px;
+    text-align: left;
     
 }
 
@@ -109,6 +110,17 @@ figure {
         font-size: 0.8em;
         padding-left: 5px;
     }
+
+    .figure-key-list li{
+
+        display: inline;
+        list-style: none;
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+
 
     .figure-key-list li{
 
