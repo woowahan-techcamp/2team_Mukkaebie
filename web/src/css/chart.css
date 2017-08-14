@@ -164,3 +164,53 @@ figure {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+.goldAnimate  {
+    animation-name: goldHeightUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.silverAnimate  {
+    animation-name: silverHeightUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.bronzeAnimate  {
+    animation-name: bronzeHeightUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes goldHeightUp {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 180px;
+    }
+}
+
+@keyframes silverHeightUp {
+    from {
+        height: 0px;
+    }
+
+    to {
+        height: 120px;
+    }
+}
+
+@keyframes bronzeHeightUp {
+    from {
+        height: 0px;
+    }
+
+    to {
+        height: 80px;
+    }
+}
+

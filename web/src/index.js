@@ -8,8 +8,6 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-        podiumAnimate();
-        mkbLoad();
         postReview()
         getReview();
 
@@ -25,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
         makeOrder();
         makeDonutgraph()
     });
+
+document.querySelector('#mkbTab').addEventListener('click', function() {
+    podiumAnimate();
+
+})
+
 
 
 class TabUiWithAjax {
@@ -239,16 +243,20 @@ function mkbLoad() {
 
 function podiumAnimate() {
     let gold = document.querySelector('.gold .podium');
-    gold.style.transition = 'all 1.5s ease';
-    gold.style.height = '180px';
+    gold.classList.add('goldAnimate');
+
+    // gold.style.transition = 'all 1.5s ease';
+    // gold.style.height = '180px';
 
     let silver = document.querySelector('.silver .podium');
-    silver.style.transition = 'all 1.5s ease';
-    silver.style.height = '120px';
+    silver.classList.add('silverAnimate');
+    // silver.style.transition = 'all 1.5s ease';
+    // silver.style.height = '120px';
 
     let bronze = document.querySelector('.bronze .podium');
-    bronze.style.transition = 'all 1.5s ease';
-    bronze.style.height = '80px';
+    bronze.classList.add('bronzeAnimate');
+    // bronze.style.transition = 'all 1.5s ease';
+    // bronze.style.height = '80px';
 }
 
 
