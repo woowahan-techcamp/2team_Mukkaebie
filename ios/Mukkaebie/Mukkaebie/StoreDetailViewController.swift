@@ -77,6 +77,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
         self.orderList = orderInfo
+        //networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: 38000, content: ["숯불구이족발"])
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
