@@ -21,7 +21,7 @@ class ModelOrders: Mappable {
     
     required init?(map: Map) {}
     
-    init(buyerId: String, sellerId: Int, price: Int, content: [String], createdDate: String) {
+    init(menu: [[String:Any?]], buyerId: String, sellerId: Int, price: Int, content: [String], createdDate: String) {
         self.buyerId = buyerId
         self.sellerId = sellerId
         self.price = price
