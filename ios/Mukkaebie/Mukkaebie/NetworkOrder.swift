@@ -17,9 +17,11 @@ class NetworkOrder {
     static func getOrderList(buyerId: Int) {
         Alamofire.request("\(url)orders/bystore/"+"\(buyerId)").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
+                var orderList = [ModelOrders]()
                 for item in response {
-                    let order = ModelOrders(JSON: item)
-                    //dump(order)
+                    var order = ModelOrders(JSON: item)
+                    orderList.append(order!)
+                    dump(order)
                 }
             }
         }
@@ -27,3 +29,20 @@ class NetworkOrder {
     
     
 }
+
+
+//func getStoreList() {
+//    Alamofire.request("\(url)stores").responseJSON { (response) in
+//        if let response = response.result.value as? [[String:Any]] {
+//            var storeList = [ModelStores]()
+//            for item in response {
+//                var store = ModelStores(JSON: item)
+//                storeList.append(store!)
+//                
+//            }
+//            
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getStore"), object: nil, userInfo: ["storeList":storeList])
+//        }
+//    }
+//}
+//    
