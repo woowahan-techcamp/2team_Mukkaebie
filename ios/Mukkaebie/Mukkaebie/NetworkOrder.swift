@@ -28,6 +28,10 @@ class NetworkOrder {
         }
     }
     
+    func postOrder(parameters: Parameters) {
+        Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+    }
+    
     
 }
 
