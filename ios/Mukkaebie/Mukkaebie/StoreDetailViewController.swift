@@ -15,6 +15,10 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
     
+    var modelStore : ModelStores?
+    let networkOrder = NetworkOrder()
+    var orderList = [ModelOrders]()
+    
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
     
@@ -36,7 +40,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        self.tabBar.delegate=self;
+        self.tabBar.delegate=self
         
         self.automaticallyAdjustsScrollViewInsets = false
         scrollView.contentInset = UIEdgeInsets.zero
@@ -58,10 +62,21 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         
         tabBar.selectedItem = tabBar.items![0] as UITabBarItem
         tabBar(tabBar, didSelect: mukkabieTabItem)
+        
+        networkOrder.getOrderList(buyerId: 101010)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
     }
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func getOrderList(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
+        self.orderList = orderInfo
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -164,10 +179,6 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         UIGraphicsEndImageContext()
         
         return image!
-    }
-    
-    func removeSub() {
-        
     }
     
     func adjustContentHeight(tabSubViewHeight: CGFloat) {
