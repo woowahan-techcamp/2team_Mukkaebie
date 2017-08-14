@@ -27,21 +27,9 @@ class MukkaebieRankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstMukkaebieImage.layer.cornerRadius = firstMukkaebieImage.frame.height/2
-        secondMukkaebieImage.layer.cornerRadius = secondMukkaebieImage.frame.height/2
-        thirdMukkaebieImage.layer.cornerRadius = thirdMukkaebieImage.frame.height/2
-        firstMukkaebieImage.layer.borderWidth = 4
-        firstMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
-        secondMukkaebieImage.layer.borderWidth = 4
-        secondMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
-        thirdMukkaebieImage.layer.borderWidth = 4
-        thirdMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
-
-        
         firstBottomConstraint.constant -= view.bounds.height
         secondBottomConstraint.constant -= view.bounds.height
         thirdBottomConstraint.constant -= view.bounds.height
-
 
     }
     
@@ -70,6 +58,10 @@ class MukkaebieRankViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func firstProfileImagePicker(_ sender: Any) {
+        
+        
+    }
     
 
     /*
