@@ -11,18 +11,19 @@ import Alamofire
 
 class NetworkOrder {
     
-    private static let url = URLpath.getURL()
+    private let url = URLpath.getURL()
     
     
-    static func getOrderList(buyerId: Int) {
+    func getOrderList(buyerId: Int) {
         Alamofire.request("\(url)orders/bystore/"+"\(buyerId)").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
                 var orderList = [ModelOrders]()
                 for item in response {
                     var order = ModelOrders(JSON: item)
                     orderList.append(order!)
-                    dump(order)
                 }
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getOrder"), object: nil, userInfo: ["orderList":orderList])
             }
         }
     }
