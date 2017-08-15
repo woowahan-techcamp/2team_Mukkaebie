@@ -132,7 +132,7 @@ class Review {
           // send the collected data as JSON
           xhr1.send(JSON.stringify(packet));
           xhr1.onloadend = function () {
-            alert("소중한 리뷰 감사합니다.")
+            alert("소중한 리뷰 감사합니다.");
             this.getReview();
             document.querySelector("#reviewTextInput").value = "";
           }.bind(this);
@@ -168,7 +168,64 @@ class Review {
 
 
 
+let StoreUtil = {
+  scrollWithCart: function(){
+    document.addEventListener("scroll", function () {
+      if (window.scrollY > 583) {
+        let cart = document.querySelector(".storeCart");
+        cart.style.position = "fixed";
+        cart.style.top = "10px";
+        cart.style.width = "200px"
+      }
+      else {
+        let cart = document.querySelector(".storeCart");
+        cart.style.position = "inherit";
+        cart.style.top = "";
+        cart.style.width = ""
+      }
+    })
+  },
 
+  makeOrder: function(){
+    let userList = ["dbtech", "jhtech", "mhtech"];
+    let menuList = ["양념, 17000", "후라이드, 16000", "반반, 17000", "땡초, 18000", "스노윙, 19000", "허니콤보: 20000"];
+    let orderButton = document.querySelector("#cartOrderButton");
+
+    orderButton.addEventListener("click", function () {
+      let randNum1 = Math.floor(Math.random() * 3);
+      let randNum2 = Math.floor(Math.random() * 6);
+      let packet = {};
+      packet["sellerId"] = 101010;
+      packet["buyerId"] = userList[randNum1];
+      packet["content"] = [menuList[randNum2].toString().split(',')[0]];
+      packet["price"] = menuList[randNum2].toString().split(',')[1];
+      let xhr1 = new XMLHttpRequest();
+      xhr1.open("POST", "http://52.78.184.77:3000/orders", true);
+      xhr1.setRequestHeader('Content-Type', 'application/json');
+
+      // send the collected data as JSON
+      xhr1.send(JSON.stringify(packet));
+
+      xhr1.onloadend = function () {
+        alert('주문해주셔서 감사합니다.');
+        this.mkbLoad();
+        this.makeDonutgraph();
+      }.bind(this);
+    }.bind(this));
+  },
+
+  toggleMobileCategory: function(){
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
+    if (btn.classList.contains("unfolded")) {
+      x.style.display = 'none';
+      btn.classList.remove("unfolded");
+    } else {
+      x.style.display = 'block';
+      btn.classList.add("unfolded");
+    }
+  }
+}
 
 
 
@@ -232,7 +289,9 @@ function toggleMobileCategory() {
 }
 
 class Graph {
-    constructor(){}
+    constructor(){
+      this.makeDonutgraph();
+    }
 
     podiumAnimate() {
         let gold = document.querySelector('.gold .podium');
@@ -370,4 +429,4 @@ class Graph {
 }
 
 
-export {TabUiWithAjax, Foldable, Review, scrollWithCart, makeOrder, toggleMobileCategory, Graph}
+export {TabUiWithAjax, Foldable, Review, scrollWithCart, makeOrder, toggleMobileCategory, Graph, StoreUtil}
