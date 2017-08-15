@@ -22,7 +22,8 @@ class MenuViewController: UIViewController {
     let item6 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     var items: Array<MenuViewModelItem> = []
     
-        var count = 0
+    var count = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self

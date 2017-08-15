@@ -40,7 +40,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        self.tabBar.delegate=self
+        self.tabBar.delegate = self
         
         self.automaticallyAdjustsScrollViewInsets = false
         scrollView.contentInset = UIEdgeInsets.zero
@@ -60,12 +60,18 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor(hexString: "EEEEEE").cgColor
         
-        tabBar.selectedItem = tabBar.items![0] as UITabBarItem
+        tabBar.selectedItem = tabBar.items![1] as UITabBarItem
         tabBar(tabBar, didSelect: mukkabieTabItem)
+        
+        
         
         networkOrder.getOrderList(buyerId: 101010)
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
    
     
@@ -103,6 +109,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             adjustContentHeight(tabSubViewHeight: (mukkaebieRankViewController?.view.frame.size.height)!)
             adjustContentConstraint()
             break
+            
         case 1:
             let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
             menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
@@ -192,6 +199,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     func adjustContentConstraint() {
         if let constraint = (tabSubView.constraints.filter{$0.firstAttribute == .height}.first) {
             constraint.constant = tabSubView.frame.size.height
+            print(tabSubView.frame.size.height)
         }
         if let constraint = (tabView.constraints.filter{$0.firstAttribute == .height}.first) {
             constraint.constant = tabView.frame.size.height

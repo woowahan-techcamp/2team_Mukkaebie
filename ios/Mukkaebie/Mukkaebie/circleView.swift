@@ -8,32 +8,27 @@
 
 import UIKit
 
-//@IBDesignable
+@IBDesignable
 
 class circleView : UIView {
-    
-//    @IBInspectable var cornerRadius : CGFloat = 0 {
-//        didSet {
-//            layer.cornerRadius = cornerRadius
-//            layer.masksToBounds = cornerRadius > 0
-//        }
-//    }
-//    
-//    @IBInspectable var borderWidth : CGFloat = 0 {
-//        didSet {
-//            layer.borderWidth = borderWidth
-//        }
-//    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.layer.cornerRadius = self.frame.height / 2
-        self.layer.borderWidth = 4
-        self.layer.borderColor = UIColor.init(hexString: "00c09f").cgColor
-        self.layer.masksToBounds = true
+ 
+    @IBInspectable
+    var borderWidth : CGFloat = 0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
     }
     
+    @IBInspectable
+    var borderColor : UIColor = UIColor.clear {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
     
-    
+    override func draw(_ rect: CGRect) {
+        layer.cornerRadius = frame.height/2
+    }
+
 }
 
