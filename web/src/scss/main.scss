@@ -5,19 +5,25 @@
 @import './variables';
 
 
-
-
 body {
     font-family: "Hanna", "Dotum", Droid serif, Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #222;
-    background-color: #f4ebdd
+    background-color: $bmBeigeColor;
 }
 
 
 
 /* 전체에서 쓰이는 CSS component */
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+a { color: inherit; }
+a:hover { color: inherit}
+
 .float-left {
     float: left;
 }
@@ -88,8 +94,13 @@ body {
 .m-x-3 {margin-left:30px;margin-right:30px}
 .m-a-3 {margin-left:30px;margin-right:30px;margin-top:30px;margin-bottom:30px}
 
+.m-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .orangeFontColor{
-    color: #ff6c00;
+    color: $bmOrangeColor;
 }
 
 
@@ -97,10 +108,7 @@ body {
 .footer{
 	background: #fff;
 	height: 200px;
-    margin:0;
-    position: fixed;
     width:100%;
-    bottom:0;
 }
 
 /* Header 관련 */
