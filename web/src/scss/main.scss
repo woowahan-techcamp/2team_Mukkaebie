@@ -1,6 +1,11 @@
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 @import './store';
 @import './chart';
+@import './storeList';
+@import './variables';
+
+
+
 
 body {
     font-family: "Hanna", "Dotum", Droid serif, Helvetica, Arial, sans-serif;
@@ -92,7 +97,10 @@ body {
 .footer{
 	background: #fff;
 	height: 200px;
-	
+    margin:0;
+    position: fixed;
+    width:100%;
+    bottom:0;
 }
 
 /* Header 관련 */

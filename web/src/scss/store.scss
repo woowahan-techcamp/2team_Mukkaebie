@@ -1,7 +1,11 @@
+@import './variables';
+
+
 /*페이지 레이아웃*/
 .storeLayout{
-	max-width:960px; margin:50px auto 100px auto;background:#f4ebdd;
-
+	max-width:960px;
+    margin:50px auto 300px auto;
+    background: $bmBeigeColor;
 }
 
 .menuReviewWrap{
@@ -60,7 +64,7 @@
 
 }
 .mobileCategory .col-xs-4:hover {
-    background: #ff6c00;
+    background: $bmOrangeColor;
 }
 
 /* 가게명 AREA*/
@@ -252,7 +256,7 @@
     padding:10px;
 }
 .cartOrderButton {
-    background: #ff6c00;
+    background: $bmOrangeColor;
     font-size:30px;
     padding:20px;
     color: #fff;
@@ -306,7 +310,7 @@
 }
 
 .reviewCardStar {
-    color: #ff6927;
+    color: $bmOrangeColor;
 }
 
 .reviewCardId {
