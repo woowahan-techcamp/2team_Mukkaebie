@@ -33,6 +33,13 @@
 		985D09031F3D31DD00A1F475 /* ModelOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09021F3D31DD00A1F475 /* ModelOrders.swift */; };
 		985D09051F3D37A600A1F475 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09041F3D37A600A1F475 /* NetworkUser.swift */; };
 		985D09071F3D37B300A1F475 /* NetworkOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09061F3D37B300A1F475 /* NetworkOrder.swift */; };
+		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
+		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
+		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
+		989D41CF1F4310CC00AF2617 /* rateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41CD1F4310CC00AF2617 /* rateTableViewCell.swift */; };
+		989D41D01F4310CC00AF2617 /* rateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CE1F4310CC00AF2617 /* rateTableViewCell.xib */; };
+		989D41D31F4313A500AF2617 /* logoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41D11F4313A500AF2617 /* logoTableViewCell.swift */; };
+		989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41D21F4313A500AF2617 /* logoTableViewCell.xib */; };
 		98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CDC1F39C8D600243F31 /* bm_ad2.png */; };
 		98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */; };
 		98B67CE11F39D7B100243F31 /* MainHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */; };
@@ -102,6 +109,13 @@
 		985D09021F3D31DD00A1F475 /* ModelOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelOrders.swift; sourceTree = "<group>"; };
 		985D09041F3D37A600A1F475 /* NetworkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
 		985D09061F3D37B300A1F475 /* NetworkOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOrder.swift; sourceTree = "<group>"; };
+		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
+		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
+		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
+		989D41CD1F4310CC00AF2617 /* rateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateTableViewCell.swift; sourceTree = "<group>"; };
+		989D41CE1F4310CC00AF2617 /* rateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = rateTableViewCell.xib; sourceTree = "<group>"; };
+		989D41D11F4313A500AF2617 /* logoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoTableViewCell.swift; sourceTree = "<group>"; };
+		989D41D21F4313A500AF2617 /* logoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = logoTableViewCell.xib; sourceTree = "<group>"; };
 		98B67CDC1F39C8D600243F31 /* bm_ad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bm_ad2.png; sourceTree = "<group>"; };
 		98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -265,7 +279,14 @@
 		98B67CEC1F3AD57C00243F31 /* StoreDetail */ = {
 			isa = PBXGroup;
 			children = (
+				989D41CD1F4310CC00AF2617 /* rateTableViewCell.swift */,
+				989D41CE1F4310CC00AF2617 /* rateTableViewCell.xib */,
+				989D41C91F430D5500AF2617 /* statusTableViewCell.swift */,
+				989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */,
+				989D41D11F4313A500AF2617 /* logoTableViewCell.swift */,
+				989D41D21F4313A500AF2617 /* logoTableViewCell.xib */,
 				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
+				989D41C71F43046B00AF2617 /* StoreTestViewController.swift */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
 				9844286F1F3D76390003CDF1 /* hj.png */,
 			);
@@ -428,9 +449,12 @@
 				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
 				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
+				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
+				989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */,
 				9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */,
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
 				984428701F3D76390003CDF1 /* hj.png in Resources */,
+				989D41D01F4310CC00AF2617 /* rateTableViewCell.xib in Resources */,
 				984428721F3D76660003CDF1 /* flash.png in Resources */,
 				98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */,
 				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
@@ -615,6 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */,
 				983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */,
 				98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */,
 				985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */,
@@ -624,6 +649,7 @@
 				98B67CE71F3A9C2A00243F31 /* Extension.swift in Sources */,
 				985D09031F3D31DD00A1F475 /* ModelOrders.swift in Sources */,
 				985D09001F3AFBDB00A1F475 /* MenuTableViewHeader.swift in Sources */,
+				989D41D31F4313A500AF2617 /* logoTableViewCell.swift in Sources */,
 				98B67CE91F3AA24800243F31 /* StoreListTableViewCell.swift in Sources */,
 				98B67D081F3C845A00243F31 /* URLpath.swift in Sources */,
 				985D09071F3D37B300A1F475 /* NetworkOrder.swift in Sources */,
@@ -631,12 +657,14 @@
 				983248151F32FD2C00ABFBFB /* AppDelegate.swift in Sources */,
 				983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */,
 				985D08FC1F3AF93100A1F475 /* MenuTableViewCell.swift in Sources */,
+				989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */,
 				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
 				98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */,
 				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,
 				98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */,
 				98B67CF81F3AF09900243F31 /* StoreListMenuBar.swift in Sources */,
 				98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */,
+				989D41CF1F4310CC00AF2617 /* rateTableViewCell.swift in Sources */,
 				98B67D031F3C7EDC00243F31 /* NetworkStore.swift in Sources */,
 				98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */,
 			);
