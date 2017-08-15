@@ -135,8 +135,8 @@ class Review {
             alert("소중한 리뷰 감사합니다.")
             this.getReview();
             document.querySelector("#reviewTextInput").value = "";
-          };
-        });
+          }.bind(this);
+        }.bind(this));
     }
 
     getReview() {
