@@ -1,14 +1,11 @@
 import {
   TabUiWithAjax,
   Foldable,
-  postReview,
-  getReview,
-  mkbLoad,
-  podiumAnimate,
+  Review,
   scrollWithCart,
   makeOrder,
   toggleMobileCategory,
-  makeDonutgraph
+  Graph
 } from './store.js'
 
 
@@ -18,31 +15,34 @@ import style from './scss/main.scss';
 
 
 document.addEventListener("DOMContentLoaded", function(){
-        postReview();
 
-        getReview();
 
-        //tab operate
-        let test1 = new TabUiWithAjax(
-            {
-              containerName: "storeTabWrapper",
-              selectedTabName: "selectedTab",
-              selectedContentName: "selectedContent",
-              generalTabName: "storeTab",
-              generalContentPrefix: "#cont-",
-              baseUrl: "",
-            }
-        );
+    let review = new Review();
 
-        let test = new Foldable("foldableLevel1");
 
-        test.makeFoldable();
+    let tab = new TabUiWithAjax(
+        {
+          containerName: "storeTabWrapper",
+          selectedTabName: "selectedTab",
+          selectedContentName: "selectedContent",
+          generalTabName: "storeTab",
+          generalContentPrefix: "#cont-",
+          baseUrl: "",
+        }
+    );
 
-        scrollWithCart();
+    let foldable = new Foldable("foldableLevel1");
 
-        makeOrder();
+    let graph = new Graph();
 
-        makeDonutgraph();
-    });
+    scrollWithCart();
 
-document.querySelector('#mkbTab').addEventListener('click', podiumAnimate);
+    makeOrder();
+
+
+});
+
+document.querySelector('#mkbTab').addEventListener('click', function(){
+  let graph = new Graph();
+  graph.podiumAnimate();
+});

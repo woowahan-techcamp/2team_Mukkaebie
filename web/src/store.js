@@ -85,6 +85,7 @@ class TabUiWithAjax {
 class Foldable {
     constructor(level1Class) {
         this.level1 = document.getElementsByClassName(level1Class);
+        this.makeFoldable();
     }
 
     makeFoldable() {
@@ -108,116 +109,67 @@ class Foldable {
 
 /* 리뷰관련 */
 
-function postReview() {
-    let theButton = document.querySelector("#reviewTextInputBtn");
-    theButton.addEventListener("click", function () {
-        let packet = {"review": {}};
-        packet["storeId"] = 101010;
-        packet.review["content"] = document.querySelector("#reviewTextInput").value;
-        packet.review["time"] = new Date().toLocaleString();
-        packet.review["user"] = "ygtech";
-        packet.review["stars"] = Math.floor(Math.random() * 6);
+class Review {
 
-        let xhr1 = new XMLHttpRequest();
-        xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
-        xhr1.setRequestHeader('Content-Type', 'application/json');
-        // send the collected data as JSON
-        xhr1.send(JSON.stringify(packet));
-        xhr1.onloadend = function () {
+    constructor(){
+        this.getReview();
+        this.postReview();
+    }
+
+    postReview() {
+        let theButton = document.querySelector("#reviewTextInputBtn");
+        theButton.addEventListener("click", function () {
+          let packet = {"review": {}};
+          packet["storeId"] = 101010;
+          packet.review["content"] = document.querySelector("#reviewTextInput").value;
+          packet.review["time"] = new Date().toLocaleString();
+          packet.review["user"] = "ygtech";
+          packet.review["stars"] = Math.floor(Math.random() * 6);
+
+          let xhr1 = new XMLHttpRequest();
+          xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
+          xhr1.setRequestHeader('Content-Type', 'application/json');
+          // send the collected data as JSON
+          xhr1.send(JSON.stringify(packet));
+          xhr1.onloadend = function () {
             alert("소중한 리뷰 감사합니다.")
-            getReview();
+            this.getReview();
             document.querySelector("#reviewTextInput").value = "";
-        };
-    });
-}
+          };
+        });
+    }
 
-function getReview() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+    getReview() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
             const response = JSON.parse(this.responseText);
             const renderTarget = document.querySelector("#reviewList");
             renderTarget.innerHTML = "";
             response[0].review.reverse().forEach(function (oneReview) {
-                const review = oneReview;
-                const userId = review.user;
-                const createdDate = review.time;
-                const reviewContent = review.content;
-                const orangeStar = "*".repeat(review.stars);
-                const greyStar = "*".repeat(5-review.stars);
-                const tempGrab = document.querySelector("#reviewTemplate").text;
-                const result = eval('`' + tempGrab + '`');
-                renderTarget.innerHTML += result;
+              const review = oneReview;
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = review.content;
+              const orangeStar = "*".repeat(review.stars);
+              const greyStar = "*".repeat(5-review.stars);
+              const tempGrab = document.querySelector("#reviewTemplate").text;
+              const result = eval('`' + tempGrab + '`');
+              renderTarget.innerHTML += result;
             })
-        }
-    };
-    xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
-    xhttp.send();
-}
-
-
-/* 먹깨비 관련 */
-
-function mkbLoad() {
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            let orders = JSON.parse(xhr.responseText);
-            let rankers = {};
-            for (let i = 0; i < orders.length; i++) {
-                if (orders[i].buyerId in rankers) {
-                    rankers[orders[i].buyerId] += 1;
-                } else {
-                    rankers[orders[i].buyerId] = 1;
-                }
-            }
-
-            let items = Object.keys(rankers).map(function (key) {
-                return [key, rankers[key]];
-            });
-
-            items.sort(function (first, second) {
-                return second[1] - first[1];
-            });
-
-            let top3 = items.slice(0, 3);
-
-            let top3_name = document.querySelectorAll('.name');
-            let top3_order = document.querySelectorAll('.orders');
-
-            for (let i = 0; i < 3; i++) {
-                let name = top3[i].toString().split(",")[0];
-                let order = top3[i].toString().split(",")[1];
-                top3_name[i].innerHTML = name;
-                top3_order[i].innerHTML = order;
-            }
-
-        }
-
+          }
+        };
+        xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
+        xhttp.send();
     }
 
-    xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
-    xhr.send(null);
 }
 
-function podiumAnimate() {
-    let gold = document.querySelector('.gold .podium');
-    gold.classList.add('goldAnimate');
 
-    // gold.style.transition = 'all 1.5s ease';
-    // gold.style.height = '180px';
 
-    let silver = document.querySelector('.silver .podium');
-    silver.classList.add('silverAnimate');
-    // silver.style.transition = 'all 1.5s ease';
-    // silver.style.height = '120px';
 
-    let bronze = document.querySelector('.bronze .podium');
-    bronze.classList.add('bronzeAnimate');
-    // bronze.style.transition = 'all 1.5s ease';
-    // bronze.style.height = '80px';
-    mkbLoad()
-}
+
+
 
 
 /* 장바구니 스크롤 반응 */
@@ -279,33 +231,54 @@ function toggleMobileCategory() {
     }
 }
 
-/* 도넛 그래프 만들기 */
-function makeDonutgraph() {
-    let xhr = new XMLHttpRequest();
+class Graph {
+    constructor(){}
 
-    xhr.onload = function () {
-        if (xhr.status === 200) {
+    podiumAnimate() {
+        let gold = document.querySelector('.gold .podium');
+        gold.classList.add('goldAnimate');
+
+        // gold.style.transition = 'all 1.5s ease';
+        // gold.style.height = '180px';
+
+        let silver = document.querySelector('.silver .podium');
+        silver.classList.add('silverAnimate');
+        // silver.style.transition = 'all 1.5s ease';
+        // silver.style.height = '120px';
+
+        let bronze = document.querySelector('.bronze .podium');
+        bronze.classList.add('bronzeAnimate');
+        // bronze.style.transition = 'all 1.5s ease';
+        // bronze.style.height = '80px';
+        this.mkbLoad()
+    }
+
+    makeDonutgraph() {
+        let xhr = new XMLHttpRequest();
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
 
 
             let orders = JSON.parse(xhr.responseText);
             let topMenu = {};
 
             for (let i = 0; i < orders.length; i++) {
-                if (orders[i].content in topMenu) {
-                    topMenu[orders[i].content] += 1;
-                } else {
-                    topMenu[orders[i].content] = 1;
-                }
+              if (orders[i].content in topMenu) {
+                topMenu[orders[i].content] += 1;
+              } else {
+                topMenu[orders[i].content] = 1;
+              }
 
             }
 
 
             let items = Object.keys(topMenu).map(function (key) {
-                return [key, topMenu[key]];
+              return [key, topMenu[key]];
             });
 
             items.sort(function (first, second) {
-                return second[1] - first[1];
+              return second[1] - first[1];
             })
 
             let top5 = items.slice(0, 5);
@@ -322,46 +295,79 @@ function makeDonutgraph() {
 
 
             for (let key in topMenu) {
-                total += topMenu[key];
+              total += topMenu[key];
             }
 
             for (let i = 0; i < 5; i++) {
-                share = Number(top5[i].toString().split(',')[1]) / total * 100;
-                reverse = 100 - share;
-                circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
-                circleContent += '<title class="donut-segment-title">' + top5[i].toString().split(',')[0] + '</title>';
-                circleContent += '</circle>';
+              share = Number(top5[i].toString().split(',')[1]) / total * 100;
+              reverse = 100 - share;
+              circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
+              circleContent += '<title class="donut-segment-title">' + top5[i].toString().split(',')[0] + '</title>';
+              circleContent += '</circle>';
 
-                labelText[i] = '';
-                labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
-                totalLength = totalLength + share;
-                offset = 100 - totalLength + 25;
-                if (i == 4) {
-                    labelText[5].innerHTML = '';
-                    labelText[5].innerHTML = '기타 ' +(100 - totalLength).toFixed(2) + '%';
-                }
+              labelText[i] = '';
+              labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
+              totalLength = totalLength + share;
+              offset = 100 - totalLength + 25;
+              if (i == 4) {
+                labelText[5].innerHTML = '';
+                labelText[5].innerHTML = '기타 ' +(100 - totalLength).toFixed(2) + '%';
+              }
             }
 
             let svg = document.querySelector('svg');
             svg.insertAdjacentHTML('beforeend', circleContent);
 
+          }
+        };
+
+        xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+        xhr.send(null);
+    }
+
+    mkbLoad() {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            let orders = JSON.parse(xhr.responseText);
+            let rankers = {};
+            for (let i = 0; i < orders.length; i++) {
+              if (orders[i].buyerId in rankers) {
+                rankers[orders[i].buyerId] += 1;
+              } else {
+                rankers[orders[i].buyerId] = 1;
+              }
+            }
+
+            let items = Object.keys(rankers).map(function (key) {
+              return [key, rankers[key]];
+            });
+
+            items.sort(function (first, second) {
+              return second[1] - first[1];
+            });
+
+            let top3 = items.slice(0, 3);
+
+            let top3_name = document.querySelectorAll('.name');
+            let top3_order = document.querySelectorAll('.orders');
+
+            for (let i = 0; i < 3; i++) {
+              let name = top3[i].toString().split(",")[0];
+              let order = top3[i].toString().split(",")[1];
+              top3_name[i].innerHTML = name;
+              top3_order[i].innerHTML = order;
+            }
+
+          }
+
         }
-    };
 
-    xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
-    xhr.send(null);
+        xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+        xhr.send(null);
+    }
+
 }
 
 
-export {
-  TabUiWithAjax,
-  Foldable,
-  postReview,
-  getReview,
-  mkbLoad,
-  podiumAnimate,
-  scrollWithCart,
-  makeOrder,
-  toggleMobileCategory,
-  makeDonutgraph
-}
+export {TabUiWithAjax, Foldable, Review, scrollWithCart, makeOrder, toggleMobileCategory, Graph}
