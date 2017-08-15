@@ -3,6 +3,10 @@
 	max-width:960px; margin:50px auto 100px auto;background:#f4ebdd;
 
 }
+
+.menuReviewWrap{
+    border:1px solid #cccccc;
+}
 /*페이지 레이아웃 끝*/
 
 
@@ -512,8 +516,15 @@
     font-weight: bold;
     list-style: none;
 }
-.selectedTab {background: #fff;}
+#storeTabWrapper li.selectedTab {background: #fff; border-bottom: 0px solid transparent;}
 .storeTabContent {display: none}
 .selectedContent {display: block;}
 #storeTabWrapper {cursor: pointer; padding-left: 0; margin: 0; overflow: auto; width: 100%}
+#storeTabWrapper li {
+    border-bottom: 1px solid #cccccc;
+}
+#mkbTab {
+    border-right:1px solid #cccccc;
+    border-left:1px solid #cccccc;
+}
 #storeTabContentWrapper {clear: both;}
