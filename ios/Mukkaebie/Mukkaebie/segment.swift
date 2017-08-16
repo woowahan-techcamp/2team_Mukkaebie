@@ -36,6 +36,8 @@ class segment: UITableViewCell {
 
         case 1:
             tabSubView.addSubview((menuRankVC?.view)!)
+            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
+
         default:
             break
         }

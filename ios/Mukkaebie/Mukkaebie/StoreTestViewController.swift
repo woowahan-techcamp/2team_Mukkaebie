@@ -8,13 +8,13 @@
 
 import UIKit
 
-//struct postStruct {
-//    var image : UIImage!
-//    var name : String!
-//}
-
-
 class StoreTestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var modelStore : ModelStores?
+    let networkOrder = NetworkOrder()
+    var orderList = [ModelOrders]()
+    var orderByMenu = [String:Int]()
+    var orderByMenuSorted = [(key: String, value: Int)]()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rateView: UIView!
@@ -24,7 +24,43 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        // Do any additional setup after loading the view.
+        self.tabBarController?.tabBar.isHidden = true
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        
+//        for menu in (modelStore?.menu)! {
+//            orderByMenu[menu["foodNm"] as! String] = 0
+//        }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
+        
+//        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
+        
+    }
+    
+    func getOrderList(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
+        self.orderList = orderInfo
+        
+        for order in self.orderList {
+            for content in order.getContent() {
+                orderByMenu[content]! += 1
+            }
+        }
+        
+        orderByMenuSorted = orderByMenu.sorted(by: { $0.1 > $1.1 })
+        
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count-1).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.removeLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
     }
 
     override func didReceiveMemoryWarning() {

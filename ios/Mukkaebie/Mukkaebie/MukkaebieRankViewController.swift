@@ -62,9 +62,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                 self.thirdBottomConstraint.constant += self.thirdAward.frame.height
                 self.view.layoutIfNeeded()
             }, completion: nil)
-//        }
-        
-        print(thirdBottomConstraint.constant , thirdAward.frame.height)
 
     }
 
