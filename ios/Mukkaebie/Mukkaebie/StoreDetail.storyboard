@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2G8-1k-EoP">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -318,6 +320,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omD-ZR-kbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1781.5999999999999" y="-824.43778110944538"/>
+        </scene>
+        <!--Store Test View Controller-->
+        <scene sceneID="Bl6-FE-7U6">
+            <objects>
+                <viewController id="BCT-iU-b1f" customClass="StoreTestViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bis-uJ-0MW"/>
+                        <viewControllerLayoutGuide type="bottom" id="qax-12-7M4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rgj-Up-4mU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="292" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l1y-zC-cU9">
+                                <rect key="frame" x="0.0" y="20" width="375" height="596"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="292" id="zCE-C6-Vkd">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="292"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCE-C6-Vkd" id="hQt-Xc-l5X">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="291.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DzE-cF-1Re">
+                                <rect key="frame" x="135" y="605" width="240" height="62"/>
+                                <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="장바구니">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRS-lG-tzm">
+                                <rect key="frame" x="0.0" y="605" width="135" height="62"/>
+                                <color key="backgroundColor" red="0.14117647059999999" green="0.65490196079999996" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="Ocp-wN-P7n"/>
+                                    <constraint firstAttribute="width" constant="135" id="ne2-DJ-Gdl"/>
+                                </constraints>
+                                <state key="normal" title="전화주문">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dRS-lG-tzm" firstAttribute="firstBaseline" secondItem="DzE-cF-1Re" secondAttribute="baseline" id="1ss-Ij-ht0"/>
+                            <constraint firstItem="dRS-lG-tzm" firstAttribute="baseline" secondItem="DzE-cF-1Re" secondAttribute="firstBaseline" id="2HT-rs-8fI"/>
+                            <constraint firstItem="dRS-lG-tzm" firstAttribute="top" secondItem="DzE-cF-1Re" secondAttribute="top" id="8t7-ZA-J3k"/>
+                            <constraint firstItem="l1y-zC-cU9" firstAttribute="top" secondItem="Bis-uJ-0MW" secondAttribute="bottom" id="EtQ-nf-ApT"/>
+                            <constraint firstItem="l1y-zC-cU9" firstAttribute="leading" secondItem="Rgj-Up-4mU" secondAttribute="leading" id="Ihw-4v-gBm"/>
+                            <constraint firstItem="dRS-lG-tzm" firstAttribute="bottom" secondItem="qax-12-7M4" secondAttribute="top" id="L0Z-pL-Iih"/>
+                            <constraint firstItem="DzE-cF-1Re" firstAttribute="leading" secondItem="dRS-lG-tzm" secondAttribute="trailing" id="Yma-RY-mG1"/>
+                            <constraint firstItem="qax-12-7M4" firstAttribute="top" secondItem="l1y-zC-cU9" secondAttribute="bottom" constant="51" id="gcz-YC-gvs"/>
+                            <constraint firstItem="l1y-zC-cU9" firstAttribute="leading" secondItem="dRS-lG-tzm" secondAttribute="leading" id="kTC-Ka-GVq"/>
+                            <constraint firstItem="l1y-zC-cU9" firstAttribute="trailing" secondItem="DzE-cF-1Re" secondAttribute="trailing" id="kiR-Qh-br4"/>
+                            <constraint firstAttribute="trailing" secondItem="l1y-zC-cU9" secondAttribute="trailing" id="oWw-WZ-ISZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="l1y-zC-cU9" id="71V-e9-JAj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G6z-TW-1Xl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2636" y="-824.43778110944538"/>
         </scene>
     </scenes>
     <resources>
