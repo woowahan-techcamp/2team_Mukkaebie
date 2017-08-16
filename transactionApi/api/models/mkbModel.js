@@ -16,8 +16,17 @@ let UserSchema = new Schema({
 
 
 let StoreSchema = new Schema({
-  name: String,
   storeId: {type: Number,required:true, unique: true},
+  storeName: String,
+  category: String,
+  address: String,
+  storeImg: String,
+  ratingValue: Number,
+  ratingCount: Number,
+  minPrice: String,
+  openHour: String,
+  telephone: String,
+  storeDesc: String,
   createdDate: {type: Date,default: Date.now},
   menu: [{}],
   review: [{}]

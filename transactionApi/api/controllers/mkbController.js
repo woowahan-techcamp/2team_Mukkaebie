@@ -150,18 +150,36 @@ exports.list_all_stores = function(req, res) {
 };
 
 exports.create_a_store = function(req, res) {
-  var new_store = new Store({
-    name: req.body.name,
-    storeId : req.body.storeId,
-    menu: req.body.menu,
-    review: req.body.review
-  });
+  var new_store = new Store(req.body);
   new_store.save(function(err, store) {
     if (err)
       res.send(err);
     res.json(store);
   });
 };
+
+// exports.create_a_store = function(req, res) {
+//   var new_store = new Store({
+//     storeName: req.body.storeName,
+//     storeId : req.body.storeId,
+//     storeImg: req.body.storeImg,
+//     category: req.body.category,
+//     address: req.body.address,
+//     ratingValue: req.body.ratingValue,
+//     ratingCount: req.body.ratingCount,
+//     minPrice: req.body.minPrice,
+//     openHour: req.body.openHour,
+//     telephone: req.body.telephone,
+//     storeDesc: req.body.storeDesc,
+//     menu: req.body.menu,
+//     review: req.body.review,
+//   });
+//   new_store.save(function(err, store) {
+//     if (err)
+//       res.send(err);
+//     res.json(store);
+//   });
+// };
 
 exports.list_a_store = function(req, res) {
   Store.find({storeId: req.params.storeId}, { _id: 0 }, function(err, store) {
