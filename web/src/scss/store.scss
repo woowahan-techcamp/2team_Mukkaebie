@@ -329,10 +329,10 @@
 }
 
 .competition-podium {
-    height: 250px;
+    height: 400px;
     position: relative;
-    width: 350px;
-    top: 0px;
+    width: 400px;
+    top: -100px;
     background: #f6f3ed;
     margin:100px auto;
     overflow: hidden;
@@ -362,12 +362,12 @@
 
 .competition-podium .podium-block.bronze {
     color: #e6d6bf;
-    left: 230px;
+    left: 255px;
 }
 
 .competition-podium .podium-block.bronze .podium {
     background: #e6d6bf;
-    height: 80px;
+    height: 180px;
 }
 
 .competition-podium .podium-block.bronze .orders {
@@ -387,12 +387,12 @@
 
 .competition-podium .podium-block.gold {
     color: #ead679;
-    left: 120px;
+    left: 145px;
 }
 
 .competition-podium .podium-block.gold .podium {
     background: #ead679;
-    height: 180px;
+    height: 280px;
 }
 
 .competition-podium .podium-block.gold .orders {
@@ -412,12 +412,12 @@
 
 .competition-podium .podium-block.silver {
     color: #cbd9de;
-    left: 10px;
+    left: 35px;
 }
 
 .competition-podium .podium-block.silver .podium {
     background: #cbd9de;
-    height: 120px;
+    height: 220px;
 }
 
 .competition-podium .podium-block.silver .orders {

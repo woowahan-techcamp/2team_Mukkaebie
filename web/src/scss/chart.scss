@@ -216,13 +216,13 @@ circle {
 
 .goldOrdersAnimate  {
     animation-name: goldOrdersHeightUp;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
 }
 
 .goldNameAnimate  {
     animation-name: goldNameHeightUp;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-fill-mode: forwards;
 }
 
@@ -234,13 +234,13 @@ circle {
 
 .silverOrdersAnimate  {
     animation-name: silverOrdersHeightUp;
-    animation-duration: 3s;
+    animation-duration: 3.5s;
     animation-fill-mode: forwards;
 }
 
 .silverNameAnimate  {
     animation-name: silverNameHeightUp;
-    animation-duration: 3s;
+    animation-duration: 3.5s;
     animation-fill-mode: forwards;
 }
 
@@ -267,7 +267,7 @@ circle {
 @keyframes goldHeightUp {
     from {
         position: absolute;
-        bottom: -200px;
+        bottom: -400px;
     }
     to {
         position: absolute;
@@ -278,26 +278,26 @@ circle {
 
 @keyframes goldOrdersHeightUp {
     from {
-        bottom: -40px;
+        bottom: -140px;
     }
     to {
-        bottom: 200px;
+        bottom: 300px;
     }
 }
 
 @keyframes goldNameHeightUp {
     from {
-        bottom: -40px;
+        bottom: -140px;
     }
     to {
-        bottom: 180px;
+        bottom: 280px;
     }
 }
 
 @keyframes silverHeightUp {
     from {
         position: absolute;
-        bottom: -200px;
+        bottom: -400px;
     }
 
     to {
@@ -308,26 +308,26 @@ circle {
 
 @keyframes silverOrdersHeightUp {
     from {
-        bottom: -40px;
+        bottom: -140px;
     }
     to {
-        bottom: 140px;
+        bottom: 240px;
     }
 }
 
 @keyframes silverNameHeightUp {
     from {
-        bottom: -40px;
+        bottom: -140px;
     }
     to {
-        bottom: 120px;
+        bottom: 220px;
     }
 }
 
 @keyframes bronzeHeightUp {
     from {
         position: absolute;
-        bottom: -200px;
+        bottom: -400px;
     }
 
     to {
@@ -338,19 +338,19 @@ circle {
 
 @keyframes bronzeOrdersHeightUp {
     from {
-        bottom: -100px;
+        bottom: -200px;
     }
     to {
-        bottom: 100px;
+        bottom: 200px;
     }
 }
 
 @keyframes bronzeNameHeightUp {
     from {
-        bottom: -100px;
+        bottom: -200px;
     }
     to {
-        bottom: 80px;
+        bottom: 180px;
     }
 }
 
