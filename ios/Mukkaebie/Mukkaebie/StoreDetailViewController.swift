@@ -101,7 +101,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             var count = 0
             for i in (3 ..< orderByMenuSorted.count-1).reversed() {
                 count += orderByMenuSorted[i].value
-                orderByMenuSorted.popLast()
+                orderByMenuSorted.removeLast()
             }
             orderByMenuSorted.append((key: "기타", value: count))
         }
