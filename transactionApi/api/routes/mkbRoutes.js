@@ -15,10 +15,12 @@ module.exports = function(app) {
 
   app.route('/stores')
     .get(mkb.list_all_stores)
-    .post(mkb.create_a_store);
+    // .post(mkb.create_a_store);
+    .post(mkb.update_category);
 
   app.route('/stores/bycategory/:category')
-      .get(mkb.list_categorical_stores);
+      .get(mkb.list_categorical_stores)
+
 
 
   app.route('/stores/delete')

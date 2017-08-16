@@ -197,6 +197,19 @@ exports.list_categorical_stores = function(req, res) {
   });
 };
 
+exports.update_category = function(req, res) {
+  Store.update(
+      {storeId: req.body.storeId},
+      {$set: {category: req.body.category}},
+      {safe: true, upsert: true},
+      function(err, store) {
+        if (err)
+          res.send(err);
+        res.json(store);
+      }
+  )
+}
+
 
 exports.update_a_store = function(req, res) {
   Store.update(
