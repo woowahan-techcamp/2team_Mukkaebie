@@ -18,6 +18,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
+    var priceByMenu = [String:Int]()
     var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
@@ -38,6 +39,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var menuTabItem: UITabBarItem!
     @IBOutlet weak var infoTabItem: UITabBarItem!
     @IBOutlet weak var reviewTabItem: UITabBarItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +64,15 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor(hexString: "EEEEEE").cgColor
         
-        tabBar.selectedItem = tabBar.items![1] as UITabBarItem
+        tabBar.selectedItem = tabBar.items![0] as UITabBarItem
         tabBar(tabBar, didSelect: mukkabieTabItem)
         
 
         for menu in (modelStore?.menu)! {
             orderByMenu[menu["foodNm"] as! String] = 0
+            if Int(menu["foodPrice"] as! String) != 0 {
+                priceByMenu[menu["foodNm"] as! String] = Int(menu["foodPrice"] as! String)
+            }
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
@@ -75,13 +80,15 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         networkOrder.getOrderList(buyerId: (modelStore?.id)!)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-   
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func touchedShoppingCart(_ sender: Any) {
+        if priceByMenu.count > 0 {
+            let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
+            networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
+        }
     }
     
     func getOrderList(_ notification: Notification) {
