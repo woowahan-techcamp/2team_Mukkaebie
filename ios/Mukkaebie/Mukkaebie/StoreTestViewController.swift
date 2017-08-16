@@ -26,13 +26,17 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.tabBarController?.tabBar.isHidden = true
         
-        for menu in (modelStore?.menu)! {
-            orderByMenu[menu["foodNm"] as! String] = 0
-        }
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        
+//        for menu in (modelStore?.menu)! {
+//            orderByMenu[menu["foodNm"] as! String] = 0
+//        }
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
-        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
+//        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
         
     }
     

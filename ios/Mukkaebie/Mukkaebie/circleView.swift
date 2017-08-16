@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 
-class circleView : UIView {
+class CircleView : UIView {
  
     @IBInspectable
     var borderWidth : CGFloat = 0 {
