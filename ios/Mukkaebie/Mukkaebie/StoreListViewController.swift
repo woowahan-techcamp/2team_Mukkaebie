@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class StoreListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -25,8 +26,7 @@ class StoreListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
-//        collectionView.delegate = self
-        collectionView.backgroundColor = UIColor(hexString: "3B342C")
+        collectionView.delegate = self
         tableView.allowsSelection = true
         collectionView.allowsSelection = true
         
@@ -41,7 +41,20 @@ class StoreListViewController: UIViewController {
         guard let userInfo = notification.userInfo,
             let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
         self.storeList = storeInfo
+        
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        let selector = UIView(frame: CGRect(x: 0, y: 30, width: (collectionView.cellForItem(at: indexPath)?.frame.size.width)!, height: 5))
+        selector.backgroundColor = .white
+        selector.tag = -1
+        collectionView.addSubview(selector)
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
+        collectionView(collectionView, didSelectItemAt: indexPath)
     }
 
 
@@ -74,16 +87,16 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StoreListTableViewCell
         cell.storeNameLabel.text = storeList[indexPath.row].name as String
+        let url = URL(string: storeList[indexPath.row].imgURL)!
         
-        
-        
+        cell.storeLogoImage.af_setImage(withURL: url)
         cell.reviewNumaberLabel.text = "최근리뷰 10  최근사장님댓글 33"
         return cell
     }
     
 }
 
-extension StoreListViewController : UICollectionViewDataSource {
+extension StoreListViewController : UICollectionViewDataSource, UICollectionViewDelegate {
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -93,9 +106,28 @@ extension StoreListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! StoreListMenuBarCollectionViewCell
         cell.foodCategoryLabel.text = foodCategoryArray[indexPath.row]
+        cell.foodCategoryLabel.frame.size = cell.frame.size
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.textColor = .white
+        collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
+        let selector = collectionView.subviews.filter({$0.tag == -1})
+        if selector.count == 1 {
+            selector[0].frame.size.width = (collectionView.cellForItem(at: indexPath)?.frame.width)!
+            let selectorStart = collectionView.cellForItem(at: indexPath)?.frame.minX
+            UIView.animate(withDuration: 0.3, animations: {
+                        selector[0].frame.origin.x = selectorStart!
+            })
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.textColor = UIColor(red: 111/255, green: 105/255, blue: 99/255, alpha: 1)
+    }
     
 }
 
@@ -104,7 +136,7 @@ extension StoreListViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let size = (foodCategoryArray[indexPath.row] as NSString).size(attributes: nil)
-        return CGSize(width: size.width * 1.5 , height: 35)
+        return CGSize(width: size.width+50, height: 35)
         
         //        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
         //        return CGSize(width: width, height: 35)

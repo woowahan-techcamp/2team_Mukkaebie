@@ -15,15 +15,11 @@ class StoreListMenuBarCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         
     }
-        
+    
     override func layoutSubviews() {
         
-        self.backgroundColor = .gray
-        foodCategoryLabel.textColor = UIColor.white
-//        foodCategoryLabel.textAlignment = .center
-//        foodCategoryLabel.sizeToFit()
-//        foodCategoryLabel.invalidateIntrinsicContentSize()
-//        foodCategoryLabel.layoutIfNeeded()
+        foodCategoryLabel.textColor = UIColor(red: 111/255, green: 105/255, blue: 99/255, alpha: 1)
+        foodCategoryLabel.backgroundColor = UIColor(hexString: "3B342C")
     }
 }
 

@@ -15,7 +15,7 @@ class NetworkStore {
     private let url = URLpath.getURL()
     
     
-    
+
     func getStoreList() {
         Alamofire.request("\(url)stores").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
@@ -30,6 +30,8 @@ class NetworkStore {
             }
         }
     }
+    
+
     
 
     
