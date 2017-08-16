@@ -8,7 +8,7 @@
 # 의사결정 방법
 - 결정전, 마스터+멘토님들의 객관적 의견을 얻는다
 - Brain Writing을 이용하여 의견을 정리
-- 필수조건, 권장조권을 사용하여 스코어링
+- 필수조건, 권장조건을 사용하여 스코어링
 
 # 집중업무시간
 - 9시 10분 ~ 30분 스크럼 (매주 월요일/ 주 계획)
@@ -21,7 +21,7 @@
 - 금요일 오전 회고
 - 9-6 합동 작업으로 계속적인 커뮤니케이션
 - 조장:
-	- Back-end 전담
+	- Back-end(API) 전담
 	- 계속적인 issue bring up
 	- 잡다한 업무 전담
 
@@ -41,9 +41,12 @@
 - Github  dev올리기 전 주석 체크
 
 # 브랜치 규칙
-- master 브랜치 별도, dev브랜치에서 브랜치 파생
+- master 브랜치 별도, web, ios브랜치에서 브랜치 파생
 - 기능별 브랜치
 - 충돌시 충돌발생인이 해결 후 merge
  
 # 기획서
-[Link](https://docs.google.com/presentation/d/1X0DZ7KrfJBNRsEIMur7PXl-nVw3cDcgI-WwJkiFKfWM/edit?usp=sharing)
+[Link](https://docs.google.com/presentation/d/1bONN96E_VlYV0avebcv1sVgio55d7_kNEum1BP8DNOI/edit#slide=id.g241cd29e37_0_0)
+
+# 백로그
+[Link](https://docs.google.com/spreadsheets/d/1_QHCNvqrEN_MwbqzYJK6CxNQQ7oLvExSOWSW9LNYADs/edit#gid=0)
