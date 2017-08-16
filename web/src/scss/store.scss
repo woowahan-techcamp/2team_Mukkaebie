@@ -339,11 +339,11 @@
 }
 
 .competition-podium .podium-block {
-    width: 110px;
+    width: 120px;
     text-align: left;
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
 }
 
 .competition-podium .podium-block .place {
@@ -362,11 +362,13 @@
 
 .competition-podium .podium-block.bronze {
     color: #e6d6bf;
-    left: 255px;
+    left: 251px;
+    width: 70px;
+    z-index: 10;
 }
 
 .competition-podium .podium-block.bronze .podium {
-    height: 180px;
+    height: 160px;
 }
 
 .competition-podium .podium-block.bronze .orders {
@@ -387,10 +389,11 @@
 .competition-podium .podium-block.gold {
     color: #ead679;
     left: 145px;
+    z-index: 30;
 }
 
 .competition-podium .podium-block.gold .podium {
-    height: 280px;
+    height: 360px;
 }
 
 .competition-podium .podium-block.gold .orders {
@@ -410,11 +413,13 @@
 
 .competition-podium .podium-block.silver {
     color: #cbd9de;
-    left: 35px;
+    left: 71px;
+    width: 90px;
+    z-index: 20;
 }
 
 .competition-podium .podium-block.silver .podium {
-    height: 220px;
+    height: 230px;
 }
 
 .competition-podium .podium-block.silver .orders {
@@ -473,7 +478,7 @@
         text-align: left;
         display: inline-block;
         position: absolute;
-        bottom: 0;
+        bottom: -10px;
     }
 
     .competition-podium .podium-block.gold {
@@ -481,11 +486,11 @@
     }
 
     .competition-podium .podium-block.silver {
-        left: 25px;
+        left: 48px;
     }
 
     .competition-podium .podium-block.bronze {
-        left:225px;
+        left: 213px;
     }
 
 
@@ -512,7 +517,7 @@
         text-align: left;
         display: inline-block;
         position: absolute;
-        bottom: 0;
+        bottom: -10px;
     }
 
     .competition-podium .podium-block.gold {
@@ -520,11 +525,13 @@
     }
 
     .competition-podium .podium-block.silver {
-        left: 5%;
+        left: 15%;
+        width: 25%;
     }
 
     .competition-podium .podium-block.bronze {
-        left: 65%;
+        left: 61%;
+        width: 20%
     }
 
     .competition-podium .podium-block.gold .name {
