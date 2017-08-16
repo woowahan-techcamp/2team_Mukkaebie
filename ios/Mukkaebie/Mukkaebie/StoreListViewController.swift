@@ -40,7 +40,6 @@ class StoreListViewController: UIViewController {
     func getStoreList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
-        dump(storeInfo)
         self.storeList = storeInfo
         tableView.reloadData()
     }
