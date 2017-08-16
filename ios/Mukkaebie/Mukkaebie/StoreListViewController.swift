@@ -114,11 +114,11 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.textColor = .white
+
         collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
         let selector = collectionView.subviews.filter({$0.tag == -1})
-        print(selector)
+
         if selector.count == 1 {
             selector[0].frame.size.width = (collectionView.cellForItem(at: indexPath)?.frame.width)!
             let selectorStart = collectionView.cellForItem(at: indexPath)?.frame.minX
@@ -128,10 +128,6 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
         }
         
         networkStore.getStoreList(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!])
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.textColor = UIColor(red: 111/255, green: 105/255, blue: 99/255, alpha: 1)
     }
     
 }
