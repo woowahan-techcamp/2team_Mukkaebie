@@ -5,7 +5,7 @@
   .storeCardLeft{float: left}
   .storeCardLeft img{width: 100px;border-radius: 50%; border:1px solid #cccccc}
   .storeCardRight{float: left; margin-left: 10px; width: calc(100% - 120px)}
-  .storeCradTitle{font-size: 14px; width: 100%;overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
+  .storeCardTitle{font-size: 14px; width: 100%;overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
   .storeCardStars{overflow: auto; margin: 5px 0}
   .storeCardStars .storeCardGreyStar{background-image: url('https://img.woowahan.com/www/common/img-star.png'); width:94px; background-position: 0 0; box-sizing: border-box; height: 16px; float: left}
   .storeCardStars .storeCardOrangeStar{background-image: url('https://img.woowahan.com/www/common/img-star.png'); width: 87%; height: 100%; display: block; background-position: 0 -17px}
