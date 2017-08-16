@@ -34,7 +34,7 @@ class StoreListViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         
-        networkStore.getStoreList()
+        networkStore.getStoreList(category: "치킨")
     }
     
     func getStoreList(_ notification: Notification) {
@@ -123,6 +123,7 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
             })
         }
         
+        networkStore.getStoreList(category: (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
