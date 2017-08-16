@@ -19,6 +19,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
     var orderByMenu = [String:Int]()
+    var orderByMenuSorted = [(key: String, value: Int)]()
     
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
@@ -88,8 +89,17 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
                 orderByMenu[content]! += 1
             }
         }
+    
+        orderByMenuSorted = orderByMenu.sorted(by: { $0.1 > $1.1 })
         
-        orderByMenu.sorted(by: { $0.1 > $1.1 }).index(before: 3)
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count-1).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.popLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -120,7 +130,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
             addChildViewController(menuViewController!)
             
-            menuViewController?.orderByMenu = orderByMenu
+            menuViewController?.orderByMenuSorted = orderByMenuSorted
             
             tabSubView.addSubview((menuViewController?.view)!)
             menuViewController?.didMove(toParentViewController: self)

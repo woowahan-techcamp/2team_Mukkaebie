@@ -14,7 +14,8 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
-    var orderByMenu = [String:Int]()
+    var orderByMenuSorted = [(key: String, value: Int)]()
+    let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     
     let item1 = MenuViewModelItem(sectionTitle: "치킨", rowCount: 4, isCollapsed: false)
     let item2 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
@@ -32,12 +33,10 @@ class MenuViewController: UIViewController {
         
         items = [item1, item2, item3, item4, item5, item6]
         
-        pieChartView.segments = [
-            Segment(color: UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), value: 57, title: "간지치킨"),
-            Segment(color: UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), value: 30, title: "후라이드"),
-            Segment(color: UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), value: 25, title: "고추치킨"),
-            Segment(color: UIColor(white: 179/255, alpha: 1), value: 25, title: "기타")
-            ]
+        for i in 0 ..< orderByMenuSorted.count {
+            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
+            pieChartView.segments.append(segment)
+        }
     }
     
     override func didReceiveMemoryWarning() {
