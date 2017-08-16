@@ -332,9 +332,10 @@
     height: 250px;
     position: relative;
     width: 350px;
-    top: 100px;
+    top: 0px;
     background: #f6f3ed;
     margin:100px auto;
+    overflow: hidden;
 }
 
 .competition-podium .podium-block {
@@ -366,16 +367,22 @@
 
 .competition-podium .podium-block.bronze .podium {
     background: #e6d6bf;
-    height: 0px;
+    height: 80px;
 }
 
 .competition-podium .podium-block.bronze .orders {
-    text-align: center
+    text-align: center;
+    left: 40%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.bronze .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 35%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.gold {
@@ -385,16 +392,22 @@
 
 .competition-podium .podium-block.gold .podium {
     background: #ead679;
-    height: 0px;
+    height: 180px;
 }
 
 .competition-podium .podium-block.gold .orders {
-    text-align: center
+    text-align: center;
+    left: 40%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.gold .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 35%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.silver {
@@ -404,16 +417,22 @@
 
 .competition-podium .podium-block.silver .podium {
     background: #cbd9de;
-    height: 0px;
+    height: 120px;
 }
 
 .competition-podium .podium-block.silver .orders {
-    text-align: center
+    text-align: center;
+    left: 40%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.silver .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 35%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .podium {
