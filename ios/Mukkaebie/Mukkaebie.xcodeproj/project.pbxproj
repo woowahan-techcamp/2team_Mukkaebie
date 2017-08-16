@@ -21,6 +21,7 @@
 		9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9844286D1F3D755A0003CDF1 /* ygNa.jpeg */; };
 		984428701F3D76390003CDF1 /* hj.png in Resources */ = {isa = PBXBuildFile; fileRef = 9844286F1F3D76390003CDF1 /* hj.png */; };
 		984428721F3D76660003CDF1 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 984428711F3D76660003CDF1 /* flash.png */; };
+		984428741F41CE970003CDF1 /* circleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984428731F41CE970003CDF1 /* circleView.swift */; };
 		985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */; };
 		985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */; };
 		985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08F11F3AD4E800A1F475 /* MenuViewController.swift */; };
@@ -100,6 +101,7 @@
 		9844286D1F3D755A0003CDF1 /* ygNa.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ygNa.jpeg; sourceTree = "<group>"; };
 		9844286F1F3D76390003CDF1 /* hj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hj.png; sourceTree = "<group>"; };
 		984428711F3D76660003CDF1 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
+		984428731F41CE970003CDF1 /* circleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
 		985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
 		985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		985D08F11F3AD4E800A1F475 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */,
 				98B67CF71F3AF09900243F31 /* StoreListMenuBar.swift */,
 				98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */,
+				984428731F41CE970003CDF1 /* circleView.swift */,
 				98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */,
 			);
 			name = StoreList;
@@ -537,12 +540,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Mukkaebie/Pods-Mukkaebie-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 			);
@@ -678,6 +683,7 @@
 				983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */,
 				985D08FC1F3AF93100A1F475 /* MenuTableViewCell.swift in Sources */,
 				989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */,
+				984428741F41CE970003CDF1 /* circleView.swift in Sources */,
 				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
 				98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */,
 				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,

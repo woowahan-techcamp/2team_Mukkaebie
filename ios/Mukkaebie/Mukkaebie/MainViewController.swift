@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
         mainCollectionView.allowsSelection = true
         mainCollectionView.allowsSelection = true
         
-//        self.navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.navigationBar.isHidden = true
         
         
