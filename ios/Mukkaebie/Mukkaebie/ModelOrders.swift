@@ -48,4 +48,8 @@ class ModelOrders: Mappable {
         createdDate <- map["createdDate"]
     }
     
+    func getContent() -> [String] {
+        return content
+    }
+    
 }
