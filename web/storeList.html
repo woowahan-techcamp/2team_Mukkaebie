@@ -66,18 +66,18 @@
 
 <div class="row blackMenuArea">
     <ul class="categoryWrapper">
-        <li class="blackMenuChicken blackMenu"></li>
-        <li class="blackMenuChinese blackMenu"></li>
-        <li class="blackMenuPizza blackMenu"></li>
-        <li class="blackMenuKorean blackMenu"></li>
-        <li class="blackMenuPigfeet blackMenu"></li>
-        <li class="blackMenuNight blackMenu"></li>
-        <li class="blackMenuJapanese blackMenu"></li>
-        <li class="blackMenuSoup blackMenu"></li>
-        <li class="blackMenuVento blackMenu"></li>
-        <li class="blackMenuFastfood blackMenu"></li>
-        <li class="blackMenuQuickpay blackMenu"></li>
-        <li class="blackMenuTogether blackMenu"></li>
+        <li class="blackMenuChicken blackMenu" data="치킨"></li>
+        <li class="blackMenuChinese blackMenu" data="중국집"></li>
+        <li class="blackMenuPizza blackMenu" data="피자"></li>
+        <li class="blackMenuKorean blackMenu" data="한식"></li>
+        <li class="blackMenuPigfeet blackMenu" data="족발"></li>
+        <li class="blackMenuNight blackMenu" data="야식"></li>
+        <li class="blackMenuJapanese blackMenu" data="일식"></li>
+        <li class="blackMenuSoup blackMenu" data="찜탕"></li>
+        <li class="blackMenuVento blackMenu" data="도시락"></li>
+        <li class="blackMenuFastfood blackMenu" data="패스트푸드"></li>
+        <li class="blackMenuQuickpay blackMenu" data="바로결제"></li>
+        <li class="blackMenuTogether blackMenu" data="모아보기"></li>
     </ul>
 </div>
 
@@ -85,25 +85,25 @@
     <div class="mobileCategorySearch col-xs-12">
         <input type="text" placeholder="업소명을 검색해주세요">
     </div>
-    <div>
-        <div class="col-xs-4">치킨</div>
-        <div class="col-xs-4">중국집</div>
-        <div class="col-xs-4">피자</div>
+    <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="치킨">치킨</div>
+        <div class="col-xs-4 mobileMenu" data="중국집">중국집</div>
+        <div class="col-xs-4 mobileMenu" data="피자">피자</div>
     </div>
-    <div>
-        <div class="col-xs-4">한식,분식</div>
-        <div class="col-xs-4">족발,보쌈</div>
-        <div class="col-xs-4">야식</div>
+    <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="한식">한식,분식</div>
+        <div class="col-xs-4 mobileMenu" data="족발">족발,보쌈</div>
+        <div class="col-xs-4 mobileMenu" data="야식">야식</div>
     </div>
-    <div>
-        <div class="col-xs-4">돈까스,회,일식</div>
-        <div class="col-xs-4">찜,탕</div>
-        <div class="col-xs-4">도시락</div>
+    <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="일식">돈까스,회,일식</div>
+        <div class="col-xs-4 mobileMenu" data="찜탕">찜,탕</div>
+        <div class="col-xs-4 mobileMenu" data="도시락">도시락</div>
     </div>
-    <div>
-        <div class="col-xs-4">패스트푸드</div>
-        <div class="col-xs-4">바로결제</div>
-        <div class="col-xs-4">모아보기</div>
+    <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
+        <div class="col-xs-4 mobileMenu" data="바로결제">바로결제</div>
+        <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
     </div>
 </div>
 
@@ -150,10 +150,22 @@
 
   }
 
-  document.querySelector(".blackMenuChicken").addEventListener("click", function() {
-    let chicken = new StoreList("치킨");
-  })
+  let clickedMenu = document.querySelector(".categoryWrapper");
+  clickedMenu.addEventListener("click", function(e) {
+    if (e.target.tagName !== "LI") {
+      e.target = e.target.closest(".blackMenu");
+    }
+    let categoryList = new StoreList(e.target.attributes.data.value);
+  });
 
+
+  let clickedMobileMenu = document.querySelector(".mobileCategory");
+  clickedMobileMenu.addEventListener("click", function(e) {
+    if (e.target.className !== "col-xs-4 mobileMenu"){
+      e.target = e.target.closest(".mobilekMenu");
+    }
+    let categoryList = new StoreList(e.target.attributes.data.value);
+  });
 
 </script>
 </body>
