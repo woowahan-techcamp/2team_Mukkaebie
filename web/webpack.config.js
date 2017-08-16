@@ -12,11 +12,11 @@ module.exports = {
         publicPath: '/dist'
     },
     module: {
-            rules: [
+        rules: [
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: "style-loader", 
+                    fallback: "style-loader",
                     use: "css-loader!sass-loader",
                     publicPath: "/dist"
                 })
@@ -30,7 +30,13 @@ module.exports = {
                         presets: ['env']
                     }
                 }
-            }
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                use: {
+                    loader: 'url-loader?limit=100000',
+                }
+            },
         ]
     },
     plugins: [

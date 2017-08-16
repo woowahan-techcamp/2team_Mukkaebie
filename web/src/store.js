@@ -244,19 +244,25 @@ class Graph {
     podiumAnimate() {
         let gold = document.querySelector('.gold .podium');
         gold.classList.add('goldAnimate');
-
-        // gold.style.transition = 'all 1.5s ease';
-        // gold.style.height = '180px';
+        let goldOrders = document.querySelector('.gold .orders');
+        goldOrders.classList.add('goldOrdersAnimate');
+        let goldName = document.querySelector('.gold .name');
+        goldName.classList.add('goldNameAnimate');
 
         let silver = document.querySelector('.silver .podium');
         silver.classList.add('silverAnimate');
-        // silver.style.transition = 'all 1.5s ease';
-        // silver.style.height = '120px';
+        let silverOrders = document.querySelector('.silver .orders');
+        silverOrders.classList.add('silverOrdersAnimate');
+        let silverName = document.querySelector('.silver .name');
+        silverName.classList.add('silverNameAnimate');
 
         let bronze = document.querySelector('.bronze .podium');
         bronze.classList.add('bronzeAnimate');
-        // bronze.style.transition = 'all 1.5s ease';
-        // bronze.style.height = '80px';
+        let bronzeOrders = document.querySelector('.bronze .orders');
+        bronzeOrders.classList.add('bronzeOrdersAnimate');
+        let bronzeName = document.querySelector('.bronze .name');
+        bronzeName.classList.add('bronzeNameAnimate');
+
         this.mkbLoad()
     }
 

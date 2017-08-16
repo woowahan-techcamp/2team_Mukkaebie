@@ -329,20 +329,21 @@
 }
 
 .competition-podium {
-    height: 250px;
+    height: 400px;
     position: relative;
-    width: 350px;
-    top: 100px;
+    width: 400px;
+    top: -100px;
     background: #f6f3ed;
     margin:100px auto;
+    overflow: hidden;
 }
 
 .competition-podium .podium-block {
-    width: 110px;
+    width: 120px;
     text-align: left;
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
 }
 
 .competition-podium .podium-block .place {
@@ -361,60 +362,86 @@
 
 .competition-podium .podium-block.bronze {
     color: #e6d6bf;
-    left: 230px;
+    left: 251px;
+    width: 70px;
+    z-index: 10;
 }
 
 .competition-podium .podium-block.bronze .podium {
-    background: #e6d6bf;
-    height: 0px;
+    height: 160px;
 }
 
 .competition-podium .podium-block.bronze .orders {
-    text-align: center
+    text-align: center;
+    left: 40%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.bronze .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 25%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.gold {
     color: #ead679;
-    left: 120px;
+    left: 145px;
+    z-index: 30;
 }
 
 .competition-podium .podium-block.gold .podium {
-    background: #ead679;
-    height: 0px;
+    height: 360px;
 }
 
 .competition-podium .podium-block.gold .orders {
-    text-align: center
+    text-align: center;
+    left: 50%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.gold .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 35%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.silver {
     color: #cbd9de;
-    left: 10px;
+    left: 71px;
+    width: 90px;
+    z-index: 20;
 }
 
 .competition-podium .podium-block.silver .podium {
-    background: #cbd9de;
-    height: 0px;
+    height: 230px;
 }
 
 .competition-podium .podium-block.silver .orders {
-    text-align: center
+    text-align: center;
+    left: 40%;
+    bottom: -20px;
+    position: absolute;
 }
 
 .competition-podium .podium-block.silver .name {
     color: #856e4e;
-    text-align: center
+    text-align: center;
+    left: 30%;
+    bottom: -20px;
+    position: absolute;
 }
+
+.podium > img {
+    width: 100%;
+    height: 100%;
+}
+
 
 .podium {
     display: table;
@@ -435,7 +462,7 @@
 
     .competition-podium {
         width: 350px;
-        margin:0 auto;
+        margin: 100px auto;
     }
 
     .podium > * {
@@ -451,7 +478,7 @@
         text-align: left;
         display: inline-block;
         position: absolute;
-        bottom: 0;
+        bottom: -10px;
     }
 
     .competition-podium .podium-block.gold {
@@ -459,11 +486,11 @@
     }
 
     .competition-podium .podium-block.silver {
-        left: 25px;
+        left: 48px;
     }
 
     .competition-podium .podium-block.bronze {
-        left:225px;
+        left: 213px;
     }
 
 
@@ -473,8 +500,7 @@
 
     .competition-podium {
         width: 90%;
-
-        margin:0 auto;
+        margin: 100px auto;
     }
 
     .podium > * {
@@ -490,7 +516,7 @@
         text-align: left;
         display: inline-block;
         position: absolute;
-        bottom: 0;
+        bottom: -10px;
     }
 
     .competition-podium .podium-block.gold {
@@ -498,15 +524,52 @@
     }
 
     .competition-podium .podium-block.silver {
-        left: 5%;
+        left: 15%;
+        width: 25%;
     }
 
     .competition-podium .podium-block.bronze {
-        left: 65%;
+        left: 61%;
+        width: 20%
+    }
+
+
+    .competition-podium .podium-block.gold .name {
+        left: 30%;
+    }
+
+    .competition-podium .podium-block.silver .name {
+        left: 25%;
+    }
+
+    .competition-podium .podium-block.bronze .name {
+        left: 25%;
     }
 
 
 }
+
+@media only screen and (max-width: 350px) {
+
+
+    .competition-podium .podium-block.gold .name {
+        left: 28%;
+        font-size: 0.9em;
+    }
+
+    .competition-podium .podium-block.silver .name {
+        left: 25%;
+        font-size: 0.9em;
+    }
+
+    .competition-podium .podium-block.bronze .name {
+        left: 21%;
+        font-size: 0.9em;
+    }
+
+
+}
+
 /* 탭 기능 관련 CSS */
 .storeTab {
     width: 33.3333333333%;
