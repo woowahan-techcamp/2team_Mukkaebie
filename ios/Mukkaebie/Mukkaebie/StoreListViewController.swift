@@ -16,7 +16,8 @@ class StoreListViewController: UIViewController {
     
     let networkStore = NetworkStore()
     
-    let foodCategoryArray = ["치킨","중식","피자","한식","분식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
+    let foodCategoryArray = ["치킨","중식","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
+    let foodCategoryArrayForURL = ["치킨","중국집","피자","한식","족발","야식","찜탕","일식","도시락","패스트푸드"]
 //    var storeList = [[String : Any]]()
     var storeList = [ModelStores]()
     
@@ -123,7 +124,7 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
             })
         }
         
-        networkStore.getStoreList(category: (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)
+        networkStore.getStoreList(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!])
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
