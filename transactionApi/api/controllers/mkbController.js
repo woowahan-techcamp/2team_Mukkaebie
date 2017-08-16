@@ -189,6 +189,14 @@ exports.list_a_store = function(req, res) {
   });
 };
 
+exports.list_categorical_stores = function(req, res) {
+  Store.find({category: req.params.category}, { _id: 0 }, function(err, store) {
+    if (err)
+      res.send(err);
+    res.json(store);
+  });
+};
+
 
 exports.update_a_store = function(req, res) {
   Store.update(
