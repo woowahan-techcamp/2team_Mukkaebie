@@ -9,6 +9,38 @@
     <link rel="stylesheet" type="text/css" href="./dist/style.css">
 </head>
 <body>
+<script id="storeListTemplate" type="text/template">
+    <div class="col-xs-4">
+        <a href="#">
+            <div class="storeCard">
+                <div class="storeCardLeft">
+                    <img src=${storeImg} alt="">
+                </div>
+                <div class="storeCardRight">
+                    <div class="storeCardTitle">${storeName}</div>
+                    <div class="storeCardStars">
+                        <span class="storeCardGreyStar">
+                            <span class="storeCardOrangeStar"></span>
+                        </span>
+                    </div>
+                    <div class="storeCardAddress">
+                        ${address}
+                    </div>
+                    <div class="storeCardReviewSection">
+                        <span class="storeCardReviewKey">리뷰</span>
+                        <span class="storeCardReviewValue">11</span>
+                        <span class="storeCardReviewKey">사장님 댓글</span>
+                        <span class="storeCardReviewValue">11</span>
+                    </div>
+                    <div class="storeCardLabel">
+                        <span>바로결제</span>
+                        <span>만나서결제</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</script>
 <div class="row header m-x-0">
     <div class="float-right p-a-1 loginMenu">ygna91님 | 마이페이지 | 로그아웃 | 고객센터 | 즐겨찾기</div>
     <div class="baeminMainLogo"></div>
@@ -107,119 +139,6 @@
                     </div>
                 </div>
             </a>
-
-        </div>
-        <div class="col-xs-4">
-            <div class="storeCard">
-                <div class="storeCardLeft">
-                    <img src="http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/2/17/444766_201702171341.jpg" alt="">
-                </div>
-                <div class="storeCardRight">
-                    <div class="storeCardTitle">남자피자</div>
-                    <div class="storeCardStars">
-                        <span class="storeCardGreyStar">
-                            <span class="storeCardOrangeStar"></span>
-                        </span>
-                    </div>
-                    <div class="storeCardAddress">
-                        서울특별시 송파구 풍납동
-                    </div>
-                    <div class="storeCardReviewSection">
-                        <span class="storeCardReviewKey">리뷰</span>
-                        <span class="storeCardReviewValue">11</span>
-                        <span class="storeCardReviewKey">사장님 댓글</span>
-                        <span class="storeCardReviewValue">11</span>
-                    </div>
-                    <div class="storeCardLabel">
-                        <span>바로결제</span>
-                        <span>만나서결제</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-4">
-            <div class="storeCard">
-                <div class="storeCardLeft">
-                    <img src="http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/2/17/444766_201702171341.jpg" alt="">
-                </div>
-                <div class="storeCardRight">
-                    <div class="storeCardTitle">남자피자</div>
-                    <div class="storeCardStars">
-                        <span class="storeCardGreyStar">
-                            <span class="storeCardOrangeStar"></span>
-                        </span>
-                    </div>
-                    <div class="storeCardAddress">
-                        서울특별시 송파구 풍납동
-                    </div>
-                    <div class="storeCardReviewSection">
-                        <span class="storeCardReviewKey">리뷰</span>
-                        <span class="storeCardReviewValue">11</span>
-                        <span class="storeCardReviewKey">사장님 댓글</span>
-                        <span class="storeCardReviewValue">11</span>
-                    </div>
-                    <div class="storeCardLabel">
-                        <span>바로결제</span>
-                        <span>만나서결제</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-4">
-            <div class="storeCard">
-                <div class="storeCardLeft">
-                    <img src="http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/2/17/444766_201702171341.jpg" alt="">
-                </div>
-                <div class="storeCardRight">
-                    <div class="storeCardTitle">남자피자</div>
-                    <div class="storeCardStars">
-                        <span class="storeCardGreyStar">
-                            <span class="storeCardOrangeStar"></span>
-                        </span>
-                    </div>
-                    <div class="storeCardAddress">
-                        서울특별시 송파구 풍납동
-                    </div>
-                    <div class="storeCardReviewSection">
-                        <span class="storeCardReviewKey">리뷰</span>
-                        <span class="storeCardReviewValue">11</span>
-                        <span class="storeCardReviewKey">사장님 댓글</span>
-                        <span class="storeCardReviewValue">11</span>
-                    </div>
-                    <div class="storeCardLabel">
-                        <span>바로결제</span>
-                        <span>만나서결제</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-4">
-            <div class="storeCard">
-                <div class="storeCardLeft">
-                    <img src="http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/2/17/444766_201702171341.jpg" alt="">
-                </div>
-                <div class="storeCardRight">
-                    <div class="storeCardTitle">남자피자</div>
-                    <div class="storeCardStars">
-                        <span class="storeCardGreyStar">
-                            <span class="storeCardOrangeStar"></span>
-                        </span>
-                    </div>
-                    <div class="storeCardAddress">
-                        서울특별시 송파구 풍납동
-                    </div>
-                    <div class="storeCardReviewSection">
-                        <span class="storeCardReviewKey">리뷰</span>
-                        <span class="storeCardReviewValue">11</span>
-                        <span class="storeCardReviewKey">사장님 댓글</span>
-                        <span class="storeCardReviewValue">11</span>
-                    </div>
-                    <div class="storeCardLabel">
-                        <span>바로결제</span>
-                        <span>만나서결제</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -227,6 +146,39 @@
 <div class="row footer"></div>
 
 <script src="./dist/index.bundle.js"></script>
+<script>
 
+  class StoreList {
+
+    constructor(){
+      this.getStoreList();
+    }
+
+    getStoreList() {
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          const renderTarget = document.querySelector(".storeCardRow");
+          renderTarget.innerHTML = "";
+          console.log(response[0]);
+          response.forEach(function (oneStore) {
+            const store = oneStore;
+            const storeImg = store.storeImg;
+            const storeName = store.storeName;
+            const address = store.address;
+            const tempGrab = document.querySelector("#storeListTemplate").text;
+            const result = eval('`' + tempGrab + '`');
+            renderTarget.innerHTML += result;
+          })
+        }
+      };
+      xhttp.open("GET", "http://13.124.179.176:3000/stores/101010", true);
+      xhttp.send();
+    }
+
+  }
+  let test = new StoreList();
+</script>
 </body>
 </html>
