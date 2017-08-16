@@ -10,10 +10,11 @@ import UIKit
 
 @IBDesignable
 
-class SegmentView : UIView {
+class SegmentView : UIControl {
     
     var buttons = [UIButton]()
     var selector: UIView!
+    var selectedSegmentIndex = 0
  
     @IBInspectable
     var borderWidth : CGFloat = 0 {
@@ -70,6 +71,7 @@ class SegmentView : UIView {
             button.setTitleColor(textColor, for: .normal)
             button.layer.borderColor = borderColor.cgColor
             button.layer.borderWidth = borderWidth
+            button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
             buttons.append(button)
         }
         
@@ -83,7 +85,7 @@ class SegmentView : UIView {
         let sv = UIStackView(arrangedSubviews: buttons)
         sv.axis = .horizontal
         sv.alignment = .fill
-        sv.distribution = .fillProportionally
+        sv.distribution = .fillEqually
         addSubview(sv)
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -92,6 +94,25 @@ class SegmentView : UIView {
         sv.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         
         
+    }
+    
+    func buttonTapped(button: UIButton) {
+        for (buttonIndex, btn) in buttons.enumerated() {
+            btn.setTitleColor(textColor, for: .normal)
+            
+            if btn == button {
+                selectedSegmentIndex = buttonIndex
+                let selectorStart = frame.width/CGFloat(buttons.count) * CGFloat(buttonIndex)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.selector.frame.origin.x = selectorStart
+                })
+                
+                
+                btn.setTitleColor(selectorTextColor, for: .normal)
+            }
+        }
+        
+        sendActions(for: .valueChanged)
     }
     
     

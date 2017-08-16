@@ -49,6 +49,10 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             let rateView = Bundle.main.loadNibNamed("rateTableViewCell", owner: self, options: nil)?.first as! rateTableViewCell
             return rateView
         }
+        else if section == 3 {
+            let tapView = Bundle.main.loadNibNamed("segment", owner: self, options: nil)?.first as! segment
+            return tapView
+        }
         return self.view
     }
     
@@ -63,11 +67,14 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         else if section == 2 {
             return 96
         }
+        else if section == 3 {
+            return 700
+        }
         return 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,13 +87,15 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         else if section == 2 {
             return 0
         }
-        
-        return 5
+        else if section == 3 {
+            return 0
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = "\(indexPath.row)"
+//        cell?.textLabel?.text = "\(indexPath.row)"
         return cell!
     }
 
