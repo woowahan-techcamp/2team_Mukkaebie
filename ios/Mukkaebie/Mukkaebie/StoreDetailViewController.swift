@@ -18,6 +18,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
+    var orderByMenu = [String:Int]()
+    var orderByMenuSorted = [(key: String, value: Int)]()
     
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
@@ -63,11 +65,14 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar.selectedItem = tabBar.items![1] as UITabBarItem
         tabBar(tabBar, didSelect: mukkabieTabItem)
         
-        
-        
-        networkOrder.getOrderList(buyerId: 101010)
+
+        for menu in (modelStore?.menu)! {
+            orderByMenu[menu["foodNm"] as! String] = 0
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
+        
+        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +88,23 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
         self.orderList = orderInfo
-        //networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: 38000, content: ["숯불구이족발"])
+
+        for order in self.orderList {
+            for content in order.getContent() {
+                orderByMenu[content]! += 1
+            }
+        }
+    
+        orderByMenuSorted = orderByMenu.sorted(by: { $0.1 > $1.1 })
+        
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count-1).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.popLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -114,6 +135,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
             menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
             addChildViewController(menuViewController!)
+            
+            menuViewController?.orderByMenuSorted = orderByMenuSorted
             
             tabSubView.addSubview((menuViewController?.view)!)
             menuViewController?.didMove(toParentViewController: self)
