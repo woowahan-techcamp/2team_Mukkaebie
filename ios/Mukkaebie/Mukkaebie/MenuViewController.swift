@@ -14,6 +14,8 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuTableView: UITableView!
     
+    var orderByMenu = [String:Int]()
+    
     let item1 = MenuViewModelItem(sectionTitle: "치킨", rowCount: 4, isCollapsed: false)
     let item2 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     let item3 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
@@ -21,8 +23,7 @@ class MenuViewController: UIViewController {
     let item5 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     let item6 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     var items: Array<MenuViewModelItem> = []
-    
-        var count = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
