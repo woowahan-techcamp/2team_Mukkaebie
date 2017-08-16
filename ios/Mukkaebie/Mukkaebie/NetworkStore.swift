@@ -15,7 +15,7 @@ class NetworkStore {
     private let url = URLpath.getURL()
     
     
-    
+
     func getStoreList() {
         Alamofire.request("\(url)stores").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
@@ -27,6 +27,24 @@ class NetworkStore {
                 }
 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getStore"), object: nil, userInfo: ["storeList":storeList])
+            }
+        }
+    }
+    
+    func getStoreList(category: String) {
+        let encodedString = ("\(url)stores/bycategory/"+category).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
+        
+        Alamofire.request(URL(string: encodedString!)!).responseJSON { (response) in
+            if let response = response.result.value as? [[String:Any]] {
+                var storeList = [ModelStores]()
+                for item in response {
+                    var store = ModelStores(JSON: item)
+                    storeList.append(store!)
+                }
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getStore"), object: nil, userInfo: ["storeList":storeList])
+            } else {
+                print(response.result)
             }
         }
     }
