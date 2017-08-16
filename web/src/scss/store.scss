@@ -381,7 +381,7 @@
 .competition-podium .podium-block.bronze .name {
     color: #856e4e;
     text-align: center;
-    left: 30%;
+    left: 25%;
     bottom: -20px;
     position: absolute;
 }
@@ -398,7 +398,7 @@
 
 .competition-podium .podium-block.gold .orders {
     text-align: center;
-    left: 40%;
+    left: 50%;
     bottom: -20px;
     position: absolute;
 }
@@ -406,7 +406,7 @@
 .competition-podium .podium-block.gold .name {
     color: #856e4e;
     text-align: center;
-    left: 30%;
+    left: 35%;
     bottom: -20px;
     position: absolute;
 }
@@ -500,8 +500,7 @@
 
     .competition-podium {
         width: 90%;
-
-        margin:0 auto;
+        margin: 100px auto;
     }
 
     .podium > * {
@@ -534,8 +533,9 @@
         width: 20%
     }
 
+
     .competition-podium .podium-block.gold .name {
-        left: 25%;
+        left: 30%;
     }
 
     .competition-podium .podium-block.silver .name {
@@ -548,6 +548,28 @@
 
 
 }
+
+@media only screen and (max-width: 350px) {
+
+
+    .competition-podium .podium-block.gold .name {
+        left: 28%;
+        font-size: 0.9em;
+    }
+
+    .competition-podium .podium-block.silver .name {
+        left: 25%;
+        font-size: 0.9em;
+    }
+
+    .competition-podium .podium-block.bronze .name {
+        left: 21%;
+        font-size: 0.9em;
+    }
+
+
+}
+
 /* 탭 기능 관련 CSS */
 .storeTab {
     width: 33.3333333333%;
