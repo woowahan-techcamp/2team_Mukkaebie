@@ -49,13 +49,15 @@ class StoreListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        let selector = UIView(frame: CGRect(x: 0, y: 30, width: (collectionView.cellForItem(at: indexPath)?.frame.size.width)!, height: 5))
-        selector.backgroundColor = .white
-        selector.tag = -1
-        collectionView.addSubview(selector)
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
-        collectionView(collectionView, didSelectItemAt: indexPath)
+        if collectionView.subviews.filter({$0.tag == -1}).count == 0 {
+            let indexPath = IndexPath(row: 0, section: 0)
+            let selector = UIView(frame: CGRect(x: 0, y: 30, width: (collectionView.cellForItem(at: indexPath)?.frame.size.width)!, height: 5))
+            selector.backgroundColor = .white
+            selector.tag = -1
+            collectionView.addSubview(selector)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition.left)
+            collectionView(collectionView, didSelectItemAt: indexPath)
+        }
     }
 
 
@@ -116,6 +118,7 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
         collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
         let selector = collectionView.subviews.filter({$0.tag == -1})
+        print(selector)
         if selector.count == 1 {
             selector[0].frame.size.width = (collectionView.cellForItem(at: indexPath)?.frame.width)!
             let selectorStart = collectionView.cellForItem(at: indexPath)?.frame.minX
