@@ -20,7 +20,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-출처: http://m.mkexdev.net/339 [박종명의 아름다운 개발 since 2010.06]
 
 
 var routes = require('./api/routes/mkbRoutes');
