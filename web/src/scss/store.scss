@@ -366,7 +366,6 @@
 }
 
 .competition-podium .podium-block.bronze .podium {
-    background: #e6d6bf;
     height: 180px;
 }
 
@@ -391,7 +390,6 @@
 }
 
 .competition-podium .podium-block.gold .podium {
-    background: #ead679;
     height: 280px;
 }
 
@@ -416,7 +414,6 @@
 }
 
 .competition-podium .podium-block.silver .podium {
-    background: #cbd9de;
     height: 220px;
 }
 
@@ -434,6 +431,12 @@
     bottom: -20px;
     position: absolute;
 }
+
+.podium > img {
+    width: 100%;
+    height: 100%;
+}
+
 
 .podium {
     display: table;
@@ -454,7 +457,7 @@
 
     .competition-podium {
         width: 350px;
-        margin:0 auto;
+        margin: 100px auto;
     }
 
     .podium > * {

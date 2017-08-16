@@ -127,7 +127,7 @@ class Review {
           packet.review["stars"] = Math.floor(Math.random() * 6);
 
           let xhr1 = new XMLHttpRequest();
-          xhr1.open("POST", "http://52.78.184.77:3000/stores/101010", true);
+          xhr1.open("POST", "http://13.124.179.176:3000/stores/101010", true);
           xhr1.setRequestHeader('Content-Type', 'application/json');
           // send the collected data as JSON
           xhr1.send(JSON.stringify(packet));
@@ -159,7 +159,7 @@ class Review {
             })
           }
         };
-        xhttp.open("GET", "http://52.78.184.77:3000/stores/101010", true);
+        xhttp.open("GET", "http://13.124.179.176:3000/stores/101010", true);
         xhttp.send();
     }
 
@@ -208,7 +208,7 @@ let StoreUtil = {
       packet["content"] = [menuList[randNum2].toString().split(',')[0]];
       packet["price"] = menuList[randNum2].toString().split(',')[1];
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://52.78.184.77:3000/orders", true);
+      xhr1.open("POST", "http://13.124.179.176:3000/orders", true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       // send the collected data as JSON
@@ -334,7 +334,7 @@ class Graph {
           }
         };
 
-        xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/101010', true);
         xhr.send(null);
     }
 
@@ -376,7 +376,7 @@ class Graph {
 
         }
 
-        xhr.open('GET', 'http://52.78.184.77:3000/orders/bystore/101010', true);
+        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/101010', true);
         xhr.send(null);
     }
 
