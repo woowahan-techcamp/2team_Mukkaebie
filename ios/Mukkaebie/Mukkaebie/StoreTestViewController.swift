@@ -17,7 +17,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     var orderByMenuSorted = [(key: String, value: Int)]()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var rateView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,13 +28,10 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-//        for menu in (modelStore?.menu)! {
-//            orderByMenu[menu["foodNm"] as! String] = 0
-//        }
-        
+
+
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
-//        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
         
     }
     
@@ -104,9 +100,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             return 96
         }
         else if section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? segment
-            cell?.setSubViewHeight()
-            return 650
+            return 44
         }
         return 0
     }
@@ -126,16 +120,47 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             return 0
         }
         else if section == 3 {
-            return 0
+            return 1
         }
         return 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
+    }
+    
+    
+    lazy var mukkaebieVC : UIViewController? = {
+        let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
+        let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+        return mukkaebieVC
+    }()
+    
+    lazy var menuRankVC : UIViewController? = {
+        let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
+        let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+        return menuRankVC
+    }()
+    
+    
+    var segmentView = SegmentView()
+    var seg = segment()
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         
-//        cell?.textLabel?.text = "\(indexPath.row)"
-        return cell!
+        let senderIndex = seg.senderInt
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! subTableViewCell
+
+//        if senderIndex == 0 {
+//            cell.subVC.addSubview((mukkaebieVC?.view)!)
+//            return cell
+//        }
+//        else if senderIndex == 1 {
+//            cell.subVC.addSubview((menuRankVC?.view)!)
+//            return cell
+//        }
+        return cell
     }
 
     /*

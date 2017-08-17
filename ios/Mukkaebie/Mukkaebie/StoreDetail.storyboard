@@ -331,17 +331,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="292" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l1y-zC-cU9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="413" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="l1y-zC-cU9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="292" id="zCE-C6-Vkd">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="292"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="413" id="zCE-C6-Vkd" customClass="subTableViewCell" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="413"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zCE-C6-Vkd" id="hQt-Xc-l5X">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="291.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="412.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-53-2nS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="413"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="leading" secondItem="hQt-Xc-l5X" secondAttribute="leading" id="B7Y-qY-Bvw"/>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="top" secondItem="hQt-Xc-l5X" secondAttribute="top" id="BQf-E0-SGE"/>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="height" secondItem="hQt-Xc-l5X" secondAttribute="height" id="EtV-Ca-cWp"/>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="width" secondItem="hQt-Xc-l5X" secondAttribute="width" id="zEH-ss-PwH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subVC" destination="cvc-53-2nS" id="UJq-A8-UBs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

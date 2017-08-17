@@ -8,15 +8,17 @@
 
 import UIKit
 
+enum tabViewEnum {
+    case mukkaebieVC, menuRankVC, infoVC, reviewVC
+}
+
+
 class segment: UITableViewCell {
     
     var modelStore : ModelStores?
+    var tabSubview = subTableViewCell()
 
-    @IBOutlet weak var tabSubView: UIView!
-    
-    @IBOutlet weak var tabSubHeight: NSLayoutConstraint!
-    
-    var currentVC : UIViewController?
+
     lazy var mukkaebieVC : UIViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
@@ -44,31 +46,36 @@ class segment: UITableViewCell {
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
         return reviewVC
     }()
+    
+    var senderInt = 0
  
     @IBAction func customSegmentValueChanged(_ sender: SegmentView) {
-//        var vc : UIViewController?
+        
         switch  sender.selectedSegmentIndex  {
         case 0:
-            tabSubView.addSubview((mukkaebieVC?.view)!)
-            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
-
-        case 1:
-            tabSubView.addSubview((menuRankVC?.view)!)
-            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
-        
-        case 2:
-            tabSubView.addSubview((infoVC?.view)!)
-            tabSubHeight.constant = (infoVC?.view.frame.height)!
-        
-        case 3:
-            tabSubView.addSubview((reviewVC?.tableView)!)
-            tabSubHeight.constant = (reviewVC?.tableView.frame.height)!
+//            tabSubview.subVC.didAddSubview((mukkaebieVC?.view)!)
+//            tabSubview.subVC.
             
+            senderInt = 0
+        case 1:
+//            tabSubview.subVC.didAddSubview((menuRankVC?.view)!)
+//            tabSubview.subVC.addSubview((menuRankVC?.view)!)
+            senderInt = 1
+        case 2:
+            senderInt = 2
+        case 3:
+            senderInt = 3
+
         default:
             break
         }
+        print("11111111111111",senderInt)
+        print("0",sender.selectedSegmentIndex)
+
         
     }
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -82,7 +89,6 @@ class segment: UITableViewCell {
     }
     
     func setSubViewHeight() {
-        tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
         
     }
     
