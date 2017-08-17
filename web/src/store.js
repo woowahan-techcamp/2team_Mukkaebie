@@ -398,7 +398,7 @@ class StoreList {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
-        response.slice(0, 50).forEach(function (oneStore) {
+        response.slice(0, 30).forEach(function (oneStore) {
           const store = oneStore;
           const storeId = store.storeId;
           const storeImg = store.storeImg;
@@ -418,6 +418,7 @@ class StoreList {
             var realTarget = e.target.closest(".storeCard")
           }
           let storeInfo = new StoreInfo(realTarget.id);
+
         });
 
       }
@@ -522,6 +523,18 @@ class StoreInfo {
 
         getInfo(storeInfo);
 
+        let tab = new TabUiWithAjax(
+            {
+              containerName: "storeTabWrapper",
+              selectedTabName: "selectedTab",
+              selectedContentName: "selectedContent",
+              generalTabName: "storeTab",
+              generalContentPrefix: "#cont-",
+              baseUrl: "",
+            }
+        );
+
+        let foldable = new Foldable("foldableLevel1");
 
       }
     };
