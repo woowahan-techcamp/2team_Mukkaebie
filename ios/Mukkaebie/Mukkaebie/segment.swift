@@ -9,6 +9,8 @@
 import UIKit
 
 class segment: UITableViewCell {
+    
+    var modelStore : ModelStores?
 
     @IBOutlet weak var tabSubView: UIView!
     
@@ -26,6 +28,22 @@ class segment: UITableViewCell {
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
         return menuRankVC
     }()
+    
+    lazy var infoVC : UIViewController? = {
+        let storyboard = UIStoryboard(name: "Info", bundle: nil)
+        let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
+        infoVC?.introText = self.modelStore?.storeDesc
+        infoVC?.openHourText = self.modelStore?.openHour
+        infoVC?.telephoneText = self.modelStore?.telephone
+        infoVC?.nameText = self.modelStore?.name
+        return infoVC
+    }()
+    
+    lazy var reviewVC : UITableViewController? = {
+        let storyboard = UIStoryboard(name: "Review", bundle: nil)
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
+        return reviewVC
+    }()
  
     @IBAction func customSegmentValueChanged(_ sender: SegmentView) {
 //        var vc : UIViewController?
@@ -36,8 +54,16 @@ class segment: UITableViewCell {
 
         case 1:
             tabSubView.addSubview((menuRankVC?.view)!)
-            tabSubHeight.constant = (menuRankVC?.view.frame.height)!
-
+            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
+        
+        case 2:
+            tabSubView.addSubview((infoVC?.view)!)
+            tabSubHeight.constant = (infoVC?.view.frame.height)!
+        
+        case 3:
+            tabSubView.addSubview((reviewVC?.tableView)!)
+            tabSubHeight.constant = (reviewVC?.tableView.frame.height)!
+            
         default:
             break
         }
@@ -46,6 +72,7 @@ class segment: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        dump(modelStore)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

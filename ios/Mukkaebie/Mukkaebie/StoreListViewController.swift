@@ -68,9 +68,9 @@ class StoreListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStoreDetail"{
-            if let storeDetailViewController = segue.destination as? StoreDetailViewController{
+            if let storeTestViewController = segue.destination as? StoreTestViewController{
                 let indexPath = self.tableView.indexPathForSelectedRow
-                storeDetailViewController.modelStore = self.storeList[(indexPath?.row)!]
+                storeTestViewController.modelStore = self.storeList[(indexPath?.row)!]
             }
         }
     }
