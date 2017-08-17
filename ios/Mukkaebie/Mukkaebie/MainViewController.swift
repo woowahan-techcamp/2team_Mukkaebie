@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
 
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -34,9 +35,15 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+
+    }
+    
 
     override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+
 
     }
 
