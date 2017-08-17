@@ -36,7 +36,7 @@ class segment: UITableViewCell {
 
         case 1:
             tabSubView.addSubview((menuRankVC?.view)!)
-            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
+            tabSubHeight.constant = (menuRankVC?.view.frame.height)!
 
         default:
             break
@@ -52,6 +52,11 @@ class segment: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setSubViewHeight() {
+        tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
+        
     }
     
     

@@ -10,6 +10,9 @@
 		2A58678D7376A284226A5EDD /* Pods_MukkaebieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88962D59A7166B547120BF0B /* Pods_MukkaebieTests.framework */; };
 		2CFA42A664EFC0A08F1EFD26 /* Pods_MukkaebieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC58A544ECB8332F9F7B2C7F /* Pods_MukkaebieUITests.framework */; };
 		68C5E505583E92AEE4AEE364 /* Pods_Mukkaebie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03405F61363D7DF6540C308 /* Pods_Mukkaebie.framework */; };
+		981AAB181F4470C600CC443A /* firstGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB151F4470C600CC443A /* firstGrade.png */; };
+		981AAB191F4470C600CC443A /* secondGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB161F4470C600CC443A /* secondGrade.png */; };
+		981AAB1A1F4470C600CC443A /* thirdGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB171F4470C600CC443A /* thirdGrade.png */; };
 		983248151F32FD2C00ABFBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248141F32FD2C00ABFBFB /* AppDelegate.swift */; };
 		983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248161F32FD2C00ABFBFB /* MainViewController.swift */; };
 		983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248181F32FD2C00ABFBFB /* SecondViewController.swift */; };
@@ -44,9 +47,6 @@
 		989D41DB1F43D68000AF2617 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41DA1F43D68000AF2617 /* SegmentView.swift */; };
 		989D41DF1F43D7B900AF2617 /* segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41DD1F43D7B900AF2617 /* segment.swift */; };
 		989D41E01F43D7B900AF2617 /* segment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41DE1F43D7B900AF2617 /* segment.xib */; };
-		989D41E41F44361800AF2617 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 989D41E11F44361800AF2617 /* first.png */; };
-		989D41E51F44361800AF2617 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 989D41E21F44361800AF2617 /* second.png */; };
-		989D41E61F44361800AF2617 /* third.png in Resources */ = {isa = PBXBuildFile; fileRef = 989D41E31F44361800AF2617 /* third.png */; };
 		98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CDC1F39C8D600243F31 /* bm_ad2.png */; };
 		98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */; };
 		98B67CE11F39D7B100243F31 /* MainHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */; };
@@ -87,6 +87,9 @@
 		481072685893B70826DCA514 /* Pods-MukkaebieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MukkaebieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MukkaebieUITests/Pods-MukkaebieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7ADF07EE5C4A531297CBBB77 /* Pods-Mukkaebie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mukkaebie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mukkaebie/Pods-Mukkaebie.release.xcconfig"; sourceTree = "<group>"; };
 		88962D59A7166B547120BF0B /* Pods_MukkaebieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MukkaebieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		981AAB151F4470C600CC443A /* firstGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstGrade.png; sourceTree = "<group>"; };
+		981AAB161F4470C600CC443A /* secondGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = secondGrade.png; sourceTree = "<group>"; };
+		981AAB171F4470C600CC443A /* thirdGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thirdGrade.png; sourceTree = "<group>"; };
 		983248111F32FD2C00ABFBFB /* Mukkaebie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mukkaebie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		983248141F32FD2C00ABFBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		983248161F32FD2C00ABFBFB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -127,9 +130,6 @@
 		989D41DA1F43D68000AF2617 /* SegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
 		989D41DD1F43D7B900AF2617 /* segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = segment.swift; sourceTree = "<group>"; };
 		989D41DE1F43D7B900AF2617 /* segment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = segment.xib; sourceTree = "<group>"; };
-		989D41E11F44361800AF2617 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		989D41E21F44361800AF2617 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		989D41E31F44361800AF2617 /* third.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third.png; sourceTree = "<group>"; };
 		98B67CDC1F39C8D600243F31 /* bm_ad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bm_ad2.png; sourceTree = "<group>"; };
 		98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -223,11 +223,12 @@
 				98B67CEB1F3AD56400243F31 /* StoreList */,
 				98B67CEC1F3AD57C00243F31 /* StoreDetail */,
 				98B67CDC1F39C8D600243F31 /* bm_ad2.png */,
+				9844286F1F3D76390003CDF1 /* hj.png */,
 				984428711F3D76660003CDF1 /* flash.png */,
 				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
-				989D41E11F44361800AF2617 /* first.png */,
-				989D41E21F44361800AF2617 /* second.png */,
-				989D41E31F44361800AF2617 /* third.png */,
+				981AAB151F4470C600CC443A /* firstGrade.png */,
+				981AAB161F4470C600CC443A /* secondGrade.png */,
+				981AAB171F4470C600CC443A /* thirdGrade.png */,
 				9832481D1F32FD2C00ABFBFB /* Assets.xcassets */,
 				9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */,
 				983248221F32FD2C00ABFBFB /* Info.plist */,
@@ -313,11 +314,10 @@
 			isa = PBXGroup;
 			children = (
 				989D41DC1F43D69800AF2617 /* xib */,
-				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 				989D41C71F43046B00AF2617 /* StoreTestViewController.swift */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
 				989D41DA1F43D68000AF2617 /* SegmentView.swift */,
-				9844286F1F3D76390003CDF1 /* hj.png */,
+				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 			);
 			name = StoreDetail;
 			sourceTree = "<group>";
@@ -475,10 +475,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981AAB1A1F4470C600CC443A /* thirdGrade.png in Resources */,
 				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
+				981AAB191F4470C600CC443A /* secondGrade.png in Resources */,
 				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
-				989D41E41F44361800AF2617 /* first.png in Resources */,
-				989D41E61F44361800AF2617 /* third.png in Resources */,
+				981AAB181F4470C600CC443A /* firstGrade.png in Resources */,
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
 				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
 				989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */,
@@ -491,7 +492,6 @@
 				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
 				9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */,
 				9832481C1F32FD2C00ABFBFB /* Main.storyboard in Resources */,
-				989D41E51F44361800AF2617 /* second.png in Resources */,
 				985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */,
 				989D41E01F43D7B900AF2617 /* segment.xib in Resources */,
 			);

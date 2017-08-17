@@ -104,7 +104,9 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             return 96
         }
         else if section == 3 {
-            return 700
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? segment
+            cell?.setSubViewHeight()
+            return 650
         }
         return 0
     }
@@ -131,6 +133,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        
 //        cell?.textLabel?.text = "\(indexPath.row)"
         return cell!
     }
