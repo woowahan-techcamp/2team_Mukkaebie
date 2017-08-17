@@ -93,6 +93,19 @@
 /* 먹깨비 탭 관련 */
 .mkbTabContent{
     background:#fff;
+    position:relative;
+}
+
+#mkbPreview {
+    width:100px;
+    height:100px;
+    background-size:contain;
+    border-radius: 50%;
+    position:relative;
+    left:43%;
+    top: 180px;
+    z-index: 11;
+    display: block;
 }
 /* 폴더블메뉴 */
 .menuTabGraph {
@@ -595,3 +608,11 @@
     border-left:1px solid #cccccc;
 }
 #storeTabContentWrapper {clear: both;}
+
+//uploadcare 오버라이드
+.uploadcare--widget__text{
+    display: none;
+}
+.uploadcare--powered-by{
+    display: none;
+}
