@@ -18,17 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        var navigationBarApearace = UINavigationBar.appearance()
+        let navigationBarApearace = UINavigationBar.appearance()
         navigationBarApearace.tintColor = UIColor(hexString: "0xffffff")
         navigationBarApearace.barTintColor = UIColor(hexString: "3B342C")
         
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
-        var tabBarAppearance = UITabBar.appearance()
-        
-        
-//        tabBarAppearance.isHidden = false
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.tintColor = UIColor(hexString: "F06F23")
+        tabBarAppearance.unselectedItemTintColor = UIColor.white
+        let tabBarItemAppearance = UITabBarItem.appearance()
+        tabBarItemAppearance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(hexString: "F06F23")], for: .selected)
+        tabBarItemAppearance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
 
         // Override point for customization after application launch.
         return true
