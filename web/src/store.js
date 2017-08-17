@@ -97,10 +97,10 @@ class Foldable {
 
                 /* Toggle between hiding and showing the active panel */
                 let level2 = this.nextElementSibling;
-                if (level2.style.maxHeight === "150px") {
+                if (level2.style.maxHeight === "1000px") {
                     level2.style.maxHeight = "0px";
                 } else {
-                    level2.style.maxHeight = "150px";
+                    level2.style.maxHeight = "1000px";
                 }
             }
         }
@@ -533,8 +533,15 @@ class StoreInfo {
               baseUrl: "",
             }
         );
+        let graph = new Graph();
+        graph.podiumAnimate();
 
         let foldable = new Foldable("foldableLevel1");
+        document.querySelector('#mkbTab').addEventListener('click', function () {
+          let graph = new Graph();
+          graph.podiumAnimate();
+        });
+
 
       }
     };

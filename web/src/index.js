@@ -55,17 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // let review = new Review();
 //
-//
-// let tab = new TabUiWithAjax(
-//     {
-//       containerName: "storeTabWrapper",
-//       selectedTabName: "selectedTab",
-//       selectedContentName: "selectedContent",
-//       generalTabName: "storeTab",
-//       generalContentPrefix: "#cont-",
-//       baseUrl: "",
-//     }
-// );
 
 
 
@@ -77,8 +66,3 @@ document.addEventListener("DOMContentLoaded", function () {
 // StoreUtil.makeOrder.call(graph);
 
 
-// document.querySelector('#mkbTab').addEventListener('click', function () {
-//   let graph = new Graph();
-//   graph.podiumAnimate();
-// });
-//
