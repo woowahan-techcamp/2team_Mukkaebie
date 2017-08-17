@@ -215,7 +215,8 @@
 
         </div>
         <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab">
-          <input type="hidden" role="uploadcare-uploader" name="먹깨비얼굴" data-crop="disabled" data-preview-step="true" data-images-only="true" />
+          <input type="hidden" role="uploadcare-uploader" name="먹깨비얼굴" data-crop="disabled" data-preview-step="true"
+                 data-images-only="true"/>
           <div id="mkbPreview"></div>
           <div class="menuTabGraph" style="background-color: #fff;">
             <div class="competition-podium well">
@@ -241,10 +242,23 @@
                 </div>
               </div>
             </div>
+
+            <div class="commentBox">
+              <p class="p-center orangeFontColor">수상소감</p>
+              <div id="commentList"></div>
+              <div class="commentWriteBox p-a-1">
+                <p name="userId" value="ygtech">ygtech</p>
+                <textarea id="commentTextInput" type="text" name="content"></textarea>
+                <button id="commentTextInputBtn" class="float-right">작성</button>
+              </div>
+            </div>
+
           </div>
+
+
         </div>
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
-          <p class="p-t-3 orangeFontColor">리뷰 작성하기</p>
+          <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
             <p name="userId" value="ygtech">ygtech</p>
             <textarea id="reviewTextInput" type="text" name="content"></textarea>
