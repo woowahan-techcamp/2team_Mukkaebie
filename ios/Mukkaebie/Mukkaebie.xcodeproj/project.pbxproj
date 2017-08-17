@@ -34,6 +34,8 @@
 		985D09031F3D31DD00A1F475 /* ModelOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09021F3D31DD00A1F475 /* ModelOrders.swift */; };
 		985D09051F3D37A600A1F475 /* NetworkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09041F3D37A600A1F475 /* NetworkUser.swift */; };
 		985D09071F3D37B300A1F475 /* NetworkOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09061F3D37B300A1F475 /* NetworkOrder.swift */; };
+		985D092B1F45135200A1F475 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D092A1F45135200A1F475 /* InfoViewController.swift */; };
+		985D092D1F45135B00A1F475 /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D092C1F45135B00A1F475 /* Info.storyboard */; };
 		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
 		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
 		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
@@ -114,6 +116,8 @@
 		985D09021F3D31DD00A1F475 /* ModelOrders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelOrders.swift; sourceTree = "<group>"; };
 		985D09041F3D37A600A1F475 /* NetworkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUser.swift; sourceTree = "<group>"; };
 		985D09061F3D37B300A1F475 /* NetworkOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOrder.swift; sourceTree = "<group>"; };
+		985D092A1F45135200A1F475 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		985D092C1F45135B00A1F475 /* Info.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
 		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
 		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				98B67CE61F3A9C2A00243F31 /* Extension.swift */,
 				98B67D041F3C7EE700243F31 /* Networking */,
 				98B67D011F3C7BAD00243F31 /* Model */,
+				985D09291F45133400A1F475 /* Info */,
 				985D09011F3C28C500A1F475 /* Menu */,
 				98B67CEA1F3AD55000243F31 /* Main */,
 				98B67CEB1F3AD56400243F31 /* StoreList */,
@@ -256,6 +261,15 @@
 				985D08F51F3AD63000A1F475 /* PieChart.swift */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		985D09291F45133400A1F475 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				985D092A1F45135200A1F475 /* InfoViewController.swift */,
+				985D092C1F45135B00A1F475 /* Info.storyboard */,
+			);
+			name = Info;
 			sourceTree = "<group>";
 		};
 		989D41DC1F43D69800AF2617 /* xib */ = {
@@ -475,6 +489,7 @@
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
 				984428701F3D76390003CDF1 /* hj.png in Resources */,
 				989D41D01F4310CC00AF2617 /* rateTableViewCell.xib in Resources */,
+				985D092D1F45135B00A1F475 /* Info.storyboard in Resources */,
 				984428721F3D76660003CDF1 /* flash.png in Resources */,
 				98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */,
 				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
@@ -692,6 +707,7 @@
 				98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */,
 				989D41CF1F4310CC00AF2617 /* rateTableViewCell.swift in Sources */,
 				98B67D031F3C7EDC00243F31 /* NetworkStore.swift in Sources */,
+				985D092B1F45135200A1F475 /* InfoViewController.swift in Sources */,
 				98B67CFC1F3BDAFA00243F31 /* MukkaebieRankViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
