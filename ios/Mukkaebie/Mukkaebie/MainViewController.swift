@@ -24,9 +24,6 @@ class MainViewController: UIViewController {
         mainCollectionView.allowsSelection = true
         mainCollectionView.allowsSelection = true
         
-        self.navigationController?.navigationBar.isHidden = true
-
-
         // Do any additional setup after loading the view, typically from a nib.
     }
 
