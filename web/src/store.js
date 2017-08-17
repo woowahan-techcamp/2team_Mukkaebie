@@ -97,10 +97,10 @@ class Foldable {
 
                 /* Toggle between hiding and showing the active panel */
                 let level2 = this.nextElementSibling;
-                if (level2.style.maxHeight === "150px") {
+                if (level2.style.maxHeight === "1000px") {
                     level2.style.maxHeight = "0px";
                 } else {
-                    level2.style.maxHeight = "150px";
+                    level2.style.maxHeight = "1000px";
                 }
             }
         }
@@ -398,7 +398,7 @@ class StoreList {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
-        response.slice(0, 50).forEach(function (oneStore) {
+        response.slice(0, 30).forEach(function (oneStore) {
           const store = oneStore;
           const storeId = store.storeId;
           const storeImg = store.storeImg;
@@ -418,6 +418,7 @@ class StoreList {
             var realTarget = e.target.closest(".storeCard")
           }
           let storeInfo = new StoreInfo(realTarget.id);
+
         });
 
       }
@@ -521,6 +522,25 @@ class StoreInfo {
         };
 
         getInfo(storeInfo);
+
+        let tab = new TabUiWithAjax(
+            {
+              containerName: "storeTabWrapper",
+              selectedTabName: "selectedTab",
+              selectedContentName: "selectedContent",
+              generalTabName: "storeTab",
+              generalContentPrefix: "#cont-",
+              baseUrl: "",
+            }
+        );
+        let graph = new Graph();
+        graph.podiumAnimate();
+
+        let foldable = new Foldable("foldableLevel1");
+        document.querySelector('#mkbTab').addEventListener('click', function () {
+          let graph = new Graph();
+          graph.podiumAnimate();
+        });
 
 
       }

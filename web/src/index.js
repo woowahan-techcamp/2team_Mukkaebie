@@ -11,60 +11,16 @@ import {
   StoreUtil
 } from './store.js'
 
-
 import style from './scss/main.scss';
 
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  console.log("loaded!");
 
-
-  // let review = new Review();
-  //
-  //
-  // let tab = new TabUiWithAjax(
-  //     {
-  //       containerName: "storeTabWrapper",
-  //       selectedTabName: "selectedTab",
-  //       selectedContentName: "selectedContent",
-  //       generalTabName: "storeTab",
-  //       generalContentPrefix: "#cont-",
-  //       baseUrl: "",
-  //     }
-  // );
-
-  // let foldable = new Foldable("foldableLevel1");
-  //
-  // let graph = new Graph();
-
-  // StoreUtil.scrollWithCart();
-  //
-  // StoreUtil.makeOrder.call(graph);
-
-  // document.querySelector('#mkbTab').addEventListener('click', function () {
-  //   let graph = new Graph();
-  //   graph.podiumAnimate();
-  // });
-  //
-  // document.querySelector(".mobileTitleButton").addEventListener("click", function () {
-  //   StoreUtil.toggleMobileCategory();
-  // })
-
-  let clickedStore = document.querySelector("#storeListTemplate");
-
-  clickedStore.addEventListener("click", function (e) {
-    if (e.target.className !== "storeCard") {
-      e.target = e.target.closest(".storeCard");
-    }
-    let storeInfo = new StoreInfo(e.target.parentNode.value);
-  });
-
-
+  //첫 화면에 치킨 리스트 인젝트
+  let chickenStoreList = new StoreList("치킨");
+  //카테고리 클릭시 카테고리 리스트 인젝트
   let clickedMenu = document.querySelector(".categoryWrapper");
-
-  console.log(clickedMenu);
-
   clickedMenu.addEventListener("click", function (e) {
     if (e.target.tagName !== "LI") {
       console.log(e.target);
@@ -75,8 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  let clickedMobileMenu = document.querySelector(".mobileCategory");
 
+  // 모바일 뷰에서 카테고리 메뉴 토글
+  document.querySelector(".mobileTitleButton").addEventListener("click", function () {
+    StoreUtil.toggleMobileCategory();
+  })
+  // 모바일 카테고리 클릭시 카테고리 리스트 인젝트
+  let clickedMobileMenu = document.querySelector(".mobileCategory");
   clickedMobileMenu.addEventListener("click", function (e) {
     if (e.target.className !== "col-xs-4 mobileMenu") {
       e.target = e.target.closest(".mobilekMenu");
@@ -84,27 +45,24 @@ document.addEventListener("DOMContentLoaded", function () {
     let categoryList = new StoreList(e.target.attributes.data.value);
   });
 
-  let layoutTarget = document.querySelector('.storeLayout');
 
-  layoutTarget.addEventListener("click", function () {
 
-    if (layoutTarget.children.item(2)) {
-
-      let tab = new TabUiWithAjax(
-          {
-            containerName: "storeTabWrapper",
-            selectedTabName: "selectedTab",
-            selectedContentName: "selectedContent",
-            generalTabName: "storeTab",
-            generalContentPrefix: "#cont-",
-            baseUrl: "",
-          }
-      );
-
-      let foldable = new Foldable("foldableLevel1");
-    }
-  });
 
 });
+
+
+
+
+// let review = new Review();
+//
+
+
+
+// let graph = new Graph();
+
+
+// StoreUtil.scrollWithCart();
+//
+// StoreUtil.makeOrder.call(graph);
 
 
