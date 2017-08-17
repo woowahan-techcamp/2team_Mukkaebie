@@ -23,8 +23,6 @@ class MainViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
-//        self.tabBarController?.tabBar.isHidden = false
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

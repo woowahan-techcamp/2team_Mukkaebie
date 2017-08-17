@@ -42,7 +42,6 @@ class StoreListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-
     }
     
     func getStoreList(_ notification: Notification) {
