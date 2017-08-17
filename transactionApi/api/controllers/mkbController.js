@@ -227,7 +227,7 @@ exports.update_a_store = function(req, res) {
 exports.update_a_store_mkb = function(req, res) {
   Store.update(
       {storeId: req.body.storeId},
-      {$push: {mkb: req.body.mkb}},
+      {$set: {mkb: req.body.mkb}},
       {safe: true, upsert: true},
       function(err, store) {
         if (err)
