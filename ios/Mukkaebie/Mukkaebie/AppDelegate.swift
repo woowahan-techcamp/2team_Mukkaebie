@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var tabBarAppearance = UITabBar.appearance()
         
+        
 //        tabBarAppearance.isHidden = false
 
         // Override point for customization after application launch.
