@@ -382,5 +382,154 @@ class Graph {
 
 }
 
+class StoreList {
 
-export {TabUiWithAjax, Foldable, Review, Graph, StoreUtil}
+  constructor(cat) {
+    this.getStoreList(cat);
+  }
+
+  getStoreList(cat) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+
+        const layoutTarget = document.querySelector(".storeLayout");
+        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div>';
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector(".storeCardRow");
+        renderTarget.innerHTML = "";
+        response.slice(0, 50).forEach(function (oneStore) {
+          const store = oneStore;
+          const storeId = store.storeId;
+          const storeImg = store.storeImg;
+          const storeName = store.storeName;
+          const address = store.address;
+          const tempGrab = document.querySelector("#storeListTemplate").text;
+          const result = eval('`' + tempGrab + '`');
+          renderTarget.innerHTML += result;
+        })
+
+        let clickedStore = document.querySelector(".storeCardRow");
+
+        clickedStore.addEventListener("click", function (e) {
+          if (e.target && e.target.className == "storeCard") {
+            var realTarget = e.target;
+          } else {
+            var realTarget = e.target.closest(".storeCard")
+          }
+          let storeInfo = new StoreInfo(realTarget.id);
+        });
+
+      }
+    };
+    xhttp.open("GET", "http://13.124.179.176:3000/stores/bycategory/" + cat, true);
+    xhttp.send();
+
+  }
+
+}
+
+
+class StoreInfo {
+
+  constructor(id) {
+    this.getStoreInfo(id);
+  }
+
+  getStoreInfo(id) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+
+        const response = JSON.parse(this.responseText);
+        const storeInfo = response[0];
+        const layoutTarget = document.querySelector('.storeLayout');
+
+        function getInfo(store) {
+          const info = store;
+          const storeName = info.storeName;
+          const address = info.address;
+          const ratingCount = info.ratingCount;
+          const minPrice = info.minPrice;
+          const openHour = info.openHour;
+          const telephone = info.telephone;
+          const storeDesc = info.storeDesc;
+
+          let menu = info.menu[0];
+          let menuSet = [];
+
+
+          for (let categoryKey in menu) {
+            const categoryName = categoryKey;
+            const menuArr = menu[categoryKey];
+
+            for (let menuKey in menuArr) {
+              const menuName = menuKey;
+              const menuPrice = menuArr[menuKey];
+
+              menuSet.push([categoryName, menuName, menuPrice]);
+
+            }
+          }
+
+          let markup = '';
+          let categorySet = {};
+
+          menuSet.forEach(function (ele) {
+            if (ele[0] in categorySet) {
+
+              categorySet[ele[0]] += 1;
+
+              markup += `
+
+                <div class="foldableLevel1">${ele[1]}</div>
+                <div class="foldableLevel2">
+                  <p>${ele[2]}</p>
+                </div>
+              `
+
+            } else {
+
+              categorySet[ele[0]] = 1;
+
+              markup += `
+              </div>
+              <div class="foldableLevel1">
+                <h6>${ele[0]}</h6>
+              </div>
+              <div class="foldableLevel2">
+                <div class="foldableLevel1">${ele[1]}</div>
+                <div class="foldableLevel2">
+                  <p>${ele[2]}</p>
+                </div>
+              `
+
+            }
+          });
+
+          markup += `</div>`;
+
+          console.log()
+
+
+          const tempGrab = document.querySelector('#storeDetailTemplate').text;
+          const result = eval('`' + tempGrab + '`');
+          layoutTarget.innerHTML = result;
+          const renderMenu = layoutTarget.querySelector('.foldableMenu');
+          renderMenu.innerHTML = markup;
+
+        };
+
+        getInfo(storeInfo);
+
+
+      }
+    };
+    xhr.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
+    xhr.send();
+  }
+
+}
+
+
+export {TabUiWithAjax, Foldable, Review, Graph, StoreList, StoreInfo, StoreUtil}
