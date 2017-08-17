@@ -31,9 +31,11 @@ class StoreListViewController: UIViewController {
         tableView.allowsSelection = true
         collectionView.allowsSelection = true
         
-        
-        
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
+//        self.navigationController?.navigationBar.isHidden = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         

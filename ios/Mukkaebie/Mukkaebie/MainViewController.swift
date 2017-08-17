@@ -24,6 +24,9 @@ class MainViewController: UIViewController {
         mainCollectionView.allowsSelection = true
         mainCollectionView.allowsSelection = true
         
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -33,16 +36,16 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = false
 
     }
     
-
     override func viewDidAppear(_ animated: Bool) {
 
-
     }
+    
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showStoreList") {
@@ -75,6 +78,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         return header!
 
     }
+    
     
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        selectionRow = indexPath.row

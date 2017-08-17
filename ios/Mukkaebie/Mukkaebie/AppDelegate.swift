@@ -21,12 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarApearace = UINavigationBar.appearance()
         navigationBarApearace.tintColor = UIColor(hexString: "0xffffff")
         navigationBarApearace.barTintColor = UIColor(hexString: "3B342C")
+        navigationBarApearace.clipsToBounds = true
+        
+        let backButtonImage = #imageLiteral(resourceName: "backButton").stretchableImage(withLeftCapWidth: 20, topCapHeight: 10)
+//
+////        let backButtonImage = #imageLiteral(resourceName: "backButton").stretchableImage(withLeftCapWidth: 20, topCapHeight: 22)
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage(backButtonImage, for: .normal, barMetrics: .default)
         
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         let tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.tintColor = UIColor(hexString: "F06F23")
+        tabBarAppearance.barTintColor = UIColor(hexString: "3B342C")
         tabBarAppearance.unselectedItemTintColor = UIColor.white
         let tabBarItemAppearance = UITabBarItem.appearance()
         tabBarItemAppearance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(hexString: "F06F23")], for: .selected)
@@ -57,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
+
 
 
 }
