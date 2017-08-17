@@ -22,13 +22,15 @@ module.exports = function(app) {
       .get(mkb.list_categorical_stores)
 
 
-
   app.route('/stores/delete')
     .post(mkb.delete_a_store);
 
   app.route('/stores/:storeId')
-    .get(mkb.list_a_store)
-    .post(mkb.update_a_store);
+      .get(mkb.list_a_store)
+      .post(mkb.update_a_store);
+
+  app.route('/stores/mkb/:storeId')
+      .post(mkb.update_a_store_mkb);
 
   app.route('/orders')
     .get(mkb.list_all_orders)

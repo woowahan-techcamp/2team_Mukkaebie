@@ -29,7 +29,8 @@ let StoreSchema = new Schema({
   storeDesc: String,
   createdDate: {type: Date,default: Date.now},
   menu: [{}],
-  review: [{}]
+  review: [{}],
+  mkb: [{}]
 }, {versionKey: false});
 
 
