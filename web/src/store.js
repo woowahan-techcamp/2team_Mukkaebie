@@ -414,8 +414,12 @@ class StoreList {
         clickedStore.addEventListener("click", function (e) {
           if (e.target && e.target.className == "storeCard") {
             var realTarget = e.target;
+          } else if(e.target.className == "col-xs-4") {
+            var realTarget = e.target.children[0];
+          } else if(e.target.className == 'col-xs-12') {
+            var realTarget = e.target.children[0].children[0];
           } else {
-            var realTarget = e.target.closest(".storeCard")
+            var realTarget = e.target.closest(".storeCard");
           }
           let storeInfo = new StoreInfo(realTarget.id);
 

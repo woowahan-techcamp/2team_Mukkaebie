@@ -343,13 +343,31 @@
     width: 100%;
 }
 
+.p-title {
+    margin-top: 100px;
+}
+
+/* 먹깨비 코멘트 관련 */
+
+#commentTextInput {
+    width:100%;
+    height:100px;
+    resize: none;
+}
+
+.p-center {
+    text-align: center;
+}
+
+/* 포디움 관련 */
+
 .competition-podium {
     height: 400px;
     position: relative;
     width: 400px;
     top: -100px;
     background: #f6f3ed;
-    margin:100px auto;
+    margin:0 auto;
     overflow: hidden;
 }
 
@@ -477,7 +495,7 @@
 
     .competition-podium {
         width: 350px;
-        margin: 100px auto;
+        margin: 0 auto;
     }
 
     .podium > * {
@@ -515,7 +533,7 @@
 
     .competition-podium {
         width: 90%;
-        margin: 100px auto;
+        margin: 0 auto;
     }
 
     .podium > * {
