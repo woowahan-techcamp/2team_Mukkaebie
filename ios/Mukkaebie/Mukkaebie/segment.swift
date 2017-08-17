@@ -8,67 +8,31 @@
 
 import UIKit
 
-class segment: UITableViewCell {
-    
-    var modelStore : ModelStores?
+enum tabViewEnum {
+    case mukkaebieVC, menuRankVC, infoVC, reviewVC
+}
 
-    @IBOutlet weak var tabSubView: UIView!
-    
-    @IBOutlet weak var tabSubHeight: NSLayoutConstraint!
-    
-    var currentVC : UIViewController?
-    lazy var mukkaebieVC : UIViewController? = {
-        let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
-        let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
-        return mukkaebieVC
-    }()
-    
-    lazy var menuRankVC : UIViewController? = {
-        let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
-        let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
-        return menuRankVC
-    }()
-    
-    lazy var infoVC : UIViewController? = {
-        let storyboard = UIStoryboard(name: "Info", bundle: nil)
-        let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
-        infoVC?.introText = self.modelStore?.storeDesc
-        infoVC?.openHourText = self.modelStore?.openHour
-        infoVC?.telephoneText = self.modelStore?.telephone
-        infoVC?.nameText = self.modelStore?.name
-        return infoVC
-    }()
-    
-    lazy var reviewVC : UITableViewController? = {
-        let storyboard = UIStoryboard(name: "Review", bundle: nil)
-        let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
-        return reviewVC
-    }()
- 
+
+class segment: UITableViewCell {
+        
     @IBAction func customSegmentValueChanged(_ sender: SegmentView) {
-//        var vc : UIViewController?
+        
         switch  sender.selectedSegmentIndex  {
         case 0:
-            tabSubView.addSubview((mukkaebieVC?.view)!)
-            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
-
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":0])
         case 1:
-            tabSubView.addSubview((menuRankVC?.view)!)
-            tabSubHeight.constant = (mukkaebieVC?.view.frame.height)!
-        
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":1])
         case 2:
-            tabSubView.addSubview((infoVC?.view)!)
-            tabSubHeight.constant = (infoVC?.view.frame.height)!
-        
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":2])
         case 3:
-            tabSubView.addSubview((reviewVC?.tableView)!)
-            tabSubHeight.constant = (reviewVC?.tableView.frame.height)!
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":3])
+
         default:
             break
         }
-        
     }
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -79,6 +43,7 @@ class segment: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
     
     
 }

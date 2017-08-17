@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
+
         self.tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
         self.tabBarController?.tabBar.tintColor = UIColor(hexString: "F06F23")
         for item in (self.tabBarController?.tabBar.items)! {
@@ -41,6 +42,12 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showStoreList") {
             let storeListViewController = segue.destination as? StoreListViewController

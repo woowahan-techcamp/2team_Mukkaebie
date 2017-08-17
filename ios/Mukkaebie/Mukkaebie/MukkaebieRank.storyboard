@@ -6,6 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,188 +26,220 @@
                         <viewControllerLayoutGuide type="bottom" id="xpz-MR-hnU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G5O-Um-ko7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="580"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1등 코멘트 이건 수정가능하게 구현" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uLE-gu-RwF">
-                                <rect key="frame" x="33" y="119" width="309" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 세상 먹깨비가 아니다.. ㄷㄷ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD7-oo-ECK">
+                                <rect key="frame" x="0.0" y="42" width="375" height="42"/>
+                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="18"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1등 코멘트 이건 수정가능하게 구현" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uLE-gu-RwF">
+                                <rect key="frame" x="55.5" y="99" width="264" height="30"/>
                                 <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="이 세상 먹깨비가 아니다.. ㄷㄷ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD7-oo-ECK">
-                                <rect key="frame" x="0.0" y="70" width="375" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="18"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jId-8l-hc8">
-                                <rect key="frame" x="21" y="95" width="32" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jId-8l-hc8">
+                                <rect key="frame" x="21" y="75" width="32" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="Gaa-mU-aFe"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="60"/>
                                 <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-Tm-Z0i">
-                                <rect key="frame" x="327" y="95" width="32" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-Tm-Z0i">
+                                <rect key="frame" x="326.5" y="75" width="32.5" height="79"/>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="60"/>
                                 <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test_Kkaebie" translatesAutoresizingMaskIntoConstraints="NO" id="P0r-tc-ECv" userLabel="mukkaebieRank">
-                                <rect key="frame" x="0.0" y="120" width="375" height="461"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O9M-ir-Qe4" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
-                                <rect key="frame" x="124" y="155" width="118" height="118"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ygNa.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="i68-20-dDV" userLabel="firstProfile">
-                                        <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="59"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EL-27-7iz">
-                                <rect key="frame" x="212" y="241" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="profileSettingButton"/>
-                                <connections>
-                                    <action selector="firstProfileImagePicker:" destination="Vny-Ij-fKP" eventType="touchUpInside" id="kGt-bO-v9S"/>
-                                </connections>
-                            </button>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogc-em-WqU" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
-                                <rect key="frame" x="22" y="257" width="86" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hj.png" translatesAutoresizingMaskIntoConstraints="NO" id="oGp-KY-J0V" userLabel="secondProfile">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="86"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="43"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="먹깨비 랭킹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYL-Ar-HOG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="먹깨비 랭킹" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYL-Ar-HOG">
                                 <rect key="frame" x="49" y="22" width="110" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sYL-Ar-HOG" secondAttribute="height" multiplier="110:21" id="22h-7G-uHo"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
-                                <rect key="frame" x="16" y="19" width="26" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
+                                <rect key="frame" x="15" y="16" width="26" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eau-yw-rW9" secondAttribute="height" multiplier="26:25" id="FYH-OO-z0J"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJK-Ez-mgv">
-                                <rect key="frame" x="124" y="391" width="127" height="189"/>
-                                <color key="backgroundColor" red="0.96831368610000002" green="1" blue="0.53181353990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="189" id="NTX-Yj-fmS"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9z2-bu-EOD">
-                                <rect key="frame" x="20" y="470" width="104" height="110"/>
-                                <color key="backgroundColor" red="1" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="pCG-pf-bGn"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCe-lr-35m">
-                                <rect key="frame" x="251" y="458" width="104" height="122"/>
-                                <color key="backgroundColor" red="0.80065021569999995" green="0.92156862750000001" blue="0.90883073950000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="122" id="TBl-mB-QgH"/>
-                                </constraints>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-mh-9gI" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
-                                <rect key="frame" x="258" y="257" width="86" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DuR-uh-roo" userLabel="View2">
+                                <rect key="frame" x="10" y="195" width="110.5" height="345"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="q01-VE-Imk" userLabel="thirdProfile">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="86"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="secondGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="gUt-zq-N3J">
+                                        <rect key="frame" x="0.0" y="28" width="122" height="317"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogc-em-WqU" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="13" y="3" width="86" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hj.png" translatesAutoresizingMaskIntoConstraints="NO" id="oGp-KY-J0V" userLabel="secondProfile">
+                                                <rect key="frame" x="0.0" y="0.0" width="86" height="86"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="43"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="43"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="345" id="OTR-wP-QAJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oJ-5w-P1E" userLabel="View3">
+                                <rect key="frame" x="245.5" y="246" width="113.5" height="294"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thirdGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="QC8-3a-5tl">
+                                        <rect key="frame" x="0.0" y="28" width="109" height="266"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-mh-9gI" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="7" y="6" width="85" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash.png" translatesAutoresizingMaskIntoConstraints="NO" id="q01-VE-Imk" userLabel="thirdProfile">
+                                                <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="43"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="294" id="AmJ-Ao-yVO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9N7-Wg-pWv" userLabel="View1">
+                                <rect key="frame" x="120.5" y="126" width="134" height="414"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="firstGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-z9-5vb">
+                                        <rect key="frame" x="0.0" y="2" width="134" height="414"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O9M-ir-Qe4" customClass="CircleView" customModule="Mukkaebie" customModuleProvider="target">
+                                        <rect key="frame" x="24" y="32" width="90" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ygNa.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="i68-20-dDV" userLabel="firstProfile">
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="59"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EL-27-7iz">
+                                        <rect key="frame" x="94" y="86" width="20" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="profileSettingButton"/>
+                                        <connections>
+                                            <action selector="firstProfileImagePicker:" destination="Vny-Ij-fKP" eventType="touchUpInside" id="kGt-bO-v9S"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="414" id="NOn-Ux-uL4"/>
+                                    <constraint firstAttribute="width" constant="134" id="q2k-sq-FDK"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pCe-lr-35m" firstAttribute="leading" secondItem="UJK-Ez-mgv" secondAttribute="trailing" id="GW9-lW-r5n"/>
-                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="9z2-bu-EOD" secondAttribute="bottom" id="I9r-SV-G0r"/>
-                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="centerX" secondItem="G5O-Um-ko7" secondAttribute="centerX" id="JyS-Hb-DIF"/>
-                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="pCe-lr-35m" secondAttribute="bottom" id="SwM-yw-Hwx"/>
-                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="9z2-bu-EOD" secondAttribute="trailing" id="ZBj-xm-t5p"/>
-                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="UJK-Ez-mgv" secondAttribute="bottom" id="mxy-cW-ilL"/>
-                            <constraint firstItem="UJK-Ez-mgv" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="124" id="tVN-jS-yBY"/>
-                            <constraint firstAttribute="trailing" secondItem="pCe-lr-35m" secondAttribute="trailing" constant="20" id="uva-HF-gFg"/>
-                            <constraint firstItem="9z2-bu-EOD" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="20" id="yOn-Ao-uq9"/>
+                            <constraint firstItem="jId-8l-hc8" firstAttribute="trailing" secondItem="uLE-gu-RwF" secondAttribute="leading" constant="-2.5" id="9WZ-4B-Gie"/>
+                            <constraint firstItem="iD7-oo-ECK" firstAttribute="top" secondItem="sYL-Ar-HOG" secondAttribute="bottom" constant="3" id="AI6-RH-9hj"/>
+                            <constraint firstItem="uLE-gu-RwF" firstAttribute="top" secondItem="G5O-Um-ko7" secondAttribute="topMargin" constant="99" id="BYT-Vy-MwZ"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="7oJ-5w-P1E" secondAttribute="bottom" id="Clx-H6-cbU"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="DuR-uh-roo" secondAttribute="bottom" id="Eg0-6N-tTR"/>
+                            <constraint firstItem="iD7-oo-ECK" firstAttribute="centerX" secondItem="9N7-Wg-pWv" secondAttribute="centerX" id="F4f-vi-ZBX"/>
+                            <constraint firstItem="sYL-Ar-HOG" firstAttribute="top" secondItem="UYW-pH-d5r" secondAttribute="bottom" constant="2" id="Ljs-ID-NxD"/>
+                            <constraint firstItem="aAg-Tm-Z0i" firstAttribute="trailing" secondItem="G5O-Um-ko7" secondAttribute="trailingMargin" id="OaV-cz-u5E"/>
+                            <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="9N7-Wg-pWv" secondAttribute="bottom" id="Ujv-Cg-eVj"/>
+                            <constraint firstItem="9N7-Wg-pWv" firstAttribute="leading" secondItem="DuR-uh-roo" secondAttribute="trailing" id="XP1-JP-vCV"/>
+                            <constraint firstItem="jId-8l-hc8" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leadingMargin" constant="5" id="cL6-pO-LUt"/>
+                            <constraint firstItem="uLE-gu-RwF" firstAttribute="top" secondItem="iD7-oo-ECK" secondAttribute="bottom" constant="15" id="eQw-rB-wgZ"/>
+                            <constraint firstItem="9N7-Wg-pWv" firstAttribute="centerX" secondItem="G5O-Um-ko7" secondAttribute="centerX" id="fhS-v7-lbH"/>
+                            <constraint firstAttribute="trailing" secondItem="7oJ-5w-P1E" secondAttribute="trailing" constant="16" id="g17-Dd-I8p"/>
+                            <constraint firstItem="eau-yw-rW9" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="15" id="igR-bB-aXI"/>
+                            <constraint firstItem="jId-8l-hc8" firstAttribute="baseline" secondItem="aAg-Tm-Z0i" secondAttribute="baseline" id="imx-nx-lWH"/>
+                            <constraint firstItem="iD7-oo-ECK" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" id="jGh-W6-1df"/>
+                            <constraint firstItem="9N7-Wg-pWv" firstAttribute="trailing" secondItem="7oJ-5w-P1E" secondAttribute="leading" constant="9" id="kM6-VA-u2Y"/>
+                            <constraint firstItem="aAg-Tm-Z0i" firstAttribute="leading" secondItem="uLE-gu-RwF" secondAttribute="trailing" constant="7" id="mCw-RF-TA8"/>
+                            <constraint firstItem="jId-8l-hc8" firstAttribute="centerY" secondItem="uLE-gu-RwF" secondAttribute="centerY" id="mGv-xP-Auu"/>
+                            <constraint firstItem="DuR-uh-roo" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="10" id="oM2-aj-RIs"/>
+                            <constraint firstAttribute="trailing" secondItem="uLE-gu-RwF" secondAttribute="trailing" constant="55.5" id="p7e-vT-7Gx"/>
+                            <constraint firstItem="iD7-oo-ECK" firstAttribute="centerX" secondItem="uLE-gu-RwF" secondAttribute="centerX" id="pDF-eZ-Q16"/>
+                            <constraint firstItem="sYL-Ar-HOG" firstAttribute="leading" secondItem="eau-yw-rW9" secondAttribute="trailing" constant="8" id="rC2-8N-vQD"/>
+                            <constraint firstItem="uLE-gu-RwF" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" constant="55.5" id="vaR-MS-tH2"/>
+                            <constraint firstItem="jId-8l-hc8" firstAttribute="firstBaseline" secondItem="aAg-Tm-Z0i" secondAttribute="firstBaseline" id="xWB-Cs-LNQ"/>
+                            <constraint firstItem="eau-yw-rW9" firstAttribute="centerY" secondItem="sYL-Ar-HOG" secondAttribute="centerY" constant="-2" id="ygk-CC-qcA"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="580"/>
+                    <size key="freeformSize" width="375" height="540"/>
                     <connections>
-                        <outlet property="firstAward" destination="UJK-Ez-mgv" id="O4y-jf-LNp"/>
-                        <outlet property="firstBottomConstraint" destination="mxy-cW-ilL" id="Ra0-rj-yzb"/>
+                        <outlet property="firstAward" destination="9N7-Wg-pWv" id="VSp-1Q-zPC"/>
                         <outlet property="firstMukkaebieImage" destination="i68-20-dDV" id="csa-bA-QGw"/>
                         <outlet property="mukkaebieCommentTextField" destination="uLE-gu-RwF" id="kTn-w0-1nC"/>
                         <outlet property="mukkaebieMessage" destination="iD7-oo-ECK" id="4lL-hD-jLh"/>
-                        <outlet property="secondAward" destination="9z2-bu-EOD" id="qhH-vb-LNO"/>
-                        <outlet property="secondBottomConstraint" destination="I9r-SV-G0r" id="B4c-vs-YrE"/>
+                        <outlet property="secondAward" destination="DuR-uh-roo" id="95U-Nl-djM"/>
                         <outlet property="secondMukkaebieImage" destination="oGp-KY-J0V" id="Bah-mG-p17"/>
-                        <outlet property="thirdAward" destination="pCe-lr-35m" id="rjR-MY-l0V"/>
-                        <outlet property="thirdBottomConstraint" destination="SwM-yw-Hwx" id="N86-ra-IW8"/>
+                        <outlet property="thirdAward" destination="7oJ-5w-P1E" id="8pm-JW-rTK"/>
                         <outlet property="thirdMukkaebieImage" destination="q01-VE-Imk" id="mql-jB-YXj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9x-5m-HJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="26.399999999999999" y="-13.043478260869566"/>
+            <point key="canvasLocation" x="26.399999999999999" y="-13.493253373313344"/>
         </scene>
     </scenes>
     <resources>
+        <image name="firstGrade.png" width="309" height="851"/>
         <image name="flash.png" width="1110" height="854"/>
         <image name="hj.png" width="616" height="694"/>
         <image name="mukkeabieRankIcon" width="26" height="25"/>
         <image name="profileSettingButton" width="20" height="20"/>
-        <image name="test_Kkaebie" width="356" height="373"/>
+        <image name="secondGrade.png" width="235" height="637"/>
+        <image name="thirdGrade.png" width="205" height="486"/>
         <image name="ygNa.jpeg" width="2592" height="1944"/>
     </resources>
 </document>

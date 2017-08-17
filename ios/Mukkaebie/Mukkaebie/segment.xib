@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="581" id="KGk-i7-Jjw" customClass="segment" customModule="Mukkaebie" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="581"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="KGk-i7-Jjw" customClass="segment" customModule="Mukkaebie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="580.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvI-3f-lCm" customClass="SegmentView" customModule="Mukkaebie" customModuleProvider="target">
@@ -46,29 +46,14 @@
                             <action selector="customSegmentValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="eP5-5K-GIj"/>
                         </connections>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIE-eM-rce">
-                        <rect key="frame" x="0.0" y="44" width="375" height="537"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="537" id="p1l-bX-ma2"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="uIE-eM-rce" secondAttribute="trailing" id="6bt-hv-GDX"/>
                     <constraint firstItem="bvI-3f-lCm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EQy-ZK-HRH"/>
                     <constraint firstItem="bvI-3f-lCm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M3F-NK-Usg"/>
-                    <constraint firstItem="uIE-eM-rce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="b3m-lg-geb"/>
-                    <constraint firstItem="bvI-3f-lCm" firstAttribute="bottom" secondItem="uIE-eM-rce" secondAttribute="top" id="fMV-Za-7xi"/>
-                    <constraint firstAttribute="bottom" secondItem="uIE-eM-rce" secondAttribute="bottom" id="qna-ha-zpw"/>
                     <constraint firstAttribute="trailing" secondItem="bvI-3f-lCm" secondAttribute="trailing" id="xtK-yc-AIs"/>
                 </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="tabSubHeight" destination="p1l-bX-ma2" id="0H3-ue-N4S"/>
-                <outlet property="tabSubView" destination="uIE-eM-rce" id="dHX-5g-OUk"/>
-            </connections>
-            <point key="canvasLocation" x="66.5" y="322.5"/>
+            <point key="canvasLocation" x="66.5" y="54.5"/>
         </tableViewCell>
     </objects>
 </document>

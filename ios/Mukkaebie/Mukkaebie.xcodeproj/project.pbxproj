@@ -10,6 +10,9 @@
 		2A58678D7376A284226A5EDD /* Pods_MukkaebieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88962D59A7166B547120BF0B /* Pods_MukkaebieTests.framework */; };
 		2CFA42A664EFC0A08F1EFD26 /* Pods_MukkaebieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC58A544ECB8332F9F7B2C7F /* Pods_MukkaebieUITests.framework */; };
 		68C5E505583E92AEE4AEE364 /* Pods_Mukkaebie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A03405F61363D7DF6540C308 /* Pods_Mukkaebie.framework */; };
+		981AAB181F4470C600CC443A /* firstGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB151F4470C600CC443A /* firstGrade.png */; };
+		981AAB191F4470C600CC443A /* secondGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB161F4470C600CC443A /* secondGrade.png */; };
+		981AAB1A1F4470C600CC443A /* thirdGrade.png in Resources */ = {isa = PBXBuildFile; fileRef = 981AAB171F4470C600CC443A /* thirdGrade.png */; };
 		983248151F32FD2C00ABFBFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248141F32FD2C00ABFBFB /* AppDelegate.swift */; };
 		983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248161F32FD2C00ABFBFB /* MainViewController.swift */; };
 		983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248181F32FD2C00ABFBFB /* SecondViewController.swift */; };
@@ -43,6 +46,7 @@
 		985D09391F45244600A1F475 /* ReviewButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09381F45244600A1F475 /* ReviewButtonTableViewCell.swift */; };
 		985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */; };
 		985D093D1F45258E00A1F475 /* review.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 985D093C1F45258E00A1F475 /* review.jpeg */; };
+		985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */; };
 		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
 		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
 		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
@@ -93,6 +97,9 @@
 		481072685893B70826DCA514 /* Pods-MukkaebieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MukkaebieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MukkaebieUITests/Pods-MukkaebieUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7ADF07EE5C4A531297CBBB77 /* Pods-Mukkaebie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mukkaebie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mukkaebie/Pods-Mukkaebie.release.xcconfig"; sourceTree = "<group>"; };
 		88962D59A7166B547120BF0B /* Pods_MukkaebieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MukkaebieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		981AAB151F4470C600CC443A /* firstGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstGrade.png; sourceTree = "<group>"; };
+		981AAB161F4470C600CC443A /* secondGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = secondGrade.png; sourceTree = "<group>"; };
+		981AAB171F4470C600CC443A /* thirdGrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thirdGrade.png; sourceTree = "<group>"; };
 		983248111F32FD2C00ABFBFB /* Mukkaebie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mukkaebie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		983248141F32FD2C00ABFBFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		983248161F32FD2C00ABFBFB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		985D09381F45244600A1F475 /* ReviewButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewButtonTableViewCell.swift; sourceTree = "<group>"; };
 		985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImageTableViewCell.swift; sourceTree = "<group>"; };
 		985D093C1F45258E00A1F475 /* review.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = review.jpeg; sourceTree = "<group>"; };
+		985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSubviewTableViewCell.swift; sourceTree = "<group>"; };
 		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
 		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
 		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
@@ -237,8 +245,12 @@
 				98B67CEB1F3AD56400243F31 /* StoreList */,
 				98B67CEC1F3AD57C00243F31 /* StoreDetail */,
 				98B67CDC1F39C8D600243F31 /* bm_ad2.png */,
+				9844286F1F3D76390003CDF1 /* hj.png */,
 				984428711F3D76660003CDF1 /* flash.png */,
 				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
+				981AAB151F4470C600CC443A /* firstGrade.png */,
+				981AAB161F4470C600CC443A /* secondGrade.png */,
+				981AAB171F4470C600CC443A /* thirdGrade.png */,
 				985D093C1F45258E00A1F475 /* review.jpeg */,
 				9832481D1F32FD2C00ABFBFB /* Assets.xcassets */,
 				9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */,
@@ -355,11 +367,11 @@
 			isa = PBXGroup;
 			children = (
 				989D41DC1F43D69800AF2617 /* xib */,
-				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 				989D41C71F43046B00AF2617 /* StoreTestViewController.swift */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
 				989D41DA1F43D68000AF2617 /* SegmentView.swift */,
-				9844286F1F3D76390003CDF1 /* hj.png */,
+				985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */,
+				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 			);
 			name = StoreDetail;
 			sourceTree = "<group>";
@@ -517,11 +529,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981AAB1A1F4470C600CC443A /* thirdGrade.png in Resources */,
+				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
+				981AAB191F4470C600CC443A /* secondGrade.png in Resources */,
 				985D09301F4523DD00A1F475 /* Review.storyboard in Resources */,
 				985D09371F45243400A1F475 /* ReviewImageTableViewCell.xib in Resources */,
 				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
 				985D09351F45242600A1F475 /* ReviewButtonTableViewCell.xib in Resources */,
 				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
+				981AAB181F4470C600CC443A /* firstGrade.png in Resources */,
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
 				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
 				989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */,
@@ -721,6 +737,7 @@
 				989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */,
 				983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */,
 				98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */,
+				985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */,
 				985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */,
 				985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */,
 				985D09321F4523EF00A1F475 /* ReviewTableViewController.swift in Sources */,
