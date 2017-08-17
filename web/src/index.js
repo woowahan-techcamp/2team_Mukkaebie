@@ -13,7 +13,7 @@ import {
 import style from './scss/main.scss';
 
 
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
 
 
   let review = new Review();
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   let clickedStore = document.querySelector("#storeListTemplate");
+
   clickedStore.addEventListener("click", function (e) {
     if (e.target.className !== "storeCard") {
       e.target = e.target.closest(".storeCard");
@@ -56,5 +57,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-});
 

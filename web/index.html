@@ -207,32 +207,11 @@
             </figure>
           </div>
           <!--그래프 끝-->
-          <div class="foldableLevel1">
-            <h6>순살세트</h6>
-            <p>순살에 대한 설명이 들어갑니다.</p>
-          </div>
-          <div class="foldableLevel2">
-            <div class="foldableLevel1">순살세트</div>
-            <div class="foldableLevel2">
-              <p>Lorem ipsum..</p>
-            </div>
+
+          <div class="foldableMenu">
+
           </div>
 
-          <div class="foldableLevel1">
-            <h6>순살세트</h6>
-            <p>순살에 대한 설명이 들어갑니다.</p>
-          </div>
-          <div class="foldableLevel2">
-            <p>Lorem ipsum...</p>
-          </div>
-
-          <div class="foldableLevel1">
-            <h6>순살세트</h6>
-            <p>순살에 대한 설명이 들어갑니다.</p>
-          </div>
-          <div class="foldableLevel2">
-            <p>Lorem ipsum...</p>
-          </div>
 
         </div>
         <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab">
@@ -447,9 +426,70 @@
             const openHour = info.openHour;
             const telephone = info.telephone;
             const storeDesc = info.storeDesc;
+
+            let menu = info.menu[0];
+            let menuSet = [];
+
+
+            for (let categoryKey in menu) {
+              const categoryName = categoryKey;
+              const menuArr = menu[categoryKey];
+
+              for (let menuKey in menuArr) {
+                const menuName = menuKey;
+                const menuPrice = menuArr[menuKey];
+
+                menuSet.push([categoryName, menuName, menuPrice]);
+
+              }
+            }
+
+            let markup = '';
+            let categorySet = {};
+
+            menuSet.forEach(function (ele) {
+              if (ele[0] in categorySet) {
+
+                categorySet[ele[0]] += 1;
+
+                markup += `
+
+                <div class="foldableLevel1">${ele[1]}</div>
+                <div class="foldableLevel2">
+                  <p>${ele[2]}</p>
+                </div>
+              `
+
+              } else {
+
+                categorySet[ele[0]] = 1;
+
+                markup += `
+              </div>
+              <div class="foldableLevel1">
+                <h6>${ele[0]}</h6>
+              </div>
+              <div class="foldableLevel2">
+                <div class="foldableLevel1">${ele[1]}</div>
+                <div class="foldableLevel2">
+                  <p>${ele[2]}</p>
+                </div>
+              `
+
+              }
+            });
+
+            markup += `</div>`;
+
+            console.log()
+
+
             const tempGrab = document.querySelector('#storeDetailTemplate').text;
             const result = eval('`' + tempGrab + '`');
             layoutTarget.innerHTML = result;
+            const renderMenu = layoutTarget.querySelector('.foldableMenu');
+            renderMenu.innerHTML = markup;
+
           };
 
           getInfo(storeInfo);
@@ -543,6 +583,31 @@
     }
   }
 
+  class Foldable {
+    constructor(level1Class) {
+      this.level1 = document.getElementsByClassName(level1Class);
+      this.makeFoldable();
+    }
+
+    makeFoldable() {
+      for (let i = 0; i < this.level1.length; i++) {
+        this.level1[i].onclick = function () {
+          /* Toggle between adding and removing the "active" class,
+          to highlight the button that controls the panel */
+          this.classList.toggle("active");
+
+          /* Toggle between hiding and showing the active panel */
+          let level2 = this.nextElementSibling;
+          if (level2.style.maxHeight === "150px") {
+            level2.style.maxHeight = "0px";
+          } else {
+            level2.style.maxHeight = "150px";
+          }
+        }
+      }
+    }
+  }
+
   var layoutTarget = document.querySelector('.storeLayout');
   layoutTarget.addEventListener("click", function () {
     if (layoutTarget.children.item(2)) {
@@ -557,6 +622,8 @@
             baseUrl: "",
           }
       );
+
+      let foldable = new Foldable("foldableLevel1");
     }
   })
 
