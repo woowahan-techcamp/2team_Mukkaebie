@@ -14,16 +14,16 @@ class StoreListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let networkStore = NetworkStore()
-    
     let foodCategoryArray = ["치킨","중식","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
     let foodCategoryArrayForURL = ["치킨","중국집","피자","한식","족발","야식","찜탕","일식","도시락","패스트푸드"]
-//    var storeList = [[String : Any]]()
+    
+    var category : String!
+    let networkStore = NetworkStore()
     var storeList = [ModelStores]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "치킨췤췤"
+        self.navigationItem.title = foodCategoryArray[foodCategoryArrayForURL.index(of: category)!]
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
@@ -37,7 +37,7 @@ class StoreListViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         
-        networkStore.getStoreList(category: "치킨")
+        networkStore.getStoreList(category: category)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,10 +54,10 @@ class StoreListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if collectionView.subviews.filter({$0.tag == -1}).count == 0 {
-            let indexPath = IndexPath(row: 0, section: 0)
-            let selector = UIView(frame: CGRect(x: 0, y: 30, width: (collectionView.cellForItem(at: indexPath)?.frame.size.width)!, height: 5))
+            let indexPath = IndexPath(row: foodCategoryArrayForURL.index(of: category)!, section: 0)
+            let width = collectionView.cellForItem(at: indexPath) != nil ? collectionView.cellForItem(at: indexPath)?.frame.size.width : self.collectionView(collectionView, cellForItemAt: indexPath).frame.size.width
+            let selector = UIView(frame: CGRect(x: 0, y: 30, width: width!, height: 5))
             selector.backgroundColor = .white
             selector.tag = -1
             collectionView.addSubview(selector)
@@ -65,7 +65,6 @@ class StoreListViewController: UIViewController {
             collectionView(collectionView, didSelectItemAt: indexPath)
         }
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,9 +95,11 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StoreListTableViewCell
         cell.storeNameLabel.text = storeList[indexPath.row].name as String
-        let url = URL(string: storeList[indexPath.row].imgURL)!
-        
-        cell.storeLogoImage.af_setImage(withURL: url)
+        if let url = URL(string: storeList[indexPath.row].imgURL) {
+            cell.storeLogoImage.af_setImage(withURL: url)
+        } else {
+            cell.storeLogoImage.image = #imageLiteral(resourceName:"woowatech")
+        }
         cell.reviewNumaberLabel.text = "최근리뷰 10  최근사장님댓글 33"
         return cell
     }
@@ -124,16 +125,18 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
         collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
         let selector = collectionView.subviews.filter({$0.tag == -1})
-
+        
+        let cell = collectionView.cellForItem(at: indexPath) != nil ? collectionView.cellForItem(at: indexPath) : self.collectionView(collectionView, cellForItemAt: indexPath)
+        
         if selector.count == 1 {
-            selector[0].frame.size.width = (collectionView.cellForItem(at: indexPath)?.frame.width)!
-            let selectorStart = collectionView.cellForItem(at: indexPath)?.frame.minX
+            selector[0].frame.size.width = (cell?.frame.width)!
+            let selectorStart = cell?.frame.minX
             UIView.animate(withDuration: 0.3, animations: {
                         selector[0].frame.origin.x = selectorStart!
             })
         }
         
-        networkStore.getStoreList(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (collectionView.cellForItem(at: indexPath) as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!])
+        networkStore.getStoreList(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!])
     }
     
 }
