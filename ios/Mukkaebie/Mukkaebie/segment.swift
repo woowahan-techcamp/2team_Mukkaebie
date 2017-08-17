@@ -38,6 +38,12 @@ class segment: UITableViewCell {
         infoVC?.nameText = self.modelStore?.name
         return infoVC
     }()
+    
+    lazy var reviewVC : UITableViewController? = {
+        let storyboard = UIStoryboard(name: "Review", bundle: nil)
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
+        return reviewVC
+    }()
  
     @IBAction func customSegmentValueChanged(_ sender: SegmentView) {
 //        var vc : UIViewController?
@@ -53,6 +59,10 @@ class segment: UITableViewCell {
         case 2:
             tabSubView.addSubview((infoVC?.view)!)
             tabSubHeight.constant = (infoVC?.view.frame.height)!
+        
+        case 3:
+            tabSubView.addSubview((reviewVC?.tableView)!)
+            tabSubHeight.constant = (reviewVC?.tableView.frame.height)!
             
         default:
             break
