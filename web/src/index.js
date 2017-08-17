@@ -10,14 +10,10 @@ import {
 } from './store.js'
 
 
-
-
 import style from './scss/main.scss';
 
 
-
-
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
 
   let review = new Review();
@@ -38,18 +34,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
   let graph = new Graph();
 
-  StoreUtil.scrollWithCart();
+  // StoreUtil.scrollWithCart();
+  //
+  // StoreUtil.makeOrder.call(graph);
 
-  StoreUtil.makeOrder.call(graph);
-
-  document.querySelector('#mkbTab').addEventListener('click', function(){
+  document.querySelector('#mkbTab').addEventListener('click', function () {
     let graph = new Graph();
     graph.podiumAnimate();
   });
 
-  document.querySelector(".mobileTitleButton").addEventListener("click", function(){
+  document.querySelector(".mobileTitleButton").addEventListener("click", function () {
     StoreUtil.toggleMobileCategory();
   })
+
+  let clickedStore = document.querySelector("#storeListTemplate");
+  clickedStore.addEventListener("click", function (e) {
+    if (e.target.className !== "storeCard") {
+      e.target = e.target.closest(".storeCard");
+    }
+    let storeInfo = new StoreInfo(e.target.parentNode.value);
+  });
 
 
 });
