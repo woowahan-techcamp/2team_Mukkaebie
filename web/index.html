@@ -10,14 +10,6 @@
     <link rel="stylesheet" type="text/css" href="./dist/style.css">
 </head>
 
-<style>
-    .uploadcare--widget__text{
-        display: none;
-    }
-    .uploadcare--powered-by{
-        display: none;
-    }
-</style>
 
 <body>
 <script id="reviewTemplate" type="text/template">
@@ -311,7 +303,7 @@
                            data-crop="disabled"
                            data-preview-step="true"
                            data-images-only="true" />
-                    <div id="mkbPreview" style="width:100px;height:100px;">image</div>
+                    <div id="mkbPreview"></div>
                     <div class="menuTabGraph" style="background-color: #fff;">
                         <div class="competition-podium well">
                             <div class="podium-block gold">
@@ -356,12 +348,10 @@
 <div class="row footer m-x-0"></div>
 
 <script src="./dist/index.bundle.js"></script>
-<script src="./dist/upload.js"></script>
+<script src="./src/upload.js"></script>
 <script>
-    function getImgUrl(){
-      document.querySelector("#mkbPreview").style.backgroundImage = 'url('+document.querySelector(".uploadcare--media img").src+')';
-      document.querySelector(".uploadcare--widget__text").addEventListener("onchange", function(){console.log("changing")})
-    }
+
+
 
 
 
