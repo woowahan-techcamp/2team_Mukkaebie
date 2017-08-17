@@ -33,7 +33,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
 //            orderByMenu[menu["foodNm"] as! String] = 0
 //        }
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
 //        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
@@ -87,6 +86,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         else if section == 3 {
             let tapView = Bundle.main.loadNibNamed("segment", owner: self, options: nil)?.first as! segment
+            tapView.modelStore = modelStore
             return tapView
         }
         return self.view
