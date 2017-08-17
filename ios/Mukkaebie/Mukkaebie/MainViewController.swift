@@ -26,8 +26,13 @@ class MainViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
-        
-        
+        self.tabBarController?.tabBar.unselectedItemTintColor = UIColor.white
+        self.tabBarController?.tabBar.tintColor = UIColor(hexString: "F06F23")
+        for item in (self.tabBarController?.tabBar.items)! {
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor(hexString: "F06F23")], for: .selected)
+            item.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .normal)
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
     }
 
