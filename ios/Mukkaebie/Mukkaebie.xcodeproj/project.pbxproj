@@ -46,6 +46,7 @@
 		985D09391F45244600A1F475 /* ReviewButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D09381F45244600A1F475 /* ReviewButtonTableViewCell.swift */; };
 		985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */; };
 		985D093D1F45258E00A1F475 /* review.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 985D093C1F45258E00A1F475 /* review.jpeg */; };
+		985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */; };
 		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
 		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
 		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
@@ -138,6 +139,7 @@
 		985D09381F45244600A1F475 /* ReviewButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewButtonTableViewCell.swift; sourceTree = "<group>"; };
 		985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImageTableViewCell.swift; sourceTree = "<group>"; };
 		985D093C1F45258E00A1F475 /* review.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = review.jpeg; sourceTree = "<group>"; };
+		985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSubviewTableViewCell.swift; sourceTree = "<group>"; };
 		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
 		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
 		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				989D41C71F43046B00AF2617 /* StoreTestViewController.swift */,
 				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
 				989D41DA1F43D68000AF2617 /* SegmentView.swift */,
+				985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */,
 				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
 			);
 			name = StoreDetail;
@@ -734,6 +737,7 @@
 				989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */,
 				983248191F32FD2C00ABFBFB /* SecondViewController.swift in Sources */,
 				98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */,
+				985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */,
 				985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */,
 				985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */,
 				985D09321F4523EF00A1F475 /* ReviewTableViewController.swift in Sources */,
