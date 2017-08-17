@@ -23,7 +23,7 @@ class StoreListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "치킨췤췤"
+        self.navigationItem.title = foodCategoryArray[foodCategoryArrayForURL.index(of: category)!]
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
@@ -89,9 +89,11 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StoreListTableViewCell
         cell.storeNameLabel.text = storeList[indexPath.row].name as String
-        let url = URL(string: storeList[indexPath.row].imgURL)!
-        
-        cell.storeLogoImage.af_setImage(withURL: url)
+        if let url = URL(string: storeList[indexPath.row].imgURL) {
+            cell.storeLogoImage.af_setImage(withURL: url)
+        } else {
+            cell.storeLogoImage.image = #imageLiteral(resourceName:"woowatech")
+        }
         cell.reviewNumaberLabel.text = "최근리뷰 10  최근사장님댓글 33"
         return cell
     }
