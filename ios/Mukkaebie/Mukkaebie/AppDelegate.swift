@@ -24,8 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
-
         
+        var tabBarAppearance = UITabBar.appearance()
+        
+//        tabBarAppearance.isHidden = false
+
         // Override point for customization after application launch.
         return true
     }

@@ -31,11 +31,18 @@ class StoreListViewController: UIViewController {
         tableView.allowsSelection = true
         collectionView.allowsSelection = true
         
+        
+        
         self.navigationController?.navigationBar.isHidden = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         
         networkStore.getStoreList(category: "치킨")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     
     func getStoreList(_ notification: Notification) {
