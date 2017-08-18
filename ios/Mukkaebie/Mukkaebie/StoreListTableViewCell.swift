@@ -29,6 +29,8 @@ class StoreListTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         storeLogoImage.layer.cornerRadius = storeLogoImage.frame.height / 2
+        storeLogoImage.layer.borderColor = UIColor(hexString: "eeeeee").cgColor
+        storeLogoImage.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

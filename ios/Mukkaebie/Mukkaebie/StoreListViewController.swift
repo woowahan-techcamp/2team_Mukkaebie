@@ -150,8 +150,6 @@ extension StoreListViewController : UICollectionViewDelegateFlowLayout {
         let size = (foodCategoryArray[indexPath.row] as NSString).size(attributes: nil)
         return CGSize(width: size.width + 50, height: 35)
         
-        //        let width = Double((foodCategoryArray[indexPath.row] as String).unicodeScalars.count) * 15 + 10
-        //        return CGSize(width: width, height: 35)
     }
     
     
