@@ -14,6 +14,9 @@ class MainViewController: UIViewController {
     
     let foodCategoryArray = ["치킨","중국집","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
     let foodCategoryArrayForURL = ["치킨","중국집","피자","한식","족발","야식","찜탕","일식","도시락","패스트푸드"]
+    let buttonArray = [#imageLiteral(resourceName: "ios_1_20140423"), #imageLiteral(resourceName: "ios_2_20140423"), #imageLiteral(resourceName: "ios_3_20140423"), #imageLiteral(resourceName: "ios_38_20170420"),#imageLiteral(resourceName: "ios_4_20140423") ,#imageLiteral(resourceName: "ios_5_20140423"),#imageLiteral(resourceName: "ios_6_20140423"),#imageLiteral(resourceName: "ios_10_20140423"), #imageLiteral(resourceName: "ios_9_20140423"),#imageLiteral(resourceName: "ios_7_20140423")]
+    
+    let selectedButtonArray = [#imageLiteral(resourceName: "ios_1_On_20140423"),#imageLiteral(resourceName: "ios_2_On_20140423"),#imageLiteral(resourceName: "ios_3_On_20140423"),#imageLiteral(resourceName: "ios_38_On_20170420"),#imageLiteral(resourceName: "ios_4_On_20140423"),#imageLiteral(resourceName: "ios_5_On_20140423"),#imageLiteral(resourceName: "ios_6_On_20140423"),#imageLiteral(resourceName: "ios_10_On_20140423"),#imageLiteral(resourceName: "ios_9_On_20140423"),#imageLiteral(resourceName: "ios_7_On_20140423")]
     
     var selectionRow = 0
     
@@ -22,9 +25,11 @@ class MainViewController: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
         mainCollectionView.allowsSelection = true
-        mainCollectionView.allowsSelection = true
-        
+
         navigationController?.setNavigationBarHidden(true, animated: false)
+        mainCollectionView.reloadData()
+        
+//        tabBarController?.tabBarItem.imageInsets = 
 
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,13 +43,13 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = false
+        if let indexPathForSelect = self.mainCollectionView.indexPathsForSelectedItems {
+            if indexPathForSelect.count > 0 {
+            self.mainCollectionView.deselectItem(at: indexPathForSelect[0], animated: true)
+            }
+        }
 
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
-    
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,28 +84,22 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
 
     }
     
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        selectionRow = indexPath.row
-//        self.performSegue(withIdentifier: "storeList", sender: self)
-//        
-//    }
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: 375, height: 128)
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCollectionViewCell
-        cell.categoryLabel.text = foodCategoryArray[indexPath.row]
-        cell.categoryLabel.sizeToFit()
+        cell.buttonImage.image = buttonArray[indexPath.row]
+        cell.buttonImage.highlightedImage = selectedButtonArray[indexPath.row]
+
         return cell
+
     }
+
+    
+    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width/2 - 1
+        let width = collectionView.frame.width / 3 - 1
         
         return CGSize(width: width, height: width)
     }
