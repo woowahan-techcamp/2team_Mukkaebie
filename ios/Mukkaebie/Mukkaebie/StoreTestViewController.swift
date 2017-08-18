@@ -110,7 +110,8 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func touchedSubTableView(_ notification: Notification) {
-        tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 3)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,7 +138,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         if section == 3 {
             let tapView = Bundle.main.loadNibNamed("segment", owner: self, options: nil)?.first as! segment
-            return tapView
+            return tapView.contentView
         }
         
         return self.view
