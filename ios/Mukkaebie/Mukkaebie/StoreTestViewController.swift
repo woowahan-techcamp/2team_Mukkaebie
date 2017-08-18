@@ -20,7 +20,18 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
-        self.addChildViewController(menuRankVC!)
+        let menu = (self.modelStore?.menu)![0]
+        
+        for (title, submenu) in menu {
+            let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
+            menuRankVC?.items.append(item)
+            var menu : [(key: String, value: String)] = []
+            for (name, price) in submenu {
+                menu.append((key: name, value: price))
+            }
+            menuRankVC?.menus.append(menu)
+        }
+        
         return menuRankVC
     }()
     

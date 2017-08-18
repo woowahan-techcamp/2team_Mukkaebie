@@ -22,7 +22,7 @@ class ModelStores: Mappable {
     private(set) var telephone = String()
     private(set) var storeDesc = String()
     private(set) var review = [String()]
-    private(set) var menu = [[String:[String:Int]]]()
+    private(set) var menu = [[String:[String:String]]]()
     private(set) var createdDate = String()
     private(set) var orders = [ModelOrders]()
     

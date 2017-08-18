@@ -68,9 +68,9 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar(tabBar, didSelect: mukkabieTabItem)
         
 
-        for menu in (modelStore?.menu)! {
+        /*for menu in (modelStore?.menu)! {
             orderByMenu[menu["foodNm"] as! String] = 0
-        }
+        }*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
