@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nQE-wR-Xs8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nQE-wR-Xs8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,31 +114,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWr-ab-hja">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWr-ab-hja">
                                                     <rect key="frame" x="0.0" y="-0.5" width="94" height="35.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnl-kZ-133">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cnl-kZ-133">
                                                             <rect key="frame" x="0.0" y="-0.5" width="94" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="Cnl-kZ-133" firstAttribute="leading" secondItem="oWr-ab-hja" secondAttribute="leading" id="ATr-zp-jLN"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Cnl-kZ-133" secondAttribute="bottom" id="S4J-YG-DFZ"/>
-                                                        <constraint firstItem="Cnl-kZ-133" firstAttribute="top" secondItem="oWr-ab-hja" secondAttribute="top" id="f4K-t3-4hf"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Cnl-kZ-133" secondAttribute="trailing" id="vIL-2L-Smc"/>
-                                                    </constraints>
                                                 </view>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="oWr-ab-hja" firstAttribute="top" secondItem="HWd-OB-g4e" secondAttribute="top" id="06D-0X-xGI"/>
-                                            <constraint firstItem="oWr-ab-hja" firstAttribute="leading" secondItem="HWd-OB-g4e" secondAttribute="leading" id="7yG-no-EQ5"/>
-                                            <constraint firstAttribute="bottom" secondItem="oWr-ab-hja" secondAttribute="bottom" id="Lo1-AN-0zx"/>
-                                            <constraint firstAttribute="trailing" secondItem="oWr-ab-hja" secondAttribute="trailing" id="jzR-ul-KxV"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="foodCategoryLabel" destination="Cnl-kZ-133" id="F4X-hT-SDb"/>
                                         </connections>
@@ -158,9 +148,6 @@
                             <constraint firstAttribute="trailing" secondItem="LuD-v9-Vg3" secondAttribute="trailing" id="zBZ-AE-0jw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VoS-Lq-gyP">
-                        <barButtonItem key="backBarButtonItem" image="backButton" id="n85-yv-BoK"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="LuD-v9-Vg3" id="Yxc-Tj-iG0"/>
                         <outlet property="tableView" destination="pXO-cb-lmR" id="QJF-2v-w7L"/>
@@ -180,7 +167,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backButton" width="18" height="17"/>
         <image name="tableArrowIcon" width="10" height="17"/>
         <image name="woowatech" width="942" height="656"/>
     </resources>
