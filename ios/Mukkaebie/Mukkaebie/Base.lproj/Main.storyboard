@@ -10,11 +10,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="BMHANNA_11yrs_otf.otf">
-            <string>BMHANNA11yrsoldOTF</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -36,32 +31,34 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Psw-uQ-AOk">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.93725490196078431" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0zv-KB-7Dx">
-                                    <size key="itemSize" width="148" height="155"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="0zv-KB-7Dx">
+                                    <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="50" height="133"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="50" minY="20" maxX="50" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" reuseIdentifier="cell" id="LLn-b4-lsn" customClass="MainCollectionViewCell" customModule="Mukkaebie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="133" width="148" height="155"/>
+                                        <rect key="frame" x="50" y="153" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="148" height="155"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7c-KV-92b">
-                                                    <rect key="frame" x="53" y="67" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kmi-F8-vWa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.96470588235294119" green="0.93725490196078431" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="kmi-F8-vWa" firstAttribute="leading" secondItem="LLn-b4-lsn" secondAttribute="leading" id="0MK-Lm-H5C"/>
+                                            <constraint firstItem="kmi-F8-vWa" firstAttribute="height" secondItem="LLn-b4-lsn" secondAttribute="height" id="9UP-wB-3uz"/>
+                                            <constraint firstItem="kmi-F8-vWa" firstAttribute="width" secondItem="LLn-b4-lsn" secondAttribute="width" id="Zq9-as-6Bu"/>
+                                            <constraint firstItem="kmi-F8-vWa" firstAttribute="top" secondItem="LLn-b4-lsn" secondAttribute="top" id="dLF-36-6gL"/>
+                                        </constraints>
                                         <connections>
-                                            <outlet property="categoryLabel" destination="T7c-KV-92b" id="pHN-50-X1W"/>
+                                            <outlet property="buttonImage" destination="kmi-F8-vWa" id="FN8-Zj-HDR"/>
                                             <segue destination="MLF-A4-Rbp" kind="show" identifier="showStoreList" id="qxp-PI-N86"/>
                                         </connections>
                                     </collectionViewCell>
@@ -140,7 +137,7 @@
             </objects>
             <point key="canvasLocation" x="2851.1999999999998" y="-369.71514242878561"/>
         </scene>
-        <!--단골매장-->
+        <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,13 +171,15 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="단골매장" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab2" selectedImage="tab2_on" id="cPa-gy-q4n">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1209" y="440"/>
         </scene>
-        <!--장바구니-->
+        <!--View Controller-->
         <scene sceneID="yHo-FX-tzd">
             <objects>
                 <viewController id="aOI-fG-m2x" sceneMemberID="viewController">
@@ -193,13 +192,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="장바구니" id="PYl-80-u8m"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab3" selectedImage="tab3_on" id="PYl-80-u8m">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blM-YG-sbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-772" y="900"/>
         </scene>
-        <!--the보기-->
+        <!--View Controller-->
         <scene sceneID="Deh-88-gJs">
             <objects>
                 <viewController id="eV0-xP-Zgs" sceneMemberID="viewController">
@@ -212,7 +213,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="the보기" id="lLc-Vg-atu"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab5" selectedImage="tab5_on" id="lLc-Vg-atu">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6c9-fX-Xp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -231,21 +234,23 @@
                     <connections>
                         <segue destination="rCk-R2-Wry" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="aOI-fG-m2x" kind="relationship" relationship="viewControllers" id="DRf-ej-EHF"/>
                         <segue destination="eV0-xP-Zgs" kind="relationship" relationship="viewControllers" id="1SU-3C-rvs"/>
+                        <segue destination="aOI-fG-m2x" kind="relationship" relationship="viewControllers" id="DRf-ej-EHF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--홈-->
+        <!--Navigation Controller-->
         <scene sceneID="BlN-qS-mpt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rCk-R2-Wry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab1" selectedImage="tab1_on" id="acW-dT-cKf">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gXq-cF-Daf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gXq-cF-Daf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -264,7 +269,13 @@
     </scenes>
     <resources>
         <image name="banner1" width="646" height="181"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="tab1" width="64" height="49"/>
+        <image name="tab1_on" width="64" height="49"/>
+        <image name="tab2" width="64" height="49"/>
+        <image name="tab2_on" width="64" height="49"/>
+        <image name="tab3" width="64" height="49"/>
+        <image name="tab3_on" width="64" height="49"/>
+        <image name="tab5" width="64" height="49"/>
+        <image name="tab5_on" width="64" height="49"/>
     </resources>
 </document>

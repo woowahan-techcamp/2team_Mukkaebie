@@ -18,7 +18,7 @@ class StoreListMenuBarCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            self.foodCategoryLabel.textColor = isSelected ? UIColor.white : UIColor.lightGray
+            self.foodCategoryLabel.textColor = isSelected ? UIColor.white : UIColor.init(hexString: "655E58")
         }
     }
     
