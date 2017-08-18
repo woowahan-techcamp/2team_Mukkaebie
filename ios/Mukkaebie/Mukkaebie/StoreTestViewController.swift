@@ -10,29 +10,32 @@ import UIKit
 
 class StoreTestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    lazy var mukkaebieVC : UIViewController? = {
+    lazy var mukkaebieVC : MukkaebieRankViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+        mukkaebieVC?.view.frame.size.height = 540
         return mukkaebieVC
     }()
     
-    lazy var menuRankVC : UIViewController? = {
+    lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+        self.addChildViewController(menuRankVC!)
         return menuRankVC
     }()
     
-    lazy var infoVC : UIViewController? = {
+    lazy var infoVC : InfoViewController? = {
         let storyboard = UIStoryboard(name: "Info", bundle: nil)
         let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
         infoVC?.introText = self.modelStore?.storeDesc
         infoVC?.openHourText = self.modelStore?.openHour
         infoVC?.telephoneText = self.modelStore?.telephone
         infoVC?.nameText = self.modelStore?.name
+        infoVC?.view.frame.size.height = 667
         return infoVC
     }()
     
-    lazy var reviewVC : UITableViewController? = {
+    lazy var reviewVC : ReviewTableViewController? = {
         let storyboard = UIStoryboard(name: "Review", bundle: nil)
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
         return reviewVC
@@ -58,10 +61,12 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.allowsSelection = false
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 540
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
     }
     
     func getOrderList(_ notification: Notification) {
@@ -93,6 +98,10 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         self.tabNumber = tabNumber
         let indexPath = IndexPath(row: 0, section: 3)
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func touchedSubTableView(_ notification: Notification) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -162,22 +171,32 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         return 0
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TabSubviewTableViewCell
-        
+        for subview in cell.tabSubview.subviews {
+            subview.removeFromSuperview()
+        }
         switch tabNumber {
         case 0:
+            cell.tabSubview.frame.size.height = (mukkaebieVC?.view.frame.height)!
+            cell.tabSubviewHeightConstraint.constant = (mukkaebieVC?.view.frame.height)!
+            mukkaebieVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((mukkaebieVC?.view)!)
         case 1:
+            cell.tabSubview.frame.size.height = (menuRankVC?.view.frame.height)!
+            cell.tabSubviewHeightConstraint.constant = (menuRankVC?.view.frame.height)!
+            menuRankVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((menuRankVC?.view)!)
         case 2:
+            cell.tabSubview.frame.size.height = (infoVC?.view.frame.height)!
+            cell.tabSubviewHeightConstraint.constant = (infoVC?.view.frame.height)!
+            infoVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((infoVC?.view)!)
         case 3:
+            cell.tabSubview.frame.size.height = (reviewVC?.view.frame.height)!
+            cell.tabSubviewHeightConstraint.constant = (reviewVC?.view.frame.height)!
+            reviewVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((reviewVC?.view)!)
         default:
             break
@@ -185,15 +204,20 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch tabNumber {
+        case 0:
+            return 540
+        case 1:
+            return (menuRankVC?.view.frame.height)!
+        case 2:
+            return 667
+        case 3:
+            return (reviewVC?.view.frame.height)!
+        default:
+            break
+        }
+        return 0
     }
-    */
-
 }

@@ -24,12 +24,11 @@ class MenuViewController: UIViewController {
     let item5 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     let item6 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     var items: Array<MenuViewModelItem> = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
-        
         
         items = [item1, item2, item3, item4, item5, item6]
         
@@ -37,6 +36,8 @@ class MenuViewController: UIViewController {
             let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
             pieChartView.segments.append(segment)
         }
+        self.menuTableView.reloadData()
+        view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,9 +124,12 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
             //update height of table view
+            view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + expectedHeightOfTable
             menuTableView.frame = CGRect(x: menuTableView.frame.origin.x, y: menuTableView.frame.origin.y, width: menuTableView.frame.size.width, height: expectedHeightOfTable)
             menuTableView.reloadData()
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil, userInfo: nil)
     }
 }
 
