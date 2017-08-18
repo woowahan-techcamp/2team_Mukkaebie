@@ -146,7 +146,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             return 96
         }
         else if section == 3 {
-            return 44
+            return 40
         }
         return 0
     }
