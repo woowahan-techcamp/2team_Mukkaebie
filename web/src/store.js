@@ -441,6 +441,8 @@ class StoreInfo {
     this.getStoreInfo(id);
   }
 
+
+
   getStoreInfo(id) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -449,6 +451,8 @@ class StoreInfo {
         const response = JSON.parse(this.responseText);
         const storeInfo = response[0];
         const layoutTarget = document.querySelector('.storeLayout');
+
+
 
         function getInfo(store) {
           const info = store;
@@ -488,11 +492,11 @@ class StoreInfo {
               markup += `
 
                 <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2">
-                  <p>${ele[2]}</p>
+                <div class="foldableLevel2 p-x-2 m-y-1">
+                  <span class="p-r-1">${ele[2]}</span>
+                  <input type="checkbox" value="${ele[1]}">
                 </div>
               `
-
             } else {
 
               categorySet[ele[0]] = 1;
@@ -504,8 +508,9 @@ class StoreInfo {
               </div>
               <div class="foldableLevel2">
                 <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2">
-                  <p>${ele[2]}</p>
+                <div class="foldableLevel2 p-x-2">
+                  <span class="p-r-1">${ele[2]}</span>
+                  <input type="checkbox" value="${ele[1]}">
                 </div>
               `
 
@@ -541,6 +546,8 @@ class StoreInfo {
         graph.podiumAnimate();
 
         let foldable = new Foldable("foldableLevel1");
+
+        let cart = new Cart();
         document.querySelector('#mkbTab').addEventListener('click', function () {
           let graph = new Graph();
           graph.podiumAnimate();
@@ -556,4 +563,37 @@ class StoreInfo {
 }
 
 
-export {TabUiWithAjax, Foldable, Review, Graph, StoreList, StoreInfo, StoreUtil}
+class Cart {
+  constructor() {
+    this.init()
+  }
+  init(){
+    document.querySelector(".foldableMenu").addEventListener("click", function(e){
+      if (e.target.tagName === "INPUT"){
+        this.addToCart(e.target.value);
+      }
+    }.bind(this));
+  }
+
+  addToCart(cont){
+    let renderTarget = document.querySelector(".storeCartContent");
+    let renderTargetChildren = Array.from(renderTarget.children);
+    let renderContent = "<li>" + cont + "</li>";
+    let hasContent = false;
+    let childToRemove;
+    renderTargetChildren.forEach(function(child) {
+      if (renderContent == child.outerHTML) {
+        hasContent = true;
+        childToRemove = child;
+      }
+    })
+    if (hasContent === false) {
+      renderTarget.innerHTML += renderContent;
+    } else {
+      renderTarget.removeChild(childToRemove);
+    }
+  }
+}
+
+
+export {TabUiWithAjax, Foldable, Review, Graph, StoreList, StoreInfo, StoreUtil, Cart}

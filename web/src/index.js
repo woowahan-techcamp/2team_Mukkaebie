@@ -8,7 +8,8 @@ import {
   Graph,
   StoreList,
   StoreInfo,
-  StoreUtil
+  StoreUtil,
+  addToCart
 } from './store.js'
 
 import style from './scss/main.scss';
@@ -45,9 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let categoryList = new StoreList(e.target.attributes.data.value);
   });
 
-
-
-
 });
 
 
@@ -64,5 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // StoreUtil.scrollWithCart();
 //
 // StoreUtil.makeOrder.call(graph);
+
+
+
+
 
 
