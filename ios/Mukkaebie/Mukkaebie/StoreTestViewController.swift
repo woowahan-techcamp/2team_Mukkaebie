@@ -181,7 +181,11 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         if section == 1 {
             let logoView = Bundle.main.loadNibNamed("logoTableViewCell", owner: self, options: nil)?.first as! logoTableViewCell
-            logoView.logoImage.image = #imageLiteral(resourceName: "woowatech")
+            if let url = URL(string: (modelStore?.imgURL)!) {
+                logoView.logoImage.af_setImage(withURL: url)
+            } else {
+                logoView.logoImage.image  = #imageLiteral(resourceName:"woowatech")
+            }
             return logoView
         }
             
