@@ -11,10 +11,14 @@ import UIKit
 class TabSubviewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tabSubview: UIView!
+    @IBOutlet weak var tabSubviewHeightConstraint: NSLayoutConstraint!
+    
+    var didSetupConstraints = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.contentView.autoresizesSubviews = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,5 +26,7 @@ class TabSubviewTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

@@ -342,20 +342,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="412.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-53-2nS">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvc-53-2nS">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="413"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="413" id="Xy0-yM-ogq"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cvc-53-2nS" firstAttribute="leading" secondItem="hQt-Xc-l5X" secondAttribute="leading" id="B7Y-qY-Bvw"/>
-                                                <constraint firstItem="cvc-53-2nS" firstAttribute="top" secondItem="hQt-Xc-l5X" secondAttribute="top" id="BQf-E0-SGE"/>
-                                                <constraint firstItem="cvc-53-2nS" firstAttribute="height" secondItem="hQt-Xc-l5X" secondAttribute="height" id="EtV-Ca-cWp"/>
-                                                <constraint firstItem="cvc-53-2nS" firstAttribute="width" secondItem="hQt-Xc-l5X" secondAttribute="width" id="zEH-ss-PwH"/>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="top" secondItem="hQt-Xc-l5X" secondAttribute="top" id="dmO-dl-Oul"/>
+                                                <constraint firstAttribute="trailing" secondItem="cvc-53-2nS" secondAttribute="trailing" id="uI6-TB-jTp"/>
+                                                <constraint firstItem="cvc-53-2nS" firstAttribute="leading" secondItem="hQt-Xc-l5X" secondAttribute="leading" id="zWQ-JN-a6Y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="tabSubview" destination="cvc-53-2nS" id="VSe-zf-BQ2"/>
+                                            <outlet property="tabSubviewHeightConstraint" destination="Xy0-yM-ogq" id="5wd-J1-lbV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
