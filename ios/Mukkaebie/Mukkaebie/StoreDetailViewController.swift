@@ -49,6 +49,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
         
+        self.navigationItem.title = modelStore?.name
+        
         meetPaymentLabel.layer.borderWidth = 1
         meetPaymentLabel.layer.borderColor = UIColor.white.cgColor
         meetPaymentLabel.layer.cornerRadius = meetPaymentLabel.frame.height/2
@@ -66,9 +68,9 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar(tabBar, didSelect: mukkabieTabItem)
         
 
-        for menu in (modelStore?.menu)! {
+        /*for menu in (modelStore?.menu)! {
             orderByMenu[menu["foodNm"] as! String] = 0
-        }
+        }*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
