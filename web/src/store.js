@@ -194,19 +194,33 @@ let StoreUtil = {
     })
   },
 
-  makeOrder: function(){
+  makeOrder: function(storeId){
     let userList = ["dbtech", "jhtech", "mhtech"];
-    let menuList = ["양념, 17000", "후라이드, 16000", "반반, 17000", "땡초, 18000", "스노윙, 19000", "허니콤보: 20000"];
+
+
     let orderButton = document.querySelector("#cartOrderButton");
 
     orderButton.addEventListener("click", function () {
+
+      let totalPrice =  Number(document.querySelector("#cartTotalPrice").innerText);
+
+      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+
+      let menuList = []
+
+      cartContent.forEach(function(item){
+        console.log(item);
+        menuList.push(item.getAttribute("value"));
+      })
+
       let randNum1 = Math.floor(Math.random() * 3);
-      let randNum2 = Math.floor(Math.random() * 6);
+
       let packet = {};
-      packet["sellerId"] = 101010;
+      packet["sellerId"] = storeId;
       packet["buyerId"] = userList[randNum1];
-      packet["content"] = [menuList[randNum2].toString().split(',')[0]];
-      packet["price"] = menuList[randNum2].toString().split(',')[1];
+      packet["content"] = menuList;
+      packet["price"] = totalPrice;
+      console.log(packet)
       let xhr1 = new XMLHttpRequest();
       xhr1.open("POST", "http://13.124.179.176:3000/orders", true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
@@ -216,8 +230,9 @@ let StoreUtil = {
 
       xhr1.onloadend = function () {
         alert('주문해주셔서 감사합니다.');
-        this.mkbLoad();
-        this.makeDonutgraph();
+        console.log(storeId);
+        let graph = new Graph(storeId);
+
       }.bind(this);
     }.bind(this));
   },
@@ -237,11 +252,13 @@ let StoreUtil = {
 
 
 class Graph {
-    constructor(){
-      this.makeDonutgraph();
+    constructor(storeId){
+      this.makeDonutgraph(storeId);
+      this.podiumAnimate(storeId);
+      this.storeId = storeId;
     }
 
-    podiumAnimate() {
+    podiumAnimate(storeId) {
         let gold = document.querySelector('.gold .podium');
         gold.classList.add('goldAnimate');
         let goldOrders = document.querySelector('.gold .orders');
@@ -263,10 +280,10 @@ class Graph {
         let bronzeName = document.querySelector('.bronze .name');
         bronzeName.classList.add('bronzeNameAnimate');
 
-        this.mkbLoad()
+        this.mkbLoad(storeId);
     }
 
-    makeDonutgraph() {
+    makeDonutgraph(storeId) {
         let xhr = new XMLHttpRequest();
 
         xhr.onload = function () {
@@ -277,11 +294,21 @@ class Graph {
             let topMenu = {};
 
             for (let i = 0; i < orders.length; i++) {
-              if (orders[i].content in topMenu) {
-                topMenu[orders[i].content] += 1;
-              } else {
-                topMenu[orders[i].content] = 1;
-              }
+
+              orders[i].content.forEach(function(ele){
+                if (ele in top){
+                  topMenu[ele] += 1;
+                }
+                else {
+                  topMenu[ele] = 1;
+                }
+              })
+
+              // if (orders[i].content in topMenu) {
+              //   topMenu[orders[i].content] += 1;
+              // } else {
+              //   topMenu[orders[i].content] = 1;
+              // }
 
             }
 
@@ -311,7 +338,7 @@ class Graph {
               total += topMenu[key];
             }
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < top5.length; i++) {
               share = Number(top5[i].toString().split(',')[1]) / total * 100;
               reverse = 100 - share;
               circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
@@ -333,12 +360,11 @@ class Graph {
 
           }
         };
-
-        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/101010', true);
+        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
         xhr.send(null);
     }
 
-    mkbLoad() {
+    mkbLoad(storeId) {
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
           if (xhr.status === 200) {
@@ -365,7 +391,7 @@ class Graph {
             let top3_name = document.querySelectorAll('.name');
             let top3_order = document.querySelectorAll('.orders');
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < top3.length; i++) {
               let name = top3[i].toString().split(",")[0];
               let order = top3[i].toString().split(",")[1];
               top3_name[i].innerHTML = name;
@@ -376,7 +402,7 @@ class Graph {
 
         }
 
-        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/101010', true);
+        xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
         xhr.send(null);
     }
 
@@ -438,6 +464,7 @@ class StoreList {
 class StoreInfo {
 
   constructor(id) {
+    this.storeId = id;
     this.getStoreInfo(id);
   }
 
@@ -494,7 +521,7 @@ class StoreInfo {
                 <div class="foldableLevel1">${ele[1]}</div>
                 <div class="foldableLevel2 p-x-2 m-y-1">
                   <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}">
+                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
                 </div>
               `
             } else {
@@ -510,7 +537,7 @@ class StoreInfo {
                 <div class="foldableLevel1">${ele[1]}</div>
                 <div class="foldableLevel2 p-x-2">
                   <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}">
+                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
                 </div>
               `
 
@@ -519,7 +546,6 @@ class StoreInfo {
 
           markup += `</div>`;
 
-          console.log()
 
 
           const tempGrab = document.querySelector('#storeDetailTemplate').text;
@@ -542,16 +568,18 @@ class StoreInfo {
               baseUrl: "",
             }
         );
-        let graph = new Graph();
-        graph.podiumAnimate();
+        console.log("here", id);
+        let graph = new Graph(id);
 
         let foldable = new Foldable("foldableLevel1");
 
+        StoreUtil.makeOrder(id);
+
         let cart = new Cart();
-        document.querySelector('#mkbTab').addEventListener('click', function () {
-          let graph = new Graph();
-          graph.podiumAnimate();
-        });
+        // document.querySelector('#mkbTab').addEventListener('click', function () {
+        //   let graph = new Graph(id);
+        //   graph.podiumAnimate();
+        // });
 
 
       }
@@ -570,28 +598,46 @@ class Cart {
   init(){
     document.querySelector(".foldableMenu").addEventListener("click", function(e){
       if (e.target.tagName === "INPUT"){
-        this.addToCart(e.target.value);
+        this.addToCart(e.target.value, e.target.attributes.data.value);
       }
     }.bind(this));
   }
 
-  addToCart(cont){
+  addToCart(cont, price) {
     let renderTarget = document.querySelector(".storeCartContent");
     let renderTargetChildren = Array.from(renderTarget.children);
-    let renderContent = "<li>" + cont + "</li>";
+    let numberPrice = price.slice(0, price.length-1).split(',').join('');
+    let renderContent = "<li data='"+ numberPrice +"' value='" + cont + "'>" + cont + " " + price + "</li>";
+    console.log(renderContent);
     let hasContent = false;
-    let childToRemove;
+    let childToRemove = document.body;
+
     renderTargetChildren.forEach(function(child) {
-      if (renderContent == child.outerHTML) {
+      console.log(child.outerHTML)
+      if (cont + " " + price === child.outerText) {
         hasContent = true;
         childToRemove = child;
       }
     })
+
     if (hasContent === false) {
       renderTarget.innerHTML += renderContent;
     } else {
       renderTarget.removeChild(childToRemove);
     }
+    this.calcTotal();
+  }
+
+  calcTotal(){
+    let cartList = document.querySelector(".storeCartContent");
+    let cartListChildren = Array.from(cartList.children);
+    let totalPrice = 0;
+    cartListChildren.forEach(function(child) {
+      totalPrice += Number(child.attributes.data.value);
+    })
+    document.querySelector("#cartTotalPrice").innerText = totalPrice;
+
+
   }
 }
 
