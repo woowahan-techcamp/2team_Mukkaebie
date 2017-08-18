@@ -29,7 +29,7 @@ class MainViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         mainCollectionView.reloadData()
         
-//        tabBarController?.tabBarItem.imageInsets = 
+        tabBarController?.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
 
         
         // Do any additional setup after loading the view, typically from a nib.

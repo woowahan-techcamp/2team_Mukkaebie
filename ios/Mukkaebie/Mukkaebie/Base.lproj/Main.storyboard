@@ -171,7 +171,9 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab2" selectedImage="tab2_on" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab2" selectedImage="tab2_on" id="cPa-gy-q4n">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,7 +192,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab3" selectedImage="tab3_on" id="PYl-80-u8m"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab3" selectedImage="tab3_on" id="PYl-80-u8m">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blM-YG-sbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,7 +213,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab5" selectedImage="tab5_on" id="lLc-Vg-atu"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab5" selectedImage="tab5_on" id="lLc-Vg-atu">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6c9-fX-Xp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,7 +246,9 @@
         <scene sceneID="BlN-qS-mpt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rCk-R2-Wry" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab1" selectedImage="tab1_on" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab1" selectedImage="tab1_on" id="acW-dT-cKf">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gXq-cF-Daf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
