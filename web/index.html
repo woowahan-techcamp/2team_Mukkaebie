@@ -126,12 +126,11 @@
     <div class="storeCart">
       <div class="storeCartHead">장바구니</div>
       <div class="storeCartContent">
-        <span>랜덤 주문</span>
-        <span class="orangeFontColor">1개</span>
       </div>
       <div class="storeCartTotal">
         <span>주문금액합계</span>
-        <span class="orangeFontColor">0 원</span>
+        <span id="cartTotalPrice" class="orangeFontColor">0</span>
+        <span class="orangeFontColor">원</span>
       </div>
       <div class="cartOrderButton" id="cartOrderButton">주문하기</div>
     </div>
@@ -260,7 +259,14 @@
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
           <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
-            <p name="userId" value="ygtech">ygtech</p>
+            <p class="float-left" name="userId" value="ygtech">ygtech</p>
+            <select class="reviewStarSelect float-left m-l-1">
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★</option>
+              <option value="3">★★★</option>
+              <option value="2">★★</option>
+              <option value="1">★</option>
+            </select>
             <textarea id="reviewTextInput" type="text" name="content"></textarea>
             <button id="reviewTextInputBtn" class="float-right">작성</button>
           </div>
@@ -433,7 +439,12 @@
 
 </footer>
 
+
+<div id="orderModal" class="modal">
+  <div class="modal-content"></div>
+</div>
 <script src="./dist/index.bundle.js"></script>
+
 
 </body>
 </html>

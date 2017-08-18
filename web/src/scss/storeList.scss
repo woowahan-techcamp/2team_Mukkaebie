@@ -1,7 +1,7 @@
 @import './variables';
 
   .storeCardRow .col-xs-4{margin-bottom: 20px;}
-  .storeCard {background: white; overflow: auto; padding:20px; border:1px solid #cccccc}
+  .storeCard {background: white; overflow: auto; padding:20px; border:1px solid #cccccc; cursor: pointer}
   .storeCardLeft{float: left}
   .storeCardLeft img{width: 100px;border-radius: 50%; border:1px solid #cccccc}
   .storeCardRight{float: left; margin-left: 10px; width: calc(100% - 120px)}
