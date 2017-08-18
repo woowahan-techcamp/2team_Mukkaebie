@@ -47,6 +47,9 @@
 		985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */; };
 		985D093D1F45258E00A1F475 /* review.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 985D093C1F45258E00A1F475 /* review.jpeg */; };
 		985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */; };
+		9863457A1F46CAFD00453F3A /* favorite.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 986345781F46CAFD00453F3A /* favorite.jpeg */; };
+		9863457B1F46CAFD00453F3A /* jang.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 986345791F46CAFD00453F3A /* jang.jpeg */; };
+		9863457F1F46CB8300453F3A /* 750x1334_merge_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */; };
 		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
 		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
 		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
@@ -140,6 +143,9 @@
 		985D093A1F45245300A1F475 /* ReviewImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImageTableViewCell.swift; sourceTree = "<group>"; };
 		985D093C1F45258E00A1F475 /* review.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = review.jpeg; sourceTree = "<group>"; };
 		985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSubviewTableViewCell.swift; sourceTree = "<group>"; };
+		986345781F46CAFD00453F3A /* favorite.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = favorite.jpeg; sourceTree = "<group>"; };
+		986345791F46CAFD00453F3A /* jang.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jang.jpeg; sourceTree = "<group>"; };
+		9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 750x1334_merge_alpha.png; sourceTree = "<group>"; };
 		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
 		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
 		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
@@ -247,7 +253,10 @@
 				98B67CDC1F39C8D600243F31 /* bm_ad2.png */,
 				9844286F1F3D76390003CDF1 /* hj.png */,
 				984428711F3D76660003CDF1 /* flash.png */,
+				9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */,
 				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
+				986345781F46CAFD00453F3A /* favorite.jpeg */,
+				986345791F46CAFD00453F3A /* jang.jpeg */,
 				981AAB151F4470C600CC443A /* firstGrade.png */,
 				981AAB161F4470C600CC443A /* secondGrade.png */,
 				981AAB171F4470C600CC443A /* thirdGrade.png */,
@@ -534,6 +543,8 @@
 				981AAB191F4470C600CC443A /* secondGrade.png in Resources */,
 				985D09301F4523DD00A1F475 /* Review.storyboard in Resources */,
 				985D09371F45243400A1F475 /* ReviewImageTableViewCell.xib in Resources */,
+				9863457A1F46CAFD00453F3A /* favorite.jpeg in Resources */,
+				9863457B1F46CAFD00453F3A /* jang.jpeg in Resources */,
 				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
 				985D09351F45242600A1F475 /* ReviewButtonTableViewCell.xib in Resources */,
 				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
@@ -541,6 +552,7 @@
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
 				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
 				989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */,
+				9863457F1F46CB8300453F3A /* 750x1334_merge_alpha.png in Resources */,
 				9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */,
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
 				984428701F3D76390003CDF1 /* hj.png in Resources */,
