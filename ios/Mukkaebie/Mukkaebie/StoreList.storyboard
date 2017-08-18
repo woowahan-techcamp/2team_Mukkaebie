@@ -148,9 +148,6 @@
                             <constraint firstAttribute="trailing" secondItem="LuD-v9-Vg3" secondAttribute="trailing" id="zBZ-AE-0jw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VoS-Lq-gyP">
-                        <barButtonItem key="backBarButtonItem" image="backButton" id="n85-yv-BoK"/>
-                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="LuD-v9-Vg3" id="Yxc-Tj-iG0"/>
                         <outlet property="tableView" destination="pXO-cb-lmR" id="QJF-2v-w7L"/>
@@ -170,7 +167,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backButton" width="18" height="17"/>
         <image name="tableArrowIcon" width="10" height="17"/>
         <image name="woowatech" width="942" height="656"/>
     </resources>

@@ -54,19 +54,28 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = modelStore?.name
+        
+        
         tableView.dataSource = self
         tableView.delegate = self
         
-        self.tabBarController?.tabBar.isHidden = true
         tableView.allowsSelection = false
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 540
-        
+
+        tableView.estimatedRowHeight = 100
+//        tabBarController?.tabBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
+    }
+    
+
+    override func viewDidAppear(_ animated: Bool) {
+//        tabBarController?.tabBar.isHidden = true
+
     }
     
     func getOrderList(_ notification: Notification) {
@@ -146,7 +155,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             return 96
         }
         else if section == 3 {
-            return 44
+            return 40
         }
         return 0
     }

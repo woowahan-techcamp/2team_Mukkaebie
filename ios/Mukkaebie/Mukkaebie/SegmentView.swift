@@ -72,13 +72,14 @@ class SegmentView : UIControl {
             button.layer.borderColor = borderColor.cgColor
             button.layer.borderWidth = borderWidth
             button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+            button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
             buttons.append(button)
         }
         
         buttons[0].setTitleColor(selectorTextColor, for: .normal)
         
         let selectorWidth = frame.width / CGFloat(buttonTitles.count)
-        selector = UIView(frame: CGRect(x: 0, y: 38, width: selectorWidth, height: 6))
+        selector = UIView(frame: CGRect(x: 0, y: 34, width: selectorWidth, height: 6))
         selector.backgroundColor = selectorColor
         addSubview(selector)
         
@@ -86,6 +87,7 @@ class SegmentView : UIControl {
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fillEqually
+        
         addSubview(sv)
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -103,13 +105,14 @@ class SegmentView : UIControl {
             if btn == button {
                 selectedSegmentIndex = buttonIndex
                 let selectorStart = frame.width/CGFloat(buttons.count) * CGFloat(buttonIndex)
-                UIView.animate(withDuration: 0.1, animations: {
+                UIView.animate(withDuration: 0, animations: {
                     self.selector.frame.origin.x = selectorStart
                 })
                 
                 
                 btn.setTitleColor(selectorTextColor, for: .normal)
             }
+            
         }
         
         sendActions(for: .valueChanged)
