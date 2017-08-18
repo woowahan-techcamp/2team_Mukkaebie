@@ -111,6 +111,7 @@ class SegmentView : UIControl {
                 
                 
                 btn.setTitleColor(selectorTextColor, for: .normal)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":buttonIndex])
             }
             
         }

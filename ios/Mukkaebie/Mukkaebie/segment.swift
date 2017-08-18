@@ -14,24 +14,6 @@ enum tabViewEnum {
 
 
 class segment: UITableViewCell {
-        
-    @IBAction func customSegmentValueChanged(_ sender: SegmentView) {
-        
-        switch  sender.selectedSegmentIndex  {
-        case 0:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":0])
-        case 1:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":1])
-        case 2:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":2])
-        case 3:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "changeTab"), object: nil, userInfo: ["tabNumber":3])
-
-        default:
-            break
-        }
-    }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
