@@ -20,8 +20,8 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
-        let menu = (self.modelStore?.menu)![0]
         
+        let menu = (self.modelStore?.menu)![0]
         for (title, submenu) in menu {
             let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
             menuRankVC?.items.append(item)
@@ -32,6 +32,8 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             menuRankVC?.menus.append(menu)
         }
         
+        menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
+        print(self.orderByMenuSorted)
         return menuRankVC
     }()
     
@@ -78,9 +80,18 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.estimatedRowHeight = 100
 //        tabBarController?.tabBar.isHidden = true
         
+        let menu = (self.modelStore?.menu)![0]
+        for (title, submenu) in menu {
+            for (name, price) in submenu {
+                orderByMenu[name] = 0
+            }
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
+        
+        self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
 
@@ -104,7 +115,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         if orderByMenuSorted.count > 3 {
             var count = 0
-            for i in (3 ..< orderByMenuSorted.count-1).reversed() {
+            for i in (2 ..< orderByMenuSorted.count-1).reversed() {
                 count += orderByMenuSorted[i].value
                 orderByMenuSorted.removeLast()
             }
