@@ -33,7 +33,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
-        print(self.orderByMenuSorted)
         return menuRankVC
     }()
     
@@ -57,6 +56,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
+    var priceByMenu = [String:Int]()
     var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
@@ -84,10 +84,12 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         for (title, submenu) in menu {
             for (name, price) in submenu {
                 orderByMenu[name] = 0
+                priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
             }
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
@@ -121,6 +123,18 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             }
             orderByMenuSorted.append((key: "기타", value: count))
         }
+        
+        if (menuRankVC?.pieChartView != nil) {
+            let indexPath = IndexPath(row: 0, section: 3)
+            menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
+            menuRankVC?.setSegment()
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+    
+    func postOrder(_ notification: Notification) {
+        
+        self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
     func changeTab(_ notification: Notification) {
@@ -134,6 +148,13 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     func touchedSubTableView(_ notification: Notification) {
         let indexPath = IndexPath(row: 0, section: 3)
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    @IBAction func touchedShoppingCart(_ sender: Any) {
+        if priceByMenu.count > 0 {
+            let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
+            networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
+        }
     }
 
     override func didReceiveMemoryWarning() {

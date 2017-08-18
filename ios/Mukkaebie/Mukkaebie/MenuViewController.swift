@@ -25,12 +25,21 @@ class MenuViewController: UIViewController {
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
         
+        setSegment()
+        
+        self.menuTableView.reloadData()
+        view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
+    }
+    
+    func setSegment() {
+        pieChartView.segments = []
+        for subview in pieChartView.subviews {
+            subview.removeFromSuperview()
+        }
         for i in 0 ..< orderByMenuSorted.count {
             let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
             pieChartView.segments.append(segment)
         }
-        self.menuTableView.reloadData()
-        view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
     
     override func didReceiveMemoryWarning() {
