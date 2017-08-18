@@ -17,26 +17,20 @@ class MenuViewController: UIViewController {
     var orderByMenuSorted = [(key: String, value: Int)]()
     let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     
-    let item1 = MenuViewModelItem(sectionTitle: "치킨", rowCount: 4, isCollapsed: false)
-    let item2 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
-    let item3 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
-    let item4 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
-    let item5 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
-    let item6 = MenuViewModelItem(sectionTitle: "양념", rowCount: 1, isCollapsed: false)
     var items: Array<MenuViewModelItem> = []
-
+    var menus: [[(key: String, value: String)]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
         
-        
-        items = [item1, item2, item3, item4, item5, item6]
-        
         for i in 0 ..< orderByMenuSorted.count {
             let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
             pieChartView.segments.append(segment)
         }
+        self.menuTableView.reloadData()
+        view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,6 +54,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuTableViewCell
+        cell.menuLabel.text = menus[indexPath.section][indexPath.row].key
+        cell.priceLabel.text = menus[indexPath.section][indexPath.row].value
         return cell
     }
     
@@ -123,9 +119,12 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
             //update height of table view
+            view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + expectedHeightOfTable
             menuTableView.frame = CGRect(x: menuTableView.frame.origin.x, y: menuTableView.frame.origin.y, width: menuTableView.frame.size.width, height: expectedHeightOfTable)
             menuTableView.reloadData()
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil, userInfo: nil)
     }
 }
 

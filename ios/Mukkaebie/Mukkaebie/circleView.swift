@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 
-class circleView : UIView {
+class CircleView : UIView {
  
     @IBInspectable
     var borderWidth : CGFloat = 0 {
@@ -20,6 +20,14 @@ class circleView : UIView {
     }
     
     @IBInspectable
+    var backColor: UIColor = UIColor.clear {
+        didSet {
+            layer.backgroundColor = backColor.cgColor
+        }
+    }
+    
+    
+    @IBInspectable
     var borderColor : UIColor = UIColor.clear {
         didSet {
             layer.borderColor = borderColor.cgColor
@@ -27,7 +35,7 @@ class circleView : UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        layer.cornerRadius = frame.height/2
+        layer.cornerRadius = frame.height / 2
     }
 
 }

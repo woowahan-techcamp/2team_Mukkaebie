@@ -12,10 +12,19 @@ import ObjectMapper
 class ModelStores: Mappable {
     private(set) var id = Int()
     private(set) var name = String()
+    private(set) var imgURL = String()
+    private(set) var category = String()
+    private(set) var address = String()
+    private(set) var ratingValue = Float()
+    private(set) var ratingCount = Int()
+    private(set) var minPrice = String()
+    private(set) var openHour = String()
+    private(set) var telephone = String()
+    private(set) var storeDesc = String()
+    private(set) var review = [String()]
+    private(set) var menu = [[String:[String:String]]]()
     private(set) var createdDate = String()
-    private(set) var menu = [[String:Any?]]()
     private(set) var orders = [ModelOrders]()
-//    private var order = []
     
     init() {}
     
@@ -27,19 +36,20 @@ class ModelStores: Mappable {
         self.createdDate = createdDate
     }
     
-//    func getStore() -> [String : Any] {
-//        var storeDic = [String : Any]()
-//        storeDic["id"] = id
-//        storeDic["name"] = name
-//        storeDic["createdDate"] = createdDate
-//        
-//        return storeDic
-//    }
-    
     func mapping(map: Map) {
         id <- map["storeId"]
-        name <- map["name"]
-        createdDate <- map["createdDate"]
+        name <- map["storeName"]
+        imgURL <- map["storeImg"]
+        category <- map["category"]
+        address <- map["address"]
+        ratingValue <- map["ratingValue"]
+        ratingCount <- map["ratingCount"]
+        minPrice <- map["minPrice"]
+        openHour <- map["openHour"]
+        telephone <- map["telephone"]
+        storeDesc <- map["storeDesc"]
+        review <- map["review"]
         menu <- map["menu"]
+        createdDate <- map["createdDate"]
     }
 }

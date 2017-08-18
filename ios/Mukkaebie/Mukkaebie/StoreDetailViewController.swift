@@ -51,6 +51,8 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
         
+        self.navigationItem.title = modelStore?.name
+        
         meetPaymentLabel.layer.borderWidth = 1
         meetPaymentLabel.layer.borderColor = UIColor.white.cgColor
         meetPaymentLabel.layer.cornerRadius = meetPaymentLabel.frame.height/2
@@ -68,13 +70,14 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         tabBar(tabBar, didSelect: mukkabieTabItem)
         
 
-        for menu in (modelStore?.menu)! {
+        /*for menu in (modelStore?.menu)! {
             orderByMenu[menu["foodNm"] as! String] = 0
             if Int(menu["foodPrice"] as! String) != 0 {
                 priceByMenu[menu["foodNm"] as! String] = Int(menu["foodPrice"] as! String)
             }
         }
-        
+        }*/
+
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
         networkOrder.getOrderList(buyerId: (modelStore?.id)!)
@@ -108,7 +111,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             var count = 0
             for i in (3 ..< orderByMenuSorted.count-1).reversed() {
                 count += orderByMenuSorted[i].value
-                orderByMenuSorted.popLast()
+                orderByMenuSorted.removeLast()
             }
             orderByMenuSorted.append((key: "기타", value: count))
         }
