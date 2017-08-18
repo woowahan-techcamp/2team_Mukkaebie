@@ -30,6 +30,14 @@ class NetworkOrder {
     
     func postOrder(sellderId: Int, buyerId: String, price: Int, content: [String]) {
         let parameters = ["sellerId": sellderId, "buyerId": buyerId, "price": price, "content": content] as [String : Any]
-        Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+        Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success(let jsonData):
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "postOrder"), object: nil, userInfo: nil)
+            case .failure(let error):
+                print(error)
+            }
+        }
+
     }
 }
