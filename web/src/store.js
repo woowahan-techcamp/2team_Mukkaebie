@@ -232,9 +232,19 @@ let StoreUtil = {
         alert('주문해주셔서 감사합니다.');
         console.log(storeId);
         let graph = new Graph(storeId);
-
+        StoreUtil.resetCart();
       }.bind(this);
     }.bind(this));
+  },
+
+  resetCart: function(){
+    let renderTarget = document.querySelector(".storeCartContent");
+    let cartTotalPrice = document.querySelector("#cartTotalPrice");
+    cartTotalPrice.innerText = 0;
+    cartTotalPrice.value = 0;
+    renderTarget.innerHTML = "";
+    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function(cb){cb.checked=false})
+    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function(fb){fb.click()})
   },
 
   toggleMobileCategory: function(){
@@ -576,11 +586,6 @@ class StoreInfo {
         StoreUtil.makeOrder(id);
 
         let cart = new Cart();
-        // document.querySelector('#mkbTab').addEventListener('click', function () {
-        //   let graph = new Graph(id);
-        //   graph.podiumAnimate();
-        // });
-
 
       }
     };
@@ -608,10 +613,8 @@ class Cart {
     let renderTargetChildren = Array.from(renderTarget.children);
     let numberPrice = price.slice(0, price.length-1).split(',').join('');
     let renderContent = "<li data='"+ numberPrice +"' value='" + cont + "'>" + cont + " " + price + "</li>";
-    console.log(renderContent);
     let hasContent = false;
-    let childToRemove = document.body;
-
+    let childToRemove;
     renderTargetChildren.forEach(function(child) {
       console.log(child.outerHTML)
       if (cont + " " + price === child.outerText) {
