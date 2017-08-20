@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MukkaebieRankViewController: UIViewController {
+class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
     @IBOutlet weak var mukkaebieCommentTextField: UITextField!
 
@@ -16,22 +16,62 @@ class MukkaebieRankViewController: UIViewController {
     @IBOutlet weak var secondMukkaebieImage: UIImageView!
     @IBOutlet weak var thirdMukkaebieImage: UIImageView!
     
+    @IBOutlet weak var firstAward: UIView!
+    @IBOutlet weak var secondAward: UIView!
+    @IBOutlet weak var thirdAward: UIView!
+    
+    @IBOutlet weak var firstBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstMukkaebieImage.layer.cornerRadius = firstMukkaebieImage.frame.height/2
-        secondMukkaebieImage.layer.cornerRadius = secondMukkaebieImage.frame.height/2
-        thirdMukkaebieImage.layer.cornerRadius = thirdMukkaebieImage.frame.height/2
-        firstMukkaebieImage.layer.borderWidth = 4
-        firstMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
-        secondMukkaebieImage.layer.borderWidth = 4
-        secondMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
-        thirdMukkaebieImage.layer.borderWidth = 4
-        thirdMukkaebieImage.layer.borderColor = UIColor(hexString: "2AC1BC").cgColor
+//        firstAward.frame = CGRect(x: firstAward.frame.minX, y: self.view.frame.maxY, width: firstAward.frame.width, height: firstAward.frame.height)
+//        secondAward.frame = CGRect(x: secondAward.frame.minX, y: self.view.frame.maxY, width: secondAward.frame.width, height: secondAward.frame.height)
+//        thirdAward.frame = CGRect(x: thirdAward.frame.minX, y: self.view.frame.maxY, width: thirdAward.frame.width, height: thirdAward.frame.height)
 
+//        staticHeight.constant -= gradeStackView.frame.height
+        
+//        firstBottomConstraint.constant -= firstAward.frame.height
+//        secondBottomConstraint.constant -= secondAward.frame.height
+//        thirdBottomConstraint.constant -= thirdAward.frame.height
 
-        // Do any additional setup after loading the view.
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+//        if self.firstBottomConstraint.constant < 0 {
+        
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+//            self.staticHeight.constant += self.gradeStackView.frame.height
+//            self.view.layoutSubviews()
+//
+//        }, completion: nil)
+//
+//        
+//            UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
+//
+//                self.staticHeight.constant += self.gradeStackView.frame.height
+//                self.view.layoutIfNeeded()
+//            }, completion: nil)
+//        
+////
+//            UIView.animate(withDuration: 2, delay: 0.5, options: .curveEaseInOut, animations: {
+//                self.secondBottomConstraint.constant += self.secondAward.frame.height
+//                self.view.layoutIfNeeded()
+//            }, completion: nil)
+//        
+//        
+//            UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+//                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
+//                self.view.layoutIfNeeded()
+//            }, completion: nil)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +79,13 @@ class MukkaebieRankViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func firstProfileImagePicker(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
 
     /*
     // MARK: - Navigation

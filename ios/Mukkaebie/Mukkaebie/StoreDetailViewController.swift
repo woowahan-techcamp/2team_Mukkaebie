@@ -15,6 +15,13 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
 //    var infoViewController: InfoViewController?
 //    var reviewViewController: ReviewViewController?
     
+    var modelStore : ModelStores?
+    let networkOrder = NetworkOrder()
+    var orderList = [ModelOrders]()
+    var priceByMenu = [String:Int]()
+    var orderByMenu = [String:Int]()
+    var orderByMenuSorted = [(key: String, value: Int)]()
+    
     @IBOutlet weak var meetPaymentLabel: UILabel!
     @IBOutlet weak var directPaymentLabel: UILabel!
     
@@ -33,15 +40,18 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var infoTabItem: UITabBarItem!
     @IBOutlet weak var reviewTabItem: UITabBarItem!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        self.tabBar.delegate=self;
+        self.tabBar.delegate = self
         
         self.automaticallyAdjustsScrollViewInsets = false
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.contentOffset = CGPoint(x: 0.0, y: 0.0)
+        
+        self.navigationItem.title = modelStore?.name
         
         meetPaymentLabel.layer.borderWidth = 1
         meetPaymentLabel.layer.borderColor = UIColor.white.cgColor
@@ -58,10 +68,53 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         
         tabBar.selectedItem = tabBar.items![0] as UITabBarItem
         tabBar(tabBar, didSelect: mukkabieTabItem)
+        
+
+        /*for menu in (modelStore?.menu)! {
+            orderByMenu[menu["foodNm"] as! String] = 0
+            if Int(menu["foodPrice"] as! String) != 0 {
+                priceByMenu[menu["foodNm"] as! String] = Int(menu["foodPrice"] as! String)
+            }
+        }
+        }*/
+
+        NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
+        
+        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func touchedShoppingCart(_ sender: Any) {
+        if priceByMenu.count > 0 {
+            let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
+            networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
+        }
+    }
+    
+    func getOrderList(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
+        self.orderList = orderInfo
+
+        for order in self.orderList {
+            for content in order.getContent() {
+                orderByMenu[content]! += 1
+            }
+        }
+    
+        orderByMenuSorted = orderByMenu.sorted(by: { $0.1 > $1.1 })
+        
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count-1).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.removeLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -87,10 +140,13 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
             adjustContentHeight(tabSubViewHeight: (mukkaebieRankViewController?.view.frame.size.height)!)
             adjustContentConstraint()
             break
+            
         case 1:
             let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
             menuViewController = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
             addChildViewController(menuViewController!)
+            
+            menuViewController?.orderByMenuSorted = orderByMenuSorted
             
             tabSubView.addSubview((menuViewController?.view)!)
             menuViewController?.didMove(toParentViewController: self)
@@ -166,10 +222,6 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         return image!
     }
     
-    func removeSub() {
-        
-    }
-    
     func adjustContentHeight(tabSubViewHeight: CGFloat) {
         tabSubView.frame.size.height = tabSubViewHeight
         tabView.frame.size.height = tabBar.frame.size.height+tabSubView.frame.size.height
@@ -180,6 +232,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
     func adjustContentConstraint() {
         if let constraint = (tabSubView.constraints.filter{$0.firstAttribute == .height}.first) {
             constraint.constant = tabSubView.frame.size.height
+            print(tabSubView.frame.size.height)
         }
         if let constraint = (tabView.constraints.filter{$0.firstAttribute == .height}.first) {
             constraint.constant = tabView.frame.size.height
