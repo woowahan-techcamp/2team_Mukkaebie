@@ -1,4 +1,4 @@
-let express = require('express'),
+var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
@@ -19,7 +19,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
     next();
 });
-
 
 
 
