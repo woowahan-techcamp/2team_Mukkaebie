@@ -1,0 +1,799 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import './store';
+@import './chart';
+@import './storeList';
+@import './variables';
+
+body {
+  font-family: "Hanna", "Dotum", Droid serif, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #222;
+  background-color: $bmBeigeColor;
+  margin: 0 auto;
+}
+
+footer {
+  font-family: "Dotum", "Nanum Gothic";
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #dbd3c6
+}
+
+footer .footer-area {
+  margin: 0 auto;
+  padding: 15px 10px 13px;
+  text-align: left;
+}
+
+footer .footer-area .foot-info {
+  margin: 15px -10px 0;
+  padding: 15px 10px 0;
+  border-top: 1px solid #ededed;
+  width: 100%;
+}
+
+@media(min-width: 767px) {
+  footer .footer-area .foot-info {
+    position: absolute;
+    bottom: 50px;
+    left: 10px;
+    width: 380px;
+    height: 30px;
+    border: 0;
+    line-height: 1.6
+  }
+}
+
+@media(min-width: 767px) {
+  footer .footer-area {
+    margin: 0 auto;
+    padding: 15px 10px 13px;
+    text-align: left;
+  }
+
+  footer .footer-area {
+    position: relative;
+    padding: 30px 0 32px
+  }
+}
+
+footer .footer-area .row {
+  margin-left: 0;
+  margin-right: 0
+}
+
+footer .footer-area .row .copyright {
+  padding-top: 10px;
+  padding-bottom: 15px
+}
+
+footer .footer-area .row > div {
+  padding: 0 5px
+}
+
+footer .footer-area .row .link li {
+  padding: 0 0 3px
+}
+
+footer .footer-area .row .link li a, footer .footer-area .row .link li a:hover {
+  color: #000
+}
+
+footer .footer-area .row .link li em {
+  display: inline-block;
+  padding: 0 3px;
+  color: #dadada
+}
+
+footer .footer-area .row .link li.blog a {
+  height: 13px;
+  padding: 2px 0 2px 22px;
+  background-image: url("https://img.woowahan.com/www/title/tl-labels.png?v=2");
+  background-repeat: no-repeat;
+  background-position: -300px -550px;
+  line-height: 14px;
+  vertical-align: text-bottom
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  footer .footer-area .row .link li.blog a {
+    padding: 0 0 0 12px;
+    background-image: url("https://img.woowahan.com/www/title/tl-mobile.png?v=2");
+    background-size: 300px 300px;
+    -webkit-background-size: 300px 300px;
+    background-position: -100px -98px;
+    vertical-align: text-top
+  }
+}
+
+footer .footer-area .row .link li.fb a {
+  height: 13px;
+  padding: 2px 0 0 20px;
+  color: #4b67b8;
+  background-image: url("https://img.woowahan.com/www/title/tl-labels.png");
+  background-repeat: no-repeat;
+  background-position: -300px -500px;
+  line-height: 14px;
+  vertical-align: text-bottom
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  footer .footer-area .row .link li.fb a {
+    padding: 0 0 0 12px;
+    background-image: url("https://img.woowahan.com/www/title/tl-mobile.png");
+    background-size: 300px 300px;
+    -webkit-background-size: 300px 300px;
+    background-position: -250px 1px;
+    vertical-align: text-top
+  }
+}
+
+@media(min-width: 768px) {
+  footer .footer-area .row .link {
+    padding: 2px 10px 5px
+  }
+
+  footer .footer-area .row .link li {
+    padding: 0 0 10px
+  }
+
+  footer .footer-area .row .link li a, footer .footer-area .row .link li a:hover {
+    font-weight: normal
+  }
+}
+
+footer .footer-area .row .woowa-info .cs-fc {
+  padding-top: 10px;
+  line-height: 1.6
+}
+
+footer .footer-area .row .woowa-info > div {
+  padding: 1px 0
+}
+
+footer .footer-area .row .woowa-info > div span {
+  padding-right: 5px
+}
+
+footer .footer-area .row .woowa-info > div a.mail, footer .footer-area .row .woowa-info > div a.mail:hover, footer .footer-area .row .woowa-info > div a.bizinfo, footer .footer-area .row .woowa-info > div a.bizinfo:hover {
+  padding-left: 10px;
+  text-decoration: underline;
+  color: #999
+}
+
+@media(min-width: 767px) {
+  footer .footer-area .row .woowa-info > div {
+    padding: 2px 0
+  }
+}
+
+footer .footer-area .row .woowa-info address {
+  display: inline-block;
+  margin-bottom: 0
+}
+
+@media(min-width: 992px) {
+  footer .footer-area .row .foot-info {
+    padding: 0 10px;
+    line-height: 1.6;
+    width: 45%;
+  }
+
+  footer .footer-area .row > div {
+    padding: 0
+  }
+
+  footer .footer-area .row .woowa-info {
+    margin-left: 20px;
+    padding: 0
+  }
+
+  footer .footer-area .row .woowa-info .copyright {
+    position: absolute
+  }
+}
+
+@media(min-width: 768px) {
+  footer .footer-area .row .foot-info {
+    padding: 10px 10px;
+    line-height: 1.6;
+    width: 45%;
+  }
+
+  footer .footer-area .row > div {
+    padding: 0
+  }
+
+  footer .footer-area .row .woowa-info {
+    margin-left: 20px;
+    padding: 0
+  }
+
+  footer .footer-area .row .woowa-info .copyright {
+    position: absolute
+  }
+}
+
+footer .footer-area .foot-terms-of-use {
+  margin: 15px -10px 0;
+  padding: 15px 10px 0;
+  border-top: 1px solid #ededed
+}
+
+@media(min-width: 767px) {
+  footer .footer-area .foot-terms-of-use {
+    position: absolute;
+    bottom: 33px;
+    left: 10px;
+    width: 380px;
+    height: 30px;
+    border: 0;
+    line-height: 1.6
+  }
+}
+
+footer .award-area {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid #e8e8e8;
+  color: #919191;
+  text-align: left
+}
+
+footer .award-area ul {
+  overflow: hidden
+}
+
+footer .award-area ul li {
+  display: block;
+  float: left;
+  padding-right: 30px;
+  padding-bottom: 10px
+}
+
+footer .award-area ul li span {
+  display: inline-block;
+  background-image: url("https://img.woowahan.com/www/title/tl-labels.png");
+  background-repeat: no-repeat;
+  vertical-align: top;
+  text-indent: -9999px
+}
+
+footer .award-area ul li span.award1 {
+  width: 49px;
+  height: 26px;
+  background-position: 0 -450px
+}
+
+footer .award-area ul li span.award2 {
+  width: 34px;
+  height: 31px;
+  background-position: -100px -450px
+}
+
+footer .award-area ul li span.award3 {
+  width: 30px;
+  height: 31px;
+  background-position: -200px -450px
+}
+
+footer .award-area ul li span.award4 {
+  width: 30px;
+  height: 30px;
+  background-position: -300px -450px
+}
+
+footer .award-area ul li em {
+  display: inline-block;
+  padding-left: 10px
+}
+
+@media(min-width: 767px) {
+  footer .award-area {
+    padding: 20px 0
+  }
+}
+
+footer .award-area .nextcrs {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 10px;
+  height: 30px;
+  background-image: url("https://img.woowahan.com/www/title/tl-buttons.png");
+  background-repeat: no-repeat;
+  background-position: -200px -850px;
+  background-color: #fff;
+  border: 0;
+  text-indent: -9999px;
+  z-index: 100
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  footer .award-area .nextcrs {
+    background-image: url("https://img.woowahan.com/www/title/tl-mobile.png");
+    background-size: 300px 300px
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  footer .award-area .nextcrs {
+    background-position: 0 -100px
+  }
+}
+
+@media(min-width: 480px) {
+  .footer-area,
+  .award-area {
+    max-width: 740px
+  }
+}
+
+@media(min-width: 768px) {
+  .footer-area,
+  .award-area {
+    max-width: 960px
+  }
+}
+
+@media(min-width: 982px) {
+  .footer-area,
+  .award-area {
+    max-width: 980px
+  }
+}
+
+.xsmall {
+  font-size: 11px
+}
+
+/* 전체에서 쓰이는 CSS component */
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit
+}
+
+em {
+  font-style: normal;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.p-l-0 {
+  padding-left: 0px;
+}
+
+.p-r-0 {
+  padding-right: 0px;
+}
+
+.p-t-0 {
+  padding-top: 0px;
+}
+
+.p-b-0 {
+  padding-bottom: 0px;
+}
+
+.p-x-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.p-y-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.p-a-0 {
+  padding: 0px;
+}
+
+.p-l-1 {
+  padding-left: 10px;
+}
+
+.p-r-1 {
+  padding-right: 10px;
+}
+
+.p-t-1 {
+  padding-top: 10px;
+}
+
+.p-b-1 {
+  padding-bottom: 10px;
+}
+
+.p-x-1 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.p-y-1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.p-a-1 {
+  padding: 10px;
+}
+
+.p-l-2 {
+  padding-left: 20px;
+}
+
+.p-r-2 {
+  padding-right: 20px;
+}
+
+.p-t-2 {
+  padding-top: 20px;
+}
+
+.p-b-2 {
+  padding-bottom: 20px;
+}
+
+.p-x-2 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.p-y-2 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.p-a-2 {
+  padding: 20px;
+}
+
+.p-l-3 {
+  padding-left: 30px;
+}
+
+.p-r-3 {
+  padding-right: 30px;
+}
+
+.p-x-3 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.p-a-3 {
+  padding: 30px;
+}
+
+.p-t-3 {
+  padding-top: 30px;
+}
+
+.p-b-3 {
+  padding-bottom: 30px;
+}
+
+.p-y-3 {
+  padding-top: 30px;
+  padding-bottom: 30px
+}
+
+.m-r-0 {
+  margin-right: 0px;
+}
+
+.m-l-0 {
+  margin-left: 0px;
+}
+
+.m-b-0 {
+  margin-bottom: 0px;
+}
+
+.m-t-0 {
+  margin-top: 0px;
+}
+
+.m-y-0 {
+  margin-bottom: 0px;
+  margin-top: 0px
+}
+
+.m-x-0 {
+  margin-left: 0px;
+  margin-right: 0px
+}
+
+.m-a-0 {
+  margin: 0px;
+}
+
+.m-r-1 {
+  margin-right: 10px;
+}
+
+.m-l-1 {
+  margin-left: 10px;
+}
+
+.m-b-1 {
+  margin-bottom: 10px;
+}
+
+.m-t-1 {
+  margin-top: 10px;
+}
+
+.m-y-1 {
+  margin-bottom: 10px;
+  margin-top: 10px
+}
+
+.m-x-1 {
+  margin-left: 10px;
+  margin-right: 10px
+}
+
+.m-a-1 {
+  margin: 10px;
+}
+
+.m-r-2 {
+  margin-right: 20px;
+}
+
+.m-l-2 {
+  margin-left: 20px;
+}
+
+.m-b-2 {
+  margin-bottom: 20px;
+}
+
+.m-t-2 {
+  margin-top: 20px;
+}
+
+.m-y-2 {
+  margin-bottom: 20px;
+  margin-top: 20px
+}
+
+.m-x-2 {
+  margin-left: 20px;
+  margin-right: 20px
+}
+
+.m-a-2 {
+  margin: 20px;
+}
+
+.m-r-3 {
+  margin-right: 30px;
+}
+
+.m-l-3 {
+  margin-left: 30px;
+}
+
+.m-b-3 {
+  margin-bottom: 30px;
+}
+
+.m-t-3 {
+  margin-top: 30px;
+}
+
+.m-y-3 {
+  margin-bottom: 30px;
+  margin-top: 30px
+}
+
+.m-x-3 {
+  margin-left: 30px;
+  margin-right: 30px
+}
+
+.m-a-3 {
+  margin: 30px;
+}
+
+.m-x-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.orangeFontColor {
+  color: $bmOrangeColor;
+}
+
+/* Footer 관련 */
+.footer {
+  background: #fff;
+  height: 200px;
+  width: 100%;
+}
+
+/* Header 관련 */
+.header {
+  background: #fff;
+  height: 200px
+}
+
+.loginMenu {
+  font-size: 11px;
+  color: #aeaeae
+}
+
+.baeminMainLogo {
+  background-image: url('https://img.woowahan.com/www/common/logo-bm-v2@2.png');
+  width: 230px;
+  height: 70px;
+  margin: 0 auto;
+  clear: both;
+  cursor: pointer
+}
+
+.searchArea {
+  margin: 30px auto 0;
+  overflow: auto;
+  width: 500px;
+  height: 39px;
+  overflow: hidden;
+}
+
+.searchArea * {
+  height: 39px;
+}
+
+.locationSelect {
+  width: 150px;
+  border: 1px solid #cccccc;
+  float: left;
+  line-height: 39px;
+  font-weight: bold;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.locationSelectButton {
+  background-image: url("https://img.woowahan.com/www/common/btn-set-loc.gif");
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  width: 39px;
+  height: 39px;
+  float: left;
+  margin-left: -2px;
+  cursor: pointer;
+}
+
+.locationSelectButton:hover {
+  background-position: 100% 0;
+}
+
+.searchBox {
+  width: 250px;
+  float: left;
+  text-indent: 20px;
+}
+
+.searchBoxButton {
+  background-image: url("https://img.woowahan.com/www/common/btn-srch.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  width: 39px;
+  height: 39px;
+  float: left;
+  margin-left: -2px;
+  cursor: pointer;
+}
+
+.searchBoxButton:hover {
+  background-position: 0 100%;
+}
+
+.categoryWrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  height: 100%;
+  border: 1px solid #c3c3c3;
+  display: -webkit-flex; /* Safari */
+  -webkit-flex-flow: wrap; /* Safari 6.1+ */
+  display: flex;
+  flex-flow: wrap;
+  border: 0 solid #ffffff;
+
+}
+
+.categoryWrapper li {
+  list-style: none;
+  margin-right: 10px;
+  background-image: url("https://img.woowahan.com/www/title/tl-cate.jpg?201404281135");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.blackMenuArea {
+  background: #222;
+  height: 100px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.blackMenuArea:hover {
+  height: 200px;
+}
+
+.blackMenu {
+  width: 100px;
+  height: 100px
+}
+
+.blackMenuChicken {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.blackMenuChinese {
+  background-position: -112px 0;
+}
+
+.blackMenuPizza {
+  background-position: -224px 0;
+}
+
+.blackMenuKorean {
+  background-position: -336px 0;
+}
+
+.blackMenuPigfeet {
+  background-position: -448px 0;
+}
+
+.blackMenuNight {
+  background-position: -560px 0;
+}
+
+.blackMenuJapanese {
+  background-position: -672px 0;
+}
+
+.blackMenuSoup {
+  background-position: -784px 0;
+}
+
+.blackMenuVento {
+  background-position: 0 -98px;
+}
+
+.blackMenuFastfood {
+  background-position: -112px -98px;
+}
+
+.blackMenuQuickpay {
+  background-position: -784px -98px;
+}
+
+.blackMenuTogether {
+  background-position: -112px -201px;
+}
+
+
+

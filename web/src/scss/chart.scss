@@ -1,0 +1,356 @@
+@import './variables';
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.orders {
+    color: #FF0000;
+}
+
+.chart-text {
+    fill: #000;
+    -moz-transform: translateY(0.25em);
+    -ms-transform: translateY(0.25em);
+    -webkit-transform: translateY(0.25em);
+    transform: translateY(0.25em);
+}
+
+.chart-number {
+    font-size: 0.6em;
+    line-height: 1;
+    text-anchor: middle;
+    -moz-transform: translateY(-0.25em);
+    -ms-transform: translateY(-0.25em);
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+}
+
+.chart-label {
+    font-size: 0.2em;
+    text-transform: uppercase;
+    text-anchor: middle;
+    -moz-transform: translateY(0.4em);
+    -ms-transform: translateY(0.4em);
+    -webkit-transform: translateY(0.4em);
+    transform: translateY(0.4em);
+}
+
+figure {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+@media (min-width: 768px) {
+    figure {
+        flex-direction: row;
+    }
+}
+
+.figure-content {
+    flex: 1;
+    padding-left: 35px;
+    align-self: center;
+}
+
+.figure-key {
+    flex: 1;
+    align-self: center;
+}
+
+.figure-content svg {
+    height: auto;
+}
+
+circle {
+    animation-name: animateStart;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animateStart {
+    from {
+        stroke-dashoffset: 0;
+    }
+}
+
+.figure-key {
+    min-width: calc(8/12);
+}
+
+.figure-key [class*="shape-"] {
+    margin-right: 6px;
+}
+
+.figure-key-list {
+    margin: auto;
+    padding: 10;
+    list-style: none;
+}
+
+.figure-key-list li {
+    margin-bottom: 8px;
+    padding: 0;
+    width: 80%;
+    height: 80%;
+    margin-right: 10px;
+    text-align: left;
+    
+}
+
+
+@media only screen and (max-width: 770px) {
+    .figure-content {
+        height: auto;
+        padding-left: 0px;
+        text-align: center;
+    }
+
+    .figure-key {
+        align-self: center;
+        max-width: 100%;
+        padding-left: 5px;
+    }
+
+    .figure-key-list {
+        align-self: center;
+        margin-top: 20px;
+        max-width: 100%;
+        font-size: 0.8em;
+        padding-left: 5px;
+    }
+
+    .figure-key-list li{
+
+        display: inline;
+        list-style: none;
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+    .figure-key-list {
+        column-count: 3;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
+
+@media only screen and (max-width: 450px) {
+
+    .figure-key-list {
+        column-count: 2;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
+
+.donutLabel {
+    color:#000000;
+}
+
+.shape-rect {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
+.shape-1 {
+    background-color: rgb(110,239,192);
+}
+
+.shape-2 {
+    background-color: rgb(42,193,188);
+}
+
+.shape-3 {
+    background-color: rgb(130,198,255);
+}
+
+.shape-4 {
+    background-color: rgb(251,136,136);
+}
+
+.shape-5 {
+    background-color: rgb(251,229,136);
+}
+
+.shape-6 {
+    background-color: #d2d3d4;
+}
+
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.goldAnimate  {
+    animation-name: goldHeightUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.goldOrdersAnimate  {
+    animation-name: goldOrdersHeightUp;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.goldNameAnimate  {
+    animation-name: goldNameHeightUp;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.silverAnimate  {
+    animation-name: silverHeightUp;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.silverOrdersAnimate  {
+    animation-name: silverOrdersHeightUp;
+    animation-duration: 3.5s;
+    animation-fill-mode: forwards;
+}
+
+.silverNameAnimate  {
+    animation-name: silverNameHeightUp;
+    animation-duration: 3.5s;
+    animation-fill-mode: forwards;
+}
+
+.bronzeAnimate  {
+    animation-name: bronzeHeightUp;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.bronzeOrdersAnimate  {
+    animation-name: bronzeOrdersHeightUp;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.bronzeNameAnimate  {
+    animation-name: bronzeNameHeightUp;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes goldHeightUp {
+    from {
+        position: absolute;
+        bottom: -400px;
+    }
+    to {
+        position: absolute;
+        bottom: 0px;
+    }
+}
+
+
+@keyframes goldOrdersHeightUp {
+    from {
+        bottom: -140px;
+    }
+    to {
+        bottom: 323px;
+    }
+}
+
+@keyframes goldNameHeightUp {
+    from {
+        bottom: -140px;
+    }
+    to {
+        bottom: 303px;
+    }
+}
+
+@keyframes silverHeightUp {
+    from {
+        position: absolute;
+        bottom: -400px;
+    }
+
+    to {
+        position: absolute;
+        bottom: 0px;
+    }
+}
+
+@keyframes silverOrdersHeightUp {
+    from {
+        bottom: -140px;
+    }
+    to {
+        bottom: 250px;
+    }
+}
+
+@keyframes silverNameHeightUp {
+    from {
+        bottom: -140px;
+    }
+    to {
+        bottom: 230px;
+    }
+}
+
+@keyframes bronzeHeightUp {
+    from {
+        position: absolute;
+        bottom: -400px;
+    }
+
+    to {
+        position: absolute;
+        bottom: 0px;
+    }
+}
+
+@keyframes bronzeOrdersHeightUp {
+    from {
+        bottom: -200px;
+    }
+    to {
+        bottom: 180px;
+    }
+}
+
+@keyframes bronzeNameHeightUp {
+    from {
+        bottom: -200px;
+    }
+    to {
+        bottom: 160px;
+    }
+}
+
