@@ -45,7 +45,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 가게 인기 메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-M2-dnX">
-                                        <rect key="frame" x="55" y="18" width="132" height="20"/>
+                                        <rect key="frame" x="55" y="19.5" width="131" height="17"/>
                                         <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -120,6 +120,7 @@
                                                 <connections>
                                                     <outlet property="menuLabel" destination="N6l-V7-b4X" id="jFq-vb-ezF"/>
                                                     <outlet property="priceLabel" destination="nXI-lg-3lZ" id="X0I-HL-1xz"/>
+                                                    <segue destination="Z8O-ax-1mD" kind="show" identifier="menuOrder" id="qRG-rs-ews"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -157,6 +158,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1z-d5-7I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--CartPayment-->
+        <scene sceneID="bXa-dh-Qep">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CartPayment" id="Z8O-ax-1mD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1yv-OC-AZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="-1"/>
         </scene>
     </scenes>
     <resources>

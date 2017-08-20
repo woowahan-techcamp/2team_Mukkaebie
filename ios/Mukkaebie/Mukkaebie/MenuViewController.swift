@@ -45,6 +45,16 @@ class MenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "menuOrder" {
+            if let indexPath = self.menuTableView.indexPathForSelectedRow {
+                let controller = segue.destination as! CartPaymentViewController
+//                controller.modelStore = self.storeList[(indexPath?.row)!]
+            }
+        }
+    }
+    
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
