@@ -45,7 +45,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 가게 인기 메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-M2-dnX">
-                                        <rect key="frame" x="55" y="19.5" width="131" height="17"/>
+                                        <rect key="frame" x="55" y="18" width="132" height="20"/>
                                         <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -98,23 +98,23 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6l-V7-b4X">
-                                                            <rect key="frame" x="17" y="11" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="17" y="13.5" width="31.5" height="16"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXI-lg-3lZ">
-                                                            <rect key="frame" x="325" y="11" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <rect key="frame" x="327.5" y="13.5" width="29.5" height="16"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                            <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="N6l-V7-b4X" firstAttribute="leading" secondItem="IAx-ge-uuO" secondAttribute="leadingMargin" constant="9" id="4fM-8P-TuT"/>
                                                         <constraint firstItem="N6l-V7-b4X" firstAttribute="baseline" secondItem="nXI-lg-3lZ" secondAttribute="baseline" id="IEU-02-8Zv"/>
+                                                        <constraint firstAttribute="trailing" secondItem="nXI-lg-3lZ" secondAttribute="trailing" constant="18" id="iIz-FV-i47"/>
                                                         <constraint firstItem="N6l-V7-b4X" firstAttribute="centerY" secondItem="IAx-ge-uuO" secondAttribute="centerY" id="x3q-Co-urO"/>
-                                                        <constraint firstItem="nXI-lg-3lZ" firstAttribute="trailing" secondItem="IAx-ge-uuO" secondAttribute="trailingMargin" id="zmp-6h-Gae"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
