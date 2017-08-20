@@ -62,6 +62,9 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="ratingValue" destination="Q1t-1E-3P6" id="Xe5-sY-5mN"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

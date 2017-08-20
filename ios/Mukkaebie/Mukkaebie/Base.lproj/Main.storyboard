@@ -50,7 +50,6 @@
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.96470588235294119" green="0.93725490196078431" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="kmi-F8-vWa" firstAttribute="leading" secondItem="LLn-b4-lsn" secondAttribute="leading" id="0MK-Lm-H5C"/>
                                             <constraint firstItem="kmi-F8-vWa" firstAttribute="height" secondItem="LLn-b4-lsn" secondAttribute="height" id="9UP-wB-3uz"/>
@@ -247,7 +246,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gXq-cF-Daf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gXq-cF-Daf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">

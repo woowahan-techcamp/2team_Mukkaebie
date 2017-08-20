@@ -10,6 +10,8 @@ import UIKit
 
 class rateTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var ratingValue: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

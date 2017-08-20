@@ -70,17 +70,11 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.navigationItem.title = modelStore?.name
         
-        
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.allowsSelection = false
-        
         tableView.rowHeight = UITableViewAutomaticDimension
-
         tableView.estimatedRowHeight = 100
-//        tabBarController?.tabBar.isHidden = true
-        dump(self.modelStore)
         
         let menu = (self.modelStore?.menu)![0]
         for (title, submenu) in menu {
@@ -107,11 +101,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
-
-    override func viewDidAppear(_ animated: Bool) {
-//        tabBarController?.tabBar.isHidden = true
-
-    }
     
     func getOrderList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
@@ -191,6 +180,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             
         if section == 2 {
             let rateView = Bundle.main.loadNibNamed("rateTableViewCell", owner: self, options: nil)?.first as! rateTableViewCell
+            rateView.ratingValue.text = String(describing: floor((modelStore?.ratingValue)!*10)/10)
             return rateView
         }
         

@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+        let statusBarColor = UIColor(hexString: "3B342C")
+        statusBarView.backgroundColor = statusBarColor
+        window?.addSubview(statusBarView)
+        
+        
         
         let navigationBarApearace = UINavigationBar.appearance()
         navigationBarApearace.tintColor = UIColor(hexString: "0xffffff")
@@ -26,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backButtonImage = #imageLiteral(resourceName: "backButton").stretchableImage(withLeftCapWidth: 20, topCapHeight: 10)
 
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(backButtonImage, for: .normal, barMetrics: .default)
-        
         
         navigationBarApearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         

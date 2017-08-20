@@ -29,9 +29,6 @@ class MainViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         mainCollectionView.reloadData()
         
-        tabBarController?.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
-
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -95,9 +92,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
 
     
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 1
         

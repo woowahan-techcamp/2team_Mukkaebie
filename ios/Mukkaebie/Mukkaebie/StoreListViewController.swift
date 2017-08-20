@@ -10,8 +10,8 @@ import UIKit
 import AlamofireImage
 
 class StoreListViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var collectionView: UICollectionView!
     
     let foodCategoryArray = ["치킨","중식","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
@@ -24,6 +24,7 @@ class StoreListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = foodCategoryArray[foodCategoryArrayForURL.index(of: category)!]
+        
         tableView.dataSource = self
         tableView.delegate = self
         collectionView.dataSource = self
@@ -34,17 +35,12 @@ class StoreListViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
         navigationController?.setNavigationBarHidden(false, animated: false)
-
-//        self.navigationController?.navigationBar.isHidden = false
         
         NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         
         networkStore.getStoreList(category: category)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
     
     func getStoreList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
