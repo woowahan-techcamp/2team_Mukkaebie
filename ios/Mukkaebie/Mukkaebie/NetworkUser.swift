@@ -14,7 +14,6 @@ class NetworkUser {
     
     private static let url = URLpath.getURL()
     
-    
     static func getUserList() {
         Alamofire.request("\(url)users").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
