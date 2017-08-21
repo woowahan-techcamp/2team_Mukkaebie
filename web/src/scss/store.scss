@@ -361,12 +361,19 @@
 
 /* 포디움 관련 */
 
+@-webkit-keyframes rain {
+    0% {background-position: 0px 0px;}
+    100% {background-position: 20px 1340px;}
+}
+
 .competition-podium {
     height: 400px;
     position: relative;
     width: 400px;
     top: -100px;
     background: #f6f3ed;
+    background-image: url("../img/particles_alpha.png");
+    -webkit-animation: rain 20s linear infinite;
     margin:0 auto;
     overflow: hidden;
 }
