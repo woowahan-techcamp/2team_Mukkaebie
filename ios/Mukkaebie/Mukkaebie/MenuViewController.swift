@@ -11,10 +11,15 @@ import UIKit
 class MenuViewController: UIViewController {
 
     @IBOutlet weak var pieChartView: PieChartView!
-    
     @IBOutlet weak var menuTableView: UITableView!
     
+    var modelStore : ModelStores?
+    let networkOrder = NetworkOrder()
+    var orderList = [ModelOrders]()
+    var orderByMenu = [String: Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
+
+    
     let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     
     var items: Array<MenuViewModelItem> = []
@@ -49,8 +54,9 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "menuOrder" {
             if let indexPath = self.menuTableView.indexPathForSelectedRow {
-                let controller = segue.destination as! CartPaymentViewController
-//                controller.modelStore = self.storeList[(indexPath?.row)!]
+                let cartPaymentcontroller = segue.destination as! CartPaymentViewController
+                cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
+                cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
             }
         }
     }
