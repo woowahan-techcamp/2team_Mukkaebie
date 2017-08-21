@@ -57,8 +57,10 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
-    var priceByMenu = [String: Int]()
-    var orderByMenu = [String: Int]()
+    var priceByMenu = [String:Int]()
+    var orderByUser = [String:Int]()
+    var orderByUserTop3 = [(key: String, value: Int)]()
+    var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
     var tabNumber = 0
@@ -101,14 +103,23 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func getOrderList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
         self.orderList = orderInfo
         
+        getOrderByMenu()
+        getOrderByUser()
+    }
+    
+    func getOrderByMenu() {
         for order in self.orderList {
-            for content in order.getContent() {
+            for content in order.content {
                 orderByMenu[content]! += 1
             }
         }
@@ -132,8 +143,23 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func postOrder(_ notification: Notification) {
+    func getOrderByUser() {
+        for order in self.orderList {
+            if orderByUser[order.buyerId] == nil {
+                orderByUser[order.buyerId] = 1
+            } else {
+                orderByUser[order.buyerId]! += 1
+            }
+        }
         
+        let orderByUserSorted = orderByUser.sorted(by: { $0.1 > $1.1 })
+        
+        for i in orderByUser.count > 3 ? 0..<3 : 0..<orderByUser.count-1 {
+            self.orderByUserTop3.append(orderByUserSorted[i])
+        }
+    }
+    
+    func postOrder(_ notification: Notification) {
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
@@ -155,11 +181,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
             networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
