@@ -85,11 +85,13 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        let menu = (self.modelStore?.menu)![0]
-        for (title, submenu) in menu {
-            for (name, price) in submenu {
-                orderByMenu[name] = 0
-                priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+        if (self.modelStore?.menu.count)! > 0 {
+            let menu = (self.modelStore?.menu)![0]
+            for (title, submenu) in menu {
+                for (name, price) in submenu {
+                    orderByMenu[name] = 0
+                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                }
             }
         }
         
@@ -97,15 +99,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
-        
-        if (self.modelStore?.menu.count)! > 0 {
-            let menu = (self.modelStore?.menu[0])!
-            for (_, submenu) in menu {
-                for (name, _) in submenu {
-                    orderByMenu[name] = 0
-                }
-            }
-        }
         
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
