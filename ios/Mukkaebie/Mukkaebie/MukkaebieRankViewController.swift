@@ -45,7 +45,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(orderByUserTop3)
 //        if self.firstBottomConstraint.constant < 0 {
         
 //        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {

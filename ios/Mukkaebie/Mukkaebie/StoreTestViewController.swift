@@ -16,7 +16,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         mukkaebieVC?.view.frame.size.height = 540
         mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
-        print(self.orderByUserTop3)
         return mukkaebieVC
     }()
     
