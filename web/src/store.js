@@ -330,19 +330,13 @@ class Graph {
         for (let i = 0; i < orders.length; i++) {
 
           orders[i].content.forEach(function (ele) {
-            if (ele in top) {
+            if (ele in topMenu) {
               topMenu[ele] += 1;
             }
             else {
               topMenu[ele] = 1;
             }
           })
-
-          // if (orders[i].content in topMenu) {
-          //   topMenu[orders[i].content] += 1;
-          // } else {
-          //   topMenu[orders[i].content] = 1;
-          // }
 
         }
 
