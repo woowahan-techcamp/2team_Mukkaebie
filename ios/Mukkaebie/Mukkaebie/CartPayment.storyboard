@@ -70,16 +70,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJs-1N-p9g">
-                                <rect key="frame" x="0.0" y="153" width="375" height="53"/>
+                                <rect key="frame" x="0.0" y="153" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수량" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bN-xc-cHz">
-                                        <rect key="frame" x="26" y="18" width="25" height="17"/>
+                                        <rect key="frame" x="26" y="24" width="25" height="17"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-F3-pb9">
-                                        <rect key="frame" x="228" y="8" width="37" height="37"/>
+                                        <rect key="frame" x="228" y="14" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="2Wd-xn-cvh"/>
                                             <constraint firstAttribute="width" constant="37" id="895-0a-5fD"/>
@@ -93,7 +93,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASf-NB-4Dq">
-                                        <rect key="frame" x="320" y="8" width="37" height="37"/>
+                                        <rect key="frame" x="320" y="14" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="d4m-m4-XCE"/>
                                             <constraint firstAttribute="width" constant="37" id="soQ-iq-f6p"/>
@@ -107,7 +107,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNx-av-Awo" userLabel="orderCount">
-                                        <rect key="frame" x="264" y="8" width="57" height="37"/>
+                                        <rect key="frame" x="264" y="14" width="57" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="57" id="Mq5-vn-VbD"/>
                                             <constraint firstAttribute="height" constant="37" id="vsH-vn-9Ku"/>
@@ -117,13 +117,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ASf-NB-4Dq" firstAttribute="centerY" secondItem="JNx-av-Awo" secondAttribute="centerY" id="0Rd-Sq-emr"/>
                                     <constraint firstItem="JNx-av-Awo" firstAttribute="centerY" secondItem="gmG-F3-pb9" secondAttribute="centerY" id="1yK-hE-PQw"/>
                                     <constraint firstItem="ASf-NB-4Dq" firstAttribute="leading" secondItem="JNx-av-Awo" secondAttribute="trailing" constant="-1" id="6aC-ob-vvN"/>
                                     <constraint firstItem="9bN-xc-cHz" firstAttribute="leading" secondItem="uJs-1N-p9g" secondAttribute="leading" constant="26" id="8vR-CD-p3n"/>
-                                    <constraint firstAttribute="height" constant="53" id="GOZ-dH-8za"/>
+                                    <constraint firstAttribute="height" constant="65" id="GOZ-dH-8za"/>
                                     <constraint firstItem="gmG-F3-pb9" firstAttribute="centerY" secondItem="9bN-xc-cHz" secondAttribute="centerY" id="Hey-mP-cnF"/>
                                     <constraint firstItem="JNx-av-Awo" firstAttribute="leading" secondItem="gmG-F3-pb9" secondAttribute="trailing" constant="-1" id="Y60-6W-5Jn"/>
                                     <constraint firstItem="gmG-F3-pb9" firstAttribute="centerY" secondItem="uJs-1N-p9g" secondAttribute="centerY" id="bdI-pG-Dw8"/>
