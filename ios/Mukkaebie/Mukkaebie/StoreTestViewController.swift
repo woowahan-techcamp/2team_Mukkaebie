@@ -154,7 +154,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         let orderByUserSorted = orderByUser.sorted(by: { $0.1 > $1.1 })
         
-        for i in orderByUser.count > 3 ? 0..<3 : 0..<orderByUser.count-1 {
+        for i in orderByUserSorted.count > 3 ? 0..<3 : 0..<orderByUserSorted.count {
             self.orderByUserTop3.append(orderByUserSorted[i])
         }
     
