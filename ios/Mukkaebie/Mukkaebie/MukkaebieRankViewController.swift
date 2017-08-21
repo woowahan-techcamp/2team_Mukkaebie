@@ -24,6 +24,7 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
     
+    var orderByUserTop3 = [(key: String, value: Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         
 //        if self.firstBottomConstraint.constant < 0 {
         

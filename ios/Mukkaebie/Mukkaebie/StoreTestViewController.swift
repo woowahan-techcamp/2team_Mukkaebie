@@ -13,13 +13,16 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var mukkaebieVC : MukkaebieRankViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+        
         mukkaebieVC?.view.frame.size.height = 540
+        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
         return mukkaebieVC
     }()
     
     lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+        
         if (self.modelStore?.menu.count)! > 0 {
         let menu = (self.modelStore?.menu)![0]
             for (title, submenu) in menu {
@@ -40,25 +43,30 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var infoVC : InfoViewController? = {
         let storyboard = UIStoryboard(name: "Info", bundle: nil)
         let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
+        
         infoVC?.introText = self.modelStore?.storeDesc
         infoVC?.openHourText = self.modelStore?.openHour
         infoVC?.telephoneText = self.modelStore?.telephone
         infoVC?.nameText = self.modelStore?.name
         infoVC?.view.frame.size.height = 667
+        
         return infoVC
     }()
     
     lazy var reviewVC : ReviewTableViewController? = {
         let storyboard = UIStoryboard(name: "Review", bundle: nil)
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
+        
         return reviewVC
     }()
     
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
-    var priceByMenu = [String: Int]()
-    var orderByMenu = [String: Int]()
+    var priceByMenu = [String:Int]()
+    var orderByUser = [String:Int]()
+    var orderByUserTop3 = [(key: String, value: Int)]()
+    var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
     var tabNumber = 0
@@ -94,14 +102,23 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func getOrderList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
         self.orderList = orderInfo
         
+        getOrderByMenu()
+        getOrderByUser()
+    }
+    
+    func getOrderByMenu() {
         for order in self.orderList {
-            for content in order.getContent() {
+            for content in order.content {
                 orderByMenu[content]! += 1
             }
         }
@@ -118,22 +135,45 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         if (menuRankVC?.pieChartView != nil) {
-            let indexPath = IndexPath(row: 0, section: 3)
             menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
             menuRankVC?.setSegment()
+            
+            let indexPath = IndexPath(row: 0, section: 3)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
-    func postOrder(_ notification: Notification) {
+    func getOrderByUser() {
+        for order in self.orderList {
+            if orderByUser[order.buyerId] == nil {
+                orderByUser[order.buyerId] = 1
+            } else {
+                orderByUser[order.buyerId]! += 1
+            }
+        }
         
+        let orderByUserSorted = orderByUser.sorted(by: { $0.1 > $1.1 })
+        
+        for i in orderByUser.count > 3 ? 0..<3 : 0..<orderByUser.count-1 {
+            self.orderByUserTop3.append(orderByUserSorted[i])
+        }
+    
+        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
+        
+        let indexPath = IndexPath(row: 0, section: 3)
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func postOrder(_ notification: Notification) {
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
     
     func changeTab(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let tabNumber = userInfo["tabNumber"] as? Int else { return }
+        
         self.tabNumber = tabNumber
+        
         let indexPath = IndexPath(row: 0, section: 3)
         tableView.reloadRows(at: [indexPath], with: .none)
     }
@@ -148,11 +188,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
             let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
             networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
