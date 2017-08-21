@@ -39,30 +39,118 @@ class PieChartView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        // height for title
-        let titleHeight: CGFloat = 19
         
+        //padding for view
         let padding: CGFloat = 38
+        
+        // height for title
+        let titleHeight: CGFloat = 20
+        
+        //array for titleView
+        var titleViews : [UIView] = []
+        
+        //add first titleView
+        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
+        
+        //x position of composition
+        var compX: CGFloat = 0
+        
+        //count for titleViews
+        var titleViewsCount = 0
+        
+        //function for adding titleViews
+        func addTitle(segment: Segment, newLine: Bool, overWidth: Bool) {
+            
+            //add new line
+            if newLine {
+                titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
+                
+                compX = 0
+                titleViewsCount += 1
+            }
+            
+            //make color rectangle
+            let colorRect = CGRect(x: compX, y: 3 + titleHeight * CGFloat(titleViewsCount), width: 9, height: 9)
+            
+            //setting the view for rectangle
+            let rectView = UIView(frame: colorRect)
+            rectView.backgroundColor = segment.color
+            titleViews[titleViewsCount].addSubview(rectView)
+            
+            //update compX
+            compX += 9 + 6
+            
+            let button : UIButton
+            
+            //if text is over the width of frame, then width of button is width of frame
+            if !overWidth {
+                button = UIButton(frame: CGRect(x: compX, y: titleHeight * CGFloat(titleViewsCount), width: 200, height: 20))
+            } else {
+                button = UIButton(frame: CGRect(x: compX, y: titleHeight * CGFloat(titleViewsCount), width: frame.size.width - padding - 15, height: 20))
+            }
+            
+            //setting the button
+            button.isEnabled = true
+            button.isUserInteractionEnabled = true
+            
+            button.setTitle(segment.title, for: .normal)
+            button.setTitleColor(UIColor(white: 136/255, alpha: 1), for: .normal)
+
+            button.titleLabel?.font = UIFont(name: "BMHANNA11yrsoldOTF", size: 15)
+            
+            //if text is not over the width of frame, then manipulate the size of button to fit the size of it's content
+            if !overWidth {
+                button.titleLabel?.frame.size = button.titleLabel!.intrinsicContentSize
+                button.frame.size.width = button.titleLabel!.frame.size.width
+            }
+            
+            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            
+            titleViews[titleViewsCount].addSubview(button)
+            
+            //update compX
+            compX += button.frame.size.width+20
+        }
+        
+        for segment in segments {
+            let width = segment.title.size(attributes: [NSFontAttributeName: UIFont(name: "BMHANNA11yrsoldOTF", size: 15)!]).width
+            
+            if 15 + width > frame.size.width - padding {
+                if titleViews[titleViewsCount].subviews.count == 0 {
+                    addTitle(segment: segment, newLine: false, overWidth: true)
+                } else {
+                    addTitle(segment: segment, newLine: true, overWidth: true)
+                }
+            } else if compX + 15 + width > frame.size.width - padding {
+                addTitle(segment: segment, newLine: true, overWidth: false)
+            } else {
+                addTitle(segment: segment, newLine: false, overWidth: false)
+            }
+        }
+        
+        for titleView in titleViews {
+            titleView.frame = CGRect(x: 0, y: frame.size.height - titleHeight * CGFloat(titleViewsCount) - padding, width: frame.size.width, height: 20)
+            titleViewsCount -= 1
+        
+            self.addSubview(titleView)
+            titleView.sizeToFitCustom()
+            titleView.center.x = self.frame.size.width / 2
+        }
         
         // get current context
         let ctx = UIGraphicsGetCurrentContext()
         
         // radius is the half the frame's width or height (whichever is smallest)
-        let radius = (min(frame.size.width, frame.size.height) - titleHeight - padding ) * 0.5
+        let radius = (min(frame.size.width, frame.size.height) - titleHeight * CGFloat(titleViews.count) - padding ) * 0.5
         
         // center of the view
-        let viewCenter = CGPoint(x: bounds.size.width * 0.5, y: (bounds.size.height-titleHeight - padding) * 0.5)
+        let viewCenter = CGPoint(x: bounds.size.width * 0.5, y: (bounds.size.height - titleHeight * CGFloat(titleViews.count) - padding) * 0.5)
         
         // enumerate the total value of the segments by using reduce to sum them
         let valueCount = segments.reduce(0, {$0 + $1.value})
         
         // the starting angle is -90 degrees (top of the circle, as the context is flipped). By default, 0 is the right hand side of the circle, with the positive angle being in an anti-clockwise direction (same as a unit circle in maths).
         var startAngle = -CGFloat.pi * 0.5
-        
-        var compX: CGFloat = 0
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: frame.size.height-19, width: frame.size.width, height: 19))
-        self.addSubview(titleView)
         
         for segment in segments { // loop through the values array
             
@@ -83,27 +171,11 @@ class PieChartView: UIView {
             
             // update starting angle of the next segment to the ending angle of this segment
             startAngle = endAngle
-            
-            let colorRect = CGRect(x: compX, y: 3, width: 9, height: 9)
-            let rectView = UIView(frame: colorRect)
-            rectView.backgroundColor = segment.color
-            titleView.addSubview(rectView)
-            
-            compX += 9 + 6
-            
-            let label = UILabel(frame: CGRect(x: compX, y: 0, width: 200, height: 20))
-            label.font = label.font.withSize(titleHeight-5)
-            label.textColor = UIColor(white: 136/255, alpha: 1)
-            label.text = segment.title
-            label.font = UIFont(name: "BMHANNA11yrsoldOTF", size: 15)
-            label.frame.size = label.intrinsicContentSize
-            titleView.addSubview(label)
-            
-            compX += label.frame.size.width+20
         }
-        
-        titleView.sizeToFitCustom()
-        titleView.center.x = self.frame.size.width / 2
+    }
+    
+    func buttonAction(sender: UIButton!) {
+        print(sender.titleLabel?.text)
     }
 }
 
