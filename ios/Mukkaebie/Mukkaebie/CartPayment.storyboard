@@ -73,13 +73,13 @@
                                 <rect key="frame" x="0.0" y="153" width="375" height="53"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수량" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bN-xc-cHz">
-                                        <rect key="frame" x="26" y="18" width="24.5" height="17"/>
+                                        <rect key="frame" x="26" y="18" width="25" height="17"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-F3-pb9">
-                                        <rect key="frame" x="224" y="8" width="37" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-F3-pb9">
+                                        <rect key="frame" x="228" y="8" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="2Wd-xn-cvh"/>
                                             <constraint firstAttribute="width" constant="37" id="895-0a-5fD"/>
@@ -92,10 +92,11 @@
                                             <action selector="touchedMinusButton:" destination="bNo-8D-H9U" eventType="touchUpInside" id="10p-7W-tpP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASf-NB-4Dq">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASf-NB-4Dq">
                                         <rect key="frame" x="320" y="8" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="d4m-m4-XCE"/>
+                                            <constraint firstAttribute="width" constant="37" id="soQ-iq-f6p"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="+">
@@ -105,13 +106,13 @@
                                             <action selector="touchedPlusButton:" destination="bNo-8D-H9U" eventType="touchUpInside" id="4fG-0k-jag"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNx-av-Awo" userLabel="orderCount">
-                                        <rect key="frame" x="263" y="8" width="57" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNx-av-Awo" userLabel="orderCount">
+                                        <rect key="frame" x="264" y="8" width="57" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="57" id="Mq5-vn-VbD"/>
                                             <constraint firstAttribute="height" constant="37" id="vsH-vn-9Ku"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <color key="textColor" red="0.1647058824" green="0.75294117650000003" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -120,11 +121,11 @@
                                 <constraints>
                                     <constraint firstItem="ASf-NB-4Dq" firstAttribute="centerY" secondItem="JNx-av-Awo" secondAttribute="centerY" id="0Rd-Sq-emr"/>
                                     <constraint firstItem="JNx-av-Awo" firstAttribute="centerY" secondItem="gmG-F3-pb9" secondAttribute="centerY" id="1yK-hE-PQw"/>
-                                    <constraint firstItem="gmG-F3-pb9" firstAttribute="trailing" secondItem="JNx-av-Awo" secondAttribute="leading" id="62H-dG-Tmb"/>
-                                    <constraint firstItem="ASf-NB-4Dq" firstAttribute="leading" secondItem="JNx-av-Awo" secondAttribute="trailing" id="6aC-ob-vvN"/>
+                                    <constraint firstItem="ASf-NB-4Dq" firstAttribute="leading" secondItem="JNx-av-Awo" secondAttribute="trailing" constant="-1" id="6aC-ob-vvN"/>
                                     <constraint firstItem="9bN-xc-cHz" firstAttribute="leading" secondItem="uJs-1N-p9g" secondAttribute="leading" constant="26" id="8vR-CD-p3n"/>
                                     <constraint firstAttribute="height" constant="53" id="GOZ-dH-8za"/>
                                     <constraint firstItem="gmG-F3-pb9" firstAttribute="centerY" secondItem="9bN-xc-cHz" secondAttribute="centerY" id="Hey-mP-cnF"/>
+                                    <constraint firstItem="JNx-av-Awo" firstAttribute="leading" secondItem="gmG-F3-pb9" secondAttribute="trailing" constant="-1" id="Y60-6W-5Jn"/>
                                     <constraint firstItem="gmG-F3-pb9" firstAttribute="centerY" secondItem="uJs-1N-p9g" secondAttribute="centerY" id="bdI-pG-Dw8"/>
                                     <constraint firstItem="9bN-xc-cHz" firstAttribute="centerY" secondItem="uJs-1N-p9g" secondAttribute="centerY" id="oaC-Wi-9Ni"/>
                                     <constraint firstAttribute="trailing" secondItem="ASf-NB-4Dq" secondAttribute="trailing" constant="18" id="r8V-eY-Bh5"/>
@@ -200,7 +201,9 @@
                     <connections>
                         <outlet property="menuNameLabel" destination="FT1-xd-j9D" id="hoK-rw-5wh"/>
                         <outlet property="menuPriceLabel" destination="10V-UN-5fb" id="auo-no-0cq"/>
+                        <outlet property="minusButton" destination="gmG-F3-pb9" id="npk-yc-7aw"/>
                         <outlet property="orderCountLabel" destination="JNx-av-Awo" id="cjv-2k-DT5"/>
+                        <outlet property="plusButton" destination="ASf-NB-4Dq" id="Fxv-eu-zRC"/>
                         <outlet property="totalPriceLabel" destination="RO3-EN-85c" id="Oyd-2W-sb3"/>
                     </connections>
                 </viewController>

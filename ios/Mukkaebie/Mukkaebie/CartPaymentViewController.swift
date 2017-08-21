@@ -15,6 +15,9 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var orderCountLabel: UILabel!
     
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
+    
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
@@ -37,6 +40,13 @@ class CartPaymentViewController: UIViewController {
         menuNameLabel.text = menuName
         totalPrice = Int(menuPrice.substring(to: menuPrice.index(before: menuPrice.endIndex)).replacingOccurrences(of: ",", with: ""))!
         totalPriceLabel.text = "\(totalPrice)원"
+        
+        minusButton.layer.borderColor = UIColor.init(hexString: "cfcfcf").cgColor
+        minusButton.layer.borderWidth = 1
+        plusButton.layer.borderColor = UIColor.init(hexString: "cfcfcf").cgColor
+        plusButton.layer.borderWidth = 1
+        orderCountLabel.layer.borderColor = UIColor.init(hexString: "cfcfcf").cgColor
+        orderCountLabel.layer.borderWidth = 1
     
 
         // Do any additional setup after loading the view.
@@ -54,7 +64,7 @@ class CartPaymentViewController: UIViewController {
     }
     
     @IBAction func touchedMinusButton(_ sender: Any) {
-        if orderCount >= 0 {
+        if orderCount > 0 {
             orderCount -= 1
             orderCountLabel.text = String(orderCount)
             totalPriceLabel.text = "\(totalPrice * orderCount)원"
