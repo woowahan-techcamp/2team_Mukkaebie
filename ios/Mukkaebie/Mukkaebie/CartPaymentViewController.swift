@@ -78,12 +78,11 @@ class CartPaymentViewController: UIViewController {
     
     
     @IBAction func touchedOrder(_ sender: Any) {
-        if priceByMenu.count > 0 {
-            networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: totalPrice, content: [menuName])
-        }
-        
+
+        networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: totalPrice, content: [menuName])
         
     }
+    
     @IBAction func touchedCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
