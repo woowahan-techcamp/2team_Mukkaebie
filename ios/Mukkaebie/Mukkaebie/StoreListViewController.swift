@@ -120,11 +120,13 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        let cell = collectionView.cellForItem(at: indexPath) != nil ? collectionView.cellForItem(at: indexPath) : self.collectionView(collectionView, cellForItemAt: indexPath)
+        
+        self.navigationItem.title = (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text
+                
         collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
         let selector = collectionView.subviews.filter({$0.tag == -1})
-        
-        let cell = collectionView.cellForItem(at: indexPath) != nil ? collectionView.cellForItem(at: indexPath) : self.collectionView(collectionView, cellForItemAt: indexPath)
         
         if selector.count == 1 {
             selector[0].frame.size.width = (cell?.frame.width)!
