@@ -497,11 +497,11 @@ class StoreInfo {
 
   constructor(id) {
     this.storeId = id;
-    this.getStoreInfo(id);
+    this.getStoreInfo(id).then(this.renderInfo.bind(null, id));
   }
 
-  getInfo(store){
-    const info = store;
+   renderInfo(storeId, info){
+
     const storeName = info.storeName;
     const address = info.address;
     const ratingCount = info.ratingCount;
@@ -515,61 +515,53 @@ class StoreInfo {
     let menuUnits='';
 
     for (let categoryKey in menuObj) {
-      const menuArr = menu[categoryKey];
+      const menuArr = menuObj[categoryKey];
       for (let menuKey in menuArr) {
         const menuName = menuKey;
         const menuPrice = menuArr[menuKey];
         const tempGrab = document.querySelector('#menuUnitTemplate').text;
         menuUnits += eval('`' + tempGrab + '`');
       }
-      wholeMenu += `<div class="foldableLevel1"><h6>${categoryKey}</h6></div><div class="foldableLevel2">${menuUnits}</div>`
+      wholeMenuHtml += `<div class="foldableLevel1"><h6>${categoryKey}</h6></div><div class="foldableLevel2">${menuUnits}</div>`
     }
     const tempGrab = document.querySelector('#storeDetailTemplate').text;
     const storeDetailHtml = eval('`' + tempGrab + '`');
+    const layoutTarget = document.querySelector('.storeLayout');
     layoutTarget.innerHTML = storeDetailHtml;
     const renderMenu = layoutTarget.querySelector('.foldableMenu');
     renderMenu.innerHTML = wholeMenuHtml;
+
+     let tab = new TabUiWithAjax(
+         {
+           containerName: "storeTabWrapper",
+           selectedTabName: "selectedTab",
+           selectedContentName: "selectedContent",
+           generalTabName: "storeTab",
+           generalContentPrefix: "#cont-",
+           baseUrl: "",
+         }
+     );
+     let graph = new Graph(storeId);
+     let review = new Review(storeId);
+     let foldable = new Foldable("foldableLevel1");
+     StoreUtil.makeOrder(storeId);
+     StoreUtil.makeModal();
+     let cart = new Cart();
   }
 
   getStoreInfo(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-
-        const response = JSON.parse(this.responseText);
-        const storeInfo = response[0];
-        const layoutTarget = document.querySelector('.storeLayout');
-
-        () => {this.getInfo(storeInfo)};
-
-        let tab = new TabUiWithAjax(
-            {
-              containerName: "storeTabWrapper",
-              selectedTabName: "selectedTab",
-              selectedContentName: "selectedContent",
-              generalTabName: "storeTab",
-              generalContentPrefix: "#cont-",
-              baseUrl: "",
-            }
-        );
-        let graph = new Graph(id);
-
-        let review = new Review(id);
-
-        let foldable = new Foldable("foldableLevel1");
-
-        StoreUtil.makeOrder(id);
-
-        StoreUtil.makeModal();
-
-        let cart = new Cart();
-
-      }
-    };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-    xhr.send();
+     return new Promise(function(resolve){
+       let xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function (i) {
+         if (this.readyState == 4 && this.status == 200) {
+           const response = JSON.parse(this.responseText);
+           resolve(response[0], id);
+         }
+       };
+       xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+       xhr.send();
+     });
   }
-
 }
 
 
