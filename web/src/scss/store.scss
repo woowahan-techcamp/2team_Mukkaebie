@@ -361,18 +361,25 @@
 
 /* 포디움 관련 */
 
+@-webkit-keyframes rain {
+    0% {background-position: 0px 0px;}
+    100% {background-position: 0px 1340px;}
+}
+
 .competition-podium {
     height: 400px;
     position: relative;
-    width: 400px;
+    width: 90%;
     top: -100px;
     background: #f6f3ed;
+    background-image: url("../img/particles_alpha.png");
+    -webkit-animation: rain 20s linear infinite;
     margin:0 auto;
     overflow: hidden;
 }
 
 .competition-podium .podium-block {
-    width: 120px;
+    width: 20%;
     text-align: left;
     display: inline-block;
     position: absolute;
@@ -395,8 +402,8 @@
 
 .competition-podium .podium-block.bronze {
     color: #e6d6bf;
-    left: 251px;
-    width: 70px;
+    left: 57.5%;
+    width: 12%;
     z-index: 10;
 }
 
@@ -421,7 +428,7 @@
 
 .competition-podium .podium-block.gold {
     color: #ead679;
-    left: 145px;
+    left: 40%;
     z-index: 30;
 }
 
@@ -446,8 +453,8 @@
 
 .competition-podium .podium-block.silver {
     color: #cbd9de;
-    left: 71px;
-    width: 90px;
+    left: 27.2%;
+    width: 16%;
     z-index: 20;
 }
 
@@ -494,7 +501,7 @@
 @media only screen and (max-width: 768px) {
 
     .competition-podium {
-        width: 350px;
+        width: 90%;
         margin: 0 auto;
     }
 
@@ -507,26 +514,12 @@
     }
 
     .competition-podium .podium-block {
-        width: 100px;
+        width: 20%;
         text-align: left;
         display: inline-block;
         position: absolute;
         bottom: -10px;
     }
-
-    .competition-podium .podium-block.gold {
-        left: 125px;
-    }
-
-    .competition-podium .podium-block.silver {
-        left: 48px;
-    }
-
-    .competition-podium .podium-block.bronze {
-        left: 213px;
-    }
-
-
 }
 
 @media only screen and (max-width: 420px) {
