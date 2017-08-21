@@ -21,7 +21,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
         if (self.modelStore?.menu.count)! > 0 {
-        let menu = (self.modelStore?.menu)![0]
+            let menu = (self.modelStore?.menu)![0]
             for (title, submenu) in menu {
                 let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
                 menuRankVC?.items.append(item)
@@ -76,11 +76,13 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        let menu = (self.modelStore?.menu)![0]
-        for (title, submenu) in menu {
-            for (name, price) in submenu {
-                orderByMenu[name] = 0
-                priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+        if (self.modelStore?.menu.count)! > 0 {
+            let menu = (self.modelStore?.menu)![0]
+            for (title, submenu) in menu {
+                for (name, price) in submenu {
+                    orderByMenu[name] = 0
+                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                }
             }
         }
         
