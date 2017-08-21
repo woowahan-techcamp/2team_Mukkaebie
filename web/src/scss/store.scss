@@ -1,719 +1,759 @@
 @import './variables';
 
-
-
-
 /*페이지 레이아웃*/
-.storeLayout{
-	max-width:960px;
-    margin:50px auto 300px auto;
-    background: $bmBeigeColor;
+.storeLayout {
+  max-width: 960px;
+  margin: 50px auto 300px auto;
+  background: $bmBeigeColor;
 }
 
-.menuReviewWrap{
-    border:1px solid #cccccc;
+.menuReviewWrap {
+  border: 1px solid #cccccc;
 }
+
 /*페이지 레이아웃 끝*/
-
 
 /* 모바일 전용 타이틀 영역 */
 .mobileTitleArea {
-    height:90px; background:#fff; border-bottom:1px solid #cccccc; display: none;
-    padding: 20px;
+  height: 90px;
+  background: #fff;
+  border-bottom: 1px solid #cccccc;
+  display: none;
+  padding: 20px;
 }
+
 .mobileTitleImg {
-    background-image: url('https://img.woowahan.com/www/common/logo-bm-v2.png');background-repeat: no-repeat; width:196px; height:45px; margin:0 auto;
-    cursor: pointer;
+  background-image: url('https://img.woowahan.com/www/common/logo-bm-v2.png');
+  background-repeat: no-repeat;
+  width: 196px;
+  height: 45px;
+  margin: 0 auto;
+  cursor: pointer;
 }
+
 .mobileTitleButton {
-    width:22px;
-    height: 22px;
-    background-image: url("https://img.woowahan.com/www/common/ico-cate.png");
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 200%;
-    -webkit-background-size: 100% 200%;
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  width: 22px;
+  height: 22px;
+  background-image: url("https://img.woowahan.com/www/common/ico-cate.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 200%;
+  -webkit-background-size: 100% 200%;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
+
 .mobileTitleButton.unfolded {
-    background-position: 0 100%;
+  background-position: 0 100%;
 
 }
 
 .mobileCategory {
-    background: #000;
-    padding:15px;
-    display: none;
+  background: #000;
+  padding: 15px;
+  display: none;
 }
 
-.mobileCategorySearch input{
-    width: 100%;
-    background: #393939;
-    border-color: #393939;
-    color: #555;
-    text-indent: 20px;
+.mobileCategorySearch input {
+  width: 100%;
+  background: #393939;
+  border-color: #393939;
+  color: #555;
+  text-indent: 20px;
 }
+
 .mobileCategory * {
-    text-align: center;
-    color: #fff;
+  text-align: center;
+  color: #fff;
 }
 
 .mobileCategory .col-xs-4 {
-    padding: 15px 0px;
-    cursor: pointer;
+  padding: 15px 0px;
+  cursor: pointer;
 
 }
+
 .mobileCategory .col-xs-4:hover {
-    background: $bmOrangeColor;
+  background: $bmOrangeColor;
 }
 
 /* 가게명 AREA*/
-.storeTitleArea{
-    height:65px; background: #fff; overflow: auto;padding:20px; border:1px solid #dad3c7
+.storeTitleArea {
+  height: 65px;
+  background: #fff;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid #dad3c7
 }
-.storeTitleLabel{padding:3px 5px 3px 5px; background: #877b63; color:#fff}
+
+.storeTitleLabel {
+  padding: 3px 5px 3px 5px;
+  background: #877b63;
+  color: #fff
+}
 
 .storeTitle {
-    font-size:15px;
+  font-size: 15px;
 }
-.storeAddress{
-    font-size: 11px;
+
+.storeAddress {
+  font-size: 11px;
 }
-.storeStars{
-    font-size: 11px;
-    margin-top:5px
+
+.storeStars {
+  font-size: 11px;
+  margin-top: 5px
 }
+
 /* 메뉴 탭 관련 */
 
 .menuTabContent {
-    background: #fff;
-    padding-bottom: 80px;
+  background: #fff;
+  padding-bottom: 80px;
 }
 
 /* 먹깨비 탭 관련 */
-.mkbTabContent{
-    background:#fff;
-    position:relative;
+.mkbTabContent {
+  background: #fff;
+  position: relative;
 }
 
 #mkbPreview {
-    width:100px;
-    height:100px;
-    background-size:contain;
-    border-radius: 50%;
-    position:relative;
-    left:43%;
-    top: 180px;
-    z-index: 11;
-    display: block;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 50%;
+  position: relative;
+  left: 43%;
+  top: 180px;
+  z-index: 11;
+  display: block;
 }
+
 /* 폴더블메뉴 */
 .menuTabGraph {
-    width: 100%;
-    padding-bottom: 100px;
-    padding-top:100px;
-    position:relative;
+  width: 100%;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  position: relative;
 }
 
 .foldableLevel1 {
-    background-color: #817c74;
-    color: #fff;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    border-bottom: 1px solid #cccccc;
+  background-color: #817c74;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-bottom: 1px solid #cccccc;
 }
 
 .foldableLevel1.active {
-    background-color: black;
-    clear: both;
+  background-color: black;
+  clear: both;
 }
 
 .foldableLevel1 h6, p {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .foldableLevel1 p {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .foldableLevel2 {
-    padding: 0;
-    background-color: #fff;
-    max-height: 0px;
-    height: auto;
-    transition: all 0.25s ease-in-out;
-    overflow: hidden;
+  padding: 0;
+  background-color: #fff;
+  max-height: 0px;
+  height: auto;
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
 }
 
 .foldableLevel2 .foldableLevel1 {
-    background: #fff;
-    color: black;
+  background: #fff;
+  color: black;
 }
 
 .foldableLevel2 .foldableLevel1.active {
-    background: #fff;
-    color: black;
+  background: #fff;
+  color: black;
 }
 
 .menuTabContent * {
-    clear: both;
+  clear: both;
 }
-
-
 
 /* 업소상세 박스 */
 
-@media screen and (max-width:768px){
-    .storeSideAreaWrap {
-        /*display: none;*/
-        float: none;
-        clear: both;
-        width: 100%;
-        margin-bottom:20px;
-    }
+@media screen and (max-width: 768px) {
+  .storeSideAreaWrap {
+    /*display: none;*/
+    float: none;
+    clear: both;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-    .tabAreaWrap {
-        width: 100%;
-    }
+  .tabAreaWrap {
+    width: 100%;
+  }
 
-    .storeTitleArea{
-        height:105px;
-    }
-    .storeTitleArea>.float-left, .storeTitleArea>.float-right {
-        float:none;
-        margin-left:0;
-    }
+  .storeTitleArea {
+    height: 105px;
+  }
+  .storeTitleArea > .float-left, .storeTitleArea > .float-right {
+    float: none;
+    margin-left: 0;
+  }
 
-    .mobileTitleArea {
-        display: block!important;
-    }
+  .mobileTitleArea {
+    display: block !important;
+  }
 
-    .header{
-        display: none;
-    }
-    .blackMenuArea {
-        display: none;
-    }
-    .storeStars{
-        margin-top: 0;
-    }
+  .header {
+    display: none;
+  }
+  .blackMenuArea {
+    display: none;
+  }
+  .storeStars {
+    margin-top: 0;
+  }
 
 }
-
-
-
-
-
 
 .storeDetailTable table {
-    font-size: 11px;
+  font-size: 11px;
 
 }
 
-.storeDetailHead{
-    border: 1px solid #cccccc;
-    padding:15px;
-    font-size:11px;
-    font-weight:bold;
-    background: #fff;
-}
-
-
-.storeDetailTable {
-    background: #fff;
+.storeDetailHead {
+  border: 1px solid #cccccc;
+  padding: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #fff;
 }
 
 .storeDetailTable {
-    padding: 10px;
-    border-color: #cccccc;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
+  background: #fff;
 }
 
-
-
+.storeDetailTable {
+  padding: 10px;
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+}
 
 .storeDetailTable tr {
-    border-bottom: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
+
 .storeDetailTableLeft {
-    width: 30%
+  width: 30%
 }
 
 .storeDetailTableRight {
-    width: 70%
+  width: 70%
 }
 
 /* 주문하기 박스 */
 .storeCart {
-    border:1px solid #cccccc;
-    margin-top:20px;
-    background: #fff;
-    transition: all 1s ease-in-out;
+  border: 1px solid #cccccc;
+  margin-top: 20px;
+  background: #fff;
+  transition: all 1s ease-in-out;
 }
-.storeCartHead{
-    padding:10px;
-    border-bottom:1px solid #cccccc;
+
+.storeCartHead {
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
 }
+
 .storeCartContent {
-    padding:10px;
-    border-bottom:1px solid #cccccc;
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
 }
-.storeCartTotal{
-    padding:10px;
+
+.storeCartTotal {
+  padding: 10px;
 }
+
 .cartOrderButton {
-    background: $bmOrangeColor;
-    font-size:30px;
-    padding:20px;
-    color: #fff;
-    text-align: center;
-    font-weight: normal;
-    cursor: pointer;
+  background: $bmOrangeColor;
+  font-size: 30px;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 /* 리뷰 탭 관련 */
 #reviewTextInput {
-	width:100%; 
-	height:100px;
-	resize: none;
+  width: 100%;
+  height: 100px;
+  resize: none;
 }
 
 .reviewTabContent {
-    background: #fff;
+  background: #fff;
 }
+
 .reviewCard {
-    padding: 15px;
-    display: flex;
-    align-items: flex-start;
-    background: #fff;
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
 }
 
 .reviewCardPic {
-    background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    min-width: 65px;
-    height: 65px;
-    float: left;
+  background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width: 65px;
+  height: 65px;
+  float: left;
 }
 
 .reviewCardContent {
-    max-width: 580px;
-    float: left;
+  max-width: 580px;
+  float: left;
 }
 
 .reviewCardBtm {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .reviewCardMid {
-    clear: both;
+  clear: both;
 }
 
 .reviewCardTop > span {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .reviewCardStar {
-    color: $bmOrangeColor;
+  color: $bmOrangeColor;
 }
 
 .reviewCardId {
-    font-size: 12px;
-    color: #222;
+  font-size: 12px;
+  color: #222;
 }
 
 .reviewCardDate {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .reviewCardBtm {
-    clear: both;
-    width: 100%;
+  clear: both;
+  width: 100%;
 }
 
 .p-title {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 /* 먹깨비 코멘트 관련 */
 
 #commentTextInput {
-    width:100%;
-    height:100px;
-    resize: none;
+  width: 100%;
+  height: 100px;
+  resize: none;
 }
 
 .p-center {
-    text-align: center;
+  text-align: center;
 }
 
 .commentCard {
-    padding: 15px;
-    display: flex;
-    align-items: flex-start;
-    background: #fff;
+  position: absolute;
+  top: -80px;
+  left: 35%;
 }
 
 .commentCardPic {
-    background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    min-width: 35px;
-    height: 35px;
-    float: left;
+  background-image: url(http://file.smartbaedal.com/usr/memphoto/ownerImg.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 120px;
+  left: 49%;
+  z-index: 100;
+  border-radius: 50%;
 }
 
 .commentCardContent {
-    max-width: 50%;
-    float: left;
+  float: left;
 }
 
 .commentCardBtm {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .commentCardTop > span {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .commentCardId {
-    font-size: 12px;
-    color: #222;
+  font-size: 12px;
+  color: #222;
 }
 
 .commentCardDate {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .commentCardBtm {
-    clear: both;
-    width: 100%;
+  clear: both;
+  width: 100%;
 }
 
 /* 포디움 관련 */
 
 @-webkit-keyframes rain {
-    0% {background-position: 0px 0px;}
-    100% {background-position: 0px 1340px;}
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 0px 1340px;
+  }
 }
 
 .competition-podium {
-    height: 400px;
-    position: relative;
-    width: 90%;
-    top: -100px;
-    background: #f6f3ed;
-    background-image: url("../img/particles_alpha.png");
-    -webkit-animation: rain 20s linear infinite;
-    margin:0 auto;
-    overflow: hidden;
+  height: 400px;
+  position: relative;
+  width: 90%;
+  top: -100px;
+  background: #f6f3ed;
+  background-image: url("../img/particles_alpha.png");
+  -webkit-animation: rain 20s linear infinite;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .competition-podium .podium-block {
+  width: 20%;
+  text-align: left;
+  display: inline-block;
+  position: absolute;
+  bottom: -10px;
+}
+
+.competition-podium .podium-block .place {
+  font-size: 1em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 15px;
+}
+
+.competition-podium .podium-block .sum {
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 70px;
+}
+
+.competition-podium .podium-block.bronze {
+  color: #e6d6bf;
+  left: 57.5%;
+  width: 12%;
+  z-index: 10;
+}
+
+.competition-podium .podium-block.bronze .podium {
+  height: 160px;
+}
+
+.competition-podium .podium-block.bronze .orders {
+  text-align: center;
+  left: 40%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.competition-podium .podium-block.bronze .name {
+  color: #856e4e;
+  text-align: center;
+  left: 25%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.competition-podium .podium-block.gold {
+  color: #ead679;
+  left: 40%;
+  z-index: 30;
+}
+
+.competition-podium .podium-block.gold .podium {
+  height: 360px;
+}
+
+.competition-podium .podium-block.gold .orders {
+  text-align: center;
+  left: 50%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.competition-podium .podium-block.gold .name {
+  color: #856e4e;
+  text-align: center;
+  left: 35%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.competition-podium .podium-block.silver {
+  color: #cbd9de;
+  left: 27.2%;
+  width: 16%;
+  z-index: 20;
+}
+
+.competition-podium .podium-block.silver .podium {
+  height: 230px;
+}
+
+.competition-podium .podium-block.silver .orders {
+  text-align: center;
+  left: 40%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.competition-podium .podium-block.silver .name {
+  color: #856e4e;
+  text-align: center;
+  left: 30%;
+  bottom: -20px;
+  position: absolute;
+}
+
+.podium > img {
+  width: 100%;
+  height: 100%;
+}
+
+.podium {
+  display: table;
+  width: 100%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.podium > * {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #4D4D4D;
+  font-size: 1.5em;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .competition-podium {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .podium > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 1.0em;
+  }
+
+  .competition-podium .podium-block {
     width: 20%;
     text-align: left;
     display: inline-block;
     position: absolute;
     bottom: -10px;
-}
-
-.competition-podium .podium-block .place {
-    font-size: 1em;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 15px;
-}
-
-.competition-podium .podium-block .sum {
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 70px;
-}
-
-.competition-podium .podium-block.bronze {
-    color: #e6d6bf;
-    left: 57.5%;
-    width: 12%;
-    z-index: 10;
-}
-
-.competition-podium .podium-block.bronze .podium {
-    height: 160px;
-}
-
-.competition-podium .podium-block.bronze .orders {
-    text-align: center;
-    left: 40%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.competition-podium .podium-block.bronze .name {
-    color: #856e4e;
-    text-align: center;
-    left: 25%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.competition-podium .podium-block.gold {
-    color: #ead679;
-    left: 40%;
-    z-index: 30;
-}
-
-.competition-podium .podium-block.gold .podium {
-    height: 360px;
-}
-
-.competition-podium .podium-block.gold .orders {
-    text-align: center;
-    left: 50%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.competition-podium .podium-block.gold .name {
-    color: #856e4e;
-    text-align: center;
-    left: 35%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.competition-podium .podium-block.silver {
-    color: #cbd9de;
-    left: 27.2%;
-    width: 16%;
-    z-index: 20;
-}
-
-.competition-podium .podium-block.silver .podium {
-    height: 230px;
-}
-
-.competition-podium .podium-block.silver .orders {
-    text-align: center;
-    left: 40%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.competition-podium .podium-block.silver .name {
-    color: #856e4e;
-    text-align: center;
-    left: 30%;
-    bottom: -20px;
-    position: absolute;
-}
-
-.podium > img {
-    width: 100%;
-    height: 100%;
-}
-
-
-.podium {
-    display: table;
-    width: 100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.podium > * {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    color: #4D4D4D;
-    font-size: 1.5em;
-}
-
-@media only screen and (max-width: 768px) {
-
-    .competition-podium {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .podium > * {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        color: #4D4D4D;
-        font-size: 1.0em;
-    }
-
-    .competition-podium .podium-block {
-        width: 20%;
-        text-align: left;
-        display: inline-block;
-        position: absolute;
-        bottom: -10px;
-    }
+  }
 }
 
 @media only screen and (max-width: 420px) {
 
-    .competition-podium {
-        width: 90%;
-        margin: 0 auto;
-    }
+  .competition-podium {
+    width: 90%;
+    margin: 0 auto;
+  }
 
-    .podium > * {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        color: #4D4D4D;
-        font-size: 1.0em;
-    }
+  .podium > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 1.0em;
+  }
 
-    .competition-podium .podium-block {
-        width: 30%;
-        text-align: left;
-        display: inline-block;
-        position: absolute;
-        bottom: -10px;
-    }
+  .competition-podium .podium-block {
+    width: 30%;
+    text-align: left;
+    display: inline-block;
+    position: absolute;
+    bottom: -10px;
+  }
 
-    .competition-podium .podium-block.gold {
-        left: 35%;
-    }
+  .competition-podium .podium-block.gold {
+    left: 35%;
+  }
 
-    .competition-podium .podium-block.silver {
-        left: 15%;
-        width: 25%;
-    }
+  .competition-podium .podium-block.silver {
+    left: 15%;
+    width: 25%;
+  }
 
-    .competition-podium .podium-block.bronze {
-        left: 61%;
-        width: 20%
-    }
+  .competition-podium .podium-block.bronze {
+    left: 61%;
+    width: 20%
+  }
 
+  .competition-podium .podium-block.gold .name {
+    left: 30%;
+  }
 
-    .competition-podium .podium-block.gold .name {
-        left: 30%;
-    }
+  .competition-podium .podium-block.silver .name {
+    left: 25%;
+  }
 
-    .competition-podium .podium-block.silver .name {
-        left: 25%;
-    }
-
-    .competition-podium .podium-block.bronze .name {
-        left: 25%;
-    }
-
+  .competition-podium .podium-block.bronze .name {
+    left: 25%;
+  }
 
 }
 
 @media only screen and (max-width: 350px) {
 
+  .competition-podium .podium-block.gold .name {
+    left: 28%;
+    font-size: 0.9em;
+  }
 
-    .competition-podium .podium-block.gold .name {
-        left: 28%;
-        font-size: 0.9em;
-    }
+  .competition-podium .podium-block.silver .name {
+    left: 25%;
+    font-size: 0.9em;
+  }
 
-    .competition-podium .podium-block.silver .name {
-        left: 25%;
-        font-size: 0.9em;
-    }
-
-    .competition-podium .podium-block.bronze .name {
-        left: 21%;
-        font-size: 0.9em;
-    }
-
+  .competition-podium .podium-block.bronze .name {
+    left: 21%;
+    font-size: 0.9em;
+  }
 
 }
 
 /* 탭 기능 관련 CSS */
 .storeTab {
-    width: 33.3333333333%;
-    float:left;
-    background: #ddd7c7;
-    text-align: center;
-    height:40px;
-    line-height: 40px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-    list-style: none;
+  width: 33.3333333333%;
+  float: left;
+  background: #ddd7c7;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
 }
-#storeTabWrapper li.selectedTab {background: #fff; border-bottom: 0px solid transparent;}
-.storeTabContent {display: none}
-.selectedContent {display: block;}
-#storeTabWrapper {cursor: pointer; padding-left: 0; margin: 0; overflow: auto; width: 100%}
+
+#storeTabWrapper li.selectedTab {
+  background: #fff;
+  border-bottom: 0px solid transparent;
+}
+
+.storeTabContent {
+  display: none
+}
+
+.selectedContent {
+  display: block;
+}
+
+#storeTabWrapper {
+  cursor: pointer;
+  padding-left: 0;
+  margin: 0;
+  overflow: auto;
+  width: 100%
+}
+
 #storeTabWrapper li {
-    border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
+
 #mkbTab {
-    border-right:1px solid #cccccc;
-    border-left:1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
 }
-#storeTabContentWrapper {clear: both;}
+
+#storeTabContentWrapper {
+  clear: both;
+}
 
 //uploadcare 오버라이드
-.uploadcare--widget__text{
-    display: none;
-}
-.uploadcare--powered-by{
-    display: none;
+.uploadcare--widget__text {
+  display: none;
 }
 
+.uploadcare--powered-by {
+  display: none;
+}
 
 // 주문 후 모달
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    opacity: 0.0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    max-width: 400px;
-    background-image:url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 150px;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 150px;
 
 }
 
-.modal.modalShow{
-    opacity: 1.0;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+.modal.modalShow {
+  opacity: 1.0;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
