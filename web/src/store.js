@@ -132,7 +132,7 @@ class Review {
 
 
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/stores/" + id, true);
+      xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       xhr1.send(JSON.stringify(packet));
@@ -164,7 +164,7 @@ class Review {
         })
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
+    xhttp.open("GET", SERVER_BASE_URL +  "/stores/" + id, true);
     xhttp.send();
   }
 
@@ -244,7 +244,7 @@ let StoreUtil = {
       packet["price"] = totalPrice;
 
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/orders", true);
+      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       // send the collected data as JSON
@@ -482,12 +482,10 @@ class StoreList {
             var realTarget = e.target.closest(".storeCard");
           }
           let storeInfo = new StoreInfo(realTarget.id);
-
         });
-
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/bycategory/" + cat, true);
+    xhttp.open("GET", SERVER_BASE_URL +  "/stores/bycategory/" + cat, true);
     xhttp.send();
 
   }
@@ -502,6 +500,36 @@ class StoreInfo {
     this.getStoreInfo(id);
   }
 
+  getInfo(store){
+    const info = store;
+    const storeName = info.storeName;
+    const address = info.address;
+    const ratingCount = info.ratingCount;
+    const minPrice = info.minPrice;
+    const openHour = info.openHour;
+    const telephone = info.telephone;
+    const storeDesc = info.storeDesc;
+    let menuObj = info.menu[0];
+
+    let wholeMenuHtml='';
+    let menuUnits='';
+
+    for (let categoryKey in menuObj) {
+      const menuArr = menu[categoryKey];
+      for (let menuKey in menuArr) {
+        const menuName = menuKey;
+        const menuPrice = menuArr[menuKey];
+        const tempGrab = document.querySelector('#menuUnitTemplate').text;
+        menuUnits += eval('`' + tempGrab + '`');
+      }
+      wholeMenu += `<div class="foldableLevel1"><h6>${categoryKey}</h6></div><div class="foldableLevel2">${menuUnits}</div>`
+    }
+    const tempGrab = document.querySelector('#storeDetailTemplate').text;
+    const storeDetailHtml = eval('`' + tempGrab + '`');
+    layoutTarget.innerHTML = storeDetailHtml;
+    const renderMenu = layoutTarget.querySelector('.foldableMenu');
+    renderMenu.innerHTML = wholeMenuHtml;
+  }
 
   getStoreInfo(id) {
     let xhr = new XMLHttpRequest();
@@ -512,82 +540,7 @@ class StoreInfo {
         const storeInfo = response[0];
         const layoutTarget = document.querySelector('.storeLayout');
 
-
-        function getInfo(store) {
-          const info = store;
-          const storeName = info.storeName;
-          const address = info.address;
-          const ratingCount = info.ratingCount;
-          const minPrice = info.minPrice;
-          const openHour = info.openHour;
-          const telephone = info.telephone;
-          const storeDesc = info.storeDesc;
-
-          let menu = info.menu[0];
-          let menuSet = [];
-
-
-          for (let categoryKey in menu) {
-            const categoryName = categoryKey;
-            const menuArr = menu[categoryKey];
-
-            for (let menuKey in menuArr) {
-              const menuName = menuKey;
-              const menuPrice = menuArr[menuKey];
-
-              menuSet.push([categoryName, menuName, menuPrice]);
-
-            }
-          }
-
-          let markup = '';
-          let categorySet = {};
-
-          menuSet.forEach(function (ele) {
-            if (ele[0] in categorySet) {
-
-              categorySet[ele[0]] += 1;
-
-              markup += `
-
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2 m-y-1">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-            } else {
-
-              categorySet[ele[0]] = 1;
-
-              markup += `
-              </div>
-              <div class="foldableLevel1">
-                <h6>${ele[0]}</h6>
-              </div>
-              <div class="foldableLevel2">
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-
-            }
-          });
-
-          markup += `</div>`;
-
-
-          const tempGrab = document.querySelector('#storeDetailTemplate').text;
-          const result = eval('`' + tempGrab + '`');
-          layoutTarget.innerHTML = result;
-          const renderMenu = layoutTarget.querySelector('.foldableMenu');
-          renderMenu.innerHTML = markup;
-
-        };
-
-        getInfo(storeInfo);
+        () => {this.getInfo(storeInfo)};
 
         let tab = new TabUiWithAjax(
             {
@@ -613,7 +566,7 @@ class StoreInfo {
 
       }
     };
-    xhr.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
+    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhr.send();
   }
 
@@ -622,7 +575,7 @@ class StoreInfo {
 
 class Cart {
   constructor() {
-    this.init()
+    this.init();
   }
 
   init() {
@@ -641,12 +594,11 @@ class Cart {
     let hasContent = false;
     let childToRemove;
     renderTargetChildren.forEach(function (child) {
-
       if (cont + " " + price === child.outerText) {
         hasContent = true;
         childToRemove = child;
       }
-    })
+    });
 
     if (hasContent === false) {
       renderTarget.innerHTML += renderContent;
@@ -664,8 +616,6 @@ class Cart {
       totalPrice += Number(child.attributes.data.value);
     })
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
-
-
   }
 }
 

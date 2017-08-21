@@ -12,6 +12,14 @@
 
 <body>
 
+<script id="menuUnitTemplate" type="text/template">
+  <div class="foldableLevel1">${menuName}</div>
+  <div class="foldableLevel2 p-x-2">
+    <span class="p-r-1">${menuPrice}</span>
+    <input type="checkbox" value="${menuName}" data="${menuPrice}">
+  </div>
+</script>
+
 <script id="reviewTemplate" type="text/template">
 
   <div class="reviewCard">
@@ -444,8 +452,9 @@
   <div class="modal-content"></div>
 </div>
 <script src="./dist/index.bundle.js"></script>
-
-
+<script>
+  SERVER_BASE_URL = "http://13.124.179.176:3000"
+</script>
 </body>
 </html>
 
