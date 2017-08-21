@@ -132,7 +132,7 @@ class Review {
 
 
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/stores/" + id, true);
+      xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       xhr1.send(JSON.stringify(packet));
@@ -164,7 +164,7 @@ class Review {
         })
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
+    xhttp.open("GET", SERVER_BASE_URL +  "/stores/" + id, true);
     xhttp.send();
   }
 
@@ -244,7 +244,7 @@ let StoreUtil = {
       packet["price"] = totalPrice;
 
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/orders", true);
+      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       // send the collected data as JSON
@@ -476,12 +476,10 @@ class StoreList {
             var realTarget = e.target.closest(".storeCard");
           }
           let storeInfo = new StoreInfo(realTarget.id);
-
         });
-
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/bycategory/" + cat, true);
+    xhttp.open("GET", SERVER_BASE_URL +  "/stores/bycategory/" + cat, true);
     xhttp.send();
 
   }
@@ -493,130 +491,77 @@ class StoreInfo {
 
   constructor(id) {
     this.storeId = id;
-    this.getStoreInfo(id);
+    this.getStoreInfo(id).then(this.renderInfo.bind(null, id));
   }
 
+   renderInfo(storeId, info){
+
+    const storeName = info.storeName;
+    const address = info.address;
+    const ratingCount = info.ratingCount;
+    const minPrice = info.minPrice;
+    const openHour = info.openHour;
+    const telephone = info.telephone;
+    const storeDesc = info.storeDesc;
+    let menuObj = info.menu[0];
+
+    let wholeMenuHtml='';
+    let menuUnits='';
+
+    for (let categoryKey in menuObj) {
+      const menuArr = menuObj[categoryKey];
+      for (let menuKey in menuArr) {
+        const menuName = menuKey;
+        const menuPrice = menuArr[menuKey];
+        const tempGrab = document.querySelector('#menuUnitTemplate').text;
+        menuUnits += eval('`' + tempGrab + '`');
+      }
+      wholeMenuHtml += `<div class="foldableLevel1"><h6>${categoryKey}</h6></div><div class="foldableLevel2">${menuUnits}</div>`
+    }
+    const tempGrab = document.querySelector('#storeDetailTemplate').text;
+    const storeDetailHtml = eval('`' + tempGrab + '`');
+    const layoutTarget = document.querySelector('.storeLayout');
+    layoutTarget.innerHTML = storeDetailHtml;
+    const renderMenu = layoutTarget.querySelector('.foldableMenu');
+    renderMenu.innerHTML = wholeMenuHtml;
+
+     let tab = new TabUiWithAjax(
+         {
+           containerName: "storeTabWrapper",
+           selectedTabName: "selectedTab",
+           selectedContentName: "selectedContent",
+           generalTabName: "storeTab",
+           generalContentPrefix: "#cont-",
+           baseUrl: "",
+         }
+     );
+     let graph = new Graph(storeId);
+     let review = new Review(storeId);
+     let foldable = new Foldable("foldableLevel1");
+     StoreUtil.makeOrder(storeId);
+     StoreUtil.makeModal();
+     let cart = new Cart();
+  }
 
   getStoreInfo(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-
-        const response = JSON.parse(this.responseText);
-        const storeInfo = response[0];
-        const layoutTarget = document.querySelector('.storeLayout');
-
-
-        function getInfo(store) {
-          const info = store;
-          const storeName = info.storeName;
-          const address = info.address;
-          const ratingCount = info.ratingCount;
-          const minPrice = info.minPrice;
-          const openHour = info.openHour;
-          const telephone = info.telephone;
-          const storeDesc = info.storeDesc;
-
-          let menu = info.menu[0];
-          let menuSet = [];
-
-
-          for (let categoryKey in menu) {
-            const categoryName = categoryKey;
-            const menuArr = menu[categoryKey];
-
-            for (let menuKey in menuArr) {
-              const menuName = menuKey;
-              const menuPrice = menuArr[menuKey];
-
-              menuSet.push([categoryName, menuName, menuPrice]);
-
-            }
-          }
-
-          let markup = '';
-          let categorySet = {};
-
-          menuSet.forEach(function (ele) {
-            if (ele[0] in categorySet) {
-
-              categorySet[ele[0]] += 1;
-
-              markup += `
-
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2 m-y-1">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-            } else {
-
-              categorySet[ele[0]] = 1;
-
-              markup += `
-              </div>
-              <div class="foldableLevel1">
-                <h6>${ele[0]}</h6>
-              </div>
-              <div class="foldableLevel2">
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-
-            }
-          });
-
-          markup += `</div>`;
-
-
-          const tempGrab = document.querySelector('#storeDetailTemplate').text;
-          const result = eval('`' + tempGrab + '`');
-          layoutTarget.innerHTML = result;
-          const renderMenu = layoutTarget.querySelector('.foldableMenu');
-          renderMenu.innerHTML = markup;
-
-        };
-
-        getInfo(storeInfo);
-
-        let tab = new TabUiWithAjax(
-            {
-              containerName: "storeTabWrapper",
-              selectedTabName: "selectedTab",
-              selectedContentName: "selectedContent",
-              generalTabName: "storeTab",
-              generalContentPrefix: "#cont-",
-              baseUrl: "",
-            }
-        );
-        let graph = new Graph(id);
-
-        let review = new Review(id);
-
-        let foldable = new Foldable("foldableLevel1");
-
-        StoreUtil.makeOrder(id);
-
-        StoreUtil.makeModal();
-
-        let cart = new Cart();
-
-      }
-    };
-    xhr.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
-    xhr.send();
+     return new Promise(function(resolve){
+       let xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function (i) {
+         if (this.readyState == 4 && this.status == 200) {
+           const response = JSON.parse(this.responseText);
+           resolve(response[0], id);
+         }
+       };
+       xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+       xhr.send();
+     });
   }
-
 }
 
 
 class Cart {
   constructor() {
-    this.init()
+    this.init();
   }
 
   init() {
@@ -635,12 +580,11 @@ class Cart {
     let hasContent = false;
     let childToRemove;
     renderTargetChildren.forEach(function (child) {
-
       if (cont + " " + price === child.outerText) {
         hasContent = true;
         childToRemove = child;
       }
-    })
+    });
 
     if (hasContent === false) {
       renderTarget.innerHTML += renderContent;
@@ -658,8 +602,6 @@ class Cart {
       totalPrice += Number(child.attributes.data.value);
     })
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
-
-
   }
 }
 
