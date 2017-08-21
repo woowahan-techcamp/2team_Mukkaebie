@@ -13,13 +13,17 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var mukkaebieVC : MukkaebieRankViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
+        
         mukkaebieVC?.view.frame.size.height = 540
+        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
+        print(self.orderByUserTop3)
         return mukkaebieVC
     }()
     
     lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
+        
         if (self.modelStore?.menu.count)! > 0 {
         let menu = (self.modelStore?.menu)![0]
             for (title, submenu) in menu {
@@ -40,17 +44,20 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     lazy var infoVC : InfoViewController? = {
         let storyboard = UIStoryboard(name: "Info", bundle: nil)
         let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
+        
         infoVC?.introText = self.modelStore?.storeDesc
         infoVC?.openHourText = self.modelStore?.openHour
         infoVC?.telephoneText = self.modelStore?.telephone
         infoVC?.nameText = self.modelStore?.name
         infoVC?.view.frame.size.height = 667
+        
         return infoVC
     }()
     
     lazy var reviewVC : ReviewTableViewController? = {
         let storyboard = UIStoryboard(name: "Review", bundle: nil)
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
+        
         return reviewVC
     }()
     
@@ -136,9 +143,10 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         if (menuRankVC?.pieChartView != nil) {
-            let indexPath = IndexPath(row: 0, section: 3)
             menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
             menuRankVC?.setSegment()
+            
+            let indexPath = IndexPath(row: 0, section: 3)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
@@ -157,6 +165,11 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         for i in orderByUser.count > 3 ? 0..<3 : 0..<orderByUser.count-1 {
             self.orderByUserTop3.append(orderByUserSorted[i])
         }
+    
+        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
+        
+        let indexPath = IndexPath(row: 0, section: 3)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func postOrder(_ notification: Notification) {
@@ -166,7 +179,9 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     func changeTab(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let tabNumber = userInfo["tabNumber"] as? Int else { return }
+        
         self.tabNumber = tabNumber
+        
         let indexPath = IndexPath(row: 0, section: 3)
         tableView.reloadRows(at: [indexPath], with: .none)
     }
