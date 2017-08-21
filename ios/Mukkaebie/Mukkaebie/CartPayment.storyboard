@@ -49,7 +49,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b2u-5U-YHN" userLabel="line">
                                         <rect key="frame" x="0.0" y="56" width="375" height="1"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="ikA-mk-vVO"/>
                                         </constraints>
@@ -181,6 +181,17 @@
                                     <constraint firstAttribute="height" constant="187" id="y42-un-hg3"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-eO-o9Y">
+                                <rect key="frame" x="16" y="20" width="17" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="17" id="0L1-nW-h9j"/>
+                                    <constraint firstAttribute="height" constant="18" id="wQ4-Qg-Xcd"/>
+                                </constraints>
+                                <state key="normal" image="cancelIcon"/>
+                                <connections>
+                                    <action selector="touchedCancel:" destination="bNo-8D-H9U" eventType="touchUpInside" id="nE6-1V-NRv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -194,8 +205,10 @@
                             <constraint firstItem="Wvt-yp-ns5" firstAttribute="bottom" secondItem="ONy-79-lwn" secondAttribute="top" id="SNv-Xe-QeD"/>
                             <constraint firstItem="uJs-1N-p9g" firstAttribute="trailing" secondItem="gvP-sd-oy1" secondAttribute="trailing" id="bVV-a2-uHe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FT1-xd-j9D" secondAttribute="trailing" constant="24" id="k6R-FO-m9y"/>
+                            <constraint firstItem="7m0-eO-o9Y" firstAttribute="top" secondItem="KGY-BO-S2a" secondAttribute="bottom" id="kI1-L1-Mdx"/>
                             <constraint firstItem="uJs-1N-p9g" firstAttribute="top" secondItem="gvP-sd-oy1" secondAttribute="bottom" id="nAF-3K-LcS"/>
                             <constraint firstAttribute="trailing" secondItem="gvP-sd-oy1" secondAttribute="trailing" id="qU9-YG-nhA"/>
+                            <constraint firstItem="7m0-eO-o9Y" firstAttribute="leading" secondItem="X8r-za-yuF" secondAttribute="leading" constant="16" id="yvx-sO-oj8"/>
                         </constraints>
                     </view>
                     <connections>
@@ -212,4 +225,7 @@
             <point key="canvasLocation" x="164" y="122.78860569715144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancelIcon" width="20" height="20"/>
+    </resources>
 </document>

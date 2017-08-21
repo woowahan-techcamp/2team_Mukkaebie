@@ -32,7 +32,7 @@ class MenuViewController: UIViewController {
         
         setSegment()
 //        navigationController?.navigationBar.isHidden = true
-        navigationController?.setToolbarHidden(true, animated: false)
+//        navigationController?.setToolbarHidden(true, animated: false)
         
         self.menuTableView.reloadData()
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
