@@ -59,6 +59,7 @@ class MenuViewController: UIViewController {
                 let cartPaymentcontroller = segue.destination as! CartPaymentViewController
                 cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
                 cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
+                cartPaymentcontroller.modelStore = self.modelStore!
             }
         }
     }

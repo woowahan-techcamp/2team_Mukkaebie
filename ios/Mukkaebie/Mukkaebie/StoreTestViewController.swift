@@ -37,6 +37,9 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
+        
+        menuRankVC?.modelStore = self.modelStore
+        
         return menuRankVC
     }()
     

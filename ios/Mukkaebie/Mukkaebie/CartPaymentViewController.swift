@@ -18,7 +18,8 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    var modelStore : ModelStores?
+    var modelStoreId = Int()
+    var modelStore = ModelStores()
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
     var priceByMenu = [String: Int]()
@@ -35,7 +36,7 @@ class CartPaymentViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.title = modelStore?.name
+//        self.navigationItem.title = modelStore?.name
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
         
@@ -79,7 +80,7 @@ class CartPaymentViewController: UIViewController {
     
     @IBAction func touchedOrder(_ sender: Any) {
 
-        networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: totalPrice, content: [menuName])
+        networkOrder.postOrder(sellderId: modelStore.id, buyerId: "hjtech", price: totalPrice, content: [menuName])
         
     }
     
