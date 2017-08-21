@@ -16,7 +16,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Menu View Controller-->
+        <!--rrrr-->
         <scene sceneID="16G-Cu-ILr">
             <objects>
                 <viewController storyboardIdentifier="Menu" id="aE5-Zg-1TS" customClass="MenuViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
@@ -150,6 +150,7 @@
                             <constraint firstItem="mTb-oG-gl1" firstAttribute="bottom" secondItem="s4N-sk-EUO" secondAttribute="top" id="rTh-ew-3Pm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="rrrr" id="5md-cb-gNs"/>
                     <connections>
                         <outlet property="menuTableView" destination="6Bz-b8-Vfs" id="ibb-dK-wNx"/>
                         <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
@@ -157,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1z-d5-7I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="37.600000000000001" y="137.18140929535232"/>
+            <point key="canvasLocation" x="976.79999999999995" y="137.18140929535232"/>
         </scene>
         <!--CartPayment-->
         <scene sceneID="bXa-dh-Qep">
@@ -165,7 +166,7 @@
                 <viewControllerPlaceholder storyboardName="CartPayment" id="Z8O-ax-1mD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1yv-OC-AZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661" y="-1"/>
+            <point key="canvasLocation" x="1600" y="-1.7991004497751126"/>
         </scene>
     </scenes>
     <resources>

@@ -84,6 +84,9 @@ class CartPaymentViewController: UIViewController {
         
         
     }
+    @IBAction func touchedCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
