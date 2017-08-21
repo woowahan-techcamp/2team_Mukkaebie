@@ -57,8 +57,8 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
-    var priceByMenu = [String:Int]()
-    var orderByMenu = [String:Int]()
+    var priceByMenu = [String: Int]()
+    var orderByMenu = [String: Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
     var tabNumber = 0

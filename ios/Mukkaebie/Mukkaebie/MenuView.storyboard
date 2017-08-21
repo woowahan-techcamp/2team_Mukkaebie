@@ -45,7 +45,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 가게 인기 메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp7-M2-dnX">
-                                        <rect key="frame" x="55" y="18" width="132" height="20"/>
+                                        <rect key="frame" x="55" y="19.5" width="131" height="17"/>
                                         <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -54,21 +54,21 @@
                                         <rect key="frame" x="0.0" y="304.5" width="375" height="362.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="37" id="rig-zW-Ect" customClass="MenuTableViewHeader" customModule="Mukkaebie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="37"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="30" id="rig-zW-Ect" customClass="MenuTableViewHeader" customModule="Mukkaebie" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="30"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rig-zW-Ect" id="hme-QW-XTt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="36.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hS9-oW-YCB">
-                                                            <rect key="frame" x="17" y="10" width="37.5" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <rect key="frame" x="17" y="8" width="27" height="14.5"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahl-js-ORn">
-                                                            <rect key="frame" x="325" y="11" width="42" height="14.5"/>
+                                                            <rect key="frame" x="325" y="7.5" width="42" height="14.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="42" id="Yaq-2T-7zn"/>
                                                             </constraints>
@@ -80,8 +80,8 @@
                                                     <color key="backgroundColor" red="0.23137254900000001" green="0.20392156859999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="hS9-oW-YCB" firstAttribute="leading" secondItem="hme-QW-XTt" secondAttribute="leadingMargin" constant="9" id="0bc-3A-FaA"/>
+                                                        <constraint firstItem="Ahl-js-ORn" firstAttribute="centerY" secondItem="hme-QW-XTt" secondAttribute="centerY" id="1Jm-QZ-Q6b"/>
                                                         <constraint firstItem="Ahl-js-ORn" firstAttribute="trailing" secondItem="hme-QW-XTt" secondAttribute="trailingMargin" id="5A1-jM-RsK"/>
-                                                        <constraint firstItem="hS9-oW-YCB" firstAttribute="baseline" secondItem="Ahl-js-ORn" secondAttribute="baseline" constant="2" id="BWu-KT-Kva"/>
                                                         <constraint firstItem="hS9-oW-YCB" firstAttribute="centerY" secondItem="hme-QW-XTt" secondAttribute="centerY" id="D7z-eW-5pN"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -91,21 +91,21 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="QSH-Ey-XGO" customClass="MenuTableViewCell" customModule="Mukkaebie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="65" width="375" height="44"/>
+                                                <rect key="frame" x="0.0" y="58" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QSH-Ey-XGO" id="IAx-ge-uuO">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6l-V7-b4X">
-                                                            <rect key="frame" x="17" y="13.5" width="31.5" height="16"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                            <rect key="frame" x="17" y="14.5" width="29" height="14.5"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXI-lg-3lZ">
-                                                            <rect key="frame" x="327.5" y="13.5" width="29.5" height="16"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                                                            <rect key="frame" x="330" y="14.5" width="27" height="14.5"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -120,6 +120,7 @@
                                                 <connections>
                                                     <outlet property="menuLabel" destination="N6l-V7-b4X" id="jFq-vb-ezF"/>
                                                     <outlet property="priceLabel" destination="nXI-lg-3lZ" id="X0I-HL-1xz"/>
+                                                    <segue destination="Z8O-ax-1mD" kind="show" identifier="menuOrder" id="qRG-rs-ews"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -157,6 +158,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1z-d5-7I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="137.18140929535232"/>
+        </scene>
+        <!--CartPayment-->
+        <scene sceneID="bXa-dh-Qep">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CartPayment" id="Z8O-ax-1mD" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1yv-OC-AZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="-1"/>
         </scene>
     </scenes>
     <resources>
