@@ -359,6 +359,51 @@
     text-align: center;
 }
 
+.commentCard {
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+}
+
+.commentCardPic {
+    background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-width: 35px;
+    height: 35px;
+    float: left;
+}
+
+.commentCardContent {
+    max-width: 50%;
+    float: left;
+}
+
+.commentCardBtm {
+    font-size: 11px;
+}
+
+.commentCardTop > span {
+    font-size: 11px;
+    color: #8a8b8f;
+}
+
+.commentCardId {
+    font-size: 12px;
+    color: #222;
+}
+
+.commentCardDate {
+    font-size: 11px;
+    color: #8a8b8f;
+}
+
+.commentCardBtm {
+    clear: both;
+    width: 100%;
+}
+
 /* 포디움 관련 */
 
 @-webkit-keyframes rain {
