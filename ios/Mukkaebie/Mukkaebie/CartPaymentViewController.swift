@@ -34,7 +34,10 @@ class CartPaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.title = modelStore?.name
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+
         
         menuPriceLabel.text = menuPrice
         menuNameLabel.text = menuName
