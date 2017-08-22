@@ -452,7 +452,7 @@ class Graph {
 
       }
     };
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
