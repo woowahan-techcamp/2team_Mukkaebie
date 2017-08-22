@@ -54,6 +54,19 @@ extension UIAlertController {
         imageAction.setValue(resizedImage.withRenderingMode(.alwaysOriginal), forKey: "image")
         self.addAction(imageAction)
     }
+    
+    func oneButtonAlert(target: UIViewController, title: String, message: String, isHandler: Bool) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "완료", style: .default, handler: { (_) in
+            if isHandler {
+                target.dismiss(animated: true, completion: nil)
+            }
+        }))
+        target.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
 }
 
 extension UIImage {
