@@ -28,16 +28,12 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        firstAward.frame = CGRect(x: firstAward.frame.minX, y: self.view.frame.maxY, width: firstAward.frame.width, height: firstAward.frame.height)
-//        secondAward.frame = CGRect(x: secondAward.frame.minX, y: self.view.frame.maxY, width: secondAward.frame.width, height: secondAward.frame.height)
-//        thirdAward.frame = CGRect(x: thirdAward.frame.minX, y: self.view.frame.maxY, width: thirdAward.frame.width, height: thirdAward.frame.height)
 
 //        staticHeight.constant -= gradeStackView.frame.height
         
-//        firstBottomConstraint.constant -= firstAward.frame.height
-//        secondBottomConstraint.constant -= secondAward.frame.height
-//        thirdBottomConstraint.constant -= thirdAward.frame.height
+        firstBottomConstraint.constant -= firstAward.frame.height
+        secondBottomConstraint.constant -= secondAward.frame.height
+        thirdBottomConstraint.constant -= thirdAward.frame.height
 
     }
     
@@ -45,32 +41,32 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if self.firstBottomConstraint.constant < 0 {
+        if self.firstBottomConstraint.constant < 0 {
+            UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.firstBottomConstraint.constant += self.firstAward.frame.height
+                self.view.layoutSubviews()
+
+            }, completion: nil)
+            
+            UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.secondBottomConstraint.constant += self.secondAward.frame.height
+                self.view.layoutSubviews()
+                
+            }, completion: nil)
+            
+            
+
+            UIView.animate(withDuration: 1.5, delay: 3, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
+                self.view.layoutSubviews()
+                
+            }, completion: nil)
+            
+            
+            
+        }
         
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-//            self.staticHeight.constant += self.gradeStackView.frame.height
-//            self.view.layoutSubviews()
-//
-//        }, completion: nil)
-//
-//        
-//            UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
-//
-//                self.staticHeight.constant += self.gradeStackView.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        
-////
-//            UIView.animate(withDuration: 2, delay: 0.5, options: .curveEaseInOut, animations: {
-//                self.secondBottomConstraint.constant += self.secondAward.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        
-//        
-//            UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-//                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
+        
 
     }
 

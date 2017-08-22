@@ -175,7 +175,7 @@ class PieChartView: UIView {
     }
     
     func buttonAction(sender: UIButton!) {
-        print(sender.titleLabel?.text)
+        
     }
 }
 
