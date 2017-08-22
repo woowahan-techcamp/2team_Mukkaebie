@@ -87,15 +87,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        if (self.modelStore?.menu.count)! > 0 {
-            let menu = (self.modelStore?.menu)![0]
-            for (title, submenu) in menu {
-                for (name, price) in submenu {
-                    orderByMenu[name] = 0
-                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
-                }
-            }
-        }
+        initMenuArray()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
@@ -110,6 +102,33 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    func initMenuArray() {
+        initOrderByMenu()
+        initPriceByMenu()
+    }
+    
+    func initOrderByMenu() {
+        if (self.modelStore?.menu.count)! > 0 {
+            let menu = (self.modelStore?.menu)![0]
+            for (_, submenu) in menu {
+                for (name, _) in submenu {
+                    orderByMenu[name] = 0
+                }
+            }
+        }
+    }
+    
+    func initPriceByMenu() {
+        if (self.modelStore?.menu.count)! > 0 {
+            let menu = (self.modelStore?.menu)![0]
+            for (_, submenu) in menu {
+                for (name, price) in submenu {
+                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                }
+            }
+        }
+    }
+    
     func getOrderList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
@@ -120,6 +139,8 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func getOrderByMenu() {
+        initOrderByMenu()
+        
         for order in self.orderList {
             for content in order.content {
                 orderByMenu[content]! += 1

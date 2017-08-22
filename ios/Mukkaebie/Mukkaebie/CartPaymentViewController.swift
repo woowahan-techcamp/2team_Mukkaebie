@@ -80,7 +80,7 @@ class CartPaymentViewController: UIViewController {
     
     @IBAction func touchedOrder(_ sender: Any) {
 
-        networkOrder.postOrder(sellderId: modelStore.id, buyerId: "hjtech", price: totalPrice, content: [menuName])
+//        networkOrder.postOrder(sellderId: modelStore.id, buyerId: "hjtech", price: totalPrice, content: [menuName])
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
         let image = #imageLiteral(resourceName: "750x1334_merge_alpha.png")
