@@ -530,7 +530,7 @@ class StoreList {
         let loadMoreButton = document.querySelector('.load-button');
 
 
-        if (response.length >= 30) {
+        if (response.length > 30) {
           loadMoreButton.style.display = 'block';
         }
 
@@ -546,8 +546,15 @@ class StoreList {
             renderTarget.innerHTML += result;
             loadMoreButton.style.display = 'none';
           })
-        })
+        });
 
+        if (loadMoreButton.style.display == 'none') {
+          window.onscroll = function(ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+              console.log("you are at the bottom!");
+            }
+          };
+        }
 
         let clickedStore = document.querySelector(".storeCardRow");
 
