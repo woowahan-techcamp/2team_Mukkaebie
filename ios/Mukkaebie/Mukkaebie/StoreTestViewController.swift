@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoreTestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StoreTestViewController: UIViewController {
     
     lazy var mukkaebieVC : MukkaebieRankViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
@@ -219,19 +219,29 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func touchedShoppingCart(_ sender: Any) {
         
-        var alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "dismissAlert", userInfo: nil, repeats: false)
+        let alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "dismissAlert", userInfo: nil, repeats: false)
         cartAlertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         
         UIView.animate(withDuration: 0.4) {
             self.cartAlertView.alpha = 1
         }
-
     }
     
     func dismissAlert() {
         cartAlertView.alpha = 0
     }
     
+    @IBAction func touchedOrderCall(_ sender: Any) {
+        let url = NSURL(string: "tel://\(modelStore?.telephone as! String)")
+        UIApplication.shared.openURL(url as! URL)
+    }
+    
+    
+}
+
+
+
+extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
