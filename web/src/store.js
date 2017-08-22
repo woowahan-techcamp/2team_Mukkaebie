@@ -512,11 +512,13 @@ class StoreList {
       if (this.readyState == 4 && this.status == 200) {
 
         const layoutTarget = document.querySelector(".storeLayout");
-        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div>';
+        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div><div class="spinner" style="display: none"></div>';
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
-        response.slice(0, 30).forEach(function (oneStore) {
+        let size = 30;
+        let spinner = document.querySelector('.spinner');
+        response.slice(0, size).forEach(function (oneStore) {
           const store = oneStore;
           const storeId = store.storeId;
           const storeImg = store.storeImg;
@@ -526,6 +528,96 @@ class StoreList {
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
         })
+
+        let loadMoreButton = document.querySelector('.load-button');
+
+
+        if (response.length > 30) {
+          loadMoreButton.style.display = 'block';
+        }
+
+        loadMoreButton.addEventListener('click', function () {
+          let result = '';
+          size = 30;
+          console.log(size);
+          response.slice(size, size = size + 30).forEach(function (oneStore) {
+            const store = oneStore;
+            const storeId = store.storeId;
+            const storeImg = store.storeImg;
+            const storeName = store.storeName;
+            const address = store.address;
+            const tempGrab = document.querySelector("#storeListTemplate").text;
+            result += eval('`' + tempGrab + '`');
+          });
+
+          loadFirst();
+
+          function loadFirst() {
+            loadMoreButton.style.display = 'none';
+            spinner.style.display = 'block';
+
+            setTimeout(function () {
+              renderTarget.innerHTML += result;
+              spinner.style.display = 'none';
+            }, 1000);
+          }
+        });
+
+        let scrollTimer, lastScrollFireTime = 0;
+
+
+        window.addEventListener("scroll", function () {
+          let minScrollTime = 500;
+          let now = new Date().getTime();
+
+          function processScroll() {
+
+            let contentHeight = renderTarget.offsetHeight;
+            let yOffset = window.pageYOffset;
+            let y = yOffset + 300;
+            if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+              let result = '';
+              if (size !== 30 && size <= response.length) {
+                response.slice(size, size = size + 30).forEach(function (oneStore) {
+                  const store = oneStore;
+                  const storeId = store.storeId;
+                  const storeImg = store.storeImg;
+                  const storeName = store.storeName;
+                  const address = store.address;
+                  const tempGrab = document.querySelector("#storeListTemplate").text;
+                  result += eval('`' + tempGrab + '`');
+                });
+
+                loadMore();
+
+              }
+
+
+              function loadMore() {
+                spinner.style.display = 'block';
+                setTimeout(function () {
+                  renderTarget.innerHTML += result;
+                  spinner.style.display = 'none';
+                }, 1000);
+              }
+
+            }
+
+          }
+
+          if (!scrollTimer) {
+            if (now - lastScrollFireTime > (3 * minScrollTime)) {
+              processScroll();   // fire immediately on first scroll
+              lastScrollFireTime = now;
+            }
+            scrollTimer = setTimeout(function() {
+              scrollTimer = null;
+              lastScrollFireTime = new Date().getTime();
+              processScroll();
+            }, minScrollTime);
+          }
+
+        });
 
         let clickedStore = document.querySelector(".storeCardRow");
 
