@@ -537,6 +537,13 @@ class StoreList {
         }
 
         loadMoreButton.addEventListener('click', function () {
+          let fadeInTarget = document.querySelectorAll('.fadeIn');
+          let index = 0;
+          let targetArr = [...fadeInTarget];
+          targetArr.forEach(function() {
+            targetArr[index].classList.remove("fadeIn");
+            index++;
+          });
           let result = '';
           size = 30;
           console.log(size);
@@ -576,6 +583,13 @@ class StoreList {
             let yOffset = window.pageYOffset;
             let y = yOffset + 300;
             if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+              let fadeInTarget = document.querySelectorAll('.fadeIn');
+              let index = 0;
+              let targetArr = [...fadeInTarget];
+              targetArr.forEach(function() {
+                targetArr[index].classList.remove("fadeIn");
+                index++;
+              });
               let result = '';
               if (size !== 30 && size <= response.length) {
                 response.slice(size, size = size + 30).forEach(function (oneStore) {
@@ -618,6 +632,7 @@ class StoreList {
           }
 
         });
+
 
         let clickedStore = document.querySelector(".storeCardRow");
 
