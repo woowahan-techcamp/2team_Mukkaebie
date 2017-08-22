@@ -524,6 +524,9 @@ class StoreList {
           const storeImg = store.storeImg;
           const storeName = store.storeName;
           const address = store.address;
+          const reviewCount = store.review.length;
+          const ratingCount = store.ratingCount;
+          const ratingValue = store.ratingValue * 20;
           const tempGrab = document.querySelector("#storeListTemplate").text;
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
@@ -553,6 +556,9 @@ class StoreList {
             const storeImg = store.storeImg;
             const storeName = store.storeName;
             const address = store.address;
+            const reviewCount = store.review.length;
+            const ratingCount = store.ratingCount;
+            const ratingValue = store.ratingValue * 20;
             const tempGrab = document.querySelector("#storeListTemplate").text;
             result += eval('`' + tempGrab + '`');
           });
@@ -598,6 +604,9 @@ class StoreList {
                   const storeImg = store.storeImg;
                   const storeName = store.storeName;
                   const address = store.address;
+                  const reviewCount = store.review.length;
+                  const ratingCount = store.ratingCount;
+                  const ratingValue = store.ratingValue * 20;
                   const tempGrab = document.querySelector("#storeListTemplate").text;
                   result += eval('`' + tempGrab + '`');
                 });
