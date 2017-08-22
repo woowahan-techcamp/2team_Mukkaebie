@@ -512,7 +512,7 @@ class StoreList {
       if (this.readyState == 4 && this.status == 200) {
 
         const layoutTarget = document.querySelector(".storeLayout");
-        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div>';
+        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div>';
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
@@ -526,6 +526,28 @@ class StoreList {
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
         })
+
+        let loadMoreButton = document.querySelector('.load-button');
+
+
+        if (response.length >= 30) {
+          loadMoreButton.style.display = 'block';
+        }
+
+        loadMoreButton.addEventListener('click', function() {
+          response.slice(30, 60).forEach(function (oneStore) {
+            const store = oneStore;
+            const storeId = store.storeId;
+            const storeImg = store.storeImg;
+            const storeName = store.storeName;
+            const address = store.address;
+            const tempGrab = document.querySelector("#storeListTemplate").text;
+            const result = eval('`' + tempGrab + '`');
+            renderTarget.innerHTML += result;
+            loadMoreButton.style.display = 'none';
+          })
+        })
+
 
         let clickedStore = document.querySelector(".storeCardRow");
 

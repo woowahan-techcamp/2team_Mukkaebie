@@ -7,6 +7,25 @@
   background: $bmBeigeColor;
 }
 
+.load-button {
+  width: 150px;
+  background: #1abcaa;
+  border-color: #1abcaa;
+  color: #fff;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  display: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 60px auto 0;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  top: 50px;
+}
+
 .menuReviewWrap {
   border: 1px solid #cccccc;
 }
