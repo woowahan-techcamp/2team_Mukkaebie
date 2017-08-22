@@ -16,6 +16,9 @@ class StoreTestViewController: UIViewController {
         
         mukkaebieVC?.view.frame.size.height = 540
         mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
+        
+        mukkaebieVC?.modelStore = self.modelStore
+        
         return mukkaebieVC
     }()
     
