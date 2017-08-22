@@ -158,7 +158,6 @@ class Review {
               const createdDate = review.time;
               const reviewContent = review.content;
               const orangeStar = "★".repeat(review.stars);
-              const greyStar = "★".repeat(5 - review.stars);
               const tempGrab = document.querySelector("#reviewTemplate").text;
               const result = eval('`' + tempGrab + '`');
               renderTarget.innerHTML += result;
