@@ -244,12 +244,9 @@
 
 
         </div>
-        <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab">
-          <input type="hidden" role="uploadcare-uploader" name="먹깨비얼굴" data-crop="disabled" data-preview-step="true"
-                 data-images-only="true"/>
-          <div id="mkbPreview"></div>
-          <div class="menuTabGraph" style="background-color: #fff;">
-            <div class="competition-podium well">
+        <div class="mkbTabContent col-xs-12 storeTabContent p-a-0" id="cont-mkbTab">
+          <div class="mkbGraphWrapper" style="background-color: #fff;">
+            <div class="competition-podium well m-a-0">
               <div class="podium-block gold">
                 <div class="orders"></div>
                 <div class="name">danb</div>
@@ -259,7 +256,9 @@
               </div>
               <div class="podium-block silver">
                 <div class="orders"></div>
-                <div class="name">youngun</div>
+                <div class="name">
+                  <div class="silverImg">test</div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/second.png" alt="2등">
                 </div>
@@ -273,17 +272,10 @@
               </div>
             </div>
 
-            <div class="commentBox">
-              <p class="p-center orangeFontColor">수상소감</p>
-              <div id="commentList"></div>
-              <div class="commentWriteBox p-a-1">
-                <p name="userId" value="ygtech">ygtech</p>
-                <textarea id="commentTextInput" type="text" name="content"></textarea>
-                <button id="commentTextInputBtn" class="float-right">완료</button>
-              </div>
-            </div>
+
 
           </div>
+
 
 
         </div>
@@ -471,12 +463,33 @@
 </footer>
 
 
-<div id="orderModal" class="modal">
+<div id="orderModal" class="orderModal">
   <div class="modal-content"></div>
+</div>
+
+<div id="mkbModal" class="mkbModal">
+  <div class="mkbModal-content">
+    <div style="width: 300px; height:300px"></div>
+    <div class="commentBox">
+      <p class="p-center orangeFontColor">수상소감</p>
+      <div id="commentList"></div>
+      <div class="commentWriteBox p-a-1">
+        <p name="userId" value="ygtech">ygtech</p>
+        <textarea id="commentTextInput" type="text" name="content"></textarea>
+        <button id="commentTextInputBtn" class="float-right">완료</button>
+      </div>
+    </div>
+    <form id="file-form" method="POST">
+      <input type="file" id="file-select"/>
+      <button type="submit" id="upload-button">Upload</button>
+    </form>
+  </div>
 </div>
 <script src="./dist/index.bundle.js"></script>
 <script>
   SERVER_BASE_URL = "http://13.124.10.251:3000"
+
+  SESSION = "ygtech"
 </script>
 </body>
 </html>

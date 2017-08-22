@@ -212,6 +212,7 @@ circle {
     animation-name: goldHeightUp;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    height:100%;
 }
 
 .goldOrdersAnimate  {
@@ -224,12 +225,14 @@ circle {
     animation-name: goldNameHeightUp;
     animation-duration: 4s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .silverAnimate  {
     animation-name: silverHeightUp;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .silverOrdersAnimate  {
@@ -248,6 +251,7 @@ circle {
     animation-name: bronzeHeightUp;
     animation-duration: 2s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .bronzeOrdersAnimate  {
@@ -317,10 +321,10 @@ circle {
 
 @keyframes silverNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 230px;
+        bottom: 0;
     }
 }
 

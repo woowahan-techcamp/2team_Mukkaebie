@@ -177,7 +177,40 @@ class MKBComment {
   constructor(id) {
     this.getComment(id);
     this.postComment(id);
+    this.imgUrl="";
 
+  }
+
+  postImage(id) {
+    const form = document.getElementById('file-form');
+    const fileSelect = document.getElementById('file-select');
+    const uploadButton = document.getElementById('upload-button');
+
+    form.onsubmit = function(event) {
+      event.preventDefault();
+      uploadButton.innerHTML = 'Uploading...';
+      const file = fileSelect.files[0];
+      const formData = new FormData();
+      formData.append('profileImage', file);
+
+
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+        }
+      }
+      xhr.open('POST', 'http://52.78.27.108:3000/profile/');
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          uploadButton.innerHTML = 'Upload';
+        } else {
+          alert('An error occurred!');
+        }
+      };
+      xhr.send(formData);
+    }
   }
 
   postComment(id) {
@@ -370,14 +403,11 @@ class Graph {
         for (let i = 0; i < top3.length; i++) {
           let name = top3[i].toString().split(",")[0];
           let order = top3[i].toString().split(",")[1];
-          top3_name[i].innerHTML = name;
-          top3_order[i].innerHTML = order;
+          // top3_name[i].innerHTML = name;
+          // top3_order[i].innerHTML = order;
         }
-
       }
-
     }
-
     xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
@@ -485,11 +515,12 @@ class StoreInfo {
         }
     );
     let graph = new Graph(storeId);
-    let comment = new MKBComment(storeId);
+    // let comment = new MKBComment(storeId);
     let review = new Review(storeId);
     let foldable = new Foldable("foldableLevel1");
     StoreUtil.makeOrder(storeId);
     StoreUtil.makeModal();
+    StoreUtil.makeMKBModal();
     let cart = new Cart();
   }
 
@@ -579,6 +610,26 @@ let StoreUtil = {
         cart.style.top = "";
         cart.style.width = ""
       }
+    })
+  },
+
+  makeMKBModal: function () {
+    //모달
+    let modal = document.querySelector('#mkbModal');
+    let modalBtn = document.querySelector(".silverImg");
+
+    modalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+      modal.style.opacity = "1";
+      // setTimeout(function () {
+      //   modal.classList.add("modalShow");
+      // }, 500)
+      //
+      // modal.classList.remove("modalShow");
+      // setTimeout(function () {
+      //   modal.style.display = "none";
+      // }, 3000)
+
     })
   },
 

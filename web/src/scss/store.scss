@@ -131,6 +131,13 @@
   display: block;
 }
 
+.mkbGraphWrapper{
+  width: 100%;
+  padding-top: 120.25%;
+  position: relative;
+
+}
+
 /* 폴더블메뉴 */
 .menuTabGraph {
   width: 100%;
@@ -433,15 +440,27 @@
     background-position: 0px 1340px;
   }
 }
+.competition-podium.well {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border:none;
+  border-radius: 0px;
+}
+
 
 .competition-podium {
   height: 400px;
   position: relative;
   width: 90%;
   top: -100px;
-  background: #f6f3ed;
+  background: #fff;
   background-image: url("../img/particles_alpha.png");
-  -webkit-animation: rain 20s linear infinite;
+  -webkit-animation: rain 10s linear infinite;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -470,14 +489,13 @@
 
 .competition-podium .podium-block.bronze {
   color: #e6d6bf;
-  left: 57.5%;
-  width: 12%;
+  right: 19%;
+  width: 20%;
   z-index: 10;
+  height:60%;
 }
 
-.competition-podium .podium-block.bronze .podium {
-  height: 160px;
-}
+
 
 .competition-podium .podium-block.bronze .orders {
   text-align: center;
@@ -496,13 +514,12 @@
 
 .competition-podium .podium-block.gold {
   color: #ead679;
-  left: 40%;
+  left: 35%;
   z-index: 30;
+  height: 100%;
+  width: 30%;
 }
 
-.competition-podium .podium-block.gold .podium {
-  height: 360px;
-}
 
 .competition-podium .podium-block.gold .orders {
   text-align: center;
@@ -521,14 +538,12 @@
 
 .competition-podium .podium-block.silver {
   color: #cbd9de;
-  left: 27.2%;
-  width: 16%;
+  left: 17%;
+  width: 22%;
   z-index: 20;
+  height: 70%;
 }
 
-.competition-podium .podium-block.silver .podium {
-  height: 230px;
-}
 
 .competition-podium .podium-block.silver .orders {
   text-align: center;
@@ -540,9 +555,21 @@
 .competition-podium .podium-block.silver .name {
   color: #856e4e;
   text-align: center;
-  left: 30%;
-  bottom: -20px;
-  position: absolute;
+  padding-top: 100%;
+
+  z-index: 1;
+  position: relative;
+  width: 100%;
+}
+.silverImg {
+  background: red;
+  position:  absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
 }
 
 .podium > img {
@@ -567,10 +594,10 @@
 
 @media only screen and (max-width: 768px) {
 
-  .competition-podium {
-    width: 90%;
-    margin: 0 auto;
-  }
+  //.competition-podium {
+  //  width: 90%;
+  //  margin: 0 auto;
+  //}
 
   .podium > * {
     display: table-cell;
@@ -580,21 +607,21 @@
     font-size: 1.0em;
   }
 
-  .competition-podium .podium-block {
-    width: 20%;
-    text-align: left;
-    display: inline-block;
-    position: absolute;
-    bottom: -10px;
-  }
+  //.competition-podium .podium-block {
+  //  width: 20%;
+  //  text-align: left;
+  //  display: inline-block;
+  //  position: absolute;
+  //  bottom: -10px;
+  //}
 }
 
 @media only screen and (max-width: 420px) {
 
-  .competition-podium {
-    width: 90%;
-    margin: 0 auto;
-  }
+  //.competition-podium {
+  //  width: 90%;
+  //  margin: 0 auto;
+  //}
 
   .podium > * {
     display: table-cell;
@@ -604,58 +631,58 @@
     font-size: 1.0em;
   }
 
-  .competition-podium .podium-block {
-    width: 30%;
-    text-align: left;
-    display: inline-block;
-    position: absolute;
-    bottom: -10px;
-  }
-
-  .competition-podium .podium-block.gold {
-    left: 35%;
-  }
-
-  .competition-podium .podium-block.silver {
-    left: 15%;
-    width: 25%;
-  }
-
-  .competition-podium .podium-block.bronze {
-    left: 61%;
-    width: 20%
-  }
-
-  .competition-podium .podium-block.gold .name {
-    left: 30%;
-  }
-
-  .competition-podium .podium-block.silver .name {
-    left: 25%;
-  }
-
-  .competition-podium .podium-block.bronze .name {
-    left: 25%;
-  }
-
+//  .competition-podium .podium-block {
+//    width: 30%;
+//    text-align: left;
+//    display: inline-block;
+//    position: absolute;
+//    bottom: -10px;
+//  }
+//
+//  .competition-podium .podium-block.gold {
+//    left: 35%;
+//  }
+//
+//  .competition-podium .podium-block.silver {
+//    left: 15%;
+//    width: 25%;
+//  }
+//
+//  .competition-podium .podium-block.bronze {
+//    left: 61%;
+//    width: 20%
+//  }
+//
+//  .competition-podium .podium-block.gold .name {
+//    left: 30%;
+//  }
+//
+//  .competition-podium .podium-block.silver .name {
+//    left: 25%;
+//  }
+//
+//  .competition-podium .podium-block.bronze .name {
+//    left: 25%;
+//  }
+//
 }
 
 @media only screen and (max-width: 350px) {
 
-  .competition-podium .podium-block.gold .name {
-    left: 28%;
-    font-size: 0.9em;
-  }
-
-  .competition-podium .podium-block.silver .name {
-    left: 25%;
-    font-size: 0.9em;
-  }
-
-  .competition-podium .podium-block.bronze .name {
-    left: 21%;
-    font-size: 0.9em;
-  }
+  //.competition-podium .podium-block.gold .name {
+  //  left: 28%;
+  //  font-size: 0.9em;
+  //}
+  //
+  //.competition-podium .podium-block.silver .name {
+  //  left: 25%;
+  //  font-size: 0.9em;
+  //}
+  //
+  //.competition-podium .podium-block.bronze .name {
+  //  left: 21%;
+  //  font-size: 0.9em;
+  //}
 
 }
 
@@ -717,7 +744,7 @@
 }
 
 // 주문 후 모달
-.modal {
+.orderModal {
   display: none;
   position: fixed;
   z-index: 100;
@@ -736,8 +763,38 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+.mkbModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.mkbModal-content{
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fff;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -746,7 +803,6 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 150px;
-
 }
 
 .modal.modalShow {
