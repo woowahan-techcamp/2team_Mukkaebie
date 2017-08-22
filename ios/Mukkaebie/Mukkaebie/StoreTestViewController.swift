@@ -108,6 +108,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func initOrderByMenu() {
+        orderByMenu = [String:Int]()
         if (self.modelStore?.menu.count)! > 0 {
             let menu = (self.modelStore?.menu)![0]
             for (_, submenu) in menu {
@@ -119,6 +120,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func initPriceByMenu() {
+        priceByMenu = [String:Int]()
         if (self.modelStore?.menu.count)! > 0 {
             let menu = (self.modelStore?.menu)![0]
             for (_, submenu) in menu {
@@ -151,7 +153,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         if orderByMenuSorted.count > 3 {
             var count = 0
-            for i in (2 ..< orderByMenuSorted.count-1).reversed() {
+            for i in (3 ..< orderByMenuSorted.count).reversed() {
                 count += orderByMenuSorted[i].value
                 orderByMenuSorted.removeLast()
             }
