@@ -71,10 +71,10 @@ class TabUiWithAjax {
     const result = [];
     this.tabId.forEach((key, idx) => {
       result.push({
-      name: key,
-      click: this.cache[idx]
+        name: key,
+        click: this.cache[idx]
+      })
     })
-  })
     ;
   }
 }
@@ -164,8 +164,72 @@ class Review {
         })
       }
     };
-    xhttp.open("GET", SERVER_BASE_URL +  "/stores/" + id, true);
+    xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhttp.send();
+  }
+
+}
+
+
+/* 먹깨비 코멘트 관련 */
+
+class MKBComment {
+
+  constructor(id) {
+    this.getComment(id);
+    this.postComment(id);
+
+  }
+
+  postComment(id) {
+    let editButton = document.querySelector("#commentTextInputBtn");
+
+    editButton.addEventListener("click", function () {
+      let packet = {"mkb": {}};
+      packet["storeId"] = id;
+      packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
+      packet.mkb["time"] = new Date().toLocaleString();
+      packet.mkb["userId"] = "hjktech";
+
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      xhr.send(JSON.stringify(packet));
+      xhr.onloadend = function () {
+        alert("소중한 코멘트 감사드립니다");
+        this.getComment(id);
+        document.querySelector("#commentTextInput").value = "";
+      }.bind(this);
+    }.bind(this));
+  }
+
+  getComment(id) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector("#commentList");
+        renderTarget.innerHTML = "";
+        const targetArr = response[0].mkb;
+        console.log(targetArr[targetArr.length - 1]);
+
+        renderContent(targetArr[targetArr.length - 1]);
+
+        function renderContent(oneComment) {
+          const comment = oneComment;
+          const userId = comment.userId;
+          const time = comment.time;
+          const mkbComment = comment.mkbComment;
+          const tempGrab = document.querySelector("#commentTemplate").text;
+          const result = eval('`' + tempGrab + '`');
+          renderTarget.innerHTML += result;
+        };
+      }
+    };
+    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+    xhr.send();
   }
 
 }
@@ -197,19 +261,19 @@ let StoreUtil = {
     })
   },
 
-  makeModal: function(){
+  makeModal: function () {
     //모달
     let modal = document.querySelector('#orderModal');
     let modalBtn = document.querySelector("#cartOrderButton");
 
-    modalBtn.addEventListener("click", function() {
+    modalBtn.addEventListener("click", function () {
       modal.style.display = "block";
-      setTimeout(function(){
+      setTimeout(function () {
         modal.classList.add("modalShow");
       }, 500)
 
       modal.classList.remove("modalShow");
-      setTimeout(function(){
+      setTimeout(function () {
         modal.style.display = "none";
       }, 3000)
 
@@ -388,7 +452,7 @@ class Graph {
 
       }
     };
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
@@ -479,7 +543,7 @@ class StoreList {
         });
       }
     };
-    xhttp.open("GET", SERVER_BASE_URL +  "/stores/bycategory/" + cat, true);
+    xhttp.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
     xhttp.send();
 
   }
@@ -494,7 +558,7 @@ class StoreInfo {
     this.getStoreInfo(id).then(this.renderInfo.bind(null, id));
   }
 
-   renderInfo(storeId, info){
+  renderInfo(storeId, info) {
 
     const storeName = info.storeName;
     const address = info.address;
@@ -505,8 +569,8 @@ class StoreInfo {
     const storeDesc = info.storeDesc;
     let menuObj = info.menu[0];
 
-    let wholeMenuHtml='';
-    let menuUnits='';
+    let wholeMenuHtml = '';
+    let menuUnits = '';
 
     for (let categoryKey in menuObj) {
       const menuArr = menuObj[categoryKey];
@@ -525,36 +589,37 @@ class StoreInfo {
     const renderMenu = layoutTarget.querySelector('.foldableMenu');
     renderMenu.innerHTML = wholeMenuHtml;
 
-     let tab = new TabUiWithAjax(
-         {
-           containerName: "storeTabWrapper",
-           selectedTabName: "selectedTab",
-           selectedContentName: "selectedContent",
-           generalTabName: "storeTab",
-           generalContentPrefix: "#cont-",
-           baseUrl: "",
-         }
-     );
-     let graph = new Graph(storeId);
-     let review = new Review(storeId);
-     let foldable = new Foldable("foldableLevel1");
-     StoreUtil.makeOrder(storeId);
-     StoreUtil.makeModal();
-     let cart = new Cart();
+    let tab = new TabUiWithAjax(
+        {
+          containerName: "storeTabWrapper",
+          selectedTabName: "selectedTab",
+          selectedContentName: "selectedContent",
+          generalTabName: "storeTab",
+          generalContentPrefix: "#cont-",
+          baseUrl: "",
+        }
+    );
+    let graph = new Graph(storeId);
+    let comment = new MKBComment(storeId);
+    let review = new Review(storeId);
+    let foldable = new Foldable("foldableLevel1");
+    StoreUtil.makeOrder(storeId);
+    StoreUtil.makeModal();
+    let cart = new Cart();
   }
 
   getStoreInfo(id) {
-     return new Promise(function(resolve){
-       let xhr = new XMLHttpRequest();
-       xhr.onreadystatechange = function (i) {
-         if (this.readyState == 4 && this.status == 200) {
-           const response = JSON.parse(this.responseText);
-           resolve(response[0], id);
-         }
-       };
-       xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-       xhr.send();
-     });
+    return new Promise(function (resolve) {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function (i) {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          resolve(response[0], id);
+        }
+      };
+      xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+      xhr.send();
+    });
   }
 }
 
@@ -604,7 +669,6 @@ class Cart {
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
   }
 }
-
 
 
 export {TabUiWithAjax, Foldable, Review, Graph, StoreList, StoreInfo, StoreUtil, Cart}

@@ -49,6 +49,29 @@
 
 </script>
 
+<script id="commentTemplate" type="text/template">
+  <div class="commentCardPic"></div>
+  <div class="commentCard">
+    <div class="commentCardContent">
+      <div class="commentCardTop p-x-1">
+        <div class="commentCardId float-left">
+          ${userId}
+        </div>
+        <span class="float-left p-x-1">
+            |
+        </span>
+        <div class="commentCardDate float-left">
+          ${time}
+        </div>
+      </div>
+      <div class="commentCardBtm p-a-1">
+        ${mkbComment}
+      </div>
+    </div>
+  </div>
+
+</script>
+
 <script id="storeListTemplate" type="text/template">
 
   <div class="col-xs-4">
@@ -256,7 +279,7 @@
               <div class="commentWriteBox p-a-1">
                 <p name="userId" value="ygtech">ygtech</p>
                 <textarea id="commentTextInput" type="text" name="content"></textarea>
-                <button id="commentTextInputBtn" class="float-right">작성</button>
+                <button id="commentTextInputBtn" class="float-right">완료</button>
               </div>
             </div>
 
@@ -453,7 +476,7 @@
 </div>
 <script src="./dist/index.bundle.js"></script>
 <script>
-  SERVER_BASE_URL = "http://13.124.179.176:3000"
+  SERVER_BASE_URL = "http://13.124.10.251:3000"
 </script>
 </body>
 </html>
