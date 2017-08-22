@@ -538,7 +538,9 @@ class StoreList {
 
         loadMoreButton.addEventListener('click', function () {
           let result = '';
-          response.slice(size, size=size+30).forEach(function (oneStore) {
+          size = 30;
+          console.log(size);
+          response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
             const storeImg = store.storeImg;
@@ -550,46 +552,71 @@ class StoreList {
 
           loadFirst();
 
-          function loadFirst(){
+          function loadFirst() {
             loadMoreButton.style.display = 'none';
             spinner.style.display = 'block';
 
-            setTimeout(function(){
+            setTimeout(function () {
               renderTarget.innerHTML += result;
               spinner.style.display = 'none';
-            }, 5000);
+            }, 1000);
           }
         });
 
+        let scrollTimer, lastScrollFireTime = 0;
 
 
         window.addEventListener("scroll", function () {
-          var contentHeight = renderTarget.offsetHeight;
-          var yOffset = window.pageYOffset;
-          var y = yOffset + 300;
-          if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
-            let result = '';
-            response.slice(size, size=size+30).forEach(function (oneStore) {
-              const store = oneStore;
-              const storeId = store.storeId;
-              const storeImg = store.storeImg;
-              const storeName = store.storeName;
-              const address = store.address;
-              const tempGrab = document.querySelector("#storeListTemplate").text;
-              result += eval('`' + tempGrab + '`');
-            });
+          let minScrollTime = 500;
+          let now = new Date().getTime();
 
-            loadMore();
+          function processScroll() {
+
+            let contentHeight = renderTarget.offsetHeight;
+            let yOffset = window.pageYOffset;
+            let y = yOffset + 300;
+            if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+              let result = '';
+              if (size !== 30 && size <= response.length) {
+                response.slice(size, size = size + 30).forEach(function (oneStore) {
+                  const store = oneStore;
+                  const storeId = store.storeId;
+                  const storeImg = store.storeImg;
+                  const storeName = store.storeName;
+                  const address = store.address;
+                  const tempGrab = document.querySelector("#storeListTemplate").text;
+                  result += eval('`' + tempGrab + '`');
+                });
+
+                loadMore();
+
+              }
 
 
-            function loadMore(){
-              spinner.style.display = 'block';
-              setTimeout(function(){
-                renderTarget.innerHTML += result;
-                spinner.style.display = 'none';
-              }, 1000);
+              function loadMore() {
+                spinner.style.display = 'block';
+                setTimeout(function () {
+                  renderTarget.innerHTML += result;
+                  spinner.style.display = 'none';
+                }, 1000);
+              }
+
             }
+
           }
+
+          if (!scrollTimer) {
+            if (now - lastScrollFireTime > (3 * minScrollTime)) {
+              processScroll();   // fire immediately on first scroll
+              lastScrollFireTime = now;
+            }
+            scrollTimer = setTimeout(function() {
+              scrollTimer = null;
+              lastScrollFireTime = new Date().getTime();
+              processScroll();
+            }, minScrollTime);
+          }
+
         });
 
         let clickedStore = document.querySelector(".storeCardRow");
