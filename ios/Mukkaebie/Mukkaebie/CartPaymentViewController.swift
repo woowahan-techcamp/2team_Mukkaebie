@@ -81,11 +81,26 @@ class CartPaymentViewController: UIViewController {
     @IBAction func touchedOrder(_ sender: Any) {
 
         networkOrder.postOrder(sellderId: modelStore.id, buyerId: "hjtech", price: totalPrice, content: [menuName])
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
+        let image = #imageLiteral(resourceName: "750x1334_merge_alpha.png")
+        alertController.addimage(image: image)
+        alertController.view.tintColor = UIColor.black
+        alertController.viewWillLayoutSubviews()
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
+            self.dismiss(animated: true, completion: nil)
+            self.networkOrder.postOrder(sellderId: self.modelStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
+
+        }))
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+//        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func touchedCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
     }
 
     /*
