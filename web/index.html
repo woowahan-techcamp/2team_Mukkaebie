@@ -50,19 +50,18 @@
 </script>
 
 <script id="commentTemplate" type="text/template">
-  <div class="commentCardPic"></div>
   <div class="commentCard">
     <div class="commentCardContent">
       <div class="commentCardTop p-x-1">
-        <div class="commentCardId float-left">
+        <span class="commentCardId">
           ${userId}
-        </div>
-        <span class="float-left p-x-1">
+        </span>
+        <span class="p-x-1">
             |
         </span>
-        <div class="commentCardDate float-left">
+        <span class="commentCardDate">
           ${time}
-        </div>
+        </span>
       </div>
       <div class="commentCardBtm p-a-1">
         ${mkbComment}
@@ -257,7 +256,7 @@
               <div class="podium-block silver">
                 <div class="orders"></div>
                 <div class="name">
-                  <div class="silverImg">test</div>
+                  <div class="silverImg" style="background-image: url('http://52.78.27.108:3000/uploads/profileImage-1503391874925.jpg');background-size: contain;background-repeat: no-repeat;">test</div>
                 </div>
                 <div class="podium">
                   <img src="./src/img/second.png" alt="2등">
@@ -468,29 +467,58 @@
 </div>
 
 <div id="mkbModal" class="mkbModal">
-  <div class="mkbModal-content">
-    <div style="width: 300px; height:300px"></div>
-    <div class="commentBox">
-      <p class="p-center orangeFontColor">수상소감</p>
-      <div id="commentList"></div>
-      <div class="commentWriteBox p-a-1">
-        <p name="userId" value="ygtech">ygtech</p>
-        <textarea id="commentTextInput" type="text" name="content"></textarea>
-        <button id="commentTextInputBtn" class="float-right">완료</button>
+  <div class="mkbModal-content" style="background: rgba(0, 0, 0, 0)">
+    <button class="mkbModalClose">&times;</button>
+    <div class="mkbImgPreview" style="opacity: 1;width: 300px; height:300px; margin:0 auto; background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png'); background-size: contain; background-repeat: no-repeat"></div>
+    <div id="mkbComment"></div>
+    <button class="mkbEdit" onclick="toggleEdit()">수정하기</button>
+    <div class="logInRequired">
+      <div class="commentBox">
+        <div id="commentList"></div>
+        <div class="commentWriteBox p-a-1">
+          <p name="userId" value="ygtech">ygtech</p>
+          <textarea id="commentTextInput" type="text" name="content"></textarea>
+        </div>
       </div>
+      <form id="file-form" method="POST">
+        <input type="file" id="file-select"/>
+        <button class="float-right" type="submit" id="upload-button">바꾸기</button>
+      </form>
+      <button class="float-right m-x-1" onclick="toggleEdit()">취소</button>
+      <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
     </div>
-    <form id="file-form" method="POST">
-      <input type="file" id="file-select"/>
-      <button type="submit" id="upload-button">Upload</button>
-    </form>
   </div>
 </div>
 <script src="./dist/index.bundle.js"></script>
 <script>
   SERVER_BASE_URL = "http://13.124.10.251:3000"
-
+  IMAGE_SERVER_URL = "http://52.78.27.108:3000"
   SESSION = "ygtech"
 </script>
+<script>
+  function toggleEdit(){
+    const editBox = document.querySelector(".logInRequired");
+    const editBtn = document.querySelector(".mkbEdit");
+    if (editBox.classList.contains("mkbShow")){
+      editBox.classList.remove("mkbShow");
+      editBtn.classList.remove("mkbHide");
+    } else {
+      editBox.classList.add("mkbShow");
+      editBtn.classList.add("mkbHide");
+    }
+  }
+
+  function setProfile(target) {
+    const profilePic = document.querySelector(".mkbImgPreview");
+    if (target === "clear"){
+      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+      document.querySelector("#file-form input").value = "";
+    } else {
+      profilePic.style.backgroundImage = "url('" + target + "')"
+    }
+  }
+</script>
+
 </body>
 </html>
 

@@ -176,65 +176,77 @@ class MKBComment {
 
   constructor(id) {
     this.getComment(id);
-    this.postComment(id);
-    this.imgUrl="";
-
+    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id));
   }
+
 
   postImage(id) {
-    const form = document.getElementById('file-form');
-    const fileSelect = document.getElementById('file-select');
-    const uploadButton = document.getElementById('upload-button');
+    return new Promise(function(resolve){
+      const form = document.getElementById('file-form');
+      const fileSelect = document.getElementById('file-select');
+      const uploadButton = document.getElementById('upload-button');
 
-    form.onsubmit = function(event) {
-      event.preventDefault();
-      uploadButton.innerHTML = 'Uploading...';
-      const file = fileSelect.files[0];
-      const formData = new FormData();
-      formData.append('profileImage', file);
+      form.onsubmit = function(event) {
+        event.preventDefault();
+        uploadButton.innerHTML = '바꾸는 중...';
+        const file = fileSelect.files[0];
 
+        if (file != undefined) {
+          const formData = new FormData();
+          formData.append('profileImage', file);
 
-      const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              const res = JSON.parse(this.responseText);
+
+              resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
+              const profilePic = document.querySelector(".mkbImgPreview");
+              const profilePicSmall = document.querySelector(".silverImg");
+              profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+              profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+            }
+          }
+          xhr.open('POST', IMAGE_SERVER_URL + '/profile/');
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              uploadButton.innerHTML = 'Upload';
+            } else {
+              alert('An error occurred!');
+            }
+          };
+          xhr.send(formData);
+        } else {
+          resolve("https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png");
         }
       }
-      xhr.open('POST', 'http://52.78.27.108:3000/profile/');
-
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          uploadButton.innerHTML = 'Upload';
-        } else {
-          alert('An error occurred!');
-        }
-      };
-      xhr.send(formData);
-    }
+    })
   }
 
-  postComment(id) {
-    let editButton = document.querySelector("#commentTextInputBtn");
+  postComment(id, imgUrl) {
 
-    editButton.addEventListener("click", function () {
-      let packet = {"mkb": {}};
-      packet["storeId"] = id;
-      packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
-      packet.mkb["time"] = new Date().toLocaleString();
-      packet.mkb["userId"] = "hjktech";
+    return new Promise(function(resolve){
+
+        let packet = {"mkb": {}};
+        packet["storeId"] = id;
+        packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
+        packet.mkb["time"] = new Date().toLocaleString();
+        packet.mkb["userId"] = "hjktech";
+        packet.mkb["imgUrl"] = imgUrl;
 
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
-      xhr.send(JSON.stringify(packet));
-      xhr.onloadend = function () {
-        alert("소중한 코멘트 감사드립니다");
-        this.getComment(id);
-        document.querySelector("#commentTextInput").value = "";
-      }.bind(this);
-    }.bind(this));
+        xhr.send(JSON.stringify(packet));
+        xhr.onloadend = function () {
+          resolve(null);
+          document.querySelector("#commentTextInput").value = "";
+        }.bind(this);
+
+    });
   }
 
   getComment(id) {
@@ -242,7 +254,8 @@ class MKBComment {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
-        const renderTarget = document.querySelector("#commentList");
+        console.log(response)
+        const renderTarget = document.querySelector("#mkbComment");
         const targetArr = response[0].mkb;
         if (targetArr != undefined) {
           renderTarget.innerHTML = "";
@@ -256,7 +269,14 @@ class MKBComment {
           const tempGrab = document.querySelector("#commentTemplate").text;
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
+
+          const profilePic = document.querySelector(".mkbImgPreview");
+          const profilePicSmall = document.querySelector(".silverImg");
+          profilePic.style.backgroundImage = "url('" + comment.imgUrl + "')"
+          profilePicSmall.style.backgroundImage = "url('" + comment.imgUrl + "')"
         }
+
+
       }
     };
     xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
@@ -522,12 +542,13 @@ class StoreInfo {
     StoreUtil.makeModal();
     StoreUtil.makeMKBModal();
     let cart = new Cart();
+    let mkb = new MKBComment(storeId);
   }
 
   getStoreInfo(id) {
     return new Promise(function (resolve) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function (i) {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const response = JSON.parse(this.responseText);
           resolve(response[0], id);
@@ -617,20 +638,20 @@ let StoreUtil = {
     //모달
     let modal = document.querySelector('#mkbModal');
     let modalBtn = document.querySelector(".silverImg");
+    let closeBtn = document.querySelector(".mkbModalClose");
 
     modalBtn.addEventListener("click", function () {
       modal.style.display = "block";
-      modal.style.opacity = "1";
-      // setTimeout(function () {
-      //   modal.classList.add("modalShow");
-      // }, 500)
-      //
-      // modal.classList.remove("modalShow");
-      // setTimeout(function () {
-      //   modal.style.display = "none";
-      // }, 3000)
-
-    })
+      setTimeout(function () {
+        modal.style.opacity = "1";
+      }, 200)
+    });
+    closeBtn.addEventListener("click", function(){
+      modal.style.opacity = "0";
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 200)
+    });
   },
 
   makeModal: function () {
@@ -641,12 +662,13 @@ let StoreUtil = {
     modalBtn.addEventListener("click", function () {
       modal.style.display = "block";
       setTimeout(function () {
-        modal.classList.add("modalShow");
+        modal.style.opacity = 1;
       }, 500)
-
-      modal.classList.remove("modalShow");
       setTimeout(function () {
-        modal.style.display = "none";
+        modal.style.opacity = 0;
+        setTimeout(function(){
+          modal.style.display = "none";
+        },500)
       }, 3000)
 
     })

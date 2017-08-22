@@ -114,6 +114,10 @@
 }
 
 /* 먹깨비 탭 관련 */
+.logInRequired {
+  display: none;
+}
+
 .mkbTabContent {
   background: #fff;
   position: relative;
@@ -372,6 +376,9 @@
 }
 
 /* 먹깨비 코멘트 관련 */
+#file-form input {
+  color:#fff;
+}
 
 #commentTextInput {
   width: 100%;
@@ -384,53 +391,48 @@
 }
 
 .commentCard {
-  position: absolute;
-  top: -80px;
-  left: 35%;
-}
-
-.commentCardPic {
-  background-image: url(http://file.smartbaedal.com/usr/memphoto/ownerImg.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  min-width: 35px;
-  height: 35px;
-  position: absolute;
-  top: 120px;
-  left: 49%;
-  z-index: 100;
-  border-radius: 50%;
+  color:#fff;
+  font-size:30px;
 }
 
 .commentCardContent {
-  float: left;
+
 }
 
 .commentCardBtm {
-  font-size: 11px;
+  font-size: 30px;
+  clear: both;
+  width: 100%;
+  text-align: center;
+}
+
+.commentCardTop{
+  text-align: center;
 }
 
 .commentCardTop > span {
-  font-size: 11px;
-  color: #8a8b8f;
+  font-size: 18px;
+  color: #fff;
 }
 
 .commentCardId {
-  font-size: 12px;
-  color: #222;
+  font-size: 20px;
+  color: #fff;
 }
 
 .commentCardDate {
-  font-size: 11px;
-  color: #8a8b8f;
+  font-size: 20px;
+  color: #fff;
 }
 
-.commentCardBtm {
-  clear: both;
-  width: 100%;
-}
 
 /* 포디움 관련 */
+
+.silverImg{
+  background-image: url("https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 @-webkit-keyframes rain {
   0% {
@@ -763,34 +765,50 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+.mkbModalClose {
+  float: right;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+}
+
 .mkbModal {
   display: none;
   position: fixed;
   z-index: 100;
   left: 0;
   top: 0;
-  opacity: 1;
+  opacity: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -ms-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.mkbImgPreview{
+  opacity: 1;
+  width: 300px;
+  height:300px;
+  margin:0 auto;
+  background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  clear:both;
 }
 
 .mkbModal-content{
   background-color: #fff;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   max-width: 400px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 150px;
 }
 
 .modal-content {
@@ -803,13 +821,4 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 150px;
-}
-
-.modal.modalShow {
-  opacity: 1.0;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -ms-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
 }
