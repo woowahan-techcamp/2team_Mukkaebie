@@ -25,10 +25,13 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
     
+    var modelStore : ModelStores?
     var orderByUserTop3 = [(key: String, value: Int)]()
     
     var postImage = UIImage()
     let imagePicker = UIImagePickerController()
+    
+    let networkImagePicker = NetworkImagePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +99,10 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imgData = UIImageJPEGRepresentation(image, 0.1)
             firstMukkaebieImage.image = image
+            networkImagePicker.postImage(storeId: (modelStore?.id)!, userId: "hjtech", imgData: imgData!)
+            
         } else{
             print("something went wrong")
         }
@@ -105,7 +111,7 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     }
 
     /*
-    // MARK: - Navigation
+    // MARK: - Navigation   baseurl:3000/uploads/
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

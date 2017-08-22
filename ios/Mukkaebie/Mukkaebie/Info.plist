@@ -55,5 +55,7 @@
 	<false/>
 	<key>URL</key>
 	<string>http://13.124.10.251:3000/</string>
+	<key>URLImage</key>
+	<string>http://52.78.27.108:3000/</string>
 </dict>
 </plist>
