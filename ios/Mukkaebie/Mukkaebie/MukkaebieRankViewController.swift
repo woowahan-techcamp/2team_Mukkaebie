@@ -26,9 +26,10 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     var orderByUserTop3 = [(key: String, value: Int)]()
     
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        firstAward.frame = CGRect(x: firstAward.frame.minX, y: self.view.frame.maxY, width: firstAward.frame.width, height: firstAward.frame.height)
 //        secondAward.frame = CGRect(x: secondAward.frame.minX, y: self.view.frame.maxY, width: secondAward.frame.width, height: secondAward.frame.height)
 //        thirdAward.frame = CGRect(x: thirdAward.frame.minX, y: self.view.frame.maxY, width: thirdAward.frame.width, height: thirdAward.frame.height)
@@ -44,7 +45,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
 //        if self.firstBottomConstraint.constant < 0 {
         
 //        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -80,11 +80,21 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        imagePicker.navigationBar.isTranslucent = false
         
+        present(imagePicker, animated: false, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.childViewControllers.count == 2 {
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+            let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+            let statusBarColor = UIColor(hexString: "3B342C")
+            statusBarView.backgroundColor = statusBarColor
+            viewController.view.addSubview(statusBarView)
+        }
     }
 
     /*
