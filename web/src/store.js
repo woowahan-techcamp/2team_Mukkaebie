@@ -80,8 +80,6 @@ class TabUiWithAjax {
 }
 
 
-/* 폴더블 메뉴 */
-
 class Foldable {
   constructor(level1Class) {
     this.level1 = document.getElementsByClassName(level1Class);
@@ -107,7 +105,6 @@ class Foldable {
   }
 }
 
-/* 리뷰관련 */
 
 class Review {
 
@@ -150,28 +147,31 @@ class Review {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#reviewList");
-        renderTarget.innerHTML = "";
-        response[0].review.reverse().forEach(function (oneReview) {
-          const review = oneReview;
-          const userId = review.user;
-          const createdDate = review.time;
-          const reviewContent = review.content;
-          const orangeStar = "★".repeat(review.stars);
-          const greyStar = "★".repeat(5 - review.stars);
-          const tempGrab = document.querySelector("#reviewTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        })
+        const reveiwList = response[0].review;
+        console.log(reveiwList);
+        if (reveiwList.length > 0) {
+          renderTarget.innerHTML = "";
+          response[0].review.reverse().forEach(function (oneReview) {
+            if (oneReview != undefined || oneReview != null) {
+              const review = oneReview;
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = review.content;
+              const orangeStar = "★".repeat(review.stars);
+              const greyStar = "★".repeat(5 - review.stars);
+              const tempGrab = document.querySelector("#reviewTemplate").text;
+              const result = eval('`' + tempGrab + '`');
+              renderTarget.innerHTML += result;
+            }
+          })
+        }
       }
     };
     xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhttp.send();
   }
-
 }
 
-
-/* 먹깨비 코멘트 관련 */
 
 class MKBComment {
 
@@ -211,12 +211,11 @@ class MKBComment {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#commentList");
-        renderTarget.innerHTML = "";
         const targetArr = response[0].mkb;
-        console.log(targetArr[targetArr.length - 1]);
-
-        renderContent(targetArr[targetArr.length - 1]);
-
+        if (targetArr != undefined) {
+          renderTarget.innerHTML = "";
+          renderContent(targetArr[targetArr.length - 1]);
+        }
         function renderContent(oneComment) {
           const comment = oneComment;
           const userId = comment.userId;
@@ -225,127 +224,13 @@ class MKBComment {
           const tempGrab = document.querySelector("#commentTemplate").text;
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
-        };
+        }
       }
     };
     xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhr.send();
   }
 
-}
-
-
-let StoreUtil = {
-  scrollWithCart: function () {
-    document.addEventListener("scroll", function () {
-      if (window.innerWidth > 768) {
-        if (window.scrollY > 583) {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "fixed";
-          cart.style.top = "10px";
-          cart.style.width = "200px"
-        }
-        else {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "inherit";
-          cart.style.top = "";
-          cart.style.width = ""
-        }
-      }
-      else {
-        let cart = document.querySelector(".storeCart");
-        cart.style.position = "inherit";
-        cart.style.top = "";
-        cart.style.width = ""
-      }
-    })
-  },
-
-  makeModal: function () {
-    //모달
-    let modal = document.querySelector('#orderModal');
-    let modalBtn = document.querySelector("#cartOrderButton");
-
-    modalBtn.addEventListener("click", function () {
-      modal.style.display = "block";
-      setTimeout(function () {
-        modal.classList.add("modalShow");
-      }, 500)
-
-      modal.classList.remove("modalShow");
-      setTimeout(function () {
-        modal.style.display = "none";
-      }, 3000)
-
-    })
-  },
-
-  makeOrder: function (storeId) {
-    let userList = ["dbtech", "jhtech", "mhtech"];
-
-
-    let orderButton = document.querySelector("#cartOrderButton");
-
-    orderButton.addEventListener("click", function () {
-
-      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
-
-      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
-
-      let menuList = []
-
-      cartContent.forEach(function (item) {
-
-        menuList.push(item.getAttribute("value"));
-      })
-
-      let randNum1 = Math.floor(Math.random() * 3);
-
-      let packet = {};
-      packet["sellerId"] = storeId;
-      packet["buyerId"] = userList[randNum1];
-      packet["content"] = menuList;
-      packet["price"] = totalPrice;
-
-      let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
-      xhr1.setRequestHeader('Content-Type', 'application/json');
-
-      // send the collected data as JSON
-      xhr1.send(JSON.stringify(packet));
-
-      xhr1.onloadend = function () {
-        let graph = new Graph(storeId);
-        StoreUtil.resetCart();
-      }.bind(this);
-    }.bind(this));
-  },
-
-  resetCart: function () {
-    let renderTarget = document.querySelector(".storeCartContent");
-    let cartTotalPrice = document.querySelector("#cartTotalPrice");
-    cartTotalPrice.innerText = 0;
-    cartTotalPrice.value = 0;
-    renderTarget.innerHTML = "";
-    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
-      cb.checked = false
-    })
-    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
-      fb.click()
-    })
-  },
-
-  toggleMobileCategory: function () {
-    let x = document.querySelector('.mobileCategory');
-    let btn = document.querySelector(".mobileTitleButton");
-    if (btn.classList.contains("unfolded")) {
-      x.style.display = 'none';
-      btn.classList.remove("unfolded");
-    } else {
-      x.style.display = 'block';
-      btn.classList.add("unfolded");
-    }
-  }
 }
 
 
@@ -494,11 +379,12 @@ class Graph {
 
     }
 
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
 }
+
 
 class StoreList {
 
@@ -667,6 +553,120 @@ class Cart {
       totalPrice += Number(child.attributes.data.value);
     })
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
+  }
+}
+
+
+let StoreUtil = {
+  scrollWithCart: function () {
+    document.addEventListener("scroll", function () {
+      if (window.innerWidth > 768) {
+        if (window.scrollY > 583) {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "fixed";
+          cart.style.top = "10px";
+          cart.style.width = "200px"
+        }
+        else {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "inherit";
+          cart.style.top = "";
+          cart.style.width = ""
+        }
+      }
+      else {
+        let cart = document.querySelector(".storeCart");
+        cart.style.position = "inherit";
+        cart.style.top = "";
+        cart.style.width = ""
+      }
+    })
+  },
+
+  makeModal: function () {
+    //모달
+    let modal = document.querySelector('#orderModal');
+    let modalBtn = document.querySelector("#cartOrderButton");
+
+    modalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+      setTimeout(function () {
+        modal.classList.add("modalShow");
+      }, 500)
+
+      modal.classList.remove("modalShow");
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 3000)
+
+    })
+  },
+
+  makeOrder: function (storeId) {
+    let userList = ["dbtech", "jhtech", "mhtech"];
+
+
+    let orderButton = document.querySelector("#cartOrderButton");
+
+    orderButton.addEventListener("click", function () {
+
+      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
+
+      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+
+      let menuList = []
+
+      cartContent.forEach(function (item) {
+
+        menuList.push(item.getAttribute("value"));
+      })
+
+      let randNum1 = Math.floor(Math.random() * 3);
+
+      let packet = {};
+      packet["sellerId"] = storeId;
+      packet["buyerId"] = userList[randNum1];
+      packet["content"] = menuList;
+      packet["price"] = totalPrice;
+
+      let xhr1 = new XMLHttpRequest();
+      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
+      xhr1.setRequestHeader('Content-Type', 'application/json');
+
+      // send the collected data as JSON
+      xhr1.send(JSON.stringify(packet));
+
+      xhr1.onloadend = function () {
+        let graph = new Graph(storeId);
+        StoreUtil.resetCart();
+      }.bind(this);
+    }.bind(this));
+  },
+
+  resetCart: function () {
+    let renderTarget = document.querySelector(".storeCartContent");
+    let cartTotalPrice = document.querySelector("#cartTotalPrice");
+    cartTotalPrice.innerText = 0;
+    cartTotalPrice.value = 0;
+    renderTarget.innerHTML = "";
+    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
+      cb.checked = false
+    });
+    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
+      fb.click()
+    })
+  },
+
+  toggleMobileCategory: function () {
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
+    if (btn.classList.contains("unfolded")) {
+      x.style.display = 'none';
+      btn.classList.remove("unfolded");
+    } else {
+      x.style.display = 'block';
+      btn.classList.add("unfolded");
+    }
   }
 }
 
