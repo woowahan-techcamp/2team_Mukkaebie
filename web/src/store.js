@@ -516,7 +516,8 @@ class StoreList {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
-        response.slice(0, 30).forEach(function (oneStore) {
+        let size = 30;
+        response.slice(0, size).forEach(function (oneStore) {
           const store = oneStore;
           const storeId = store.storeId;
           const storeImg = store.storeImg;
@@ -534,8 +535,8 @@ class StoreList {
           loadMoreButton.style.display = 'block';
         }
 
-        loadMoreButton.addEventListener('click', function() {
-          response.slice(30, 60).forEach(function (oneStore) {
+        loadMoreButton.addEventListener('click', function () {
+          response.slice(size, size=size+30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
             const storeImg = store.storeImg;
@@ -548,13 +549,23 @@ class StoreList {
           })
         });
 
-        if (loadMoreButton.style.display == 'none') {
-          window.onscroll = function(ev) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-              console.log("you are at the bottom!");
-            }
-          };
-        }
+        window.addEventListener("scroll", function () {
+          var contentHeight = renderTarget.offsetHeight;
+          var yOffset = window.pageYOffset;
+          var y = yOffset + 300;
+          if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+            response.slice(size, size=size+30).forEach(function (oneStore) {
+              const store = oneStore;
+              const storeId = store.storeId;
+              const storeImg = store.storeImg;
+              const storeName = store.storeName;
+              const address = store.address;
+              const tempGrab = document.querySelector("#storeListTemplate").text;
+              const result = eval('`' + tempGrab + '`');
+              renderTarget.innerHTML += result;
+            })
+          }
+        });
 
         let clickedStore = document.querySelector(".storeCardRow");
 
