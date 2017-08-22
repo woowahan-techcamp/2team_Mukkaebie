@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
@@ -26,8 +27,15 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     var orderByUserTop3 = [(key: String, value: Int)]()
     
+    var postImage = UIImage()
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.navigationBar.isTranslucent = false
 
 //        staticHeight.constant -= gradeStackView.frame.height
         
@@ -65,9 +73,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
             
             
         }
-        
-        
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,11 +81,27 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.childViewControllers.count == 2 {
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+            let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+            let statusBarColor = UIColor(hexString: "3B342C")
+            statusBarView.backgroundColor = statusBarColor
+            viewController.view.addSubview(statusBarView)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            firstMukkaebieImage.image = image
+        } else{
+            print("something went wrong")
+        }
         
+        picker.dismiss(animated: true, completion: nil)
     }
 
     /*
