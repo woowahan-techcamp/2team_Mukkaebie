@@ -75,6 +75,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     var tabNumber = 0
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var cartAlertView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,14 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        self.view.addSubview(cartAlertView)
+
+        cartAlertView.center = self.view.center
+        
+        cartAlertView.alpha = 0
+        cartAlertView.layer.masksToBounds = true
+        cartAlertView.layer.cornerRadius = 1
+        
         initMenuArray()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
@@ -96,6 +105,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -208,11 +218,21 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func touchedShoppingCart(_ sender: Any) {
-        if priceByMenu.count > 0 {
-            let randomNo = arc4random_uniform(UInt32(priceByMenu.count))
-            networkOrder.postOrder(sellderId: (modelStore?.id)!, buyerId: "hjtech", price: Array(priceByMenu.values)[Int(randomNo)], content: [Array(priceByMenu.keys)[Int(randomNo)]])
+        
+        var alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "dismissAlert", userInfo: nil, repeats: false)
+        cartAlertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        
+        UIView.animate(withDuration: 0.4) {
+            self.cartAlertView.alpha = 1
         }
+
     }
+    
+    func dismissAlert() {
+        cartAlertView.alpha = 0
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
