@@ -512,11 +512,12 @@ class StoreList {
       if (this.readyState == 4 && this.status == 200) {
 
         const layoutTarget = document.querySelector(".storeLayout");
-        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div>';
+        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div><div class="spinner" style="display: none"></div>';
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
         let size = 30;
+        let spinner = document.querySelector('.spinner');
         response.slice(0, size).forEach(function (oneStore) {
           const store = oneStore;
           const storeId = store.storeId;
@@ -536,6 +537,7 @@ class StoreList {
         }
 
         loadMoreButton.addEventListener('click', function () {
+          let result = '';
           response.slice(size, size=size+30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
@@ -543,17 +545,30 @@ class StoreList {
             const storeName = store.storeName;
             const address = store.address;
             const tempGrab = document.querySelector("#storeListTemplate").text;
-            const result = eval('`' + tempGrab + '`');
-            renderTarget.innerHTML += result;
+            result += eval('`' + tempGrab + '`');
+          });
+
+          loadFirst();
+
+          function loadFirst(){
             loadMoreButton.style.display = 'none';
-          })
+            spinner.style.display = 'block';
+
+            setTimeout(function(){
+              renderTarget.innerHTML += result;
+              spinner.style.display = 'none';
+            }, 5000);
+          }
         });
+
+
 
         window.addEventListener("scroll", function () {
           var contentHeight = renderTarget.offsetHeight;
           var yOffset = window.pageYOffset;
           var y = yOffset + 300;
           if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+            let result = '';
             response.slice(size, size=size+30).forEach(function (oneStore) {
               const store = oneStore;
               const storeId = store.storeId;
@@ -561,9 +576,19 @@ class StoreList {
               const storeName = store.storeName;
               const address = store.address;
               const tempGrab = document.querySelector("#storeListTemplate").text;
-              const result = eval('`' + tempGrab + '`');
-              renderTarget.innerHTML += result;
-            })
+              result += eval('`' + tempGrab + '`');
+            });
+
+            loadMore();
+
+
+            function loadMore(){
+              spinner.style.display = 'block';
+              setTimeout(function(){
+                renderTarget.innerHTML += result;
+                spinner.style.display = 'none';
+              }, 1000);
+            }
           }
         });
 
