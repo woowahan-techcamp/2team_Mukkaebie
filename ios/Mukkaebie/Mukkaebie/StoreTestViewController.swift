@@ -14,9 +14,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
         
-        mukkaebieVC?.view.frame.size.height = 540
         mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
-        
         mukkaebieVC?.modelStore = self.modelStore
         
         return mukkaebieVC
@@ -40,7 +38,6 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
-        
         menuRankVC?.modelStore = self.modelStore
         
         return menuRankVC
@@ -54,8 +51,7 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         infoVC?.openHourText = self.modelStore?.openHour
         infoVC?.telephoneText = self.modelStore?.telephone
         infoVC?.nameText = self.modelStore?.name
-        infoVC?.view.frame.size.height = 667
-        
+
         return infoVC
     }()
     
@@ -230,13 +226,11 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         UIView.animate(withDuration: 0.4) {
             self.cartAlertView.alpha = 1
         }
-
     }
     
     func dismissAlert() {
         cartAlertView.alpha = 0
     }
-    
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -316,22 +310,18 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         case 0:
             cell.tabSubview.frame.size.height = (mukkaebieVC?.view.frame.height)!
             cell.tabSubviewHeightConstraint.constant = (mukkaebieVC?.view.frame.height)!
-            mukkaebieVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((mukkaebieVC?.view)!)
         case 1:
             cell.tabSubview.frame.size.height = (menuRankVC?.view.frame.height)!
             cell.tabSubviewHeightConstraint.constant = (menuRankVC?.view.frame.height)!
-            menuRankVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((menuRankVC?.view)!)
         case 2:
             cell.tabSubview.frame.size.height = (infoVC?.view.frame.height)!
             cell.tabSubviewHeightConstraint.constant = (infoVC?.view.frame.height)!
-            infoVC?.view.frame = cell.tabSubview.frame
             cell.tabSubview.addSubview((infoVC?.view)!)
         case 3:
-            cell.tabSubview.frame.size.height = (reviewVC?.view.frame.height)!
-            cell.tabSubviewHeightConstraint.constant = (reviewVC?.view.frame.height)!
-            reviewVC?.view.frame = cell.tabSubview.frame
+            cell.tabSubview.frame.size.height = (reviewVC?.tableView.contentSize.height)!
+            cell.tabSubviewHeightConstraint.constant = (reviewVC?.tableView.contentSize.height)!
             cell.tabSubview.addSubview((reviewVC?.view)!)
         default:
             break
@@ -343,13 +333,13 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tabNumber {
         case 0:
-            return 540
+            return (mukkaebieVC?.view.frame.height)!
         case 1:
             return (menuRankVC?.view.frame.height)!
         case 2:
-            return 667
+            return (infoVC?.view.frame.height)!
         case 3:
-            return (reviewVC?.view.frame.height)!
+            return (reviewVC?.tableView.contentSize.height)!
         default:
             break
         }
