@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
@@ -24,19 +25,28 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
     
+    var modelStore : ModelStores?
+    var orderByUserTop3 = [(key: String, value: Int)]()
+    
+    var postImage = UIImage()
+    let imagePicker = UIImagePickerController()
+    
+    let networkImagePicker = NetworkImagePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        firstAward.frame = CGRect(x: firstAward.frame.minX, y: self.view.frame.maxY, width: firstAward.frame.width, height: firstAward.frame.height)
-//        secondAward.frame = CGRect(x: secondAward.frame.minX, y: self.view.frame.maxY, width: secondAward.frame.width, height: secondAward.frame.height)
-//        thirdAward.frame = CGRect(x: thirdAward.frame.minX, y: self.view.frame.maxY, width: thirdAward.frame.width, height: thirdAward.frame.height)
+        view.frame.size.height = 565
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.navigationBar.isTranslucent = false
 
 //        staticHeight.constant -= gradeStackView.frame.height
         
-//        firstBottomConstraint.constant -= firstAward.frame.height
-//        secondBottomConstraint.constant -= secondAward.frame.height
-//        thirdBottomConstraint.constant -= thirdAward.frame.height
+        firstBottomConstraint.constant -= firstAward.frame.height
+        secondBottomConstraint.constant -= secondAward.frame.height
+        thirdBottomConstraint.constant -= thirdAward.frame.height
 
     }
     
@@ -44,34 +54,30 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-//        if self.firstBottomConstraint.constant < 0 {
-        
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-//            self.staticHeight.constant += self.gradeStackView.frame.height
-//            self.view.layoutSubviews()
-//
-//        }, completion: nil)
-//
-//        
-//            UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
-//
-//                self.staticHeight.constant += self.gradeStackView.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        
-////
-//            UIView.animate(withDuration: 2, delay: 0.5, options: .curveEaseInOut, animations: {
-//                self.secondBottomConstraint.constant += self.secondAward.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
-//        
-//        
-//            UIView.animate(withDuration: 1, delay: 2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-//                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
-//                self.view.layoutIfNeeded()
-//            }, completion: nil)
+        if self.firstBottomConstraint.constant < 0 {
+            UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.firstBottomConstraint.constant += self.firstAward.frame.height
+                self.view.layoutSubviews()
 
+            }, completion: nil)
+            
+            UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.secondBottomConstraint.constant += self.secondAward.frame.height
+                self.view.layoutSubviews()
+                
+            }, completion: nil)
+            
+            
+
+            UIView.animate(withDuration: 1.5, delay: 3, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
+                self.view.layoutSubviews()
+                
+            }, completion: nil)
+            
+            
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,15 +86,34 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if navigationController.childViewControllers.count == 2 {
+            UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+            let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+            let statusBarColor = UIColor(hexString: "3B342C")
+            statusBarView.backgroundColor = statusBarColor
+            viewController.view.addSubview(statusBarView)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let imgData = UIImageJPEGRepresentation(image, 0.1)
+            firstMukkaebieImage.image = image
+            networkImagePicker.postImage(storeId: (modelStore?.id)!, userId: "hjtech", imgData: imgData!)
+            
+        } else{
+            print("something went wrong")
+        }
         
+        picker.dismiss(animated: true, completion: nil)
     }
 
     /*
-    // MARK: - Navigation
+    // MARK: - Navigation   baseurl:3000/uploads/
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

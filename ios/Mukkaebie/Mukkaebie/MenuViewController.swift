@@ -11,10 +11,16 @@ import UIKit
 class MenuViewController: UIViewController {
 
     @IBOutlet weak var pieChartView: PieChartView!
-    
     @IBOutlet weak var menuTableView: UITableView!
     
+    var modelStore : ModelStores?
+    let networkOrder = NetworkOrder()
+    var orderList = [ModelOrders]()
+    var orderByMenu = [String: Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
+    var top3Array = [(key:String, value:String)]()
+
+    
     let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     
     var items: Array<MenuViewModelItem> = []
@@ -32,12 +38,35 @@ class MenuViewController: UIViewController {
     }
     
     func setSegment() {
+        
         pieChartView.segments = []
         for subview in pieChartView.subviews {
             subview.removeFromSuperview()
         }
+        
+        var orderCountArray = [Int]()
+        var menuPercentArray = [String]()
+        var totalOrder = Int()
+        
         for i in 0 ..< orderByMenuSorted.count {
-            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
+            totalOrder += orderByMenuSorted[i].value
+        }
+        
+        let menusArray = menus.flatMap { $0 }
+        for i in 0 ..< orderByMenuSorted.count {
+            for j in 0 ..< menusArray.count {
+                if menusArray[j].key == orderByMenuSorted[i].key {
+                    top3Array.append(menusArray[j])
+                }
+            }
+        }
+        
+        
+        for i in 0 ..< orderByMenuSorted.count {
+            orderCountArray.append(orderByMenuSorted[i].value)
+            menuPercentArray.append(String(floor((Double(orderCountArray[i]) / Double(totalOrder) * 100)*10)/10))
+            let titleButton = "\(orderByMenuSorted[i].key) " + "\((menuPercentArray[i]))%"
+            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton, price: top3Array.count > i ? top3Array[i].value : "0원")
             pieChartView.segments.append(segment)
         }
     }
@@ -45,6 +74,18 @@ class MenuViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "menuOrder" {
+            if let indexPath = self.menuTableView.indexPathForSelectedRow {
+                let cartPaymentcontroller = segue.destination as! CartPaymentViewController
+                cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
+                cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
+                cartPaymentcontroller.modelStore = self.modelStore!
+            }
+        }
+    }
+    
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
@@ -102,6 +143,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         return 30
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 7
+    }
     
     func touchedArrowLabel(gestureRecognizer: UIGestureRecognizer) {
         if items[(gestureRecognizer.view?.tag)!].isCollapsible {

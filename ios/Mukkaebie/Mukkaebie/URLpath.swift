@@ -18,4 +18,12 @@ class URLpath {
         return url
     }
     
+    static func getURLImage() -> String {
+        let filePath = Bundle.main.path(forResource: "Info", ofType: "plist")
+        let info = NSDictionary(contentsOfFile: filePath!)
+        let url = info?["URLImage"] as! String
+        
+        return url
+    }
+    
 }

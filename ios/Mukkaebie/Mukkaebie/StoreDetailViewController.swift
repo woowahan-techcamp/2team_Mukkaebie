@@ -100,7 +100,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
         self.orderList = orderInfo
 
         for order in self.orderList {
-            for content in order.getContent() {
+            for content in order.content {
                 orderByMenu[content]! += 1
             }
         }
