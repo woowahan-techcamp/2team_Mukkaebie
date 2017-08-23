@@ -80,8 +80,6 @@ class TabUiWithAjax {
 }
 
 
-/* 폴더블 메뉴 */
-
 class Foldable {
   constructor(level1Class) {
     this.level1 = document.getElementsByClassName(level1Class);
@@ -107,7 +105,6 @@ class Foldable {
   }
 }
 
-/* 리뷰관련 */
 
 class Review {
 
@@ -150,6 +147,7 @@ class Review {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#reviewList");
+
         renderTarget.innerHTML = "";
 
         if (response[0].review.toString) {
@@ -163,6 +161,7 @@ class Review {
             const tempGrab = document.querySelector("#reviewTemplate").text;
             const result = eval('`' + tempGrab + '`');
             renderTarget.innerHTML += result;
+
           })
         }
       }
@@ -170,29 +169,196 @@ class Review {
     xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhttp.send();
   }
-
 }
 
 
-/* 먹깨비 코멘트 관련 */
-
 class MKBComment {
 
-  constructor(id) {
-    this.getComment(id);
-    this.postComment(id);
-
+  constructor(id, top3List) {
+    this.makeMKBModal(id, top3List);
+    this.getComment(id, top3List);
+    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id, top3List));
   }
 
-  postComment(id) {
-    let editButton = document.querySelector("#commentTextInputBtn");
+  makeMKBModal (id, top3List) {
 
-    editButton.addEventListener("click", function () {
+    let modal = document.querySelector('#mkbModal');
+    let modalBtn = Array.from(document.querySelectorAll(".mkbProfileImgs"));
+    let closeBtn = document.querySelector(".mkbModalClose");
+
+
+    modalBtn.forEach(function (circle) {
+      circle.addEventListener("click", function (event) {
+
+        function getResponse() {
+          return new Promise(function(resolve){
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const response = JSON.parse(this.responseText);
+                resolve(response)
+              }
+            };
+            xhr.open("GET", SERVER_BASE_URL + "/stores/" + id , true);
+            xhr.send();
+          })
+        }
+
+        const renderModal = (res) => {
+
+          const previewTarget = document.querySelector(".mkbImgPreview");
+          previewTarget.style.backgroundImage = event.target.style.backgroundImage;
+          const mkbResponse = res[0]["mkb"];
+          let clickedUser = "";
+          if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null){
+            let clickedUser = this.attributes["data-user"]["value"];
+            let clickedMkb;
+
+            let clickeMkbData = mkbResponse.filter(function(mkb){
+              return mkb["userId"] == clickedUser;
+            });
+            if ( clickeMkbData.length > 0){
+              clickedMkb = clickeMkbData[clickeMkbData.length-1];
+            }
+
+            if (clickedMkb){
+              document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
+            }
+            else{
+              document.getElementById("commentTextInput")["value"] = "";
+            }
+            const commentUser = document.querySelector(".commentWriteBox p");
+            commentUser.innerText = clickedUser;
+            commentUser.setAttribute("value",this.attributes["value"]["value"]);
+          }
+        }
+        getResponse().then(renderModal);
+        modal.style.display = "block";
+        setTimeout(function () {
+          modal.style.opacity = "1";
+        }, 200)
+      });
+    })
+
+    closeBtn.addEventListener("click", function(){
+      const editBox = document.querySelector(".logInRequired");
+      const editBtn = document.querySelector(".mkbEdit");
+      modal.style.opacity = "0";
+
+      setTimeout(function () {
+        modal.style.display = "none";
+        editBox.classList.remove("mkbShow");
+        editBtn.classList.remove("mkbHide");
+      }, 200)
+    });
+  }
+
+  getComment(id, top3List) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector("#mkbComment");
+        let targetArr = (response[0].mkb) ? response[0].mkb : [];
+        let finalMkbList = [];
+        top3List.forEach(function (topBuyer) {
+
+          let oneBuyer = targetArr.filter(function(mkbRow){
+
+            return mkbRow.userId == topBuyer;
+          });
+
+
+          if ( oneBuyer.length > 0){
+            finalMkbList.push(oneBuyer[oneBuyer.length-1]);
+          } else {
+            finalMkbList.push(topBuyer);
+          }
+
+        });
+
+        let mkbLevelList = [ "gold","silver","bronze" ];
+        finalMkbList.forEach(function (topBuyer, idx) {
+          renderContent(topBuyer, mkbLevelList[idx]);
+        });
+
+
+        function renderContent(oneComment, mkbLevel) {
+          const comment = oneComment;
+          const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
+          if (typeof(comment) === "string"){
+            profilePicSmall.setAttribute("data-user", comment);
+            profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
+          } else {
+            profilePicSmall.setAttribute("data-user", comment["userId"]);
+            profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
+          }
+          profilePicSmall.setAttribute("value", mkbLevel);
+          profilePicSmall.setAttribute("data-store", id);
+        }
+      }
+    };
+    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+    xhr.send();
+  }
+
+
+  postImage(id) {
+    return new Promise(function(resolve){
+      const form = document.getElementById('file-form');
+      const fileSelect = document.getElementById('file-select');
+      const uploadButton = document.getElementById('upload-button');
+
+      form.onsubmit = function(event) {
+        event.preventDefault();
+        uploadButton.innerHTML = '바꾸는 중...';
+        const file = fileSelect.files[0];
+
+        if (file != undefined) {
+          const formData = new FormData();
+          formData.append('profileImage', file);
+
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              const res = JSON.parse(this.responseText);
+
+              resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
+              const profilePic = document.querySelector(".mkbImgPreview");
+              const targetCircle = document.querySelector(".commentWriteBox p")
+              const profilePicSmall = document.querySelector("."+ targetCircle.getAttribute("value") +"Img");
+              profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+              profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+            }
+          }
+          xhr.open('POST', IMAGE_SERVER_URL + '/profile/');
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              uploadButton.innerHTML = 'Upload';
+            } else {
+              alert('An error occurred!');
+            }
+          };
+          xhr.send(formData);
+        } else {
+          resolve(DEFAULT_PROFILE_IMG);
+        }
+      }
+    })
+  }
+
+  postComment(id, imgUrl) {
+
+    return new Promise(function(resolve){
+
       let packet = {"mkb": {}};
       packet["storeId"] = id;
       packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
       packet.mkb["time"] = new Date().toLocaleString();
-      packet.mkb["userId"] = "hjktech";
+      const targetCircle = document.querySelector(".commentWriteBox p")
+      packet.mkb["userId"] = targetCircle["innerText"];
+      packet.mkb["imgUrl"] = imgUrl;
 
 
       let xhr = new XMLHttpRequest();
@@ -201,154 +367,11 @@ class MKBComment {
 
       xhr.send(JSON.stringify(packet));
       xhr.onloadend = function () {
-        alert("소중한 코멘트 감사드립니다");
-        this.getComment(id);
-        document.querySelector("#commentTextInput").value = "";
+        resolve(null);
+        document.querySelector("#commentTextInput").setAttribute("value", "");
       }.bind(this);
-    }.bind(this));
-  }
 
-  getComment(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        const renderTarget = document.querySelector("#commentList");
-        renderTarget.innerHTML = "";
-        const targetArr = response[0].mkb;
-
-        if (targetArr) {
-          renderContent(targetArr[targetArr.length - 1]);
-        }
-
-        function renderContent(oneComment) {
-          const comment = oneComment;
-          const userId = comment.userId;
-          const time = comment.time;
-          const mkbComment = comment.mkbComment;
-          const tempGrab = document.querySelector("#commentTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        };
-      }
-    };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-    xhr.send();
-  }
-
-}
-
-
-let StoreUtil = {
-  scrollWithCart: function () {
-    document.addEventListener("scroll", function () {
-      if (window.innerWidth > 768) {
-        if (window.scrollY > 583) {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "fixed";
-          cart.style.top = "10px";
-          cart.style.width = "200px"
-        }
-        else {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "inherit";
-          cart.style.top = "";
-          cart.style.width = ""
-        }
-      }
-      else {
-        let cart = document.querySelector(".storeCart");
-        cart.style.position = "inherit";
-        cart.style.top = "";
-        cart.style.width = ""
-      }
-    })
-  },
-
-  makeModal: function () {
-    //모달
-    let modal = document.querySelector('#orderModal');
-    let modalBtn = document.querySelector("#cartOrderButton");
-
-    modalBtn.addEventListener("click", function () {
-      modal.style.display = "block";
-      setTimeout(function () {
-        modal.classList.add("modalShow");
-      }, 500)
-
-      modal.classList.remove("modalShow");
-      setTimeout(function () {
-        modal.style.display = "none";
-      }, 3000)
-
-    })
-  },
-
-  makeOrder: function (storeId) {
-    let userList = ["dbtech", "jhtech", "mhtech"];
-
-
-    let orderButton = document.querySelector("#cartOrderButton");
-
-    orderButton.addEventListener("click", function () {
-
-      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
-
-      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
-
-      let menuList = []
-
-      cartContent.forEach(function (item) {
-
-        menuList.push(item.getAttribute("value"));
-      })
-
-      let randNum1 = Math.floor(Math.random() * 3);
-
-      let packet = {};
-      packet["sellerId"] = storeId;
-      packet["buyerId"] = userList[randNum1];
-      packet["content"] = menuList;
-      packet["price"] = totalPrice;
-
-      let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
-      xhr1.setRequestHeader('Content-Type', 'application/json');
-
-      // send the collected data as JSON
-      xhr1.send(JSON.stringify(packet));
-
-      xhr1.onloadend = function () {
-        let graph = new Graph(storeId);
-        StoreUtil.resetCart();
-      }.bind(this);
-    }.bind(this));
-  },
-
-  resetCart: function () {
-    let renderTarget = document.querySelector(".storeCartContent");
-    let cartTotalPrice = document.querySelector("#cartTotalPrice");
-    cartTotalPrice.innerText = 0;
-    cartTotalPrice.value = 0;
-    renderTarget.innerHTML = "";
-    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
-      cb.checked = false
-    })
-    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
-      fb.click()
-    })
-  },
-
-  toggleMobileCategory: function () {
-    let x = document.querySelector('.mobileCategory');
-    let btn = document.querySelector(".mobileTitleButton");
-    if (btn.classList.contains("unfolded")) {
-      x.style.display = 'none';
-      btn.classList.remove("unfolded");
-    } else {
-      x.style.display = 'block';
-      btn.classList.add("unfolded");
-    }
+    });
   }
 }
 
@@ -483,26 +506,26 @@ class Graph {
         });
 
         let top3 = items.slice(0, 3);
-
+        console.log(top3);
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
-
+        let top3UserList = [];
         for (let i = 0; i < top3.length; i++) {
           let name = top3[i].toString().split(",")[0];
           let order = top3[i].toString().split(",")[1];
-          top3_name[i].innerHTML = name;
-          top3_order[i].innerHTML = order;
+          top3UserList.push(name);
+          // top3_name[i].innerHTML = name;
+          // top3_order[i].innerHTML = order;
         }
-
+        let mkb = new MKBComment(storeId, top3UserList);
       }
-
     }
-
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
 }
+
 
 class StoreList {
 
@@ -725,22 +748,22 @@ class StoreInfo {
           selectedContentName: "selectedContent",
           generalTabName: "storeTab",
           generalContentPrefix: "#cont-",
-          baseUrl: "",
+          baseUrl: ""
         }
     );
     let graph = new Graph(storeId);
-    let comment = new MKBComment(storeId);
     let review = new Review(storeId);
     let foldable = new Foldable("foldableLevel1");
     StoreUtil.makeOrder(storeId);
     StoreUtil.makeModal();
     let cart = new Cart();
+
   }
 
   getStoreInfo(id) {
     return new Promise(function (resolve) {
       let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function (i) {
+      xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const response = JSON.parse(this.responseText);
           resolve(response[0], id);
@@ -796,6 +819,121 @@ class Cart {
       totalPrice += Number(child.attributes.data.value);
     })
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
+  }
+}
+
+
+let StoreUtil = {
+  scrollWithCart: function () {
+    document.addEventListener("scroll", function () {
+      if (window.innerWidth > 768) {
+        if (window.scrollY > 583) {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "fixed";
+          cart.style.top = "10px";
+          cart.style.width = "200px"
+        }
+        else {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "inherit";
+          cart.style.top = "";
+          cart.style.width = ""
+        }
+      }
+      else {
+        let cart = document.querySelector(".storeCart");
+        cart.style.position = "inherit";
+        cart.style.top = "";
+        cart.style.width = ""
+      }
+    })
+  },
+
+  makeModal: function () {
+    //모달
+    let modal = document.querySelector('#orderModal');
+    let modalBtn = document.querySelector("#cartOrderButton");
+
+    modalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+      setTimeout(function () {
+        modal.style.opacity = 1;
+      }, 500)
+      setTimeout(function () {
+        modal.style.opacity = 0;
+        setTimeout(function(){
+          modal.style.display = "none";
+        },500)
+      }, 3000)
+
+    })
+  },
+
+  makeOrder: function (storeId) {
+    let userList = ["dbtech", "jhtech", "mhtech"];
+
+
+    let orderButton = document.querySelector("#cartOrderButton");
+
+    orderButton.addEventListener("click", function () {
+
+      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
+
+      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+
+      let menuList = [];
+
+      cartContent.forEach(function (item) {
+
+        menuList.push(item.getAttribute("value"));
+      })
+
+      let randNum1 = Math.floor(Math.random() * 3);
+
+      let packet = {};
+      packet["sellerId"] = storeId;
+      packet["buyerId"] = userList[randNum1];
+      packet["content"] = menuList;
+      packet["price"] = totalPrice;
+
+      let xhr1 = new XMLHttpRequest();
+      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
+      xhr1.setRequestHeader('Content-Type', 'application/json');
+
+      // send the collected data as JSON
+      xhr1.send(JSON.stringify(packet));
+
+      xhr1.onloadend = function () {
+        let graph = new Graph(storeId);
+        StoreUtil.resetCart();
+      }.bind(this);
+    }.bind(this));
+  },
+
+  resetCart: function () {
+    let renderTarget = document.querySelector(".storeCartContent");
+    let cartTotalPrice = document.querySelector("#cartTotalPrice");
+    cartTotalPrice.innerText = 0;
+    cartTotalPrice.value = 0;
+    renderTarget.innerHTML = "";
+    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
+      cb.checked = false
+    });
+    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
+      fb.click()
+    })
+  },
+
+  toggleMobileCategory: function () {
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
+    if (btn.classList.contains("unfolded")) {
+      x.style.display = 'none';
+      btn.classList.remove("unfolded");
+    } else {
+      x.style.display = 'block';
+      btn.classList.add("unfolded");
+    }
   }
 }
 
