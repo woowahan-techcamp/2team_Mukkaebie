@@ -373,37 +373,9 @@ class MKBComment {
       xhr.onloadend = function () {
         resolve(null);
         document.querySelector("#commentTextInput").setAttribute("value", "");
-      }.bind(this);
+      }.bind(this)
 
-
-  resetCart: function () {
-    let renderTarget = document.querySelector(".storeCartContent");
-    let cartTotalPrice = document.querySelector("#cartTotalPrice");
-    cartTotalPrice.innerText = 0;
-    cartTotalPrice.value = 0;
-    renderTarget.innerHTML = "";
-    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
-      cb.checked = false
-    })
-    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
-      fb.click()
-    })
-  },
-
-  toggleMobileCategory: function () {
-    let x = document.querySelector('.mobileCategory');
-    let btn = document.querySelector(".mobileTitleButton");
-    if (btn.classList.contains("unfolded")) {
-      x.classList.remove("mobileCategoryShow");
-      // x.style.display = 'none';
-      btn.classList.remove("unfolded");
-    } else {
-      // x.style.display = 'block';
-      x.classList.add("mobileCategoryShow");
-      btn.classList.add("unfolded");
-    }
-  }
-}
+})}}
 
 
 class Graph {
