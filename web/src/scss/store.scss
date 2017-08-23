@@ -139,6 +139,7 @@ body {
   padding: 15px;
   display: none;
   z-index: 1000;
+  margin-bottom: 50px;
 }
 
 .mobileCategoryShow {
@@ -299,6 +300,12 @@ body {
 }
 
 /* 업소상세 박스 */
+
+@media screen and (min-width: 768px){
+  .mobileCategory {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .storeSideAreaWrap {
