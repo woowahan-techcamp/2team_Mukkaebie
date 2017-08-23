@@ -13,10 +13,11 @@
 <body>
 
 <script id="menuUnitTemplate" type="text/template">
-  <div class="foldableLevel1">${menuName}</div>
-  <div class="foldableLevel2 p-x-2">
-    <span class="p-r-1">${menuPrice}</span>
-    <input type="checkbox" value="${menuName}" data="${menuPrice}">
+  <div class="menuName">${menuName}
+    <div class="menuPrice">
+      <span class="p-r-1">${menuPrice}</span>
+      <input type="checkbox" value="${menuName}" data="${menuPrice}">
+    </div>
   </div>
 </script>
 

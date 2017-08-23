@@ -251,6 +251,24 @@ body {
   font-size: 11px;
 }
 
+.menuName {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-bottom: 1px solid #cccccc;
+}
+
+.menuPrice {
+  display: inline-block;
+  float: right;
+}
+
 .foldableLevel2 {
   padding: 0;
   background-color: #fff;

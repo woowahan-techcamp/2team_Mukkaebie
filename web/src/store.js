@@ -97,10 +97,12 @@ class Foldable {
 
         /* Toggle between hiding and showing the active panel */
         let level2 = this.nextElementSibling;
-        if (level2.style.maxHeight === "1500px") {
-          level2.style.maxHeight = "0px";
-        } else {
-          level2.style.maxHeight = "1500px";
+        if (level2) {
+          if (level2.style.maxHeight === "1500px") {
+            level2.style.maxHeight = "0px";
+          } else {
+            level2.style.maxHeight = "1500px";
+          }
         }
       }
     }
