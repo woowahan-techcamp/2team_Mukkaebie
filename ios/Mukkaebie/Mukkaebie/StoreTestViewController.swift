@@ -180,6 +180,17 @@ class StoreTestViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    func sumOrderCount() {
+        var countArray = [Int]()
+        for i in 0 ..< orderByMenuSorted.count {
+            countArray.append(orderByMenuSorted[i].value)
+        }
+        let total = countArray.reduce(0) {$0 + $1}
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "totalSum"), object: nil, userInfo: ["total":total])
+        
+    }
+    
     func getOrderByUser() {
         for order in self.orderList {
             if orderByUser[order.buyerId] == nil {
