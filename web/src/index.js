@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.className !== "col-xs-4 mobileMenu") {
       e.target = e.target.closest(".mobilekMenu");
     }
+    StoreUtil.toggleMobileCategory();
     let categoryList = new StoreList(e.target.attributes.data.value);
   });
 

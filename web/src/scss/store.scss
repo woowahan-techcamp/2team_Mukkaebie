@@ -138,7 +138,13 @@ body {
   background: #000;
   padding: 15px;
   display: none;
+  z-index: 1000;
 }
+
+.mobileCategoryShow {
+  display: block;
+}
+
 
 .mobileCategorySearch input {
   width: 100%;

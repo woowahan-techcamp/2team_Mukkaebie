@@ -347,10 +347,12 @@ let StoreUtil = {
     let x = document.querySelector('.mobileCategory');
     let btn = document.querySelector(".mobileTitleButton");
     if (btn.classList.contains("unfolded")) {
-      x.style.display = 'none';
+      x.classList.remove("mobileCategoryShow");
+      // x.style.display = 'none';
       btn.classList.remove("unfolded");
     } else {
-      x.style.display = 'block';
+      // x.style.display = 'block';
+      x.classList.add("mobileCategoryShow");
       btn.classList.add("unfolded");
     }
   }
