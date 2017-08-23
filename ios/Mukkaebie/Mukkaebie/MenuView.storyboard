@@ -32,10 +32,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0y-nk-Jzt" customClass="PieChartView" customModule="Mukkaebie" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="63.5" width="375" height="211"/>
+                                        <rect key="frame" x="0.0" y="55" width="375" height="233"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="X0y-nk-Jzt" secondAttribute="height" multiplier="375:211" id="6q0-OV-5Op"/>
+                                            <constraint firstAttribute="width" secondItem="X0y-nk-Jzt" secondAttribute="height" multiplier="375:211" constant="-39.099526066350734" id="6q0-OV-5Op"/>
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SfL-Yy-XrU">
@@ -51,7 +51,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Bz-b8-Vfs">
-                                        <rect key="frame" x="0.0" y="304.5" width="375" height="362.5"/>
+                                        <rect key="frame" x="0.0" y="318" width="375" height="349"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="30" id="rig-zW-Ect" customClass="MenuTableViewHeader" customModule="Mukkaebie" customModuleProvider="target">
@@ -137,7 +137,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6Bz-b8-Vfs" secondAttribute="bottom" id="gID-l2-e2b"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="top" secondItem="X0y-nk-Jzt" secondAttribute="bottom" constant="30" id="heF-at-oix"/>
                                     <constraint firstItem="SfL-Yy-XrU" firstAttribute="top" secondItem="mTb-oG-gl1" secondAttribute="top" constant="16" id="iDa-0p-jbn"/>
-                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="SfL-Yy-XrU" secondAttribute="bottom" constant="23.399999999999999" id="wfq-yz-6Lo"/>
+                                    <constraint firstItem="X0y-nk-Jzt" firstAttribute="top" secondItem="SfL-Yy-XrU" secondAttribute="bottom" constant="15" id="wfq-yz-6Lo"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="zmg-ND-psy"/>
                                 </constraints>
                             </view>

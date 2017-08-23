@@ -43,17 +43,12 @@ class MenuViewController: UIViewController {
             subview.removeFromSuperview()
         }
         
-        let storeVC = StoreTestViewController()
-        
         var orderCountArray = [Int]()
         var menuPercentArray = [String]()
         var totalOrder = Int()
-        var menuPercent = String()
         
-
         for i in 0 ..< orderByMenuSorted.count {
             totalOrder += orderByMenuSorted[i].value
-            
         }
         
         for i in 0 ..< orderByMenuSorted.count {
@@ -63,10 +58,6 @@ class MenuViewController: UIViewController {
             let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton)
             pieChartView.segments.append(segment)
         }
-        print("++++++++++++++++",orderByMenuSorted)
-        print("================",totalOrder)
-        print("//////////////",menuPercentArray)
-        print(orderCountArray)
         
     }
     
@@ -142,6 +133,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         return 30
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
     
     func touchedArrowLabel(gestureRecognizer: UIGestureRecognizer) {
         if items[(gestureRecognizer.view?.tag)!].isCollapsible {

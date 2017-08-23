@@ -41,16 +41,16 @@ class PieChartView: UIView {
     override func draw(_ rect: CGRect) {
         
         //padding for view
-        let padding: CGFloat = 38
+        let padding: CGFloat = 25
         
         // height for title
-        let titleHeight: CGFloat = 20
+        let titleHeight: CGFloat = 15
         
         //array for titleView
         var titleViews : [UIView] = []
         
         //add first titleView
-        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
+        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 15)))
         
         //x position of composition
         var compX: CGFloat = 0
@@ -90,13 +90,19 @@ class PieChartView: UIView {
             }
             
             //setting the button
+            
+            let buttonAttributes : [String: Any] = [
+                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 15),
+                NSForegroundColorAttributeName : UIColor.init(hexString: "333333"),
+                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
+            
             button.isEnabled = true
             button.isUserInteractionEnabled = true
             
-            button.setTitle(segment.title, for: .normal)
-            button.setTitleColor(UIColor(white: 136/255, alpha: 1), for: .normal)
+            let attributeString = NSMutableAttributedString(string: segment.title, attributes: buttonAttributes)
+            button.setAttributedTitle(attributeString, for: .normal)
+            button.setTitleColor(UIColor(hexString: "333333"), for: .normal)
 
-            button.titleLabel?.font = UIFont(name: "BMHANNA11yrsoldOTF", size: 15)
             
             //if text is not over the width of frame, then manipulate the size of button to fit the size of it's content
             if !overWidth {
@@ -162,7 +168,7 @@ class PieChartView: UIView {
             
             // move to the center of the pie chart
             //ctx?.move(to: viewCenter)
-            ctx?.addArc(center: viewCenter, radius: 0.5*radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
+            ctx?.addArc(center: viewCenter, radius: 0.5 * radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
             // add arc from the center for each segment (anticlockwise is specified for the arc, but as the view flips the context, it will produce a clockwise arc)
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
@@ -175,6 +181,9 @@ class PieChartView: UIView {
     }
     
     func buttonAction(sender: UIButton!) {
+        let cartVC = UIStoryboard(name:"CartPayment", bundle:nil).instantiateViewController(withIdentifier: "Cart") as? CartPaymentViewController
+        
+        //        self.navigationController?.pushViewController(cartVC, animated:true)
         
     }
 }
