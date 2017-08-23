@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="선택한메뉴이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FT1-xd-j9D">
-                                <rect key="frame" x="38" y="45" width="297" height="17"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
+                                <rect key="frame" x="38" y="45" width="297" height="18"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gvP-sd-oy1">
-                                <rect key="frame" x="0.0" y="90" width="375" height="57"/>
+                                <rect key="frame" x="0.0" y="91" width="375" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jET-R4-JIE">
                                         <rect key="frame" x="26" y="20" width="36" height="17"/>
@@ -38,10 +38,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7,500원" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10V-UN-5fb">
-                                        <rect key="frame" x="285" y="20" width="68" height="17"/>
+                                        <rect key="frame" x="206" y="20" width="147" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="R2y-Sp-zqY"/>
-                                            <constraint firstAttribute="width" constant="68" id="cKC-Ye-q4g"/>
+                                            <constraint firstAttribute="width" constant="147" id="cKC-Ye-q4g"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                         <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,7 +62,7 @@
                                     <constraint firstAttribute="height" constant="57" id="JQR-y1-v0z"/>
                                     <constraint firstItem="b2u-5U-YHN" firstAttribute="top" secondItem="jET-R4-JIE" secondAttribute="bottom" constant="19" id="LzL-Km-aCG"/>
                                     <constraint firstItem="jET-R4-JIE" firstAttribute="leading" secondItem="gvP-sd-oy1" secondAttribute="leading" constant="26" id="Os6-4t-Dbv"/>
-                                    <constraint firstItem="10V-UN-5fb" firstAttribute="leading" secondItem="jET-R4-JIE" secondAttribute="trailing" constant="223" id="PnC-uj-Hbu"/>
+                                    <constraint firstItem="10V-UN-5fb" firstAttribute="leading" secondItem="jET-R4-JIE" secondAttribute="trailing" constant="144" id="PnC-uj-Hbu"/>
                                     <constraint firstAttribute="trailing" secondItem="b2u-5U-YHN" secondAttribute="trailing" id="UAu-2f-i9u"/>
                                     <constraint firstItem="b2u-5U-YHN" firstAttribute="width" secondItem="gvP-sd-oy1" secondAttribute="width" id="oEs-St-ldU"/>
                                     <constraint firstItem="10V-UN-5fb" firstAttribute="centerY" secondItem="jET-R4-JIE" secondAttribute="centerY" id="ve8-Dk-fr8"/>
@@ -70,7 +70,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJs-1N-p9g">
-                                <rect key="frame" x="0.0" y="147" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="148" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수량" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bN-xc-cHz">
                                         <rect key="frame" x="26" y="24" width="25" height="17"/>
