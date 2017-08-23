@@ -113,7 +113,8 @@ circle {
 }
 
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 767px) {
+
     .figure-content {
         height: auto;
         padding-left: 0px;
@@ -124,6 +125,7 @@ circle {
         align-self: center;
         max-width: 100%;
         padding-left: 5px;
+        margin-top: 20px;
     }
 
     .figure-key-list {
@@ -132,20 +134,21 @@ circle {
         max-width: 100%;
         font-size: 0.8em;
         padding-left: 5px;
+        column-count: 3;
     }
 
-    .figure-key-list li{
 
-        display: inline;
+    .figure-key-list li{
+        display: inline-block;
         list-style: none;
     }
 
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 600px) {
 
     .figure-key-list {
-        column-count: 3;
+        column-count: 2;
     }
 
 
@@ -156,10 +159,25 @@ circle {
 }
 
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 400px) {
 
     .figure-key-list {
         column-count: 2;
+        font-size: 0.5em;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+    .figure-key-list {
+        column-count: 1;
+        font-size: 0.8em;
     }
 
 
