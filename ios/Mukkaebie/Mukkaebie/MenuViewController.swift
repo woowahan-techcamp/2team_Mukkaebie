@@ -33,14 +33,28 @@ class MenuViewController: UIViewController {
     }
     
     func setSegment() {
+        
         pieChartView.segments = []
         for subview in pieChartView.subviews {
             subview.removeFromSuperview()
         }
+        
+        var orderCountArray = [Int]()
+        var menuPercentArray = [String]()
+        var totalOrder = Int()
+        
         for i in 0 ..< orderByMenuSorted.count {
-            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
+            totalOrder += orderByMenuSorted[i].value
+        }
+        
+        for i in 0 ..< orderByMenuSorted.count {
+            orderCountArray.append(orderByMenuSorted[i].value)
+            menuPercentArray.append(String(floor((Double(orderCountArray[i]) / Double(totalOrder) * 100)*10)/10))
+            let titleButton = "\(orderByMenuSorted[i].key) " + "\((menuPercentArray[i]))%"
+            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton)
             pieChartView.segments.append(segment)
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,6 +129,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         return 30
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 7
+    }
     
     func touchedArrowLabel(gestureRecognizer: UIGestureRecognizer) {
         if items[(gestureRecognizer.view?.tag)!].isCollapsible {

@@ -13,7 +13,7 @@
         <!--Cart Payment View Controller-->
         <scene sceneID="qRS-pS-XEH">
             <objects>
-                <viewController id="bNo-8D-H9U" customClass="CartPaymentViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Cart" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bNo-8D-H9U" customClass="CartPaymentViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KGY-BO-S2a"/>
                         <viewControllerLayoutGuide type="bottom" id="ONy-79-lwn"/>

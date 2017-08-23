@@ -26,7 +26,7 @@
                                 <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
+                                <real key="value" value="0.69999999999999996"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="string" keyPath="separatedButtonTitle" value="먹깨비,메뉴,정보,리뷰"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
