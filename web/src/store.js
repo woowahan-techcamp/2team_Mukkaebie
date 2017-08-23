@@ -765,6 +765,7 @@ class StoreInfo {
 
     const storeName = info.storeName;
     const address = info.address;
+    const ratingValue = info.ratingValue * 20;
     const ratingCount = info.ratingCount;
     const minPrice = info.minPrice;
     const openHour = info.openHour;
