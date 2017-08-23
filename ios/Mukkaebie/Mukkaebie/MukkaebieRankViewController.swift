@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import AlamofireImage
 
 class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
@@ -36,6 +36,7 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
@@ -48,11 +49,27 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
 
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if self.firstBottomConstraint.constant < 0 {
+            var count = 0
+            for user in orderByUserTop3 {
+                for mkb in (modelStore?.mkb)! {
+                    if mkb["userId"] == user.key {
+                        switch count {
+                        case 0:
+                            if mkb["imgUrl"] != nil {
+                                firstMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
+                        default:
+                            break
+                        }
+                    }
+                }
+                count += 1
+            }
+            
             UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.firstBottomConstraint.constant += self.firstAward.frame.height
                 self.view.layoutSubviews()
@@ -72,9 +89,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                 self.view.layoutSubviews()
                 
             }, completion: nil)
-            
-            
-            
         }
     }
 
@@ -109,14 +123,4 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
         
         picker.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation   baseurl:3000/uploads/
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

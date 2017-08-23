@@ -18,13 +18,8 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    var modelStoreId = Int()
     var modelStore = ModelStores()
     let networkOrder = NetworkOrder()
-    var orderList = [ModelOrders]()
-    var priceByMenu = [String: Int]()
-    var orderByMenu = [String: Int]()
-    var orderByMenuSorted = [(key: String, value: Int)]()
     
     var menuName = String()
     var menuPrice = String()

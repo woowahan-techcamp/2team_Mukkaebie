@@ -23,7 +23,13 @@ class NetworkImagePicker {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
                     if let JSON = response.result.value {
-                        let parameters = ["storeId": storeId, "mkb": ["userId": userId, "mkbPicUrl": "\(self.urlImage)uploads/" + ((JSON as! [String : Any])["filename"] as! String)]] as [String : Any]
+                        let current = Date()
+                        let cal = Calendar(identifier: .gregorian)
+                        var comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: current)
+                        let meridiem = comps.hour! < 12 ? "오전" : "오후"
+                        comps.hour = comps.hour! < 13 ? comps.hour : comps.hour! - 12
+                        let time = "\(comps.year!). \(comps.month!). \(comps.hour!). \(meridiem) \(comps.hour!):\(comps.minute!):\(comps.second!)"
+                        let parameters = ["storeId": storeId, "mkb": ["userId": userId, "imgUrl": "\(self.urlImage)uploads/" + ((JSON as! [String : Any])["filename"] as! String), "mkbComment":"", "time": time]] as [String : Any]
                         Alamofire.request("\(self.url)stores/mkb/"+"\(storeId)", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default)
                     }
                 }

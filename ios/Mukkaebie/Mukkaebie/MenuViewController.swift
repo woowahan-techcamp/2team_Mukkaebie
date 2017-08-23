@@ -14,11 +14,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
     var modelStore : ModelStores?
-    let networkOrder = NetworkOrder()
-    var orderList = [ModelOrders]()
-    var orderByMenu = [String: Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
-
     
     let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     

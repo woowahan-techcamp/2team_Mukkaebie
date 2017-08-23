@@ -67,9 +67,12 @@ class StoreTestViewController: UIViewController {
     }()
     
     var modelStore : ModelStores?
+    let networkStore = NetworkStore()
+    
+    var priceByMenu = [String:Int]()
+    
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
-    var priceByMenu = [String:Int]()
     var orderByUser = [String:Int]()
     var orderByUserTop3 = [(key: String, value: Int)]()
     var orderByMenu = [String:Int]()
@@ -101,14 +104,15 @@ class StoreTestViewController: UIViewController {
         
         initMenuArray()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(getStore(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
-        self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
+        self.networkStore.getStoreList(sellerId: (modelStore?.id)!)
+        self.networkOrder.getOrderList(sellerId: (modelStore?.id)!)
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,6 +144,16 @@ class StoreTestViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func getStore(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
+        self.modelStore = storeInfo[0]
+        mukkaebieVC?.modelStore = self.modelStore
+        menuRankVC?.modelStore = self.modelStore
+        initMenuArray()
+        tableView.reloadData()
     }
     
     func getOrderList(_ notification: Notification) {
@@ -202,7 +216,7 @@ class StoreTestViewController: UIViewController {
     }
     
     func postOrder(_ notification: Notification) {
-        self.networkOrder.getOrderList(buyerId: (self.modelStore?.id)!)
+        self.networkOrder.getOrderList(sellerId: (self.modelStore?.id)!)
     }
     
     func changeTab(_ notification: Notification) {
@@ -238,8 +252,6 @@ class StoreTestViewController: UIViewController {
         let url = NSURL(string: "tel://\(modelStore?.telephone as! String)")
         UIApplication.shared.openURL(url as! URL)
     }
-    
-    
 }
 
 

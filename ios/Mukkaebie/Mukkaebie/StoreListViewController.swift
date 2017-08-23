@@ -36,7 +36,7 @@ class StoreListViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStoreList"), object: nil)
         
         networkStore.getStoreList(category: category)
     }
