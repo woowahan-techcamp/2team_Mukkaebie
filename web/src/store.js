@@ -437,21 +437,38 @@ class Graph {
         for (let i = 0; i < top5.length; i++) {
           share = Number(top5[i].toString().split(',')[1]) / total * 100;
           reverse = 100 - share;
-          circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
-          circleContent += '<title class="donut-segment-title">' + top5[i].toString().split(',')[0] + '</title>';
-          circleContent += '</circle>';
+          circleContent +=
+              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">`;
+          circleContent +=
+              `<title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>`;
+          circleContent += `</circle>`;
 
           labelText[i] = '';
           labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
           totalLength = totalLength + share;
-          offset = 100 - totalLength + 25;
+          offset = (100 - totalLength + 25) % 100;
           if (i == 4) {
             labelText[5].innerHTML = '';
             labelText[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
         }
 
+        let oldCircle = document.getElementsByClassName('donut-segment');
+        let circleArr = Array.from(oldCircle);
+
+        function clear() {
+          let elems = document.querySelectorAll(".donut-segment");
+          for (let i=elems.length-1; i >= 0; i--) {
+            let parent = elems[i].parentNode;
+            parent.removeChild(elems[i]);
+          }
+        }
+
+        clear();
+
+
         let svg = document.querySelector('svg');
+
         svg.insertAdjacentHTML('beforeend', circleContent);
 
       }
