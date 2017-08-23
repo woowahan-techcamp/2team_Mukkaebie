@@ -97,10 +97,10 @@ class Foldable {
 
         /* Toggle between hiding and showing the active panel */
         let level2 = this.nextElementSibling;
-        if (level2.style.maxHeight === "1000px") {
+        if (level2.style.maxHeight === "1500px") {
           level2.style.maxHeight = "0px";
         } else {
-          level2.style.maxHeight = "1000px";
+          level2.style.maxHeight = "1500px";
         }
       }
     }
@@ -698,6 +698,7 @@ class StoreInfo {
 
     for (let categoryKey in menuObj) {
       const menuArr = menuObj[categoryKey];
+      menuUnits = '';
       for (let menuKey in menuArr) {
         const menuName = menuKey;
         const menuPrice = menuArr[menuKey];
