@@ -175,27 +175,96 @@ class Review {
 class MKBComment {
 
   constructor(id, top3List) {
-    this.makeMKBModal();
+    this.makeMKBModal(id, top3List);
     this.getComment(id, top3List);
-    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id));
+    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id, top3List));
   }
 
-  makeMKBModal () {
+  makeMKBModal (id, top3List) {
 
     let modal = document.querySelector('#mkbModal');
-    let modalBtn = document.querySelector(".silverImg");
+    let modalBtn = Array.from(document.querySelectorAll(".mkbProfileImgs"));
     let closeBtn = document.querySelector(".mkbModalClose");
 
-    modalBtn.addEventListener("click", function () {
-      modal.style.display = "block";
-      setTimeout(function () {
-        modal.style.opacity = "1";
-      }, 200)
-    });
+
+    modalBtn.forEach(function (circle) {
+        circle.addEventListener("click", function (event) {
+
+          function getResponse() {
+            return new Promise(function(resolve){
+              let xhr = new XMLHttpRequest();
+              xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                  const response = JSON.parse(this.responseText);
+                  resolve(response)
+                }
+              };
+              xhr.open("GET", SERVER_BASE_URL + "/stores/" + id , true);
+              xhr.send();
+            })
+          }
+
+          const renderModal = (res) => {
+
+            const previewTarget = document.querySelector(".mkbImgPreview");
+            previewTarget.style.backgroundImage = event.target.style.backgroundImage;
+            console.log(res);
+            const mkbResponse = res[0]["mkb"];
+            console.log("mkbResponse", mkbResponse);
+            let clickedUser = "";
+            if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null){
+              let clickedUser = this.attributes["data-user"]["value"];
+              let clickedMkb;
+
+              let clickeMkbData = mkbResponse.filter(function(mkb){
+                return mkb["userId"] == clickedUser;
+              });
+
+              console.log("clickedMkbData", clickeMkbData);
+              if ( clickeMkbData.length > 0){
+                clickedMkb = clickeMkbData[clickeMkbData.length-1];
+              }
+
+              if (clickedMkb){
+                document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
+              }
+              else{
+                document.getElementById("commentTextInput")["value"] = "";
+              }
+              const commentUser = document.querySelector(".commentWriteBox p");
+              commentUser.innerText = clickedUser;
+              commentUser.setAttribute("value",this.attributes["value"]["value"]);
+
+            }
+
+          }
+
+
+
+            getResponse().then(renderModal);
+            modal.style.display = "block";
+
+
+            setTimeout(function () {
+              modal.style.opacity = "1";
+            }, 200)
+
+        });
+    })
+
+
+
+
     closeBtn.addEventListener("click", function(){
+      const editBox = document.querySelector(".logInRequired");
+      const editBtn = document.querySelector(".mkbEdit");
       modal.style.opacity = "0";
+
+
       setTimeout(function () {
         modal.style.display = "none";
+        editBox.classList.remove("mkbShow");
+        editBtn.classList.remove("mkbHide");
       }, 200)
     });
   }
@@ -207,8 +276,8 @@ class MKBComment {
         const response = JSON.parse(this.responseText);
         console.log(response)
         const renderTarget = document.querySelector("#mkbComment");
-        const targetArr = response[0].mkb;
-        console.log("targetArr",targetArr);
+        let targetArr = (response[0].mkb) ? response[0].mkb : [];
+        console.log("targetArr", typeof(targetArr));
 
         let finalMkbList = [];
 
@@ -221,34 +290,34 @@ class MKBComment {
             console.log("==", mkbRow.userId == topBuyer);
             return mkbRow.userId == topBuyer;
           });
-          console.log("oneBuyer", oneBuyer);
+
+
           if ( oneBuyer.length > 0){
             finalMkbList.push(oneBuyer[oneBuyer.length-1]);
+          } else {
+            finalMkbList.push(topBuyer);
           }
 
         });
-        console.log("finalMkbList", finalMkbList);
+
         let mkbLevelList = [ "gold","silver","bronze" ];
         finalMkbList.forEach(function (topBuyer, idx) {
-          if (topBuyer != undefined){
             renderContent(topBuyer, mkbLevelList[idx]);
-          }
         });
 
         function renderContent(oneComment, mkbLevel) {
           const comment = oneComment;
-          console.log("comment", comment);
-          // const userId = comment.userId;
-          // const time = comment.time;
-          // const mkbComment = comment.mkbComment;
-          // const tempGrab = document.querySelector("#commentTemplate").text;
-          // const result = eval('`' + tempGrab + '`');
-          // renderTarget.innerHTML += result;
-
-          // const profilePic = document.querySelector(".mkbImgPreview");
+          console.log("comment", typeof(comment));
           const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
-          // profilePic.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
-          profilePicSmall.style.backgroundImage = "url('" + comment['mkbPicUrl'] + "')";
+          if (typeof(comment) === "string"){
+            profilePicSmall.setAttribute("data-user", comment);
+            profilePicSmall.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+          } else {
+            profilePicSmall.setAttribute("data-user", comment["userId"]);
+            profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
+          }
+          profilePicSmall.setAttribute("value", mkbLevel);
+          profilePicSmall.setAttribute("data-store", id);
         }
       }
     };
@@ -279,7 +348,8 @@ class MKBComment {
 
               resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
               const profilePic = document.querySelector(".mkbImgPreview");
-              const profilePicSmall = document.querySelector(".silverImg");
+              const targetCircle = document.querySelector(".commentWriteBox p")
+              const profilePicSmall = document.querySelector("."+ targetCircle.getAttribute("value") +"Img");
               profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
               profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
             }
@@ -309,7 +379,8 @@ class MKBComment {
         packet["storeId"] = id;
         packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
         packet.mkb["time"] = new Date().toLocaleString();
-        packet.mkb["userId"] = "hjktech";
+        const targetCircle = document.querySelector(".commentWriteBox p")
+        packet.mkb["userId"] = targetCircle["innerText"];
         packet.mkb["imgUrl"] = imgUrl;
 
 
@@ -320,7 +391,7 @@ class MKBComment {
         xhr.send(JSON.stringify(packet));
         xhr.onloadend = function () {
           resolve(null);
-          document.querySelector("#commentTextInput").value = "";
+          document.querySelector("#commentTextInput").setAttribute("value", "");
         }.bind(this);
 
     });
