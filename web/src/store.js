@@ -511,9 +511,17 @@ class StoreList {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
 
-        const layoutTarget = document.querySelector(".storeLayout");
-        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div><div class="spinner" style="display: none"></div>';
         const response = JSON.parse(this.responseText);
+        const layoutTarget = document.querySelector(".storeLayout");
+        const category = response[0].category;
+        const storeCount = response.length;
+        layoutTarget.innerHTML =
+            `<div class="m-x-3 m-b-2">
+                홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
+            </div>
+            <div class="col-xs-12 storeCardRow"></div>
+            <div class="load-button">더보기</div>
+            <div class="spinner" style="display: none"></div>`;
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
         let size = 30;
