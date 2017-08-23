@@ -151,17 +151,20 @@ class Review {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#reviewList");
         renderTarget.innerHTML = "";
-        response[0].review.reverse().forEach(function (oneReview) {
-          const review = oneReview;
-          const userId = review.user;
-          const createdDate = review.time;
-          const reviewContent = review.content;
-          const orangeStar = "★".repeat(review.stars);
-          const greyStar = "★".repeat(5 - review.stars);
-          const tempGrab = document.querySelector("#reviewTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        })
+
+        if (response[0].review.toString) {
+          response[0].review.reverse().forEach(function (oneReview) {
+            const review = oneReview;
+            const userId = review.user;
+            const createdDate = review.time;
+            const reviewContent = review.content;
+            const orangeStar = "★".repeat(review.stars);
+            const greyStar = "★".repeat(5 - review.stars);
+            const tempGrab = document.querySelector("#reviewTemplate").text;
+            const result = eval('`' + tempGrab + '`');
+            renderTarget.innerHTML += result;
+          })
+        }
       }
     };
     xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
@@ -213,9 +216,10 @@ class MKBComment {
         const renderTarget = document.querySelector("#commentList");
         renderTarget.innerHTML = "";
         const targetArr = response[0].mkb;
-        console.log(targetArr[targetArr.length - 1]);
 
-        renderContent(targetArr[targetArr.length - 1]);
+        if (targetArr) {
+          renderContent(targetArr[targetArr.length - 1]);
+        }
 
         function renderContent(oneComment) {
           const comment = oneComment;
@@ -551,7 +555,7 @@ class StoreList {
           let fadeInTarget = document.querySelectorAll('.fadeIn');
           let index = 0;
           let targetArr = [...fadeInTarget];
-          targetArr.forEach(function() {
+          targetArr.forEach(function () {
             targetArr[index].classList.remove("fadeIn");
             index++;
           });
@@ -600,7 +604,7 @@ class StoreList {
               let fadeInTarget = document.querySelectorAll('.fadeIn');
               let index = 0;
               let targetArr = [...fadeInTarget];
-              targetArr.forEach(function() {
+              targetArr.forEach(function () {
                 targetArr[index].classList.remove("fadeIn");
                 index++;
               });
@@ -641,7 +645,7 @@ class StoreList {
               processScroll();   // fire immediately on first scroll
               lastScrollFireTime = now;
             }
-            scrollTimer = setTimeout(function() {
+            scrollTimer = setTimeout(function () {
               scrollTimer = null;
               lastScrollFireTime = new Date().getTime();
               processScroll();
