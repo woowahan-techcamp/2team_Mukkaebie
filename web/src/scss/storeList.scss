@@ -9,7 +9,12 @@
   overflow: auto;
   padding: 20px;
   border: 1px solid #cccccc;
-  cursor: pointer
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px;
+}
+
+.storeCard:active{
+  box-shadow: 1px 1px 1px 1px inset;
 }
 
 .storeCardLeft {
