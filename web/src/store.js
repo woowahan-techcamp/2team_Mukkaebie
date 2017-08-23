@@ -188,78 +188,62 @@ class MKBComment {
 
 
     modalBtn.forEach(function (circle) {
-        circle.addEventListener("click", function (event) {
+      circle.addEventListener("click", function (event) {
 
-          function getResponse() {
-            return new Promise(function(resolve){
-              let xhr = new XMLHttpRequest();
-              xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                  const response = JSON.parse(this.responseText);
-                  resolve(response)
-                }
-              };
-              xhr.open("GET", SERVER_BASE_URL + "/stores/" + id , true);
-              xhr.send();
-            })
-          }
-
-          const renderModal = (res) => {
-
-            const previewTarget = document.querySelector(".mkbImgPreview");
-            previewTarget.style.backgroundImage = event.target.style.backgroundImage;
-            console.log(res);
-            const mkbResponse = res[0]["mkb"];
-            console.log("mkbResponse", mkbResponse);
-            let clickedUser = "";
-            if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null){
-              let clickedUser = this.attributes["data-user"]["value"];
-              let clickedMkb;
-
-              let clickeMkbData = mkbResponse.filter(function(mkb){
-                return mkb["userId"] == clickedUser;
-              });
-
-              console.log("clickedMkbData", clickeMkbData);
-              if ( clickeMkbData.length > 0){
-                clickedMkb = clickeMkbData[clickeMkbData.length-1];
+        function getResponse() {
+          return new Promise(function(resolve){
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const response = JSON.parse(this.responseText);
+                resolve(response)
               }
+            };
+            xhr.open("GET", SERVER_BASE_URL + "/stores/" + id , true);
+            xhr.send();
+          })
+        }
 
-              if (clickedMkb){
-                document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
-              }
-              else{
-                document.getElementById("commentTextInput")["value"] = "";
-              }
-              const commentUser = document.querySelector(".commentWriteBox p");
-              commentUser.innerText = clickedUser;
-              commentUser.setAttribute("value",this.attributes["value"]["value"]);
+        const renderModal = (res) => {
 
+          const previewTarget = document.querySelector(".mkbImgPreview");
+          previewTarget.style.backgroundImage = event.target.style.backgroundImage;
+          const mkbResponse = res[0]["mkb"];
+          let clickedUser = "";
+          if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null){
+            let clickedUser = this.attributes["data-user"]["value"];
+            let clickedMkb;
+
+            let clickeMkbData = mkbResponse.filter(function(mkb){
+              return mkb["userId"] == clickedUser;
+            });
+            if ( clickeMkbData.length > 0){
+              clickedMkb = clickeMkbData[clickeMkbData.length-1];
             }
 
+            if (clickedMkb){
+              document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
+            }
+            else{
+              document.getElementById("commentTextInput")["value"] = "";
+            }
+            const commentUser = document.querySelector(".commentWriteBox p");
+            commentUser.innerText = clickedUser;
+            commentUser.setAttribute("value",this.attributes["value"]["value"]);
           }
-
-
-
-            getResponse().then(renderModal);
-            modal.style.display = "block";
-
-
-            setTimeout(function () {
-              modal.style.opacity = "1";
-            }, 200)
-
-        });
+        }
+        getResponse().then(renderModal);
+        modal.style.display = "block";
+        setTimeout(function () {
+          modal.style.opacity = "1";
+        }, 200)
+      });
     })
-
-
-
 
     closeBtn.addEventListener("click", function(){
       const editBox = document.querySelector(".logInRequired");
       const editBtn = document.querySelector(".mkbEdit");
       modal.style.opacity = "0";
-
 
       setTimeout(function () {
         modal.style.display = "none";
@@ -274,20 +258,13 @@ class MKBComment {
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
-        console.log(response)
         const renderTarget = document.querySelector("#mkbComment");
         let targetArr = (response[0].mkb) ? response[0].mkb : [];
-        console.log("targetArr", typeof(targetArr));
-
         let finalMkbList = [];
-
         top3List.forEach(function (topBuyer) {
-          console.log("topBuyer", topBuyer);
 
           let oneBuyer = targetArr.filter(function(mkbRow){
-            console.log("mkbRow", mkbRow.userId);
-            console.log("topBuyer", topBuyer);
-            console.log("==", mkbRow.userId == topBuyer);
+
             return mkbRow.userId == topBuyer;
           });
 
@@ -302,16 +279,15 @@ class MKBComment {
 
         let mkbLevelList = [ "gold","silver","bronze" ];
         finalMkbList.forEach(function (topBuyer, idx) {
-            renderContent(topBuyer, mkbLevelList[idx]);
+          renderContent(topBuyer, mkbLevelList[idx]);
         });
 
         function renderContent(oneComment, mkbLevel) {
           const comment = oneComment;
-          console.log("comment", typeof(comment));
           const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
           if (typeof(comment) === "string"){
             profilePicSmall.setAttribute("data-user", comment);
-            profilePicSmall.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+            profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
           } else {
             profilePicSmall.setAttribute("data-user", comment["userId"]);
             profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
@@ -365,7 +341,7 @@ class MKBComment {
           };
           xhr.send(formData);
         } else {
-          resolve("https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png");
+          resolve(DEFAULT_PROFILE_IMG);
         }
       }
     })
@@ -375,24 +351,24 @@ class MKBComment {
 
     return new Promise(function(resolve){
 
-        let packet = {"mkb": {}};
-        packet["storeId"] = id;
-        packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
-        packet.mkb["time"] = new Date().toLocaleString();
-        const targetCircle = document.querySelector(".commentWriteBox p")
-        packet.mkb["userId"] = targetCircle["innerText"];
-        packet.mkb["imgUrl"] = imgUrl;
+      let packet = {"mkb": {}};
+      packet["storeId"] = id;
+      packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
+      packet.mkb["time"] = new Date().toLocaleString();
+      const targetCircle = document.querySelector(".commentWriteBox p")
+      packet.mkb["userId"] = targetCircle["innerText"];
+      packet.mkb["imgUrl"] = imgUrl;
 
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
 
-        xhr.send(JSON.stringify(packet));
-        xhr.onloadend = function () {
-          resolve(null);
-          document.querySelector("#commentTextInput").setAttribute("value", "");
-        }.bind(this);
+      xhr.send(JSON.stringify(packet));
+      xhr.onloadend = function () {
+        resolve(null);
+        document.querySelector("#commentTextInput").setAttribute("value", "");
+      }.bind(this);
 
     });
   }
