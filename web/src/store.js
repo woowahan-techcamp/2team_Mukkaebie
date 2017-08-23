@@ -154,14 +154,16 @@ class Review {
         const renderTarget = document.querySelector("#reviewList");
         renderTarget.innerHTML = "";
 
-        if (response[0].review.toString) {
+        if (response[0].review !== []) {
           response[0].review.reverse().forEach(function (oneReview) {
             const review = oneReview;
-            const userId = review.user;
-            const createdDate = review.time;
-            const reviewContent = review.content;
-            const orangeStar = "★".repeat(review.stars);
-            const greyStar = "★".repeat(5 - review.stars);
+            if (review) {
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = review.content;
+              const orangeStar = "★".repeat(review.stars);
+              const greyStar = "★".repeat(5 - review.stars);
+            }
             const tempGrab = document.querySelector("#reviewTemplate").text;
             const result = eval('`' + tempGrab + '`');
             renderTarget.innerHTML += result;
