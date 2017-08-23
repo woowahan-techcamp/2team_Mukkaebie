@@ -237,55 +237,59 @@ circle {
 
 .goldAnimate  {
     animation-name: goldHeightUp;
-    animation-duration: 1s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height:100%;
 }
 
 .goldOrdersAnimate  {
     animation-name: goldOrdersHeightUp;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .goldNameAnimate  {
     animation-name: goldNameHeightUp;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+
 }
 
 .silverAnimate  {
     animation-name: silverHeightUp;
-    animation-duration: 1.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .silverOrdersAnimate  {
     animation-name: silverOrdersHeightUp;
-    animation-duration: 3.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .silverNameAnimate  {
     animation-name: silverNameHeightUp;
-    animation-duration: 3.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .bronzeAnimate  {
     animation-name: bronzeHeightUp;
-    animation-duration: 2s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .bronzeOrdersAnimate  {
     animation-name: bronzeOrdersHeightUp;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .bronzeNameAnimate  {
     animation-name: bronzeNameHeightUp;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
@@ -314,10 +318,10 @@ circle {
 
 @keyframes goldNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 303px;
+        bottom: 0;
     }
 }
 
@@ -344,10 +348,10 @@ circle {
 
 @keyframes silverNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 230px;
+        bottom: 0;
     }
 }
 
@@ -374,10 +378,10 @@ circle {
 
 @keyframes bronzeNameHeightUp {
     from {
-        bottom: -200px;
+        bottom: -400px;
     }
     to {
-        bottom: 160px;
+        bottom: 0;
     }
 }
 
