@@ -1,15 +1,6 @@
 import {
-  TabUiWithAjax,
-  Foldable,
-  Review,
-  scrollWithCart,
-  makeOrder,
-  toggleMobileCategory,
-  Graph,
   StoreList,
-  StoreInfo,
   StoreUtil,
-  addToCart
 } from './store.js'
 
 import style from './scss/main.scss';

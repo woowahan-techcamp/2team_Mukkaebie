@@ -71,16 +71,14 @@ class TabUiWithAjax {
     const result = [];
     this.tabId.forEach((key, idx) => {
       result.push({
-      name: key,
-      click: this.cache[idx]
+        name: key,
+        click: this.cache[idx]
+      })
     })
-  })
     ;
   }
 }
 
-
-/* 폴더블 메뉴 */
 
 class Foldable {
   constructor(level1Class) {
@@ -107,7 +105,6 @@ class Foldable {
   }
 }
 
-/* 리뷰관련 */
 
 class Review {
 
@@ -132,7 +129,7 @@ class Review {
 
 
       let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/stores/" + id, true);
+      xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
       xhr1.setRequestHeader('Content-Type', 'application/json');
 
       xhr1.send(JSON.stringify(packet));
@@ -150,137 +147,230 @@ class Review {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#reviewList");
-        renderTarget.innerHTML = "";
-        response[0].review.reverse().forEach(function (oneReview) {
-          const review = oneReview;
-          const userId = review.user;
-          const createdDate = review.time;
-          const reviewContent = review.content;
-          const orangeStar = "★".repeat(review.stars);
-          const greyStar = "★".repeat(5 - review.stars);
-          const tempGrab = document.querySelector("#reviewTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        })
+        const reveiwList = response[0].review;
+        console.log(reveiwList);
+        if (reveiwList.length > 0) {
+          renderTarget.innerHTML = "";
+          response[0].review.reverse().forEach(function (oneReview) {
+            if (oneReview != undefined || oneReview != null) {
+              const review = oneReview;
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = review.content;
+              const orangeStar = "★".repeat(review.stars);
+              const tempGrab = document.querySelector("#reviewTemplate").text;
+              const result = eval('`' + tempGrab + '`');
+              renderTarget.innerHTML += result;
+            }
+          })
+        }
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
+    xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
     xhttp.send();
   }
-
 }
 
 
-let StoreUtil = {
-  scrollWithCart: function () {
-    document.addEventListener("scroll", function () {
-      if (window.innerWidth > 768) {
-        if (window.scrollY > 583) {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "fixed";
-          cart.style.top = "10px";
-          cart.style.width = "200px"
+class MKBComment {
+
+  constructor(id, top3List) {
+    this.makeMKBModal(id, top3List);
+    this.getComment(id, top3List);
+    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id, top3List));
+  }
+
+  makeMKBModal (id, top3List) {
+
+    let modal = document.querySelector('#mkbModal');
+    let modalBtn = Array.from(document.querySelectorAll(".mkbProfileImgs"));
+    let closeBtn = document.querySelector(".mkbModalClose");
+
+
+    modalBtn.forEach(function (circle) {
+      circle.addEventListener("click", function (event) {
+
+        function getResponse() {
+          return new Promise(function(resolve){
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const response = JSON.parse(this.responseText);
+                resolve(response)
+              }
+            };
+            xhr.open("GET", SERVER_BASE_URL + "/stores/" + id , true);
+            xhr.send();
+          })
         }
-        else {
-          let cart = document.querySelector(".storeCart");
-          cart.style.position = "inherit";
-          cart.style.top = "";
-          cart.style.width = ""
+
+        const renderModal = (res) => {
+
+          const previewTarget = document.querySelector(".mkbImgPreview");
+          previewTarget.style.backgroundImage = event.target.style.backgroundImage;
+          const mkbResponse = res[0]["mkb"];
+          let clickedUser = "";
+          if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null){
+            let clickedUser = this.attributes["data-user"]["value"];
+            let clickedMkb;
+
+            let clickeMkbData = mkbResponse.filter(function(mkb){
+              return mkb["userId"] == clickedUser;
+            });
+            if ( clickeMkbData.length > 0){
+              clickedMkb = clickeMkbData[clickeMkbData.length-1];
+            }
+
+            if (clickedMkb){
+              document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
+            }
+            else{
+              document.getElementById("commentTextInput")["value"] = "";
+            }
+            const commentUser = document.querySelector(".commentWriteBox p");
+            commentUser.innerText = clickedUser;
+            commentUser.setAttribute("value",this.attributes["value"]["value"]);
+          }
         }
-      }
-      else {
-        let cart = document.querySelector(".storeCart");
-        cart.style.position = "inherit";
-        cart.style.top = "";
-        cart.style.width = ""
-      }
+        getResponse().then(renderModal);
+        modal.style.display = "block";
+        setTimeout(function () {
+          modal.style.opacity = "1";
+        }, 200)
+      });
     })
-  },
 
-  makeModal: function(){
-    //모달
-    let modal = document.querySelector('#orderModal');
-    let modalBtn = document.querySelector("#cartOrderButton");
+    closeBtn.addEventListener("click", function(){
+      const editBox = document.querySelector(".logInRequired");
+      const editBtn = document.querySelector(".mkbEdit");
+      modal.style.opacity = "0";
 
-    modalBtn.addEventListener("click", function() {
-      modal.style.display = "block";
-      setTimeout(function(){
-        modal.classList.add("modalShow");
-      }, 500)
-
-      modal.classList.remove("modalShow");
-      setTimeout(function(){
+      setTimeout(function () {
         modal.style.display = "none";
-      }, 3000)
+        editBox.classList.remove("mkbShow");
+        editBtn.classList.remove("mkbHide");
+      }, 200)
+    });
+  }
 
+  getComment(id, top3List) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector("#mkbComment");
+        let targetArr = (response[0].mkb) ? response[0].mkb : [];
+        let finalMkbList = [];
+        top3List.forEach(function (topBuyer) {
+
+          let oneBuyer = targetArr.filter(function(mkbRow){
+
+            return mkbRow.userId == topBuyer;
+          });
+
+
+          if ( oneBuyer.length > 0){
+            finalMkbList.push(oneBuyer[oneBuyer.length-1]);
+          } else {
+            finalMkbList.push(topBuyer);
+          }
+
+        });
+
+        let mkbLevelList = [ "gold","silver","bronze" ];
+        finalMkbList.forEach(function (topBuyer, idx) {
+          renderContent(topBuyer, mkbLevelList[idx]);
+        });
+
+        function renderContent(oneComment, mkbLevel) {
+          const comment = oneComment;
+          const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
+          if (typeof(comment) === "string"){
+            profilePicSmall.setAttribute("data-user", comment);
+            profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
+          } else {
+            profilePicSmall.setAttribute("data-user", comment["userId"]);
+            profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
+          }
+          profilePicSmall.setAttribute("value", mkbLevel);
+          profilePicSmall.setAttribute("data-store", id);
+        }
+      }
+    };
+    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+    xhr.send();
+  }
+
+
+  postImage(id) {
+    return new Promise(function(resolve){
+      const form = document.getElementById('file-form');
+      const fileSelect = document.getElementById('file-select');
+      const uploadButton = document.getElementById('upload-button');
+
+      form.onsubmit = function(event) {
+        event.preventDefault();
+        uploadButton.innerHTML = '바꾸는 중...';
+        const file = fileSelect.files[0];
+
+        if (file != undefined) {
+          const formData = new FormData();
+          formData.append('profileImage', file);
+
+          const xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              const res = JSON.parse(this.responseText);
+
+              resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
+              const profilePic = document.querySelector(".mkbImgPreview");
+              const targetCircle = document.querySelector(".commentWriteBox p")
+              const profilePicSmall = document.querySelector("."+ targetCircle.getAttribute("value") +"Img");
+              profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+              profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+            }
+          }
+          xhr.open('POST', IMAGE_SERVER_URL + '/profile/');
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              uploadButton.innerHTML = 'Upload';
+            } else {
+              alert('An error occurred!');
+            }
+          };
+          xhr.send(formData);
+        } else {
+          resolve(DEFAULT_PROFILE_IMG);
+        }
+      }
     })
-  },
+  }
 
-  makeOrder: function (storeId) {
-    let userList = ["dbtech", "jhtech", "mhtech"];
+  postComment(id, imgUrl) {
+
+    return new Promise(function(resolve){
+
+      let packet = {"mkb": {}};
+      packet["storeId"] = id;
+      packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
+      packet.mkb["time"] = new Date().toLocaleString();
+      const targetCircle = document.querySelector(".commentWriteBox p")
+      packet.mkb["userId"] = targetCircle["innerText"];
+      packet.mkb["imgUrl"] = imgUrl;
 
 
-    let orderButton = document.querySelector("#cartOrderButton");
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
 
-    orderButton.addEventListener("click", function () {
-
-      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
-
-      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
-
-      let menuList = []
-
-      cartContent.forEach(function (item) {
-
-        menuList.push(item.getAttribute("value"));
-      })
-
-      let randNum1 = Math.floor(Math.random() * 3);
-
-      let packet = {};
-      packet["sellerId"] = storeId;
-      packet["buyerId"] = userList[randNum1];
-      packet["content"] = menuList;
-      packet["price"] = totalPrice;
-
-      let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", "http://13.124.179.176:3000/orders", true);
-      xhr1.setRequestHeader('Content-Type', 'application/json');
-
-      // send the collected data as JSON
-      xhr1.send(JSON.stringify(packet));
-
-      xhr1.onloadend = function () {
-        let graph = new Graph(storeId);
-        StoreUtil.resetCart();
+      xhr.send(JSON.stringify(packet));
+      xhr.onloadend = function () {
+        resolve(null);
+        document.querySelector("#commentTextInput").setAttribute("value", "");
       }.bind(this);
-    }.bind(this));
-  },
 
-  resetCart: function () {
-    let renderTarget = document.querySelector(".storeCartContent");
-    let cartTotalPrice = document.querySelector("#cartTotalPrice");
-    cartTotalPrice.innerText = 0;
-    cartTotalPrice.value = 0;
-    renderTarget.innerHTML = "";
-    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
-      cb.checked = false
-    })
-    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
-      fb.click()
-    })
-  },
-
-  toggleMobileCategory: function () {
-    let x = document.querySelector('.mobileCategory');
-    let btn = document.querySelector(".mobileTitleButton");
-    if (btn.classList.contains("unfolded")) {
-      x.style.display = 'none';
-      btn.classList.remove("unfolded");
-    } else {
-      x.style.display = 'block';
-      btn.classList.add("unfolded");
-    }
+    });
   }
 }
 
@@ -330,19 +420,13 @@ class Graph {
         for (let i = 0; i < orders.length; i++) {
 
           orders[i].content.forEach(function (ele) {
-            if (ele in top) {
+            if (ele in topMenu) {
               topMenu[ele] += 1;
             }
             else {
               topMenu[ele] = 1;
             }
           })
-
-          // if (orders[i].content in topMenu) {
-          //   topMenu[orders[i].content] += 1;
-          // } else {
-          //   topMenu[orders[i].content] = 1;
-          // }
 
         }
 
@@ -394,7 +478,7 @@ class Graph {
 
       }
     };
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
@@ -421,26 +505,26 @@ class Graph {
         });
 
         let top3 = items.slice(0, 3);
-
+        console.log(top3);
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
-
+        let top3UserList = [];
         for (let i = 0; i < top3.length; i++) {
           let name = top3[i].toString().split(",")[0];
           let order = top3[i].toString().split(",")[1];
-          top3_name[i].innerHTML = name;
-          top3_order[i].innerHTML = order;
+          top3UserList.push(name);
+          // top3_name[i].innerHTML = name;
+          // top3_order[i].innerHTML = order;
         }
-
+        let mkb = new MKBComment(storeId, top3UserList);
       }
-
     }
-
-    xhr.open('GET', 'http://13.124.179.176:3000/orders/bystore/' + storeId, true);
+    xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
 
 }
+
 
 class StoreList {
 
@@ -482,12 +566,10 @@ class StoreList {
             var realTarget = e.target.closest(".storeCard");
           }
           let storeInfo = new StoreInfo(realTarget.id);
-
         });
-
       }
     };
-    xhttp.open("GET", "http://13.124.179.176:3000/stores/bycategory/" + cat, true);
+    xhttp.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
     xhttp.send();
 
   }
@@ -499,130 +581,78 @@ class StoreInfo {
 
   constructor(id) {
     this.storeId = id;
-    this.getStoreInfo(id);
+    this.getStoreInfo(id).then(this.renderInfo.bind(null, id));
   }
 
+  renderInfo(storeId, info) {
+
+    const storeName = info.storeName;
+    const address = info.address;
+    const ratingCount = info.ratingCount;
+    const minPrice = info.minPrice;
+    const openHour = info.openHour;
+    const telephone = info.telephone;
+    const storeDesc = info.storeDesc;
+    let menuObj = info.menu[0];
+
+    let wholeMenuHtml = '';
+    let menuUnits = '';
+
+    for (let categoryKey in menuObj) {
+      const menuArr = menuObj[categoryKey];
+      for (let menuKey in menuArr) {
+        const menuName = menuKey;
+        const menuPrice = menuArr[menuKey];
+        const tempGrab = document.querySelector('#menuUnitTemplate').text;
+        menuUnits += eval('`' + tempGrab + '`');
+      }
+      wholeMenuHtml += `<div class="foldableLevel1"><h6>${categoryKey}</h6></div><div class="foldableLevel2">${menuUnits}</div>`
+    }
+    const tempGrab = document.querySelector('#storeDetailTemplate').text;
+    const storeDetailHtml = eval('`' + tempGrab + '`');
+    const layoutTarget = document.querySelector('.storeLayout');
+    layoutTarget.innerHTML = storeDetailHtml;
+    const renderMenu = layoutTarget.querySelector('.foldableMenu');
+    renderMenu.innerHTML = wholeMenuHtml;
+
+    let tab = new TabUiWithAjax(
+        {
+          containerName: "storeTabWrapper",
+          selectedTabName: "selectedTab",
+          selectedContentName: "selectedContent",
+          generalTabName: "storeTab",
+          generalContentPrefix: "#cont-",
+          baseUrl: ""
+        }
+    );
+    let graph = new Graph(storeId);
+    let review = new Review(storeId);
+    let foldable = new Foldable("foldableLevel1");
+    StoreUtil.makeOrder(storeId);
+    StoreUtil.makeModal();
+    let cart = new Cart();
+
+  }
 
   getStoreInfo(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-
-        const response = JSON.parse(this.responseText);
-        const storeInfo = response[0];
-        const layoutTarget = document.querySelector('.storeLayout');
-
-
-        function getInfo(store) {
-          const info = store;
-          const storeName = info.storeName;
-          const address = info.address;
-          const ratingCount = info.ratingCount;
-          const minPrice = info.minPrice;
-          const openHour = info.openHour;
-          const telephone = info.telephone;
-          const storeDesc = info.storeDesc;
-
-          let menu = info.menu[0];
-          let menuSet = [];
-
-
-          for (let categoryKey in menu) {
-            const categoryName = categoryKey;
-            const menuArr = menu[categoryKey];
-
-            for (let menuKey in menuArr) {
-              const menuName = menuKey;
-              const menuPrice = menuArr[menuKey];
-
-              menuSet.push([categoryName, menuName, menuPrice]);
-
-            }
-          }
-
-          let markup = '';
-          let categorySet = {};
-
-          menuSet.forEach(function (ele) {
-            if (ele[0] in categorySet) {
-
-              categorySet[ele[0]] += 1;
-
-              markup += `
-
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2 m-y-1">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-            } else {
-
-              categorySet[ele[0]] = 1;
-
-              markup += `
-              </div>
-              <div class="foldableLevel1">
-                <h6>${ele[0]}</h6>
-              </div>
-              <div class="foldableLevel2">
-                <div class="foldableLevel1">${ele[1]}</div>
-                <div class="foldableLevel2 p-x-2">
-                  <span class="p-r-1">${ele[2]}</span>
-                  <input type="checkbox" value="${ele[1]}" data="${ele[2]}">
-                </div>
-              `
-
-            }
-          });
-
-          markup += `</div>`;
-
-
-          const tempGrab = document.querySelector('#storeDetailTemplate').text;
-          const result = eval('`' + tempGrab + '`');
-          layoutTarget.innerHTML = result;
-          const renderMenu = layoutTarget.querySelector('.foldableMenu');
-          renderMenu.innerHTML = markup;
-
-        };
-
-        getInfo(storeInfo);
-
-        let tab = new TabUiWithAjax(
-            {
-              containerName: "storeTabWrapper",
-              selectedTabName: "selectedTab",
-              selectedContentName: "selectedContent",
-              generalTabName: "storeTab",
-              generalContentPrefix: "#cont-",
-              baseUrl: "",
-            }
-        );
-        let graph = new Graph(id);
-
-        let review = new Review(id);
-
-        let foldable = new Foldable("foldableLevel1");
-
-        StoreUtil.makeOrder(id);
-
-        StoreUtil.makeModal();
-
-        let cart = new Cart();
-
-      }
-    };
-    xhr.open("GET", "http://13.124.179.176:3000/stores/" + id, true);
-    xhr.send();
+    return new Promise(function (resolve) {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          resolve(response[0], id);
+        }
+      };
+      xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+      xhr.send();
+    });
   }
-
 }
 
 
 class Cart {
   constructor() {
-    this.init()
+    this.init();
   }
 
   init() {
@@ -641,12 +671,11 @@ class Cart {
     let hasContent = false;
     let childToRemove;
     renderTargetChildren.forEach(function (child) {
-
       if (cont + " " + price === child.outerText) {
         hasContent = true;
         childToRemove = child;
       }
-    })
+    });
 
     if (hasContent === false) {
       renderTarget.innerHTML += renderContent;
@@ -664,11 +693,123 @@ class Cart {
       totalPrice += Number(child.attributes.data.value);
     })
     document.querySelector("#cartTotalPrice").innerText = totalPrice;
-
-
   }
 }
 
+
+let StoreUtil = {
+  scrollWithCart: function () {
+    document.addEventListener("scroll", function () {
+      if (window.innerWidth > 768) {
+        if (window.scrollY > 583) {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "fixed";
+          cart.style.top = "10px";
+          cart.style.width = "200px"
+        }
+        else {
+          let cart = document.querySelector(".storeCart");
+          cart.style.position = "inherit";
+          cart.style.top = "";
+          cart.style.width = ""
+        }
+      }
+      else {
+        let cart = document.querySelector(".storeCart");
+        cart.style.position = "inherit";
+        cart.style.top = "";
+        cart.style.width = ""
+      }
+    })
+  },
+
+  makeModal: function () {
+    //모달
+    let modal = document.querySelector('#orderModal');
+    let modalBtn = document.querySelector("#cartOrderButton");
+
+    modalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+      setTimeout(function () {
+        modal.style.opacity = 1;
+      }, 500)
+      setTimeout(function () {
+        modal.style.opacity = 0;
+        setTimeout(function(){
+          modal.style.display = "none";
+        },500)
+      }, 3000)
+
+    })
+  },
+
+  makeOrder: function (storeId) {
+    let userList = ["dbtech", "jhtech", "mhtech"];
+
+
+    let orderButton = document.querySelector("#cartOrderButton");
+
+    orderButton.addEventListener("click", function () {
+
+      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
+
+      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+
+      let menuList = [];
+
+      cartContent.forEach(function (item) {
+
+        menuList.push(item.getAttribute("value"));
+      })
+
+      let randNum1 = Math.floor(Math.random() * 3);
+
+      let packet = {};
+      packet["sellerId"] = storeId;
+      packet["buyerId"] = userList[randNum1];
+      packet["content"] = menuList;
+      packet["price"] = totalPrice;
+
+      let xhr1 = new XMLHttpRequest();
+      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
+      xhr1.setRequestHeader('Content-Type', 'application/json');
+
+      // send the collected data as JSON
+      xhr1.send(JSON.stringify(packet));
+
+      xhr1.onloadend = function () {
+        let graph = new Graph(storeId);
+        StoreUtil.resetCart();
+      }.bind(this);
+    }.bind(this));
+  },
+
+  resetCart: function () {
+    let renderTarget = document.querySelector(".storeCartContent");
+    let cartTotalPrice = document.querySelector("#cartTotalPrice");
+    cartTotalPrice.innerText = 0;
+    cartTotalPrice.value = 0;
+    renderTarget.innerHTML = "";
+    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
+      cb.checked = false
+    });
+    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
+      fb.click()
+    })
+  },
+
+  toggleMobileCategory: function () {
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
+    if (btn.classList.contains("unfolded")) {
+      x.style.display = 'none';
+      btn.classList.remove("unfolded");
+    } else {
+      x.style.display = 'block';
+      btn.classList.add("unfolded");
+    }
+  }
+}
 
 
 export {TabUiWithAjax, Foldable, Review, Graph, StoreList, StoreInfo, StoreUtil, Cart}

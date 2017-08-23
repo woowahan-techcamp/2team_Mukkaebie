@@ -12,6 +12,14 @@
 
 <body>
 
+<script id="menuUnitTemplate" type="text/template">
+  <div class="foldableLevel1">${menuName}</div>
+  <div class="foldableLevel2 p-x-2">
+    <span class="p-r-1">${menuPrice}</span>
+    <input type="checkbox" value="${menuName}" data="${menuPrice}">
+  </div>
+</script>
+
 <script id="reviewTemplate" type="text/template">
 
   <div class="reviewCard">
@@ -31,10 +39,32 @@
       </div>
       <div class="reviewCardMid p-x-1">
         <span class="reviewCardStar float-left">${orangeStar}</span>
-        <span class="reviewCardNostar float-left">${greyStar}</span>
+
       </div>
       <div class="reviewCardBtm p-a-1">
         ${reviewContent}
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script id="commentTemplate" type="text/template">
+  <div class="commentCard">
+    <div class="commentCardContent">
+      <div class="commentCardTop p-x-1">
+        <span class="commentCardId">
+          ${userId}
+        </span>
+        <span class="p-x-1">
+            |
+        </span>
+        <span class="commentCardDate">
+          ${time}
+        </span>
+      </div>
+      <div class="commentCardBtm p-a-1">
+        ${mkbComment}
       </div>
     </div>
   </div>
@@ -213,46 +243,46 @@
 
 
         </div>
-        <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab">
-          <input type="hidden" role="uploadcare-uploader" name="먹깨비얼굴" data-crop="disabled" data-preview-step="true"
-                 data-images-only="true"/>
-          <div id="mkbPreview"></div>
-          <div class="menuTabGraph" style="background-color: #fff;">
-            <div class="competition-podium well">
+        <div class="mkbTabContent col-xs-12 storeTabContent p-a-0" id="cont-mkbTab">
+
+          <div class="mkbGraphWrapper" style="background-color: #fff;">
+            <div class="mkbCommentOutside">
+              여기에 한마디
+            </div>
+            <div class="competition-podium well m-a-0">
               <div class="podium-block gold">
                 <div class="orders"></div>
-                <div class="name">danb</div>
+                <div class="name">
+                  <div class="goldImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/first.png" alt="1등">
                 </div>
               </div>
               <div class="podium-block silver">
                 <div class="orders"></div>
-                <div class="name">youngun</div>
+                <div class="name">
+                  <div class="silverImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/second.png" alt="2등">
                 </div>
               </div>
               <div class="podium-block bronze">
                 <div class="orders"></div>
-                <div class="name">hjk</div>
+                <div class="name">
+                  <div class="bronzeImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/third.png" alt="3등">
                 </div>
               </div>
             </div>
 
-            <div class="commentBox">
-              <p class="p-center orangeFontColor">수상소감</p>
-              <div id="commentList"></div>
-              <div class="commentWriteBox p-a-1">
-                <p name="userId" value="ygtech">ygtech</p>
-                <textarea id="commentTextInput" type="text" name="content"></textarea>
-                <button id="commentTextInputBtn" class="float-right">작성</button>
-              </div>
-            </div>
+
 
           </div>
+
 
 
         </div>
@@ -440,11 +470,63 @@
 </footer>
 
 
-<div id="orderModal" class="modal">
+<div id="orderModal" class="orderModal">
   <div class="modal-content"></div>
 </div>
-<script src="./dist/index.bundle.js"></script>
 
+<div id="mkbModal" class="mkbModal">
+  <div class="mkbModal-content" style="background: rgba(0, 0, 0, 0)">
+    <button class="mkbModalClose">&times;</button>
+    <div class="mkbImgPreview" style="opacity: 1;width: 300px; height:300px; margin:0 auto; background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png'); background-size: contain; background-repeat: no-repeat"></div>
+    <div id="mkbComment"></div>
+    <button class="mkbEdit" onclick="toggleEdit()">수정하기</button>
+    <div class="logInRequired">
+      <div class="commentBox">
+        <div id="commentList"></div>
+        <div class="commentWriteBox p-a-1">
+          <p name="userId" value="ygtech">ygtech</p>
+          <textarea id="commentTextInput" type="text" name="content"></textarea>
+        </div>
+      </div>
+      <form id="file-form" method="POST">
+        <input type="file" id="file-select"/>
+        <button class="float-right" type="submit" id="upload-button">바꾸기</button>
+      </form>
+      <button class="float-right m-x-1" onclick="toggleEdit()">취소</button>
+      <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
+    </div>
+  </div>
+</div>
+<script src="./dist/index.bundle.js"></script>
+<script>
+  SERVER_BASE_URL  = "http://52.79.91.114:3000";
+  IMAGE_SERVER_URL = "http://52.78.27.108:3000";
+  DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
+  let session = "ygtech"
+</script>
+<script>
+  function toggleEdit(){
+    const editBox = document.querySelector(".logInRequired");
+    const editBtn = document.querySelector(".mkbEdit");
+    if (editBox.classList.contains("mkbShow")){
+      editBox.classList.remove("mkbShow");
+      editBtn.classList.remove("mkbHide");
+    } else {
+      editBox.classList.add("mkbShow");
+      editBtn.classList.add("mkbHide");
+    }
+  }
+
+  function setProfile(target) {
+    const profilePic = document.querySelector(".mkbImgPreview");
+    if (target === "clear"){
+      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+      document.querySelector("#file-form input").value = "";
+    } else {
+      profilePic.style.backgroundImage = "url('" + target + "')"
+    }
+  }
+</script>
 
 </body>
 </html>
