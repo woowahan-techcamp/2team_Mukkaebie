@@ -25,12 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
     StoreUtil.toggleMobileCategory();
   })
   // 모바일 카테고리 클릭시 카테고리 리스트 인젝트
-  let clickedMobileMenu = document.querySelector(".mobileCategory");
+  let clickedMobileMenu = document.querySelector(".mobileMenuWrapAll");
   clickedMobileMenu.addEventListener("click", function (e) {
     if (e.target.className !== "col-xs-4 mobileMenu") {
-      e.target = e.target.closest(".mobilekMenu");
+      e.target = e.target.closest(".mobileMenu");
     }
-    let categoryList = new StoreList(e.target.attributes.data.value);
+  StoreUtil.toggleMobileCategory();
+  let categoryList = new StoreList(e.target.attributes.data.value);
   });
 
 });

@@ -136,9 +136,89 @@ body {
 
 .mobileCategory {
   background: #000;
-  padding: 15px;
+  padding-top: 15px;
   display: none;
+  z-index: 1000;
+  margin-bottom: 50px;
+  font-family: 'Dotum', 'Nanum Gothic';
+  width: 100%;
+  float: left;
+  position: relative;
+  min-height: 1px;
 }
+
+.mobileCategoryShow {
+  display: block;
+}
+
+.mobileCategorySearch {
+  padding: 15px 10px;
+  background-color: #000;
+  border-bottom: 1px solid #212121;
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+}
+
+#mobileSearchBox {
+  height: 39px !important;
+  background-color: #393939;
+  box-shadow: none;
+  border: 0;
+  font-weight: normal;
+  display: table-cell;
+  width: 100%;
+  margin-bottom: 0;
+  line-height: 1.42857143;
+  color: #555;
+  vertical-align: middle;
+  padding: 6px 12px;
+  border-radius: 0;
+  font-size: 12px;
+  pointer-events:none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mobileSearchButton {
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+  box-sizing: border-box;
+  position: relative;
+  right: 25px;
+  pointer-events:none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  padding: 0 5px 0 0;
+  margin-top: -3px;
+  background: transparent url(https://img.woowahan.com/www/common/ico-srch-mobile.png) no-repeat right center;
+  background-size: 100% 100%;
+  text-indent: -9999px;
+  position: relative;
+  border-radius: 0;
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  user-select: none;
+}
+
 
 .mobileCategorySearch input {
   width: 100%;
@@ -154,9 +234,11 @@ body {
 }
 
 .mobileCategory .col-xs-4 {
-  padding: 15px 0px;
+  padding: 20px 0px;
   cursor: pointer;
-
+  border: solid #212121;
+  border-width: 0 1px 1px 0;
+  font-size: 85%;
 }
 
 .mobileCategory .col-xs-4:hover {
@@ -188,7 +270,7 @@ body {
 
 .storeStars {
   font-size: 11px;
-  margin-top: 5px
+  margin-top: 3px;
 }
 
 /* 메뉴 탭 관련 */
@@ -262,6 +344,24 @@ body {
   font-size: 11px;
 }
 
+.menuName {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-bottom: 1px solid #cccccc;
+}
+
+.menuPrice {
+  display: inline-block;
+  float: right;
+}
+
 .foldableLevel2 {
   padding: 0;
   background-color: #fff;
@@ -287,6 +387,12 @@ body {
 
 /* 업소상세 박스 */
 
+@media screen and (min-width: 768px){
+  .mobileCategory {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .storeSideAreaWrap {
     /*display: none;*/
@@ -301,11 +407,18 @@ body {
   }
 
   .storeTitleArea {
-    height: 105px;
+    height: 120px;
   }
-  .storeTitleArea > .float-left, .storeTitleArea > .float-right {
+  .storeTitleArea > .float-left {
     float: none;
     margin-left: 0;
+    padding-top: 5px;
+  }
+
+  .storeTitleArea > .float-right {
+    float: none;
+    margin-left: 0;
+    padding-top: 15px;
   }
 
   .mobileTitleArea {

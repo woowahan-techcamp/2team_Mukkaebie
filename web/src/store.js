@@ -95,10 +95,12 @@ class Foldable {
 
         /* Toggle between hiding and showing the active panel */
         let level2 = this.nextElementSibling;
-        if (level2.style.maxHeight === "1500px") {
-          level2.style.maxHeight = "0px";
-        } else {
-          level2.style.maxHeight = "1500px";
+        if (level2) {
+          if (level2.style.maxHeight === "1500px") {
+            level2.style.maxHeight = "0px";
+          } else {
+            level2.style.maxHeight = "1500px";
+          }
         }
       }
     }
@@ -150,14 +152,16 @@ class Review {
 
         renderTarget.innerHTML = "";
 
-        if (response[0].review.toString) {
+        if (response[0].review !== []) {
           response[0].review.reverse().forEach(function (oneReview) {
             const review = oneReview;
-            const userId = review.user;
-            const createdDate = review.time;
-            const reviewContent = review.content;
-            const orangeStar = "★".repeat(review.stars);
-            const greyStar = "★".repeat(5 - review.stars);
+            if (review) {
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = review.content;
+              const orangeStar = "★".repeat(review.stars);
+              const greyStar = "★".repeat(5 - review.stars);
+            }
             const tempGrab = document.querySelector("#reviewTemplate").text;
             const result = eval('`' + tempGrab + '`');
             renderTarget.innerHTML += result;
@@ -371,7 +375,33 @@ class MKBComment {
         document.querySelector("#commentTextInput").setAttribute("value", "");
       }.bind(this);
 
-    });
+
+  resetCart: function () {
+    let renderTarget = document.querySelector(".storeCartContent");
+    let cartTotalPrice = document.querySelector("#cartTotalPrice");
+    cartTotalPrice.innerText = 0;
+    cartTotalPrice.value = 0;
+    renderTarget.innerHTML = "";
+    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
+      cb.checked = false
+    })
+    Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
+      fb.click()
+    })
+  },
+
+  toggleMobileCategory: function () {
+    let x = document.querySelector('.mobileCategory');
+    let btn = document.querySelector(".mobileTitleButton");
+    if (btn.classList.contains("unfolded")) {
+      x.classList.remove("mobileCategoryShow");
+      // x.style.display = 'none';
+      btn.classList.remove("unfolded");
+    } else {
+      // x.style.display = 'block';
+      x.classList.add("mobileCategoryShow");
+      btn.classList.add("unfolded");
+    }
   }
 }
 
@@ -443,6 +473,7 @@ class Graph {
         let top5 = items.slice(0, 5);
 
 
+        let datetimeContent = '';
         let circleContent = '';
         let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
         let total = 0;
@@ -460,19 +491,89 @@ class Graph {
         for (let i = 0; i < top5.length; i++) {
           share = Number(top5[i].toString().split(',')[1]) / total * 100;
           reverse = 100 - share;
-          circleContent += '<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="' + colorArr[i] + '" stroke-width="8" stroke-dasharray="' + share + ' ' + reverse + '" stroke-dashoffset="' + offset + '">';
-          circleContent += '<title class="donut-segment-title">' + top5[i].toString().split(',')[0] + '</title>';
-          circleContent += '</circle>';
+          circleContent +=
+              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">`;
+          circleContent +=
+              `<title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>`;
+          circleContent += `</circle>`;
 
           labelText[i] = '';
           labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
           totalLength = totalLength + share;
-          offset = 100 - totalLength + 25;
+          offset = (100 - totalLength + 25) % 100;
           if (i == 4) {
             labelText[5].innerHTML = '';
             labelText[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
         }
+
+        let oldCircle = document.getElementsByClassName('donut-segment');
+        let circleArr = Array.from(oldCircle);
+
+        function clear() {
+          let elems = document.querySelectorAll(".donut-segment");
+          for (let i = elems.length - 1; i >= 0; i--) {
+            let parent = elems[i].parentNode;
+            parent.removeChild(elems[i]);
+          }
+        }
+
+        clear();
+
+        Date.prototype.format = function (f) {
+          if (!this.valueOf()) return " ";
+
+          let weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+          let date = this;
+          let hour = '';
+
+          return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function ($1) {
+            switch ($1) {
+              case "yyyy":
+                return date.getFullYear();
+              case "yy":
+                return (date.getFullYear() % 1000).zf(2);
+              case "MM":
+                return (date.getMonth() + 1).zf(2);
+              case "dd":
+                return date.getDate().zf(2);
+              case "E":
+                return weekName[date.getDay()];
+              case "hh":
+                return ((hour = date.getHours() % 12) ? hour : 12).zf(2);
+              case "mm":
+                return date.getMinutes().zf(2);
+              case "ss":
+                return date.getSeconds().zf(2);
+              case "a/p":
+                return date.getHours() < 12 ? "오전" : "오후";
+              default:
+                return $1;
+            }
+          });
+        };
+
+        String.prototype.string = function (len) {
+          var s = '', i = 0;
+          while (i++ < len) {
+            s += this;
+          }
+          return s;
+        };
+        String.prototype.zf = function (len) {
+          return "0".string(len - this.length) + this;
+        };
+        Number.prototype.zf = function (len) {
+          return this.toString().zf(len);
+        };
+
+
+        let datetime = new Date().format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초 기준");
+
+        datetimeContent = `${datetime}`;
+        let dateTarget = document.querySelector('.dateTab');
+        dateTarget.innerHTML = datetimeContent;
+
 
         let svg = document.querySelector('svg');
         svg.insertAdjacentHTML('beforeend', circleContent);
@@ -559,7 +660,9 @@ class StoreList {
           const storeImg = store.storeImg;
           const storeName = store.storeName;
           const address = store.address;
-          const reviewCount = store.review.length;
+          if(store.review) {
+            const reviewCount = store.review.length;
+          }
           const ratingCount = store.ratingCount;
           const ratingValue = store.ratingValue * 20;
           const tempGrab = document.querySelector("#storeListTemplate").text;
@@ -665,7 +768,7 @@ class StoreList {
 
           if (!scrollTimer) {
             if (now - lastScrollFireTime > (3 * minScrollTime)) {
-              processScroll();   // fire immediately on first scroll
+              processScroll();
               lastScrollFireTime = now;
             }
             scrollTimer = setTimeout(function () {
@@ -713,6 +816,7 @@ class StoreInfo {
 
     const storeName = info.storeName;
     const address = info.address;
+    const ratingValue = info.ratingValue * 20;
     const ratingCount = info.ratingCount;
     const minPrice = info.minPrice;
     const openHour = info.openHour;

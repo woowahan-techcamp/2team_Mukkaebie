@@ -50,7 +50,24 @@
   float: left
 }
 
+.storeCardGreyStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  width: 94px;
+  background-position: 0 0;
+  box-sizing: border-box;
+  height: 16px;
+  float: left;
+  margin-right: 5px;
+}
+
 .storeCardStars .storeCardOrangeStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  height: 100%;
+  display: block;
+  background-position: 0 -17px
+}
+
+.storeCardOrangeStar {
   background-image: url('https://img.woowahan.com/www/common/img-star.png');
   height: 100%;
   display: block;
