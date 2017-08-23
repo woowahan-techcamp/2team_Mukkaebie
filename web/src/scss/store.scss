@@ -1,6 +1,11 @@
 @import './variables';
 
 /*페이지 레이아웃*/
+
+body {
+  -webkit-transform:translate3d(0,0,0);
+}
+
 .storeLayout {
   max-width: 960px;
   margin: 50px auto 300px auto;
@@ -38,6 +43,27 @@
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
+
+.fadeIn > img {
+  animation: fadeInImage 1.5s;
+  animation-fill-mode: forwards;
+  -webkit-backface-visibility: hidden;
+}
+
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+
 
 @-webkit-keyframes sk-rotateplane {
   0% {

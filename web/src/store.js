@@ -97,10 +97,10 @@ class Foldable {
 
         /* Toggle between hiding and showing the active panel */
         let level2 = this.nextElementSibling;
-        if (level2.style.maxHeight === "1000px") {
+        if (level2.style.maxHeight === "1500px") {
           level2.style.maxHeight = "0px";
         } else {
-          level2.style.maxHeight = "1000px";
+          level2.style.maxHeight = "1500px";
         }
       }
     }
@@ -151,17 +151,20 @@ class Review {
         const response = JSON.parse(this.responseText);
         const renderTarget = document.querySelector("#reviewList");
         renderTarget.innerHTML = "";
-        response[0].review.reverse().forEach(function (oneReview) {
-          const review = oneReview;
-          const userId = review.user;
-          const createdDate = review.time;
-          const reviewContent = review.content;
-          const orangeStar = "★".repeat(review.stars);
-          const greyStar = "★".repeat(5 - review.stars);
-          const tempGrab = document.querySelector("#reviewTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        })
+
+        if (response[0].review.toString) {
+          response[0].review.reverse().forEach(function (oneReview) {
+            const review = oneReview;
+            const userId = review.user;
+            const createdDate = review.time;
+            const reviewContent = review.content;
+            const orangeStar = "★".repeat(review.stars);
+            const greyStar = "★".repeat(5 - review.stars);
+            const tempGrab = document.querySelector("#reviewTemplate").text;
+            const result = eval('`' + tempGrab + '`');
+            renderTarget.innerHTML += result;
+          })
+        }
       }
     };
     xhttp.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
@@ -213,9 +216,10 @@ class MKBComment {
         const renderTarget = document.querySelector("#commentList");
         renderTarget.innerHTML = "";
         const targetArr = response[0].mkb;
-        console.log(targetArr[targetArr.length - 1]);
 
-        renderContent(targetArr[targetArr.length - 1]);
+        if (targetArr) {
+          renderContent(targetArr[targetArr.length - 1]);
+        }
 
         function renderContent(oneComment) {
           const comment = oneComment;
@@ -511,9 +515,17 @@ class StoreList {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
 
-        const layoutTarget = document.querySelector(".storeLayout");
-        layoutTarget.innerHTML = '<div class="m-x-3 m-b-2">홈 >	피자|서울 송파구 잠실4동을 중심으로	총 71곳을 찾았습니다.</div><div class="col-xs-12 storeCardRow"></div><div class="load-button">더보기</div><div class="spinner" style="display: none"></div>';
         const response = JSON.parse(this.responseText);
+        const layoutTarget = document.querySelector(".storeLayout");
+        const category = response[0].category;
+        const storeCount = response.length;
+        layoutTarget.innerHTML =
+            `<div class="m-x-3 m-b-2">
+                홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
+            </div>
+            <div class="col-xs-12 storeCardRow"></div>
+            <div class="load-button">더보기</div>
+            <div class="spinner" style="display: none"></div>`;
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
         let size = 30;
@@ -524,6 +536,9 @@ class StoreList {
           const storeImg = store.storeImg;
           const storeName = store.storeName;
           const address = store.address;
+          const reviewCount = store.review.length;
+          const ratingCount = store.ratingCount;
+          const ratingValue = store.ratingValue * 20;
           const tempGrab = document.querySelector("#storeListTemplate").text;
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
@@ -537,6 +552,13 @@ class StoreList {
         }
 
         loadMoreButton.addEventListener('click', function () {
+          let fadeInTarget = document.querySelectorAll('.fadeIn');
+          let index = 0;
+          let targetArr = [...fadeInTarget];
+          targetArr.forEach(function () {
+            targetArr[index].classList.remove("fadeIn");
+            index++;
+          });
           let result = '';
           size = 30;
           console.log(size);
@@ -546,6 +568,9 @@ class StoreList {
             const storeImg = store.storeImg;
             const storeName = store.storeName;
             const address = store.address;
+            const reviewCount = store.review.length;
+            const ratingCount = store.ratingCount;
+            const ratingValue = store.ratingValue * 20;
             const tempGrab = document.querySelector("#storeListTemplate").text;
             result += eval('`' + tempGrab + '`');
           });
@@ -576,6 +601,13 @@ class StoreList {
             let yOffset = window.pageYOffset;
             let y = yOffset + 300;
             if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
+              let fadeInTarget = document.querySelectorAll('.fadeIn');
+              let index = 0;
+              let targetArr = [...fadeInTarget];
+              targetArr.forEach(function () {
+                targetArr[index].classList.remove("fadeIn");
+                index++;
+              });
               let result = '';
               if (size !== 30 && size <= response.length) {
                 response.slice(size, size = size + 30).forEach(function (oneStore) {
@@ -584,6 +616,9 @@ class StoreList {
                   const storeImg = store.storeImg;
                   const storeName = store.storeName;
                   const address = store.address;
+                  const reviewCount = store.review.length;
+                  const ratingCount = store.ratingCount;
+                  const ratingValue = store.ratingValue * 20;
                   const tempGrab = document.querySelector("#storeListTemplate").text;
                   result += eval('`' + tempGrab + '`');
                 });
@@ -610,7 +645,7 @@ class StoreList {
               processScroll();   // fire immediately on first scroll
               lastScrollFireTime = now;
             }
-            scrollTimer = setTimeout(function() {
+            scrollTimer = setTimeout(function () {
               scrollTimer = null;
               lastScrollFireTime = new Date().getTime();
               processScroll();
@@ -618,6 +653,7 @@ class StoreList {
           }
 
         });
+
 
         let clickedStore = document.querySelector(".storeCardRow");
 
@@ -666,6 +702,7 @@ class StoreInfo {
 
     for (let categoryKey in menuObj) {
       const menuArr = menuObj[categoryKey];
+      menuUnits = '';
       for (let menuKey in menuArr) {
         const menuName = menuKey;
         const menuPrice = menuArr[menuKey];

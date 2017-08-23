@@ -76,24 +76,24 @@
 
   <div class="col-xs-4">
     <div class="storeCard" id="${storeId}">
-      <div class="storeCardLeft">
+      <div class="storeCardLeft fadeIn">
         <img src=${storeImg}>
       </div>
       <div class="storeCardRight">
         <div class="storeCardTitle">${storeName}</div>
         <div class="storeCardStars">
                     <span class="storeCardGreyStar">
-                        <span class="storeCardOrangeStar"></span>
+                        <span class="storeCardOrangeStar" style="width:${ratingValue}%"></span>
                     </span>
         </div>
         <div class="storeCardAddress">
           ${address}
         </div>
         <div class="storeCardReviewSection">
-          <span class="storeCardReviewKey">리뷰</span>
-          <span class="storeCardReviewValue">11</span>
-          <span class="storeCardReviewKey">사장님 댓글</span>
-          <span class="storeCardReviewValue">11</span>
+          <span class="storeCardReviewKey">리뷰수</span>
+          <span class="storeCardReviewValue">${reviewCount}</span>
+          <span class="storeCardReviewKey">주문수</span>
+          <span class="storeCardReviewValue">${ratingCount}</span>
         </div>
         <div class="storeCardLabel">
           <span>바로결제</span>
@@ -476,7 +476,7 @@
 </div>
 <script src="./dist/index.bundle.js"></script>
 <script>
-  SERVER_BASE_URL = "http://13.124.10.251:3000"
+  SERVER_BASE_URL = "http://52.79.91.114:3000";
 </script>
 </body>
 </html>
