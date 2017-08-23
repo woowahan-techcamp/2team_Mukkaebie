@@ -1,7 +1,7 @@
-import {
-  StoreList,
-  StoreUtil,
-} from './store.js'
+
+
+import {StoreList} from './js/StoreList.js';
+
 
 import style from './scss/main.scss';
 
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
   StoreUtil.toggleMobileCategory();
   let categoryList = new StoreList(e.target.attributes.data.value);
   });
-
 });
 
 
