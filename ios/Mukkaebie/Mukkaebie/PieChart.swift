@@ -86,12 +86,19 @@ class PieChartView: UIView {
             
             //setting the button
             let buttonAttributes : [String: Any] = [
-                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 15),
+                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 16),
                 NSForegroundColorAttributeName : UIColor.init(hexString: "333333"),
                 NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
             
-            button.isEnabled = true
+            if segment.title.contains("기타") == true {
+                button.isEnabled = false
+            } else {
+                button.isEnabled = true
+            }
+            
             button.isUserInteractionEnabled = true
+            button.isHighlighted = true
+            button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)
             
             let attributeString = NSMutableAttributedString(string: segment.title, attributes: buttonAttributes)
             button.setAttributedTitle(attributeString, for: .normal)
