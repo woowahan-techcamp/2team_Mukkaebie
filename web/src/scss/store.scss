@@ -376,6 +376,16 @@
 }
 
 /* 먹깨비 코멘트 관련 */
+.mkbCommentOutside{
+  height: 100px;
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top:0;
+  z-index: 100;
+}
+
 #file-form input {
   color:#fff;
 }
@@ -445,6 +455,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
+  border: 10px solid #1abcaa;
 }
 
 @-webkit-keyframes rain {
@@ -532,7 +543,7 @@
   color: #ead679;
   left: 32%;
   z-index: 30;
-  height: 100%;
+  height: 90%;
   width: 34%;
 }
 
