@@ -420,6 +420,7 @@ class Graph {
         let top5 = items.slice(0, 5);
 
 
+        let datetimeContent = '';
         let circleContent = '';
         let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
         let total = 0;
@@ -458,7 +459,7 @@ class Graph {
 
         function clear() {
           let elems = document.querySelectorAll(".donut-segment");
-          for (let i=elems.length-1; i >= 0; i--) {
+          for (let i = elems.length - 1; i >= 0; i--) {
             let parent = elems[i].parentNode;
             parent.removeChild(elems[i]);
           }
@@ -466,9 +467,62 @@ class Graph {
 
         clear();
 
+        Date.prototype.format = function (f) {
+          if (!this.valueOf()) return " ";
+
+          let weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+          let date = this;
+          let hour = '';
+
+          return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function ($1) {
+            switch ($1) {
+              case "yyyy":
+                return date.getFullYear();
+              case "yy":
+                return (date.getFullYear() % 1000).zf(2);
+              case "MM":
+                return (date.getMonth() + 1).zf(2);
+              case "dd":
+                return date.getDate().zf(2);
+              case "E":
+                return weekName[date.getDay()];
+              case "hh":
+                return ((hour = date.getHours() % 12) ? hour : 12).zf(2);
+              case "mm":
+                return date.getMinutes().zf(2);
+              case "ss":
+                return date.getSeconds().zf(2);
+              case "a/p":
+                return date.getHours() < 12 ? "오전" : "오후";
+              default:
+                return $1;
+            }
+          });
+        };
+
+        String.prototype.string = function (len) {
+          var s = '', i = 0;
+          while (i++ < len) {
+            s += this;
+          }
+          return s;
+        };
+        String.prototype.zf = function (len) {
+          return "0".string(len - this.length) + this;
+        };
+        Number.prototype.zf = function (len) {
+          return this.toString().zf(len);
+        };
+
+
+        let datetime = new Date().format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초 기준");
+
+        datetimeContent = `${datetime}`;
+        let dateTarget = document.querySelector('.dateTab');
+        dateTarget.innerHTML = datetimeContent;
+
 
         let svg = document.querySelector('svg');
-
         svg.insertAdjacentHTML('beforeend', circleContent);
 
       }
@@ -659,7 +713,7 @@ class StoreList {
 
           if (!scrollTimer) {
             if (now - lastScrollFireTime > (3 * minScrollTime)) {
-              processScroll();   // fire immediately on first scroll
+              processScroll();
               lastScrollFireTime = now;
             }
             scrollTimer = setTimeout(function () {
