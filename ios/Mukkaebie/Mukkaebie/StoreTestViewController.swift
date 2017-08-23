@@ -14,9 +14,6 @@ class StoreTestViewController: UIViewController {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
         
-        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
-        mukkaebieVC?.modelStore = self.modelStore
-        
         return mukkaebieVC
     }()
     
@@ -24,33 +21,12 @@ class StoreTestViewController: UIViewController {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
         
-        if (self.modelStore?.menu.count)! > 0 {
-        let menu = (self.modelStore?.menu)![0]
-            for (title, submenu) in menu {
-                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
-                menuRankVC?.items.append(item)
-                var menu : [(key: String, value: String)] = []
-                for (name, price) in submenu {
-                    menu.append((key: name, value: price))
-                }
-                menuRankVC?.menus.append(menu)
-            }
-        }
-        
-        menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
-        menuRankVC?.modelStore = self.modelStore
-        
         return menuRankVC
     }()
     
     lazy var infoVC : InfoViewController? = {
         let storyboard = UIStoryboard(name: "Info", bundle: nil)
         let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
-        
-        infoVC?.introText = self.modelStore?.storeDesc
-        infoVC?.openHourText = self.modelStore?.openHour
-        infoVC?.telephoneText = self.modelStore?.telephone
-        infoVC?.nameText = self.modelStore?.name
 
         return infoVC
     }()
@@ -62,6 +38,7 @@ class StoreTestViewController: UIViewController {
         return reviewVC
     }()
     
+    var storeId = Int()
     var modelStore : ModelStores?
     let networkStore = NetworkStore()
     
@@ -98,16 +75,13 @@ class StoreTestViewController: UIViewController {
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1
         
-        initMenuArray()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(getStore(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
-        self.networkStore.getStoreList(sellerId: (modelStore?.id)!)
-        self.networkOrder.getOrderList(sellerId: (modelStore?.id)!)
+        self.networkStore.getStoreList(sellerId: storeId)
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,7 +89,37 @@ class StoreTestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getStore(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
+        self.modelStore = storeInfo[0]
+        
+        mukkaebieVC?.modelStore = self.modelStore
+        menuRankVC?.modelStore = self.modelStore
+        infoVC?.introText = self.modelStore?.storeDesc
+        infoVC?.openHourText = self.modelStore?.openHour
+        infoVC?.telephoneText = self.modelStore?.telephone
+        infoVC?.nameText = self.modelStore?.name
+        
+        initMenuArray()
+        
+        self.networkOrder.getOrderList(sellerId: storeId)
+        tableView.reloadData()
+    }
+    
     func initMenuArray() {
+        if (self.modelStore?.menu.count)! > 0 {
+            let menu = (self.modelStore?.menu)![0]
+            for (title, submenu) in menu {
+                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
+                menuRankVC?.items.append(item)
+                var menu : [(key: String, value: String)] = []
+                for (name, price) in submenu {
+                    menu.append((key: name, value: price))
+                }
+                menuRankVC?.menus.append(menu)
+            }
+        }
         initOrderByMenu()
         initPriceByMenu()
     }
@@ -144,16 +148,6 @@ class StoreTestViewController: UIViewController {
         }
     }
     
-    func getStore(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
-        self.modelStore = storeInfo[0]
-        mukkaebieVC?.modelStore = self.modelStore
-        menuRankVC?.modelStore = self.modelStore
-        initMenuArray()
-        tableView.reloadData()
-    }
-    
     func getOrderList(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
@@ -161,6 +155,8 @@ class StoreTestViewController: UIViewController {
         
         getOrderByMenu()
         getOrderByUser()
+        let indexPath = IndexPath(row: 0, section: 3)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func getOrderByMenu() {
@@ -183,12 +179,10 @@ class StoreTestViewController: UIViewController {
             orderByMenuSorted.append((key: "기타", value: count))
         }
         
+        menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
+        
         if (menuRankVC?.pieChartView != nil) {
-            menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
             menuRankVC?.setSegment()
-            
-            let indexPath = IndexPath(row: 0, section: 3)
-            tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
@@ -208,13 +202,10 @@ class StoreTestViewController: UIViewController {
         }
     
         mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
-        
-        let indexPath = IndexPath(row: 0, section: 3)
-        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func postOrder(_ notification: Notification) {
-        self.networkOrder.getOrderList(sellerId: (self.modelStore?.id)!)
+        self.networkOrder.getOrderList(sellerId: storeId)
     }
     
     func changeTab(_ notification: Notification) {
@@ -304,6 +295,9 @@ extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if modelStore == nil {
+            return 0
+        }
         return 4
     }
     
@@ -354,6 +348,9 @@ extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if modelStore == nil {
+            return 0
+        }
         switch tabNumber {
         case 0:
             return (mukkaebieVC?.view.frame.height)!

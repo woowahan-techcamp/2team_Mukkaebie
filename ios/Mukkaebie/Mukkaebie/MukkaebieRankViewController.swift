@@ -52,8 +52,7 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if self.firstBottomConstraint.constant < 0 {
+        if firstMukkaebieImage.image == nil && secondMukkaebieImage.image == nil && thirdMukkaebieImage.image == nil{
             var count = 0
             for user in orderByUserTop3 {
                 for mkb in (modelStore?.mkb)! {
@@ -63,6 +62,14 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                             if mkb["imgUrl"] != nil {
                                 firstMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                             }
+                        case 1:
+                            if mkb["imgUrl"] != nil {
+                                secondMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
+                        case 3:
+                            if mkb["imgUrl"] != nil {
+                                thirdMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
                         default:
                             break
                         }
@@ -70,7 +77,9 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                 }
                 count += 1
             }
-            
+        }
+        
+        if self.firstBottomConstraint.constant < 0 {
             UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.firstBottomConstraint.constant += self.firstAward.frame.height
                 self.view.layoutSubviews()
