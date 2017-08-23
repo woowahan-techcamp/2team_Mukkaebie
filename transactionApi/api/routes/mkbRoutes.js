@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.route('/users/delete')
     .post(mkb.delete_a_user);
 
-  app.route('/users/:userId')
+  app.route('/users/cf/:userId')
     .get(mkb.read_a_user)
     .post(mkb.update_a_user);
 
