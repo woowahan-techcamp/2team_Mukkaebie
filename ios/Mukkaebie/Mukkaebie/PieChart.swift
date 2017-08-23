@@ -168,7 +168,7 @@ class PieChartView: UIView {
             
             // move to the center of the pie chart
             //ctx?.move(to: viewCenter)
-            ctx?.addArc(center: viewCenter, radius: 0.5 * radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
+            ctx?.addArc(center: viewCenter, radius: 0.45 * radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
             // add arc from the center for each segment (anticlockwise is specified for the arc, but as the view flips the context, it will produce a clockwise arc)
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
@@ -181,9 +181,8 @@ class PieChartView: UIView {
     }
     
     func buttonAction(sender: UIButton!) {
-        let cartVC = UIStoryboard(name:"CartPayment", bundle:nil).instantiateViewController(withIdentifier: "Cart") as? CartPaymentViewController
         
-        //        self.navigationController?.pushViewController(cartVC, animated:true)
+        
         
     }
 }
