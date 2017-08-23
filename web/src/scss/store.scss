@@ -308,11 +308,18 @@ body {
   }
 
   .storeTitleArea {
-    height: 105px;
+    height: 120px;
   }
-  .storeTitleArea > .float-left, .storeTitleArea > .float-right {
+  .storeTitleArea > .float-left {
     float: none;
     margin-left: 0;
+    padding-top: 5px;
+  }
+
+  .storeTitleArea > .float-right {
+    float: none;
+    margin-left: 0;
+    padding-top: 15px;
   }
 
   .mobileTitleArea {
