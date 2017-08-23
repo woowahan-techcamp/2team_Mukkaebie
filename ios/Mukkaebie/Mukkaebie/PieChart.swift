@@ -96,6 +96,10 @@ class PieChartView: UIView {
                 button.isEnabled = true
             }
             
+            if segment.title == nil {
+                button.isHidden = true
+            }
+                        
             button.isUserInteractionEnabled = true
             button.isHighlighted = true
             button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)

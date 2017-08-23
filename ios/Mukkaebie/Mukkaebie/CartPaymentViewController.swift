@@ -82,10 +82,13 @@ class CartPaymentViewController: UIViewController {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
-        let image = #imageLiteral(resourceName: "750x1334_merge_alpha.png")
+        let image = #imageLiteral(resourceName: "finishedOrder")
         alertController.addimage(image: image)
         alertController.view.tintColor = UIColor.black
+        alertController.view.backgroundColor = UIColor.white
+        alertController.view.clipsToBounds = false
         alertController.viewWillLayoutSubviews()
+        
         alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
             self.dismiss(animated: true, completion: nil)
             self.networkOrder.postOrder(sellderId: self.modelStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])

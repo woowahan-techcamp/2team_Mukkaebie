@@ -56,6 +56,7 @@ extension UIAlertController {
     }
     
     func oneButtonAlert(target: UIViewController, title: String, message: String, isHandler: Bool) {
+        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "완료", style: .default, handler: { (_) in
             if isHandler {
