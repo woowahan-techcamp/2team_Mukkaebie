@@ -225,7 +225,7 @@ circle {
     animation-name: goldNameHeightUp;
     animation-duration: 4s;
     animation-fill-mode: forwards;
-    height: 100%;
+
 }
 
 .silverAnimate  {
@@ -291,10 +291,10 @@ circle {
 
 @keyframes goldNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 303px;
+        bottom: 0;
     }
 }
 
@@ -351,10 +351,10 @@ circle {
 
 @keyframes bronzeNameHeightUp {
     from {
-        bottom: -200px;
+        bottom: -400px;
     }
     to {
-        bottom: 160px;
+        bottom: 0;
     }
 }
 

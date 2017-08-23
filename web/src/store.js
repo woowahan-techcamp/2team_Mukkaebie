@@ -174,9 +174,86 @@ class Review {
 
 class MKBComment {
 
-  constructor(id) {
-    this.getComment(id);
+  constructor(id, top3List) {
+    this.makeMKBModal();
+    this.getComment(id, top3List);
     this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id));
+  }
+
+  makeMKBModal () {
+
+    let modal = document.querySelector('#mkbModal');
+    let modalBtn = document.querySelector(".silverImg");
+    let closeBtn = document.querySelector(".mkbModalClose");
+
+    modalBtn.addEventListener("click", function () {
+      modal.style.display = "block";
+      setTimeout(function () {
+        modal.style.opacity = "1";
+      }, 200)
+    });
+    closeBtn.addEventListener("click", function(){
+      modal.style.opacity = "0";
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 200)
+    });
+  }
+
+  getComment(id, top3List) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        console.log(response)
+        const renderTarget = document.querySelector("#mkbComment");
+        const targetArr = response[0].mkb;
+        console.log("targetArr",targetArr);
+
+        let finalMkbList = [];
+
+        top3List.forEach(function (topBuyer) {
+          console.log("topBuyer", topBuyer);
+
+          let oneBuyer = targetArr.filter(function(mkbRow){
+            console.log("mkbRow", mkbRow.userId);
+            console.log("topBuyer", topBuyer);
+            console.log("==", mkbRow.userId == topBuyer);
+            return mkbRow.userId == topBuyer;
+          });
+          console.log("oneBuyer", oneBuyer);
+          if ( oneBuyer.length > 0){
+            finalMkbList.push(oneBuyer[oneBuyer.length-1]);
+          }
+
+        });
+        console.log("finalMkbList", finalMkbList);
+        let mkbLevelList = [ "gold","silver","bronze" ];
+        finalMkbList.forEach(function (topBuyer, idx) {
+          if (topBuyer != undefined){
+            renderContent(topBuyer, mkbLevelList[idx]);
+          }
+        });
+
+        function renderContent(oneComment, mkbLevel) {
+          const comment = oneComment;
+          console.log("comment", comment);
+          // const userId = comment.userId;
+          // const time = comment.time;
+          // const mkbComment = comment.mkbComment;
+          // const tempGrab = document.querySelector("#commentTemplate").text;
+          // const result = eval('`' + tempGrab + '`');
+          // renderTarget.innerHTML += result;
+
+          // const profilePic = document.querySelector(".mkbImgPreview");
+          const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
+          // profilePic.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
+          profilePicSmall.style.backgroundImage = "url('" + comment['mkbPicUrl'] + "')";
+        }
+      }
+    };
+    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+    xhr.send();
   }
 
 
@@ -248,41 +325,6 @@ class MKBComment {
 
     });
   }
-
-  getComment(id) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        console.log(response)
-        const renderTarget = document.querySelector("#mkbComment");
-        const targetArr = response[0].mkb;
-        if (targetArr != undefined) {
-          renderTarget.innerHTML = "";
-          renderContent(targetArr[targetArr.length - 1]);
-        }
-        function renderContent(oneComment) {
-          const comment = oneComment;
-          const userId = comment.userId;
-          const time = comment.time;
-          const mkbComment = comment.mkbComment;
-          const tempGrab = document.querySelector("#commentTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-
-          const profilePic = document.querySelector(".mkbImgPreview");
-          const profilePicSmall = document.querySelector(".silverImg");
-          profilePic.style.backgroundImage = "url('" + comment.imgUrl + "')"
-          profilePicSmall.style.backgroundImage = "url('" + comment.imgUrl + "')"
-        }
-
-
-      }
-    };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-    xhr.send();
-  }
-
 }
 
 
@@ -416,16 +458,18 @@ class Graph {
         });
 
         let top3 = items.slice(0, 3);
-
+        console.log(top3);
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
-
+        let top3UserList = [];
         for (let i = 0; i < top3.length; i++) {
           let name = top3[i].toString().split(",")[0];
           let order = top3[i].toString().split(",")[1];
+          top3UserList.push(name);
           // top3_name[i].innerHTML = name;
           // top3_order[i].innerHTML = order;
         }
+        let mkb = new MKBComment(storeId, top3UserList);
       }
     }
     xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
@@ -531,18 +575,16 @@ class StoreInfo {
           selectedContentName: "selectedContent",
           generalTabName: "storeTab",
           generalContentPrefix: "#cont-",
-          baseUrl: "",
+          baseUrl: ""
         }
     );
     let graph = new Graph(storeId);
-    // let comment = new MKBComment(storeId);
     let review = new Review(storeId);
     let foldable = new Foldable("foldableLevel1");
     StoreUtil.makeOrder(storeId);
     StoreUtil.makeModal();
-    StoreUtil.makeMKBModal();
     let cart = new Cart();
-    let mkb = new MKBComment(storeId);
+
   }
 
   getStoreInfo(id) {
@@ -634,26 +676,6 @@ let StoreUtil = {
     })
   },
 
-  makeMKBModal: function () {
-    //모달
-    let modal = document.querySelector('#mkbModal');
-    let modalBtn = document.querySelector(".silverImg");
-    let closeBtn = document.querySelector(".mkbModalClose");
-
-    modalBtn.addEventListener("click", function () {
-      modal.style.display = "block";
-      setTimeout(function () {
-        modal.style.opacity = "1";
-      }, 200)
-    });
-    closeBtn.addEventListener("click", function(){
-      modal.style.opacity = "0";
-      setTimeout(function () {
-        modal.style.display = "none";
-      }, 200)
-    });
-  },
-
   makeModal: function () {
     //모달
     let modal = document.querySelector('#orderModal');
@@ -686,7 +708,7 @@ let StoreUtil = {
 
       let cartContent = Array.from(document.querySelector(".storeCartContent").children);
 
-      let menuList = []
+      let menuList = [];
 
       cartContent.forEach(function (item) {
 
