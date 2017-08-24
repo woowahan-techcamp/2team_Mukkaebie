@@ -1,5 +1,5 @@
 
-import StoreUtil from "./Util.js"
+
 
 
 
@@ -19,8 +19,7 @@ export class Login {
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           const res = JSON.parse(this.responseText);
-          resolve(res[0])
-        }
+          resolve(res[0])}
       };
       xhttp.open("GET", SERVER_BASE_URL + "/users/cf/" + userId["userId"], true);
       xhttp.send();
@@ -59,7 +58,8 @@ export class Login {
   }
 
   failLogin(msg){
-    alert(msg)
+    alert("아이디나 비밀번호를 확인해 주세요");
+    const newLogin = new Login();
   }
 
 
