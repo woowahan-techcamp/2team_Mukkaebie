@@ -10,28 +10,23 @@ import Foundation
 import UIKit
 
 struct Segment {
-    // the color of a given segment
     var color: UIColor
-    
-    // the value of a given segment – will be used to automatically calculate a ratio
     var value: CGFloat
-    
-    // the title of given segment
     var title: String
+    var price: String
 }
 
 class PieChartView: UIView {
     
-    /// An array of structs representing the segments of the pie chart
     var segments = [Segment]() {
         didSet {
-            setNeedsDisplay() // re-draw view when the values get set
+            setNeedsDisplay()
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        isOpaque = false // when overriding drawRect, you must specify this to maintain transparency.
+        isOpaque = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,16 +36,16 @@ class PieChartView: UIView {
     override func draw(_ rect: CGRect) {
         
         //padding for view
-        let padding: CGFloat = 38
+        let padding: CGFloat = 25
         
         // height for title
-        let titleHeight: CGFloat = 20
+        let titleHeight: CGFloat = 15
         
         //array for titleView
         var titleViews : [UIView] = []
         
         //add first titleView
-        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
+        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 15)))
         
         //x position of composition
         var compX: CGFloat = 0
@@ -70,7 +65,7 @@ class PieChartView: UIView {
             }
             
             //make color rectangle
-            let colorRect = CGRect(x: compX, y: 3 + titleHeight * CGFloat(titleViewsCount), width: 9, height: 9)
+            let colorRect = CGRect(x: compX, y: 5 + titleHeight * CGFloat(titleViewsCount), width: 10, height: 10)
             
             //setting the view for rectangle
             let rectView = UIView(frame: colorRect)
@@ -90,13 +85,25 @@ class PieChartView: UIView {
             }
             
             //setting the button
-            button.isEnabled = true
-            button.isUserInteractionEnabled = true
+            let buttonAttributes : [String: Any] = [
+                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 16),
+                NSForegroundColorAttributeName : UIColor.init(hexString: "333333"),
+                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
             
-            button.setTitle(segment.title, for: .normal)
-            button.setTitleColor(UIColor(white: 136/255, alpha: 1), for: .normal)
+            if segment.title.contains("기타") == true {
+                button.isEnabled = false
+            } else {
+                button.isEnabled = true
+            }
+            
+            button.isUserInteractionEnabled = true
+            button.isHighlighted = true
+            button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)
+            
+            let attributeString = NSMutableAttributedString(string: segment.title, attributes: buttonAttributes)
+            button.setAttributedTitle(attributeString, for: .normal)
+            button.setTitleColor(UIColor(hexString: "333333"), for: .normal)
 
-            button.titleLabel?.font = UIFont(name: "BMHANNA11yrsoldOTF", size: 15)
             
             //if text is not over the width of frame, then manipulate the size of button to fit the size of it's content
             if !overWidth {
@@ -149,7 +156,6 @@ class PieChartView: UIView {
         // enumerate the total value of the segments by using reduce to sum them
         let valueCount = segments.reduce(0, {$0 + $1.value})
         
-        // the starting angle is -90 degrees (top of the circle, as the context is flipped). By default, 0 is the right hand side of the circle, with the positive angle being in an anti-clockwise direction (same as a unit circle in maths).
         var startAngle = -CGFloat.pi * 0.5
         
         for segment in segments { // loop through the values array
@@ -162,8 +168,8 @@ class PieChartView: UIView {
             
             // move to the center of the pie chart
             //ctx?.move(to: viewCenter)
-            ctx?.addArc(center: viewCenter, radius: 0.5*radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
-            // add arc from the center for each segment (anticlockwise is specified for the arc, but as the view flips the context, it will produce a clockwise arc)
+            ctx?.addArc(center: viewCenter, radius: 0.45 * radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
+
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
             // fill segment
@@ -174,8 +180,41 @@ class PieChartView: UIView {
         }
     }
     
-    func buttonAction(sender: UIButton!) {
+    func titleClick(title : String)  {
         
+        let cartStoryboard = UIStoryboard(name: "CartPayment", bundle: nil)
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "Cart") as! CartPaymentViewController
+        let currentController = self.getCurrentViewController()
+        var titleArray = title.components(separatedBy: " ")
+        titleArray.removeLast()
+        let titleString = titleArray.reduce(" ") { $0 + $1 }
+        var menuPriceString = String()
+        for segment in segments {
+            if title == segment.title {
+            menuPriceString = segment.price
+            }
+        }
+        cartViewController.menuPrice = menuPriceString
+        cartViewController.menuName = titleString
+        currentController?.present(cartViewController, animated: false, completion: nil)
+        
+    }
+    
+    func getCurrentViewController() -> UIViewController? {
+        
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            var currentController: UIViewController! = rootController
+            while( currentController.presentedViewController != nil ) {
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        return nil
+        
+    }
+    
+    func buttonAction(sender: UIButton!) {
+        titleClick(title: (sender.titleLabel?.text)!)
     }
 }
 

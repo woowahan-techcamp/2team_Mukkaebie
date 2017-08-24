@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,7 +26,7 @@
                                 <color key="value" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
+                                <real key="value" value="0.69999999999999996"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="string" keyPath="separatedButtonTitle" value="먹깨비,메뉴,정보,리뷰"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -51,6 +51,9 @@
                     <constraint firstAttribute="trailing" secondItem="bvI-3f-lCm" secondAttribute="trailing" id="xtK-yc-AIs"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="segmentView" destination="bvI-3f-lCm" id="mHq-A0-Fxf"/>
+            </connections>
             <point key="canvasLocation" x="66.5" y="54.5"/>
         </tableViewCell>
     </objects>

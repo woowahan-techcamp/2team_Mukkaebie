@@ -15,6 +15,8 @@ enum tabViewEnum {
 
 class segment: UITableViewCell {
     
+    @IBOutlet weak var segmentView: SegmentView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
