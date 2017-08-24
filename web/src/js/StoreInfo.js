@@ -63,7 +63,6 @@ export class StoreInfo {
     let review = new Review(storeId);
     let foldable = new Foldable("foldableLevel1");
     StoreUtil.makeOrder(storeId);
-    StoreUtil.makeModal();
     let cart = new Cart();
 
   }
