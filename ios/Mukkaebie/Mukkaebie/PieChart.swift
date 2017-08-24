@@ -177,7 +177,9 @@ class PieChartView: UIView {
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
             // fill segment
+            
             ctx?.fillPath()
+            
             
             // update starting angle of the next segment to the ending angle of this segment
             startAngle = endAngle

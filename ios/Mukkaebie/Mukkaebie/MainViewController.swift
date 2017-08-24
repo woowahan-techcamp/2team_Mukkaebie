@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
         mainCollectionView.allowsSelection = true
+        
 
         navigationController?.setNavigationBarHidden(true, animated: false)
         mainCollectionView.reloadData()
