@@ -582,6 +582,19 @@ body {
   width: 100%;
   height: 100px;
   resize: none;
+  border: 1px solid lightgray;
+}
+
+#reviewTextInputBtn {
+  background: #ff6c00;
+  border: 1px solid #ff6c00;
+  font-size: 1em;
+  padding: 2px 4px;
+  width: 50px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 .reviewTabContent {
@@ -1157,7 +1170,8 @@ body {
 .loginIDInput{
   width: 100%;
   height: 40px;
-  text-indent: 10px
+  text-indent: 10px;
+  border: 1px solid lightgray;
 }
 
 .loginPWInput{
