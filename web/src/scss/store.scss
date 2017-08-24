@@ -979,6 +979,20 @@ body {
   transition: opacity 0.5s ease-in-out;
 }
 
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  top: 50vh;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
 .mkbModalClose {
   float: right;
   background: transparent;
@@ -1025,17 +1039,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.modal-content {
-  background-color: #fff;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  max-width: 400px;
-  background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  height: 150px;
-}
 
 //login
 
@@ -1058,6 +1061,8 @@ body {
 
 .loginModal-content{
   background-color: #fff;
+  position: relative;
+  top: 25vh;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
