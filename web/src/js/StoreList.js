@@ -96,6 +96,10 @@ export class StoreList {
           let minScrollTime = 500;
           let now = new Date().getTime();
 
+          if (layoutTarget.getElementsByClassName("storeCardRow").length == 0) {
+            return false;
+          }
+
           function processScroll() {
 
             let contentHeight = renderTarget.offsetHeight;
@@ -141,8 +145,7 @@ export class StoreList {
 
           }
 
-          if (!scrollTimer) {
-            if (now - lastScrollFireTime > (3 * minScrollTime)) {
+            if (!scrollTimer && now - lastScrollFireTime > (3 * minScrollTime)) {
               processScroll();
               lastScrollFireTime = now;
             }
@@ -151,7 +154,6 @@ export class StoreList {
               lastScrollFireTime = new Date().getTime();
               processScroll();
             }, minScrollTime);
-          }
 
         });
 
