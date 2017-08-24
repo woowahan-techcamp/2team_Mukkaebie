@@ -6,9 +6,26 @@
 export class Review {
 
   constructor(id) {
+    this.setStarRating();
     this.getReview(id);
     this.postReview(id);
+  }
 
+  setStarRating() {
+    let starContainer = document.getElementById('stars')
+    let stars = Array.prototype.slice.call(starContainer.children)
+    let totalStars = stars.length
+    let rated = document.getElementById('rated')
+
+    starContainer.addEventListener('click', function(e) {
+      let index = stars.indexOf(e.target);
+      let count = totalStars - index;
+      stars.forEach(el => el.classList.remove('is-selected'));
+      e.target.classList.add('is-selected');
+
+
+      rated.textContent = count;
+    })
   }
 
   postReview(id) {
@@ -16,8 +33,9 @@ export class Review {
 
     theButton.addEventListener("click", function () {
       if (session != "") {
-        let reviewStars = document.querySelector(".reviewStarSelect");
-        let selectedStar = reviewStars.options[reviewStars.selectedIndex].value;
+
+        let reviewStars = document.querySelector("#rated");
+        let selectedStar = reviewStars.textContent;
         let packet = {"review": {}};
         packet["storeId"] = id;
         packet.review["content"] = document.querySelector("#reviewTextInput").value;

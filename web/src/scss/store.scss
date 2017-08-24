@@ -506,6 +506,78 @@ body {
 }
 
 /* 리뷰 탭 관련 */
+.review-user {
+  float: left;
+  padding-top: 5px;
+}
+
+.starWrapper {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.star-rating {
+  width: 2em;
+  height: 2em;
+  fill: white;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .review-user {
+    float: left;
+    padding-top: 0;
+  }
+
+
+  .star-rating {
+    width: 1.5em;
+    height: 1.5em;
+    fill: white;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .review-user {
+    float: left;
+    padding-top: 0;
+  }
+
+  .star-rating {
+    width: 1.2em;
+    height: 1.2em;
+    fill: white;
+    pointer-events: none;
+  }
+}
+
+.stars {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: flex-end;
+}
+
+.star.is-selected svg,
+.star.is-selected ~ .star svg {
+  fill: #ff6c00;
+}
+
+.star:hover svg,
+.star:hover ~ .star svg {
+  fill: orange;
+}
+
+
+#rated {
+  display: none;
+}
+
+[dir="rtl"] {
+  direction: rtl
+}
+
+
 #reviewTextInput {
   width: 100%;
   height: 100px;

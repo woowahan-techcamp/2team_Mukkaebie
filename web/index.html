@@ -286,14 +286,42 @@
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
           <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
-            <p class="float-left" name="userId" value="${session}">${session}</p>
-            <select class="reviewStarSelect float-left m-l-1">
-              <option value="5">★★★★★</option>
-              <option value="4">★★★★</option>
-              <option value="3">★★★</option>
-              <option value="2">★★</option>
-              <option value="1">★</option>
-            </select>
+            <p class="review-user" name="userId" value="${session}">${session}</p>
+            <svg class="star-rating" style="display: none;">
+              <symbol id="star" viewBox="0 0 98 92">
+                <title>star</title>
+                <path stroke='#000' stroke-width='5' d='M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z' fill-rule='evenodd'/>
+              </symbol>
+            </svg>
+
+            <div class="starWrapper">
+              <div id="stars" class="stars">
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+              </div>
+            </div>
+
+            <div id="rated"></div>
+            <!--<select class="reviewStarSelect float-left m-l-1">-->
+              <!--<option value="5">★★★★★</option>-->
+              <!--<option value="4">★★★★</option>-->
+              <!--<option value="3">★★★</option>-->
+              <!--<option value="2">★★</option>-->
+              <!--<option value="1">★</option>-->
+            <!--</select>-->
             <textarea id="reviewTextInput" type="text" name="content"></textarea>
             <button id="reviewTextInputBtn" class="float-right">작성</button>
           </div>
