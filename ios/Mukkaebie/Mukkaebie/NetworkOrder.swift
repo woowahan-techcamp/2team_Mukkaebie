@@ -14,12 +14,12 @@ class NetworkOrder {
     private let url = URLpath.getURL()
     
     
-    func getOrderList(buyerId: Int) {
-        Alamofire.request("\(url)orders/bystore/"+"\(buyerId)").responseJSON { (response) in
+    func getOrderList(sellerId: Int) {
+        Alamofire.request("\(url)orders/bystore/"+"\(sellerId)").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
                 var orderList = [ModelOrders]()
                 for item in response {
-                    var order = ModelOrders(JSON: item)
+                    let order = ModelOrders(JSON: item)
                     orderList.append(order!)
                 }
                 
@@ -32,7 +32,7 @@ class NetworkOrder {
         let parameters = ["sellerId": sellderId, "buyerId": buyerId, "price": price, "content": content] as [String : Any]
         Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
-            case .success(let jsonData):
+            case .success:
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "postOrder"), object: nil, userInfo: nil)
             case .failure(let error):
                 print(error)

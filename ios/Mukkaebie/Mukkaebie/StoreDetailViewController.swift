@@ -80,7 +80,7 @@ class StoreDetailViewController: UIViewController, UITabBarDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         
-        networkOrder.getOrderList(buyerId: (modelStore?.id)!)
+        networkOrder.getOrderList(sellerId: (modelStore?.id)!)
     }
     
     override func didReceiveMemoryWarning() {

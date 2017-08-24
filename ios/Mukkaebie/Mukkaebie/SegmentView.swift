@@ -72,7 +72,7 @@ class SegmentView : UIControl {
             button.layer.borderColor = borderColor.cgColor
             button.layer.borderWidth = borderWidth
             button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
-            button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
+            button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 13)
             buttons.append(button)
         }
         

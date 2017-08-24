@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamofire
+import AlamofireImage
 
 class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
@@ -25,40 +25,74 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
     
+
     var modelStore : ModelStores?
     var orderByUserTop3 = [(key: String, value: Int)]()
     
-    var postImage = UIImage()
+    var postImgData : Data?
+    var postComment : String?
     let imagePicker = UIImagePickerController()
     
-    let networkImagePicker = NetworkImagePicker()
+    let networkMkb = NetworkMkb()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.frame.size.height = 565
+        view.frame.size.height = view.frame.size.width * 113 / 75
+        //view.frame.size.height = 565p
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
 
 //        staticHeight.constant -= gradeStackView.frame.height
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         firstBottomConstraint.constant -= firstAward.frame.height
         secondBottomConstraint.constant -= secondAward.frame.height
         thirdBottomConstraint.constant -= thirdAward.frame.height
-
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if firstMukkaebieImage.image == nil && secondMukkaebieImage.image == nil && thirdMukkaebieImage.image == nil && mukkaebieCommentTextField.text == "" {
+            var count = 0
+            for user in orderByUserTop3 {
+                for mkb in (modelStore?.mkb)! {
+                    if mkb["userId"] == user.key {
+                        switch count {
+                        case 0:
+                            if mkb["mkbComment"] != nil {
+                                mukkaebieCommentTextField.text = mkb["mkbComment"]
+                            }
+                            if mkb["imgUrl"] != nil {
+                                firstMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
+                        case 1:
+                            if mkb["imgUrl"] != nil {
+                                secondMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
+                        case 3:
+                            if mkb["imgUrl"] != nil {
+                                thirdMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                            }
+                        default:
+                            break
+                        }
+                    }
+                }
+                count += 1
+            }
+        }
         
         if self.firstBottomConstraint.constant < 0 {
             UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.firstBottomConstraint.constant += self.firstAward.frame.height
                 self.view.layoutSubviews()
-
+                
             }, completion: nil)
             
             UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -74,15 +108,18 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                 self.view.layoutSubviews()
                 
             }, completion: nil)
-            
-            
-            
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+        let mkbComment = sender.text
+        postComment = mkbComment
+        postComment(userId: "hjtech", mkbComment: mkbComment!)
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
@@ -103,22 +140,54 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let imgData = UIImageJPEGRepresentation(image, 0.1)
             firstMukkaebieImage.image = image
-            networkImagePicker.postImage(storeId: (modelStore?.id)!, userId: "hjtech", imgData: imgData!)
-            
+            postImgData = imgData
+            postImgData(userId: "hjtech", imgData: imgData!)
         } else{
             print("something went wrong")
         }
         
         picker.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation   baseurl:3000/uploads/
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func postComment(userId: String, mkbComment: String){
+        if postImgData == nil {
+            if orderByUserTop3[0].key == userId {
+                for mkb in (modelStore?.mkb)!.reversed() {
+                    if mkb["userId"] == userId {
+                        if mkb["imgUrl"] != nil {
+                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                            return
+                        } else {
+                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                            return
+                        }
+                    }
+                }
+                networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+            }
+        } else {
+            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: postImgData!)
+        }
     }
-    */
+    
+    func postImgData(userId: String, imgData: Data) {
+        if postComment == nil {
+            if orderByUserTop3[0].key == userId {
+                for mkb in (modelStore?.mkb)!.reversed() {
+                    if mkb["userId"] == userId {
+                        if mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
+                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
+                            return
+                        } else {
+                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                            return
+                        }
+                    }
+                }
+                networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+            }
+        } else {
+            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: postComment!, imgData: imgData)
+        }
+    }
 }
