@@ -18,13 +18,8 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    var modelStoreId = Int()
     var modelStore = ModelStores()
     let networkOrder = NetworkOrder()
-    var orderList = [ModelOrders]()
-    var priceByMenu = [String: Int]()
-    var orderByMenu = [String: Int]()
-    var orderByMenuSorted = [(key: String, value: Int)]()
     
     var menuName = String()
     var menuPrice = String()
@@ -82,6 +77,7 @@ class CartPaymentViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
         let image = #imageLiteral(resourceName: "finishedOrder")
+
         alertController.addimage(image: image)
         alertController.view.tintColor = UIColor.black
 //        alertController.view.backgroundColor = UIColor.white
@@ -90,8 +86,7 @@ class CartPaymentViewController: UIViewController {
         backView.backgroundColor = UIColor.white
 //        backView.backgroundColor = UIColor.black
         alertController.viewWillLayoutSubviews()
-        
-        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
+        alertController.addAction(UIAlertAction(title: "주문완료 ;)", style: .default, handler: { (_) in
             self.dismiss(animated: true, completion: nil)
             self.networkOrder.postOrder(sellderId: self.modelStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
 

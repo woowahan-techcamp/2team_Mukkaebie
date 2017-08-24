@@ -41,7 +41,7 @@ class StoreListViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStoreList"), object: nil)
         
         networkStore.getStoreList(category: category)
     }
@@ -78,7 +78,7 @@ class StoreListViewController: UIViewController {
         if segue.identifier == "showStoreDetail"{
             if let storeTestViewController = segue.destination as? StoreTestViewController{
                 let indexPath = self.tableView.indexPathForSelectedRow
-                storeTestViewController.modelStore = self.storeList[(indexPath?.row)!]
+                storeTestViewController.storeId = self.storeList[(indexPath?.row)!].id
             }
         }
     }

@@ -77,7 +77,7 @@
 		98B67D031F3C7EDC00243F31 /* NetworkStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67D021F3C7EDC00243F31 /* NetworkStore.swift */; };
 		98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67D051F3C7F2000243F31 /* ModelStores.swift */; };
 		98B67D081F3C845A00243F31 /* URLpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67D071F3C845A00243F31 /* URLpath.swift */; };
-		98DECE411F4C27E20099B394 /* NetworkImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DECE401F4C27E20099B394 /* NetworkImagePicker.swift */; };
+		98DECE411F4C27E20099B394 /* NetworkMkb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DECE401F4C27E20099B394 /* NetworkMkb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,7 +176,7 @@
 		98B67D021F3C7EDC00243F31 /* NetworkStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStore.swift; sourceTree = "<group>"; };
 		98B67D051F3C7F2000243F31 /* ModelStores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelStores.swift; sourceTree = "<group>"; };
 		98B67D071F3C845A00243F31 /* URLpath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLpath.swift; sourceTree = "<group>"; };
-		98DECE401F4C27E20099B394 /* NetworkImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkImagePicker.swift; sourceTree = "<group>"; };
+		98DECE401F4C27E20099B394 /* NetworkMkb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMkb.swift; sourceTree = "<group>"; };
 		A03405F61363D7DF6540C308 /* Pods_Mukkaebie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mukkaebie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B29E51D9530E93C90F48E320 /* Pods-Mukkaebie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mukkaebie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mukkaebie/Pods-Mukkaebie.debug.xcconfig"; sourceTree = "<group>"; };
 		DC21A5E72E0F13F34F935E3A /* Pods-MukkaebieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MukkaebieTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MukkaebieTests/Pods-MukkaebieTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -417,7 +417,7 @@
 				98B67D021F3C7EDC00243F31 /* NetworkStore.swift */,
 				985D09041F3D37A600A1F475 /* NetworkUser.swift */,
 				985D09061F3D37B300A1F475 /* NetworkOrder.swift */,
-				98DECE401F4C27E20099B394 /* NetworkImagePicker.swift */,
+				98DECE401F4C27E20099B394 /* NetworkMkb.swift */,
 				98B67D071F3C845A00243F31 /* URLpath.swift */,
 			);
 			name = Networking;
@@ -782,7 +782,7 @@
 				98B67CE91F3AA24800243F31 /* StoreListTableViewCell.swift in Sources */,
 				98B67D081F3C845A00243F31 /* URLpath.swift in Sources */,
 				986345861F4E9E0200453F3A /* Indicator.swift in Sources */,
-				98DECE411F4C27E20099B394 /* NetworkImagePicker.swift in Sources */,
+				98DECE411F4C27E20099B394 /* NetworkMkb.swift in Sources */,
 				985D09071F3D37B300A1F475 /* NetworkOrder.swift in Sources */,
 				985D08F61F3AD63000A1F475 /* PieChart.swift in Sources */,
 				983248151F32FD2C00ABFBFB /* AppDelegate.swift in Sources */,

@@ -19,7 +19,6 @@ class NetworkUser {
             if let response = response.result.value as? [[String:Any]] {
                 for item in response {
                     let user = ModelUsers(JSON: item)
-                    //dump(user)
                 }
             }
         }

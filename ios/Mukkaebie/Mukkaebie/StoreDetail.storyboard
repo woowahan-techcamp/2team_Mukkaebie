@@ -77,6 +77,9 @@
                                 <state key="normal" title="전화주문">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchedOrderCall:" destination="BCT-iU-b1f" eventType="touchUpInside" id="0Nn-qJ-1bh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
