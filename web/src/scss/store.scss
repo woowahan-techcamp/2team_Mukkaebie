@@ -1072,6 +1072,13 @@ body {
 
 //login
 
+#loginMsg {
+  font-size: 11px;
+  color:#ff0000;
+  height: 15px;
+  line-height: 15px;
+}
+
 #loginModal {
   position: fixed;
   z-index: 100;

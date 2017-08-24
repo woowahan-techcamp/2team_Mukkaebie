@@ -58,7 +58,7 @@ export class Login {
   }
 
   failLogin(msg){
-    alert("아이디나 비밀번호를 확인해 주세요");
+    document.querySelector("#loginMsg").innerText = "아이디나 비밀번호를 확인해 주세요"
     const newLogin = new Login();
   }
 
