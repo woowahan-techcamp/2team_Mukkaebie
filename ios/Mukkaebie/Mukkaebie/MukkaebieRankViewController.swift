@@ -38,22 +38,28 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.frame.size.height = 565
+        print(UIScreen.main.bounds.width)
+        
+        view.frame.size.height = view.frame.size.width * 113 / 75
+        //view.frame.size.height = 565
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
 
 //        staticHeight.constant -= gradeStackView.frame.height
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         firstBottomConstraint.constant -= firstAward.frame.height
         secondBottomConstraint.constant -= secondAward.frame.height
         thirdBottomConstraint.constant -= thirdAward.frame.height
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if firstMukkaebieImage.image == nil && secondMukkaebieImage.image == nil && thirdMukkaebieImage.image == nil && mukkaebieCommentTextField.text == "" {
             var count = 0
             for user in orderByUserTop3 {
@@ -88,7 +94,7 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
             UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.firstBottomConstraint.constant += self.firstAward.frame.height
                 self.view.layoutSubviews()
-
+                
             }, completion: nil)
             
             UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {

@@ -58,7 +58,7 @@ class StoreTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationItem.title = modelStore?.name
         
         tableView.dataSource = self
