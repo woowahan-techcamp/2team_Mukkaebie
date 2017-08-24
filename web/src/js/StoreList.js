@@ -145,7 +145,9 @@ export class StoreList {
 
           }
 
-            if (!scrollTimer && now - lastScrollFireTime > (3 * minScrollTime)) {
+          if (!scrollTimer) {
+
+            if (now - lastScrollFireTime > (3 * minScrollTime)) {
               processScroll();
               lastScrollFireTime = now;
             }
@@ -155,6 +157,7 @@ export class StoreList {
               processScroll();
             }, minScrollTime);
 
+          }
         });
 
 
