@@ -58,8 +58,6 @@ class StoreTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.title = modelStore?.name
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -93,6 +91,8 @@ class StoreTestViewController: UIViewController {
         guard let userInfo = notification.userInfo,
             let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
         self.modelStore = storeInfo[0]
+        
+        self.navigationItem.title = modelStore?.name
         
         mukkaebieVC?.modelStore = self.modelStore
         menuRankVC?.modelStore = self.modelStore
