@@ -653,8 +653,11 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
-  border: 10px solid #1abcaa;
 }
+
+.goldImg {border: 10px solid #FFDF00;}
+.silverImg {border: 10px solid #D3D3D3;}
+.bronzeImg {border: 10px solid #cd7f32;}
 
 @-webkit-keyframes rain {
   0% {
