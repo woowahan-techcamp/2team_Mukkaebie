@@ -271,6 +271,10 @@ extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
         
         if section == 3 {
             let tapView = Bundle.main.loadNibNamed("segment", owner: self, options: nil)?.first as! segment
+            
+            tapView.segmentView.frame.size.width = self.view.frame.width
+            tapView.segmentView.updateView()
+            
             return tapView.contentView
         }
         

@@ -38,10 +38,8 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(UIScreen.main.bounds.width)
-        
         view.frame.size.height = view.frame.size.width * 113 / 75
-        //view.frame.size.height = 565
+        //view.frame.size.height = 565p
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
