@@ -31,8 +31,6 @@ let StoreUtil = {
 
   makeModal: function () {
     let modal = document.querySelector('#orderModal');
-    let modalBtn = document.querySelector("#cartOrderButton");
-    modalBtn.addEventListener("click", function () {
       modal.style.display = "block";
       setTimeout(function () {
         modal.style.opacity = 1;
@@ -43,56 +41,59 @@ let StoreUtil = {
           modal.style.display = "none";
         }, 500)
       }, 3000)
-
-    })
   },
 
   makeOrder: function (storeId) {
-    let userList = ["dbtech", "jhtech", "mhtech"];
 
-    let orderButton = document.querySelector("#cartOrderButton");
 
-    orderButton.addEventListener("click", function () {
 
-      let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
+      let orderButton = document.querySelector("#cartOrderButton");
 
-      let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+      orderButton.addEventListener("click", function () {
+        if (session != "") {
+          let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
 
-      let menuList = [];
+          let cartContent = Array.from(document.querySelector(".storeCartContent").children);
 
-      cartContent.forEach(function (item) {
+          let menuList = [];
 
-        menuList.push(item.getAttribute("value"));
-      })
+          cartContent.forEach(function (item) {
+            menuList.push(item.getAttribute("value"));
+          })
 
-      let randNum1 = Math.floor(Math.random() * 3);
 
-      let packet = {};
-      packet["sellerId"] = storeId;
-      packet["buyerId"] = userList[randNum1];
-      packet["content"] = menuList;
-      packet["price"] = totalPrice;
+          let packet = {};
+          packet["sellerId"] = storeId;
+          packet["buyerId"] = session;
+          packet["content"] = menuList;
+          packet["price"] = totalPrice;
 
-      let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
-      xhr1.setRequestHeader('Content-Type', 'application/json');
+          let xhr1 = new XMLHttpRequest();
+          xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
+          xhr1.setRequestHeader('Content-Type', 'application/json');
 
-      // send the collected data as JSON
-      xhr1.send(JSON.stringify(packet));
+          // send the collected data as JSON
+          xhr1.send(JSON.stringify(packet));
 
-      let i = window.pageYOffset, j = 1;
-      let int = setInterval(function() {
-        window.scrollTo(0, i);
-        i -= 5 * j;
-        j += 0.2;
-        if (i < 200) clearInterval(int);
-      }, 20);
 
-      xhr1.onloadend = function () {
-        let graph = new Graph(storeId);
-        StoreUtil.resetCart();
-      }.bind(this);
-    }.bind(this));
+          let i = window.pageYOffset, j = 1;
+          let int = setInterval(function() {
+            window.scrollTo(0, i);
+            i -= 5 * j;
+            j += 0.2;
+            if (i < 200) clearInterval(int);
+          }, 20);
+
+          xhr1.onloadend = function () {
+            StoreUtil.makeModal();
+            let graph = new Graph(storeId);
+            StoreUtil.resetCart();
+          }.bind(this);
+        } else {
+          alert("로그인을 해주세요")
+        }
+      }.bind(this));
+
   },
 
   resetCart: function () {
@@ -119,6 +120,12 @@ let StoreUtil = {
       x.classList.add("mobileCategoryShow");
       btn.classList.add("unfolded");
     }
+  },
+
+  setAttributes(el, attrs) {
+    for(let key in attrs) {
+      el.setAttribute(key, attrs[key]);
+      }
   }
 }
 
