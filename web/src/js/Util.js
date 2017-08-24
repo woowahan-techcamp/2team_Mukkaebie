@@ -168,6 +168,27 @@ let StoreUtil = {
     for(let key in attrs) {
       el.setAttribute(key, attrs[key]);
       }
+  },
+
+  ajaxGet(url, cb){
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", cb);
+    xhr.open("GET", url);
+    xhr.send();
+  },
+
+  ajaxPost(url, data){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+  },
+
+  ajaxPostWithCb(url, data, cb){
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", cb);
+    xhr.open("POST", url);
+    xhr.send(data);
   }
 }
 

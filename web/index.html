@@ -528,7 +528,7 @@
       <div class="commentBox">
         <div id="commentList"></div>
         <div class="commentWriteBox p-a-1">
-          <p name="userId" value="ygtech">ygtech</p>
+          <p name="userId" value=""></p>
           <textarea id="commentTextInput" type="text" name="content"></textarea>
         </div>
       </div>
@@ -543,7 +543,8 @@
 <script src="./dist/index.bundle.js"></script>
 <script>
   SERVER_BASE_URL  = "http://52.79.91.114:3000";
-  IMAGE_SERVER_URL = "http://52.78.27.108:3000";
+  IMAGE_SERVER_POST = "http://52.78.27.108:3000/profile/";
+  IMAGE_SERVER_GET = "http://52.78.27.108:3000/uploads/";
   DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
   let session = ""
 
@@ -566,7 +567,7 @@
   function setProfile(target) {
     const profilePic = document.querySelector(".mkbImgPreview");
     if (target === "clear"){
-      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+//      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
       document.querySelector("#file-form input").value = "";
     } else {
       profilePic.style.backgroundImage = "url('" + target + "')"

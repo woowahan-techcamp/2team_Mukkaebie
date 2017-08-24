@@ -1,16 +1,20 @@
 
-
+import StoreUtil from "./Util.js"
 
 
 
 export class MKBComment {
 
-  constructor(id, top3List) {
-    this.makeMKBModal(id, top3List);
-    this.getComment(id, top3List);
-    this.postImage()
-        .then(this.postComment.bind(null, id))
-        .then(this.getComment.bind(null, id, top3List));
+  constructor(storeId, topThreeList) {
+    this.makeMKBModal(storeId, topThreeList);
+
+    this.getComment(storeId, topThreeList)
+        .then(this.renderContent);
+
+    this.sendImage(storeId, topThreeList)
+            .then(this.setProfilePics)
+            .then(this.postComment)
+            .then(this.applyChange)
   }
 
   makeMKBModal(id, top3List) {
@@ -98,124 +102,198 @@ export class MKBComment {
   }
 
   getComment(id, top3List) {
-    let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        const renderTarget = document.querySelector("#mkbComment");
-        let targetArr = (response[0].mkb) ? response[0].mkb : [];
-        let finalMkbList = [];
-        top3List.forEach(function (topBuyer) {
+    return new Promise(function (resolve) {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const response = JSON.parse(this.responseText);
+          const renderTarget = document.querySelector("#mkbComment");
+          let targetArr = (response[0].mkb) ? response[0].mkb : [];
+          let finalMkbList = [];
+          top3List.forEach(function (topBuyer) {
 
-          let oneBuyer = targetArr.filter(function (mkbRow) {
+            let oneBuyer = targetArr.filter(function (mkbRow) {
+              return mkbRow.userId == topBuyer;
+            });
 
-            return mkbRow.userId == topBuyer;
+            if (oneBuyer.length > 0) {
+              finalMkbList.push(oneBuyer[oneBuyer.length - 1]);
+            } else {
+              finalMkbList.push(topBuyer);
+            }
           });
 
-
-          if (oneBuyer.length > 0) {
-            finalMkbList.push(oneBuyer[oneBuyer.length - 1]);
-          } else {
-            finalMkbList.push(topBuyer);
-          }
-
-        });
-
-        let mkbLevelList = ["gold", "silver", "bronze"];
-        finalMkbList.forEach(function (topBuyer, idx) {
-          renderContent(topBuyer, mkbLevelList[idx]);
-        });
-
-
-        function renderContent(oneComment, mkbLevel) {
-          const comment = oneComment;
-          const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
-          const mkbOutsideCommentId = document.querySelector("#mkbCommentOutsideId");
-          const mkbOutsideCommentMsg = document.querySelector("#mkbCommentOutsideMsg");
-
-          if (typeof(comment) === "string") {
-            profilePicSmall.setAttribute("data-user", comment);
-            profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
-          } else {
-            profilePicSmall.setAttribute("data-user", comment["userId"]);
-            profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
-          }
-          if (mkbLevel === "gold") {
-            console.log(comment["mkbComment"]);
-            mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
-            mkbOutsideCommentId.innerHTML = comment["userId"];
-          }
-
-          profilePicSmall.setAttribute("value", mkbLevel);
-          profilePicSmall.setAttribute("data-store", id);
+          resolve(finalMkbList, id);
         }
-      }
-    };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-    xhr.send();
+      };
+      xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
+      xhr.send();
+    });
   }
 
+  renderContent(finalMkbList, id){
+    const mkbLevelList = ["gold", "silver", "bronze"];
+    const mkbOutsideCommentId = document.querySelector("#mkbCommentOutsideId");
+    const mkbOutsideCommentMsg = document.querySelector("#mkbCommentOutsideMsg");
 
-  postImage(id) {
+    finalMkbList.forEach(function(comment, idx){
+      const mkbLevel = mkbLevelList[idx];
+      const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
+
+      console.log(comment);
+      if (typeof(comment) === "string") {
+        profilePicSmall.setAttribute("data-user", comment);
+        profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
+
+      } else {
+        profilePicSmall.setAttribute("data-user", comment["userId"]);
+        profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
+      }
+      if (mkbLevel === "gold") {
+        console.log(comment["mkbComment"]);
+        mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
+        mkbOutsideCommentId.innerHTML = comment["userId"];
+      }
+      StoreUtil.setAttributes(profilePicSmall, {"value": mkbLevel,"data-store":id})
+    });
+  }
+
+  // init(id){
+  //
+  //   const form = document.getElementById('file-form');
+  //
+  //   form.onsubmit = function () {
+  //     this.sendImage()
+  //         .then(this.setProfilePics)
+  //         .then(this.postComment.bind(null, id))
+  //         .then(this.applyChange)
+  //   }
+
+
+    // const uploadButton = document.getElementById("upload-button");
+    //
+    // uploadButton.addEventListener("click", function () {
+    //
+    // })
+  // }
+
+
+  // sendImage(storeId, topThreeList) {
+  //   return new Promise(function (resolve) {
+  //
+  //     const sendImageCb = function(){
+  //       const res = JSON.parse(this.responseText);
+  //       resolve({
+  //         "imgUrl":IMAGE_SERVER_GET +res["filename"],
+  //         "storeId":storeId,
+  //         "topThreeList" : topThreeList
+  //       });
+  //     };
+  //
+  //     const formData = new FormData();
+  //     const fileSelect = document.getElementById('file-select');
+  //     const file = fileSelect.files[0];
+  //     formData.append('profileImage', file);
+  //
+  //     if (file != undefined) {
+  //       StoreUtil.ajaxPostWithCb(IMAGE_SERVER_POST, formData, sendImageCb);
+  //     } else {
+  //       resolve({
+  //         "imgUrl": DEFAULT_PROFILE_IMG,
+  //         "storeId":storeId,
+  //         "topThreeList" : topThreeList
+  //       });
+  //     }
+  //   });
+  // }
+
+  sendImage(storeId, topThreeList) {
     return new Promise(function (resolve) {
       const form = document.getElementById('file-form');
       const fileSelect = document.getElementById('file-select');
-      const uploadButton = document.getElementById('upload-button');
 
       form.onsubmit = function (event) {
         event.preventDefault();
         const file = fileSelect.files[0];
-
         if (file != undefined) {
           const formData = new FormData();
           formData.append('profileImage', file);
-
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
               const res = JSON.parse(this.responseText);
-
-              resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
-              const profilePic = document.querySelector(".mkbImgPreview");
-              const targetCircle = document.querySelector(".commentWriteBox p");
-              const profilePicSmall = document.querySelector("." + targetCircle.getAttribute("value") + "Img");
-              profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
-              profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
+              resolve({
+                "imgUrl":IMAGE_SERVER_GET +res["filename"],
+                "storeId":storeId,
+                "topThreeList" : topThreeList
+              });
             }
           }
-          xhr.open('POST', IMAGE_SERVER_URL + '/profile/');
+          xhr.open('POST', IMAGE_SERVER_POST);
           xhr.send(formData);
         } else {
-          resolve(DEFAULT_PROFILE_IMG);
+          resolve({
+           "imgUrl": DEFAULT_PROFILE_IMG,
+           "storeId":storeId,
+           "topThreeList" : topThreeList
+         });
         }
       }
     })
   }
 
-  postComment(id, imgUrl) {
 
+  setProfilePics(inputObj){
+    console.log("imgUrl", inputObj["imgUrl"]);
+    return new Promise(function (resolve) {
+      const profilePic = document.querySelector(".mkbImgPreview");
+      const clickedMkb = document.querySelector(".commentWriteBox p");
+      const profilePicSmall = document.querySelector("." + clickedMkb.getAttribute("value") + "Img");
+      const uploadedPicUrl = "url('" + inputObj["imgUrl"] + "')";
+      profilePic.style.backgroundImage = uploadedPicUrl;
+      profilePicSmall.style.backgroundImage = uploadedPicUrl;
+      resolve(inputObj);
+    });
+  }
+
+  postComment(inputObj) {
     return new Promise(function (resolve) {
 
-      let packet = {"mkb": {}};
-      packet["storeId"] = id;
-      packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
-      document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
-      packet.mkb["time"] = new Date().toLocaleString();
-      const targetCircle = document.querySelector(".commentWriteBox p")
-      packet.mkb["userId"] = targetCircle["innerText"];
-      packet.mkb["imgUrl"] = imgUrl;
+      const targetCircle = document.querySelector(".commentWriteBox p");
+      const targetLevel = targetCircle.getAttribute("value");
 
-
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", SERVER_BASE_URL + "/stores/mkb/" + id, true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-
-      xhr.send(JSON.stringify(packet));
-      xhr.onloadend = function () {
-        resolve(null);
-        document.querySelector("#commentTextInput").setAttribute("value", "");
-      }.bind(this)
-
-    })
+      const commentTextInput = document.querySelector("#commentTextInput");
+      const packet = {
+        "storeId" : inputObj["storeId"],
+        "mkb": {
+          "mkbComment" : document.querySelector("#commentTextInput").value,
+          "time" : new Date().toLocaleString(),
+          "userId": targetCircle["innerText"],
+          "imgUrl": inputObj["imgUrl"]
+        }
+      };
+      StoreUtil.ajaxPost(SERVER_BASE_URL + "/stores/mkb/" + inputObj["storeId"], JSON.stringify(packet));
+      resolve(inputObj);
+    });
   }
+
+  applyChange(inputObj){
+    const imgUrl = inputObj["imgUrl"];
+    const targetLevel = inputObj["targetLevel"];
+    const targetLevelImg = document.querySelector("." + targetLevel + "Img");
+    console.log("targetLvlImg", targetLevelImg);
+    document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
+
+    if (targetLevel === "gold") {
+      document.querySelector("#mkbCommentOutsideMsg").innerText = document.querySelector("#commentTextInput").value;
+    }
+
+    targetLevelImg.style.backgroundImage = "url('" + inputObj["imgUrl"] + "')";
+
+    // const mkbComment = new MKBComment(inputObj["storeId"], inputObj["topThreeList"]);
+
+  }
+
+
+
 }
