@@ -9,6 +9,7 @@ export class StoreList {
     this.getStoreList(cat);
   }
 
+
   getStoreList(cat) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -18,6 +19,7 @@ export class StoreList {
         const layoutTarget = document.querySelector(".storeLayout");
         const category = response[0].category;
         const storeCount = response.length;
+
         layoutTarget.innerHTML =
             `<div class="m-x-3 m-b-2">
                 홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
@@ -25,6 +27,7 @@ export class StoreList {
             <div class="col-xs-12 storeCardRow"></div>
             <div class="load-button">더보기</div>
             <div class="spinner" style="display: none"></div>`;
+
         const renderTarget = document.querySelector(".storeCardRow");
         renderTarget.innerHTML = "";
         let size = 30;
@@ -64,7 +67,6 @@ export class StoreList {
           });
           let result = '';
           size = 30;
-          console.log(size);
           response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
@@ -91,27 +93,20 @@ export class StoreList {
             setTimeout(function () {
               renderTarget.innerHTML += result;
               spinner.style.display = 'none';
-              console.log("loadFirst finished!");
             }, 1000);
           }
         });
 
-        let scrollTimer, lastScrollFireTime = 0;
+
+        if (spinner.style.display == 'none') {
+
+          loadMore();
 
 
-        window.addEventListener("scroll", function infiniteScroll () {
-          let minScrollTime = 500;
-          let now = new Date().getTime();
-
-          if (layoutTarget.getElementsByClassName("storeCardRow").length == 0) {
-            window.removeEventListener("scroll", infiniteScroll);
-          }
-
-          function processScroll() {
+          function processScroll(scroll_pos) {
 
             let contentHeight = renderTarget.offsetHeight;
-            let yOffset = window.pageYOffset;
-            let y = yOffset + 300;
+            let y = scroll_pos + 300;
             if (loadMoreButton.style.display == 'none' && y >= contentHeight) {
               let fadeInTarget = document.querySelectorAll('.fadeIn');
               let index = 0;
@@ -139,38 +134,45 @@ export class StoreList {
                   result += eval('`' + tempGrab + '`');
                 });
 
-                loadMore();
-
-              }
-
-
-              function loadMore() {
                 spinner.style.display = 'block';
                 setTimeout(function () {
                   renderTarget.innerHTML += result;
                   spinner.style.display = 'none';
-                  console.log("loadMore finished!");
-                }, 1000);
+                }, 800);
               }
+            }
+          }
 
+          function loadMore() {
+
+            let timer = null;
+
+            if (layoutTarget.getElementsByClassName("storeCardRow").length !== 0) {
+              window.addEventListener('scroll', function () {
+
+                let last_known_scroll_position = 0;
+                let ticking = false;
+
+                if (timer !== null) {
+                  clearTimeout(timer);
+                }
+                timer = setTimeout(function () {
+                  last_known_scroll_position = window.scrollY;
+                  if (!ticking) {
+                    window.requestAnimationFrame(function () {
+                      processScroll(last_known_scroll_position);
+                      ticking = false;
+                    });
+                  }
+                  ticking = true;
+                }, 250);
+              }, false);
             }
 
           }
 
-          if (!scrollTimer) {
+        };
 
-            if (now - lastScrollFireTime > (3 * minScrollTime)) {
-              processScroll();
-              lastScrollFireTime = now;
-            }
-            scrollTimer = setTimeout(function () {
-              scrollTimer = null;
-              lastScrollFireTime = new Date().getTime();
-              processScroll();
-            }, minScrollTime);
-
-          }
-        });
 
 
         let clickedStore = document.querySelector(".storeCardRow");
