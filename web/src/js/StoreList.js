@@ -92,12 +92,12 @@ export class StoreList {
         let scrollTimer, lastScrollFireTime = 0;
 
 
-        window.addEventListener("scroll", function () {
+        window.addEventListener("scroll", function infiniteScroll () {
           let minScrollTime = 500;
           let now = new Date().getTime();
 
           if (layoutTarget.getElementsByClassName("storeCardRow").length == 0) {
-            return false;
+            window.removeEventListener("scroll", infiniteScroll);
           }
 
           function processScroll() {
