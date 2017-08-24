@@ -37,6 +37,8 @@ export class StoreList {
           const address = store.address;
           if (store.review) {
             const reviewCount = store.review.length;
+          } else {
+            const reviewCount = 0;
           }
           const ratingCount = store.ratingCount;
           const ratingValue = store.ratingValue * 20;
@@ -69,7 +71,11 @@ export class StoreList {
             const storeImg = store.storeImg;
             const storeName = store.storeName;
             const address = store.address;
-            const reviewCount = store.review.length;
+            if (store.review) {
+              const reviewCount = store.review.length;
+            } else {
+              const reviewCount = 0;
+            }
             const ratingCount = store.ratingCount;
             const ratingValue = store.ratingValue * 20;
             const tempGrab = document.querySelector("#storeListTemplate").text;
@@ -85,6 +91,7 @@ export class StoreList {
             setTimeout(function () {
               renderTarget.innerHTML += result;
               spinner.style.display = 'none';
+              console.log("loadFirst finished!");
             }, 1000);
           }
         });
@@ -92,9 +99,13 @@ export class StoreList {
         let scrollTimer, lastScrollFireTime = 0;
 
 
-        window.addEventListener("scroll", function () {
+        window.addEventListener("scroll", function infiniteScroll () {
           let minScrollTime = 500;
           let now = new Date().getTime();
+
+          if (layoutTarget.getElementsByClassName("storeCardRow").length == 0) {
+            window.removeEventListener("scroll", infiniteScroll);
+          }
 
           function processScroll() {
 
@@ -117,7 +128,11 @@ export class StoreList {
                   const storeImg = store.storeImg;
                   const storeName = store.storeName;
                   const address = store.address;
-                  const reviewCount = store.review.length;
+                  if (store.review) {
+                    const reviewCount = store.review.length;
+                  } else {
+                    const reviewCount = 0;
+                  }
                   const ratingCount = store.ratingCount;
                   const ratingValue = store.ratingValue * 20;
                   const tempGrab = document.querySelector("#storeListTemplate").text;
@@ -134,6 +149,7 @@ export class StoreList {
                 setTimeout(function () {
                   renderTarget.innerHTML += result;
                   spinner.style.display = 'none';
+                  console.log("loadMore finished!");
                 }, 1000);
               }
 
@@ -142,6 +158,7 @@ export class StoreList {
           }
 
           if (!scrollTimer) {
+
             if (now - lastScrollFireTime > (3 * minScrollTime)) {
               processScroll();
               lastScrollFireTime = now;
@@ -151,8 +168,8 @@ export class StoreList {
               lastScrollFireTime = new Date().getTime();
               processScroll();
             }, minScrollTime);
-          }
 
+          }
         });
 
 
