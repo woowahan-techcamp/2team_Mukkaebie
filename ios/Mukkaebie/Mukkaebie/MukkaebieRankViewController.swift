@@ -25,7 +25,13 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
     
-
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var firstOrderLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var secondOrderLabel: UILabel!
+    @IBOutlet weak var thirdLabel: UILabel!
+    @IBOutlet weak var thirdOrderLabel: UILabel!
+    
     var modelStore : ModelStores?
     var orderByUserTop3 = [(key: String, value: Int)]()
     
@@ -38,14 +44,18 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.frame.size.height = view.frame.size.width * 113 / 75
+        view.frame.size.height = view.frame.size.width * 118 / 75
         //view.frame.size.height = 565p
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
-
+        
 //        staticHeight.constant -= gradeStackView.frame.height
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,6 +67,19 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if orderByUserTop3.count > 0 {
+            firstLabel.text = orderByUserTop3[0].key
+            firstOrderLabel.text = "주문수 \(orderByUserTop3[0].value)"
+            if orderByUserTop3.count > 1 {
+                secondLabel.text = orderByUserTop3[1].key
+                secondOrderLabel.text = "주문수 \(orderByUserTop3[1].value)"
+                if orderByUserTop3.count > 2 {
+                    thirdLabel.text = orderByUserTop3[2].key
+                    thirdOrderLabel.text = "주문수 \(orderByUserTop3[2].value)"
+                }
+            }
+        }
         
         if firstMukkaebieImage.image == nil && secondMukkaebieImage.image == nil && thirdMukkaebieImage.image == nil && mukkaebieCommentTextField.text == "" {
             var count = 0
@@ -101,8 +124,6 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
                 
             }, completion: nil)
             
-            
-
             UIView.animate(withDuration: 1.5, delay: 3, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.thirdBottomConstraint.constant += self.thirdAward.frame.height
                 self.view.layoutSubviews()
