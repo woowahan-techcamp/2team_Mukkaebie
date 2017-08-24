@@ -1,12 +1,15 @@
 
 
 import {StoreList} from './js/StoreList.js';
+import {Login} from './js/Login.js';
 
 
 import style from './scss/main.scss';
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
+  const login = new Login();
 
   //첫 화면에 치킨 리스트 인젝트
   let chickenStoreList = new StoreList("치킨");

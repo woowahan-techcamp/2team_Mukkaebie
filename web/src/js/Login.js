@@ -1,43 +1,65 @@
 
+import StoreUtil from "./Util.js"
 
 
 
 export class Login {
   constructor(){
     this.pw = "";
-  }
+    this.init()
   }
 
   init(){
-    getInputInfo().then(sendLoginInfo.then(checkValidity))
+    this.getInputInfo().then(this.sendLoginInfo).then(this.checkValidity).then(this.succeedLogin).catch(this.failLogin)
   }
 
   sendLoginInfo(userId){
     return new Promise(function (resolve) {
-      var xhttp = new XMLHttpRequest();
+      const xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML = xhttp.responseText;
+          const res = JSON.parse(this.responseText);
+          resolve(res[0])
         }
       };
-      xhttp.open("GET", SERVER_BASE_URL + "/cf/" + userId["userId"], true);
+      xhttp.open("GET", SERVER_BASE_URL + "/users/cf/" + userId["userId"], true);
       xhttp.send();
     })
-
   }
+
 
   getInputInfo(){
     return new Promise(function (resolve) {
-      const idInfo = document.querySelector(".loginIDInput").value;
-      const pwInfo = document.querySelector(".longinPWInput").value;
-      const packet = {"userId" : idInfo);
-      this.pw = pwInfo;
-      resolve(packet);
+      document.querySelector(".loginButton").addEventListener("click", function () {
+        const idInfo = document.querySelector(".loginIDInput").value;
+        const packet = {"userId" : idInfo};
+        resolve(packet);
+      })
     });
   }
 
-  checkValidity(){
+  checkValidity(pwd){
+    return new Promise(function (resolve, reject) {
+      const pwInfo = document.querySelector(".loginPWInput").value;
+      if (pwd["_id"] === pwInfo){
+        resolve(pwd["userId"])
+      }
+      else {
+        reject('비밀번호가 일치하지 않습니다')
+      }
+    })
+  }
 
+  succeedLogin(userId){
+    alert("환영합니다");
+    document.querySelector("#loginModal").style.display = "none";
+    const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
+    topLoggedinInfo.innerText = userId;
+    session = userId;
+  }
+
+  failLogin(msg){
+    alert(msg)
   }
 
 

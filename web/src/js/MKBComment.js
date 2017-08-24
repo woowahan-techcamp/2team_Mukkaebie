@@ -37,6 +37,12 @@ export class MKBComment {
 
         const renderModal = (res) => {
 
+          if (this.attributes["data-user"]["value"] != session) {
+            document.querySelector(".mkbEdit").style.display = "none";
+          }
+          else{
+            document.querySelector(".mkbEdit").style.display = "block";
+          }
           const previewTarget = document.querySelector(".mkbImgPreview");
           previewTarget.style.backgroundImage = event.target.style.backgroundImage;
           const mkbResponse = res[0]["mkb"];

@@ -111,6 +111,12 @@ let StoreUtil = {
       x.classList.add("mobileCategoryShow");
       btn.classList.add("unfolded");
     }
+  },
+
+  setAttributes(el, attrs) {
+    for(let key in attrs) {
+      el.setAttribute(key, attrs[key]);
+      }
   }
 }
 
