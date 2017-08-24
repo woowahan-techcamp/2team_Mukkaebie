@@ -15,26 +15,31 @@ export class Review {
     let theButton = document.querySelector("#reviewTextInputBtn");
 
     theButton.addEventListener("click", function () {
-      let reviewStars = document.querySelector(".reviewStarSelect");
-      let selectedStar = reviewStars.options[reviewStars.selectedIndex].value;
-      let packet = {"review": {}};
-      packet["storeId"] = id;
-      packet.review["content"] = document.querySelector("#reviewTextInput").value;
-      packet.review["time"] = new Date().toLocaleString();
-      packet.review["user"] = "ygtech";
-      packet.review["stars"] = selectedStar;
+      if (session != "") {
+        let reviewStars = document.querySelector(".reviewStarSelect");
+        let selectedStar = reviewStars.options[reviewStars.selectedIndex].value;
+        let packet = {"review": {}};
+        packet["storeId"] = id;
+        packet.review["content"] = document.querySelector("#reviewTextInput").value;
+        packet.review["time"] = new Date().toLocaleString();
+        packet.review["user"] = session;
+        packet.review["stars"] = selectedStar;
 
 
-      let xhr1 = new XMLHttpRequest();
-      xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
-      xhr1.setRequestHeader('Content-Type', 'application/json');
+        let xhr1 = new XMLHttpRequest();
+        xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
+        xhr1.setRequestHeader('Content-Type', 'application/json');
 
-      xhr1.send(JSON.stringify(packet));
-      xhr1.onloadend = function () {
-        alert("소중한 리뷰 감사합니다.");
-        this.getReview(id);
-        document.querySelector("#reviewTextInput").value = "";
-      }.bind(this);
+        xhr1.send(JSON.stringify(packet));
+        xhr1.onloadend = function () {
+          alert("소중한 리뷰 감사합니다.");
+          this.getReview(id);
+          document.querySelector("#reviewTextInput").value = "";
+        }.bind(this);
+      } else {
+        alert("로그인이 필요한 서비스입니다.")
+      }
+
     }.bind(this));
   }
 
