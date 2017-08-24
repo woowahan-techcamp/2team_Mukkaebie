@@ -153,10 +153,22 @@
                     <navigationItem key="navigationItem" title="rrrr" id="5md-cb-gNs"/>
                     <connections>
                         <outlet property="menuTableView" destination="6Bz-b8-Vfs" id="ibb-dK-wNx"/>
+                        <outlet property="noOrderView" destination="tdg-qs-y7v" id="fw4-v8-4f5"/>
                         <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1z-d5-7I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="tdg-qs-y7v">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cry.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-0X-jff">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="976.79999999999995" y="137.18140929535232"/>
         </scene>
@@ -170,6 +182,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cry.jpg" width="205" height="157"/>
         <image name="graphIcon" width="24" height="24"/>
     </resources>
 </document>
