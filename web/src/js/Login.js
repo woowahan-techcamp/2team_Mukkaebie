@@ -1,5 +1,5 @@
 
-
+import StoreUtil from './Util.js'
 
 
 
@@ -10,7 +10,17 @@ export class Login {
   }
 
   init(){
-    this.getInputInfo().then(this.sendLoginInfo).then(this.checkValidity).then(this.succeedLogin).catch(this.failLogin)
+    document.querySelector("#topLoggedinInfo").addEventListener("click", function () {
+      document.querySelector("#loginModal").style.display = "block";
+      setTimeout(function () {
+        document.querySelector("#loginModal").style.opacity = "1";
+      }, 100)
+    });
+    this.getInputInfo()
+        .then(this.sendLoginInfo)
+        .then(this.checkValidity)
+        .then(this.succeedLogin)
+        .catch(this.failLogin)
   }
 
   sendLoginInfo(userId){
@@ -50,7 +60,7 @@ export class Login {
   }
 
   succeedLogin(userId){
-    alert("환영합니다");
+    StoreUtil.makeAfterLoginModal();
     document.querySelector("#loginModal").style.display = "none";
     const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
     topLoggedinInfo.innerText = userId;

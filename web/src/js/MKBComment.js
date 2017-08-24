@@ -8,7 +8,9 @@ export class MKBComment {
   constructor(id, top3List) {
     this.makeMKBModal(id, top3List);
     this.getComment(id, top3List);
-    this.postImage().then(this.postComment.bind(null, id)).then(this.getComment.bind(null, id, top3List));
+    this.postImage()
+        .then(this.postComment.bind(null, id))
+        .then(this.getComment.bind(null, id, top3List));
   }
 
   makeMKBModal(id, top3List) {
@@ -162,7 +164,6 @@ export class MKBComment {
 
       form.onsubmit = function (event) {
         event.preventDefault();
-        uploadButton.innerHTML = '바꾸는 중...';
         const file = fileSelect.files[0];
 
         if (file != undefined) {
@@ -176,21 +177,13 @@ export class MKBComment {
 
               resolve(IMAGE_SERVER_URL + "/uploads/" + res["filename"])
               const profilePic = document.querySelector(".mkbImgPreview");
-              const targetCircle = document.querySelector(".commentWriteBox p")
+              const targetCircle = document.querySelector(".commentWriteBox p");
               const profilePicSmall = document.querySelector("." + targetCircle.getAttribute("value") + "Img");
               profilePic.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
               profilePicSmall.style.backgroundImage = "url('" + IMAGE_SERVER_URL + "/uploads/" + res["filename"] + "')";
             }
           }
           xhr.open('POST', IMAGE_SERVER_URL + '/profile/');
-
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              uploadButton.innerHTML = 'Upload';
-            } else {
-              alert('An error occurred!');
-            }
-          };
           xhr.send(formData);
         } else {
           resolve(DEFAULT_PROFILE_IMG);
@@ -206,6 +199,7 @@ export class MKBComment {
       let packet = {"mkb": {}};
       packet["storeId"] = id;
       packet.mkb["mkbComment"] = document.querySelector("#commentTextInput").value;
+      document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
       packet.mkb["time"] = new Date().toLocaleString();
       const targetCircle = document.querySelector(".commentWriteBox p")
       packet.mkb["userId"] = targetCircle["innerText"];

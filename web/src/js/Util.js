@@ -42,6 +42,48 @@ let StoreUtil = {
         }, 500)
       }, 3000)
   },
+  makeAfterLoginModal(){
+    let modal = document.querySelector('#afterLoginModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 1500)
+  },
+
+  makeLoginRequiredModal(){
+    let modal = document.querySelector('#loginRequiredModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 3000)
+  },
+
+  makeThxModal(){
+    let modal = document.querySelector('#thxModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 3000)
+  },
+
 
   makeOrder: function (storeId) {
 
@@ -90,7 +132,7 @@ let StoreUtil = {
             StoreUtil.resetCart();
           }.bind(this);
         } else {
-          alert("로그인을 해주세요")
+          StoreUtil.makeLoginRequiredModal();
         }
       }.bind(this));
 

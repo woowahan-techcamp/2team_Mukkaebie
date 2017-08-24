@@ -251,7 +251,7 @@
           <div class="mkbGraphWrapper" style="background-color: #fff;">
             <div class="mkbCommentOutside">
               <div class="mkbCommentOutsideBubble">
-                <div style="font-size: 30px">이 구역의 대 먹깨비</div>
+                <div style="font-size: 30px">이 구역의 大 먹깨비</div>
                 <div id="mkbCommentOutsideId" style="font-size: 15px;">dbtech</div>
                 <span style="font-size: 100px; color:#FFDF00">"</span>
                 <span id="mkbCommentOutsideMsg"  style="font-size: 40px">내가 오야붕이야~</span>
@@ -312,8 +312,6 @@
   </div>
 
 </script>
-
-
 <div class="row header m-x-0">
   <div class="float-right p-a-1 loginMenu">
     <span id="topLoggedinInfo">로그인</span>
@@ -497,6 +495,24 @@
   </div>
 </div>
 
+<div id="afterLoginModal" class="afterLoginModal">
+  <div class="afterLoginModal-content">
+  </div>
+</div>
+
+<div id="thxModal" class="thxModal">
+  <div class="thxModal-content">
+  </div>
+</div>
+
+
+<div id="loginRequiredModal" class="logInRequiredModal">
+  <div class="logInRequiredModal-content">
+    <div class="logInRequiredModalTop">이 서비스가 어떤 서비스입니까?</div>
+    <div class="logInRequiredModalBtm">로그인이 필요한 서비스</div>
+  </div>
+</div>
+
 <div id="orderModal" class="orderModal">
   <div class="modal-content"></div>
 </div>
@@ -507,7 +523,7 @@
     <div class="mkbImgPreview" style="opacity: 1;width: 300px; height:300px; margin:0 auto; background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png'); background-size: contain; background-repeat: no-repeat"></div>
     <div id="mkbCommentUserId"></div>
     <div id="mkbComment"></div>
-    <button class="mkbEdit" onclick="toggleEdit()">수정하기</button>
+    <span class="mkbEdit" onclick="toggleEdit()">수정</span>
     <div class="logInRequired">
       <div class="commentBox">
         <div id="commentList"></div>
@@ -518,9 +534,8 @@
       </div>
       <form id="file-form" method="POST">
         <input type="file" id="file-select"/>
-        <button class="float-right" type="submit" id="upload-button">바꾸기</button>
+        <button class="float-right" type="submit" id="upload-button">수정완료</button>
       </form>
-      <button class="float-right m-x-1" onclick="toggleEdit()">취소</button>
       <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
     </div>
   </div>
@@ -540,9 +555,11 @@
     if (editBox.classList.contains("mkbShow")){
       editBox.classList.remove("mkbShow");
       editBtn.classList.remove("mkbHide");
+      editBtn.innerText = "수정"
     } else {
       editBox.classList.add("mkbShow");
       editBtn.classList.add("mkbHide");
+      editBtn.innerText = "접기"
     }
   }
 

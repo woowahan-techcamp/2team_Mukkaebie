@@ -2,9 +2,7 @@
 
 /*페이지 레이아웃*/
 
-body {
-  -webkit-transform:translate3d(0,0,0);
-}
+
 
 .storeLayout {
   max-width: 960px;
@@ -988,6 +986,104 @@ body {
 .uploadcare--powered-by {
   display: none;
 }
+// 로그인 필요 모달
+.logInRequiredModal {
+  border:none;
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.logInRequiredModal-content {
+  background-color: #000000;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 130px;
+}
+.logInRequiredModalTop {color: #ffffff; font-size: 30px;}
+.logInRequiredModalBtm {color:#ff6c00; font-size: 30px}
+/// 로그인 성공 후 모달
+.afterLoginModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.afterLoginModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/loginsucess.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 250px;
+}
+// 리뷰 작성 후 모달
+.thxModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.thxModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/thankyoutear.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 300px;
+}
 
 // 주문 후 모달
 .orderModal {
@@ -998,7 +1094,7 @@ body {
   top: 0;
   opacity: 0.0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
@@ -1014,7 +1110,6 @@ body {
   margin: 15% auto;
   padding: 20px;
   position: relative;
-  top: 50vh;
   border: 1px solid #888;
   max-width: 400px;
   background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
@@ -1069,6 +1164,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.mkbEdit{
+  color: $bmOrangeColor;
+  float: right;
+  background:transparent;
+  cursor: pointer;
+}
+
 
 //login
 
@@ -1085,7 +1187,7 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
@@ -1094,12 +1196,12 @@ body {
   -ms-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
+
 }
 
 .loginModal-content{
   background-color: #fff;
   position: relative;
-  top: 25vh;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -1146,4 +1248,8 @@ body {
   background: #1abcaa;
   color: #fff;
   border:none
+}
+
+#topLoggedinInfo {
+  cursor: pointer;
 }
