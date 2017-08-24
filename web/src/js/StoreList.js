@@ -37,6 +37,8 @@ export class StoreList {
           const address = store.address;
           if (store.review) {
             const reviewCount = store.review.length;
+          } else {
+            const reviewCount = 0;
           }
           const ratingCount = store.ratingCount;
           const ratingValue = store.ratingValue * 20;
@@ -69,7 +71,11 @@ export class StoreList {
             const storeImg = store.storeImg;
             const storeName = store.storeName;
             const address = store.address;
-            const reviewCount = store.review.length;
+            if (store.review) {
+              const reviewCount = store.review.length;
+            } else {
+              const reviewCount = 0;
+            }
             const ratingCount = store.ratingCount;
             const ratingValue = store.ratingValue * 20;
             const tempGrab = document.querySelector("#storeListTemplate").text;
@@ -85,6 +91,7 @@ export class StoreList {
             setTimeout(function () {
               renderTarget.innerHTML += result;
               spinner.style.display = 'none';
+              console.log("loadFirst finished!");
             }, 1000);
           }
         });
@@ -121,7 +128,11 @@ export class StoreList {
                   const storeImg = store.storeImg;
                   const storeName = store.storeName;
                   const address = store.address;
-                  const reviewCount = store.review.length;
+                  if (store.review) {
+                    const reviewCount = store.review.length;
+                  } else {
+                    const reviewCount = 0;
+                  }
                   const ratingCount = store.ratingCount;
                   const ratingValue = store.ratingValue * 20;
                   const tempGrab = document.querySelector("#storeListTemplate").text;
@@ -138,6 +149,7 @@ export class StoreList {
                 setTimeout(function () {
                   renderTarget.innerHTML += result;
                   spinner.style.display = 'none';
+                  console.log("loadMore finished!");
                 }, 1000);
               }
 
