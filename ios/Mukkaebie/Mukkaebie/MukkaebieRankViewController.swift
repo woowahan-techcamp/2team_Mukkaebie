@@ -41,6 +41,8 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     let networkMkb = NetworkMkb()
     
+    var willDoAnimation = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,9 +62,12 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        firstBottomConstraint.constant -= firstAward.frame.height
-        secondBottomConstraint.constant -= secondAward.frame.height
-        thirdBottomConstraint.constant -= thirdAward.frame.height
+        if willDoAnimation {
+            firstBottomConstraint.constant -= firstAward.frame.height
+            secondBottomConstraint.constant -= secondAward.frame.height
+            thirdBottomConstraint.constant -= thirdAward.frame.height
+            willDoAnimation = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,51 +89,71 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
         if firstMukkaebieImage.image == nil && secondMukkaebieImage.image == nil && thirdMukkaebieImage.image == nil && mukkaebieCommentTextField.text == "" {
             var count = 0
             for user in orderByUserTop3 {
-                for mkb in (modelStore?.mkb)! {
+                var existMkbFirst = false
+                var existMkbSecond = false
+                var existMkbThird = false
+                for mkb in (modelStore?.mkb)!.reversed() {
                     if mkb["userId"] == user.key {
                         switch count {
                         case 0:
-                            if mkb["mkbComment"] != nil {
+                            if mkb["mkbComment"] != nil && mukkaebieCommentTextField.text == "" {
                                 mukkaebieCommentTextField.text = mkb["mkbComment"]
                             }
-                            if mkb["imgUrl"] != nil {
+                            if mkb["imgUrl"] != nil && firstMukkaebieImage.image == nil {
                                 firstMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                             }
+                            existMkbFirst = true
                         case 1:
-                            if mkb["imgUrl"] != nil {
+                            if mkb["imgUrl"] != nil && secondMukkaebieImage.image == nil {
                                 secondMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                             }
-                        case 3:
-                            if mkb["imgUrl"] != nil {
+                            existMkbSecond = true
+                        case 2:
+                            if mkb["imgUrl"] != nil && thirdMukkaebieImage.image == nil {
                                 thirdMukkaebieImage.af_setImage(withURL: URL(string:mkb["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                             }
+                            existMkbThird = true
                         default:
                             break
                         }
                     }
+                }
+                if !existMkbFirst && count == 0 {
+                    mukkaebieCommentTextField.text = "메세지를 입력해주세요"
+                    firstMukkaebieImage.af_setImage(withURL: URL(string: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                }
+                if !existMkbSecond && count == 1 {
+                    secondMukkaebieImage.af_setImage(withURL: URL(string: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                }
+                if !existMkbThird && count == 2 {
+                    thirdMukkaebieImage.af_setImage(withURL: URL(string: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                 }
                 count += 1
             }
         }
         
         if self.firstBottomConstraint.constant < 0 {
-            UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.firstBottomConstraint.constant += self.firstAward.frame.height
-                self.view.layoutSubviews()
-                
-            }, completion: nil)
-            
-            UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.secondBottomConstraint.constant += self.secondAward.frame.height
-                self.view.layoutSubviews()
-                
-            }, completion: nil)
-            
-            UIView.animate(withDuration: 1.5, delay: 3, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.thirdBottomConstraint.constant += self.thirdAward.frame.height
-                self.view.layoutSubviews()
-                
-            }, completion: nil)
+            if orderByUserTop3.count > 0 {
+                UIView.animate(withDuration: 1.5, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                    self.firstBottomConstraint.constant += self.firstAward.frame.height
+                    self.view.layoutSubviews()
+                    
+                }, completion: nil)
+                if orderByUserTop3.count > 1 {
+                    UIView.animate(withDuration: 1.5, delay: 2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                        self.secondBottomConstraint.constant += self.secondAward.frame.height
+                        self.view.layoutSubviews()
+                        
+                    }, completion: nil)
+                    if orderByUserTop3.count > 2 {
+                        UIView.animate(withDuration: 1.5, delay: 3, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                            self.thirdBottomConstraint.constant += self.thirdAward.frame.height
+                            self.view.layoutSubviews()
+                            
+                        }, completion: nil)
+                    }
+                }
+            }
         }
     }
 
@@ -171,42 +196,34 @@ class MukkaebieRankViewController: UIViewController, UIImagePickerControllerDele
     }
     
     func postComment(userId: String, mkbComment: String){
-        if postImgData == nil {
-            if orderByUserTop3[0].key == userId {
-                for mkb in (modelStore?.mkb)!.reversed() {
-                    if mkb["userId"] == userId {
-                        if mkb["imgUrl"] != nil {
-                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
-                            return
-                        } else {
-                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
-                            return
-                        }
+        if postImgData == nil && orderByUserTop3[0].key == userId {
+            for mkb in (modelStore?.mkb)!.reversed() {
+                if mkb["userId"] == userId && mkb["imgUrl"] != nil{
+                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                        return
+                    } else {
+                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                        return
                     }
-                }
-                networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
             }
+            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
         } else {
             networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: postImgData!)
         }
     }
     
     func postImgData(userId: String, imgData: Data) {
-        if postComment == nil {
-            if orderByUserTop3[0].key == userId {
+        if postComment == nil && orderByUserTop3[0].key == userId {
                 for mkb in (modelStore?.mkb)!.reversed() {
-                    if mkb["userId"] == userId {
-                        if mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
-                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
-                            return
-                        } else {
-                            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
-                            return
-                        }
+                    if mkb["userId"] == userId && mkb["mkbComment"] != nil && mkb["mkbComment"] != ""{
+                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
+                        return
+                    } else {
+                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                        return
                     }
                 }
                 networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
-            }
         } else {
             networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: postComment!, imgData: imgData)
         }
