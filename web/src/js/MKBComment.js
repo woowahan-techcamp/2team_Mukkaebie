@@ -64,9 +64,14 @@ export class MKBComment {
             else {
               document.getElementById("commentTextInput")["value"] = "";
             }
+            const mkbComment = document.querySelector("#mkbComment");
+            const mkbCommentUserId = document.querySelector("#mkbCommentUserId");
             const commentUser = document.querySelector(".commentWriteBox p");
+
             commentUser.innerText = clickedUser;
             commentUser.setAttribute("value", this.attributes["value"]["value"]);
+            mkbComment.innerText = clickedMkb["mkbComment"];
+            mkbCommentUserId.innerText = clickedUser;
           }
         }
         getResponse().then(renderModal);
@@ -123,6 +128,9 @@ export class MKBComment {
         function renderContent(oneComment, mkbLevel) {
           const comment = oneComment;
           const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
+          const mkbOutsideCommentId = document.querySelector("#mkbCommentOutsideId");
+          const mkbOutsideCommentMsg = document.querySelector("#mkbCommentOutsideMsg");
+
           if (typeof(comment) === "string") {
             profilePicSmall.setAttribute("data-user", comment);
             profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
@@ -130,6 +138,12 @@ export class MKBComment {
             profilePicSmall.setAttribute("data-user", comment["userId"]);
             profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
           }
+          if (mkbLevel === "gold") {
+            console.log(comment["mkbComment"]);
+            mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
+            mkbOutsideCommentId.innerHTML = comment["userId"];
+          }
+
           profilePicSmall.setAttribute("value", mkbLevel);
           profilePicSmall.setAttribute("data-store", id);
         }

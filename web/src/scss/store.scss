@@ -575,7 +575,7 @@ body {
 
 /* 먹깨비 코멘트 관련 */
 .mkbCommentOutside{
-  height: 100px;
+  height: 300px;
   background: transparent;
   position: absolute;
   width: 100%;
@@ -583,6 +583,33 @@ body {
   top:0;
   z-index: 100;
 }
+.mkbCommentOutsideBubble {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  top:30px;
+  //background-image:url("../img/goldbubble.svg");
+  border-radius: .4em;
+  width: 90%;
+  margin: 0 auto;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#mkbCommentUserId{
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+#mkbComment {
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
 
 #file-form input {
   color:#fff;
@@ -719,7 +746,7 @@ body {
   right: 9%;
   width: 30%;
   z-index: 10;
-  height:60%;
+  height:50%;
 }
 
 
@@ -744,7 +771,7 @@ body {
   color: #ead679;
   left: 32%;
   z-index: 30;
-  height: 90%;
+  height: 70%;
   width: 34%;
 }
 
@@ -770,7 +797,7 @@ body {
   left: 9%;
   width: 30%;
   z-index: 20;
-  height: 70%;
+  height: 60%;
 }
 
 
