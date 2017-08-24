@@ -13,6 +13,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var menuTableView: UITableView!
     
+    @IBOutlet weak var chartAnimationView: UIView!
+    
     var modelStore : ModelStores?
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()

@@ -125,15 +125,25 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNe-Lb-bVI">
+                                        <rect key="frame" x="0.0" y="63.5" width="375" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="fln-lb-OdE"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="X0y-nk-Jzt" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" id="0Ko-Ye-kMO"/>
+                                    <constraint firstItem="CNe-Lb-bVI" firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="99A-Zj-cDq"/>
                                     <constraint firstAttribute="trailing" secondItem="X0y-nk-Jzt" secondAttribute="trailing" id="I9b-Zu-Sib"/>
                                     <constraint firstItem="bp7-M2-dnX" firstAttribute="centerY" secondItem="SfL-Yy-XrU" secondAttribute="centerY" id="KXn-1d-o9z"/>
+                                    <constraint firstItem="CNe-Lb-bVI" firstAttribute="leading" secondItem="X0y-nk-Jzt" secondAttribute="leading" id="MI2-Lk-QHO"/>
                                     <constraint firstItem="bp7-M2-dnX" firstAttribute="leading" secondItem="SfL-Yy-XrU" secondAttribute="trailing" constant="9.5" id="Pck-Rz-Zlm"/>
                                     <constraint firstItem="SfL-Yy-XrU" firstAttribute="leading" secondItem="mTb-oG-gl1" secondAttribute="leading" constant="21" id="Xrk-4l-nnj"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="leading" secondItem="X0y-nk-Jzt" secondAttribute="leading" id="b1j-jE-fOL"/>
+                                    <constraint firstItem="CNe-Lb-bVI" firstAttribute="top" secondItem="X0y-nk-Jzt" secondAttribute="top" id="daN-Cm-VgH"/>
                                     <constraint firstAttribute="bottom" secondItem="6Bz-b8-Vfs" secondAttribute="bottom" id="gID-l2-e2b"/>
                                     <constraint firstItem="6Bz-b8-Vfs" firstAttribute="top" secondItem="X0y-nk-Jzt" secondAttribute="bottom" constant="30" id="heF-at-oix"/>
                                     <constraint firstItem="SfL-Yy-XrU" firstAttribute="top" secondItem="mTb-oG-gl1" secondAttribute="top" constant="16" id="iDa-0p-jbn"/>
@@ -152,6 +162,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="rrrr" id="5md-cb-gNs"/>
                     <connections>
+                        <outlet property="chartAnimationView" destination="CNe-Lb-bVI" id="aiz-8j-8Lc"/>
                         <outlet property="menuTableView" destination="6Bz-b8-Vfs" id="ibb-dK-wNx"/>
                         <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
                     </connections>
