@@ -181,6 +181,11 @@ class StoreTestViewController: UIViewController {
         
         menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
         
+        if orderList.count == 0 {
+            menuRankVC?.noOrder = true
+        } else {
+            menuRankVC?.noOrder = false
+        }
         if (menuRankVC?.pieChartView != nil) {
             menuRankVC?.setSegment()
         }
@@ -329,13 +334,23 @@ extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
         }
         switch tabNumber {
         case 0:
-            cell.tabSubview.frame.size.height = (mukkaebieVC?.view.frame.height)!
-            cell.tabSubviewHeightConstraint.constant = (mukkaebieVC?.view.frame.height)!
-            cell.tabSubview.addSubview((mukkaebieVC?.view)!)
+            if orderByUserTop3.count == 0 {
+                let noMukkaebieCell = Bundle.main.loadNibNamed("noMukkaebieTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
+                return noMukkaebieCell
+            } else {
+                cell.tabSubview.frame.size.height = (mukkaebieVC?.view.frame.height)!
+                cell.tabSubviewHeightConstraint.constant = (mukkaebieVC?.view.frame.height)!
+                cell.tabSubview.addSubview((mukkaebieVC?.view)!)
+            }
         case 1:
-            cell.tabSubview.frame.size.height = (menuRankVC?.view.frame.height)!
-            cell.tabSubviewHeightConstraint.constant = (menuRankVC?.view.frame.height)!
-            cell.tabSubview.addSubview((menuRankVC?.view)!)
+            if modelStore?.menu.count == 0 {
+                let noMenuCell = Bundle.main.loadNibNamed("noMenuTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
+                return noMenuCell
+            } else {
+                cell.tabSubview.frame.size.height = (menuRankVC?.view.frame.height)!
+                cell.tabSubviewHeightConstraint.constant = (menuRankVC?.view.frame.height)!
+                cell.tabSubview.addSubview((menuRankVC?.view)!)
+            }
         case 2:
             cell.tabSubview.frame.size.height = (infoVC?.view.frame.height)!
             cell.tabSubviewHeightConstraint.constant = (infoVC?.view.frame.height)!
@@ -357,8 +372,16 @@ extension StoreTestViewController: UITableViewDataSource, UITableViewDelegate {
         }
         switch tabNumber {
         case 0:
+            if orderByUserTop3.count == 0 {
+                let noMukkaebieCell = Bundle.main.loadNibNamed("noMukkaebieTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
+                return noMukkaebieCell.frame.height
+            }
             return (mukkaebieVC?.view.frame.height)!
         case 1:
+            if modelStore?.menu.count == 0 {
+                let noMenuCell = Bundle.main.loadNibNamed("noMenuTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
+                return noMenuCell.frame.height
+            }
             return (menuRankVC?.view.frame.height)!
         case 2:
             return (infoVC?.view.frame.height)!
