@@ -42,7 +42,7 @@ export class MKBComment {
         }
 
         const renderModal = (res) => {
-
+          document.querySelector(".mkbEdit").innerText = "수정";
           if (this.attributes["data-user"]["value"] != session) {
             document.querySelector(".mkbEdit").style.display = "none";
           }
@@ -232,6 +232,12 @@ export class MKBComment {
         if (file != undefined) {
           const formData = new FormData();
           formData.append('profileImage', file);
+          document.querySelector("#mkbModal").style.opacity = 0;
+          setTimeout(function () {
+            document.querySelector("#mkbModal").style = "none";
+          }, 1000)
+
+
           const xhr = new XMLHttpRequest();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
