@@ -90,8 +90,8 @@ class MukkaebieRankViewController: UIViewController {
         if !imageCommentIsRequested {
             for i in 0..<orderByUserTop3.count {
                 if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == orderByUserTop3[i].key}) {
-                    if i == 0 && mkbDictionaryArray[0]["mkbComment"] != nil {
-                        mukkaebieCommentTextField.text = mkbDictionaryArray[0]["mkbComment"]
+                    if i == 0 && mkbDictionaryArray[mkbIndex]["mkbComment"] != nil {
+                        mukkaebieCommentTextField.text = mkbDictionaryArray[mkbIndex]["mkbComment"]
                     }
                     if mkbDictionaryArray[mkbIndex]["imgUrl"] != nil {
                         mukkaebieImageList[i].af_setImage(withURL: URL(string:mkbDictionaryArray[mkbIndex]["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
@@ -149,7 +149,7 @@ class MukkaebieRankViewController: UIViewController {
     }
     
     func postComment(userId: String, mkbComment: String){
-        if imgData == nil && orderByUserTop3[0].key == userId {
+        if imgData == nil {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
@@ -165,7 +165,7 @@ class MukkaebieRankViewController: UIViewController {
     }
     
     func postImgData(userId: String, imgData: Data) {
-        if comment == nil && orderByUserTop3[0].key == userId {
+        if comment == nil {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
