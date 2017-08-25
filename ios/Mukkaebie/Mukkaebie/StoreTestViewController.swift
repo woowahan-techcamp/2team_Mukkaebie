@@ -51,6 +51,8 @@ class StoreTestViewController: UIViewController {
     var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
+    let indicatorView = Indicator()
+
     var tabNumber = 0
     
     @IBOutlet weak var tableView: UITableView!
@@ -80,6 +82,12 @@ class StoreTestViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
         self.networkStore.getStoreList(sellerId: storeId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        indicatorView.showProgressView(view: self.view)
+
     }
     
     override func didReceiveMemoryWarning() {
