@@ -293,9 +293,12 @@
 .mkbGrandMkbQuote {
   font-size: 100px; color:#FFDF00
 }
-
+.mkbCommentOutsideWrap{
+  margin-top: -70px;
+}
 #mkbCommentOutsideId{
   font-size: 15px;
+  color: $bmOrangeColor;
 }
 #mkbCommentOutsideMsg{
   font-size: 40px

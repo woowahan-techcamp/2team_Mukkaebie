@@ -263,6 +263,7 @@ export class MKBComment {
       const profilePic = document.querySelector(".mkbImgPreview");
       const clickedMkb = document.querySelector(".commentWriteBox p");
       const profilePicSmall = document.querySelector("." + clickedMkb.getAttribute("value") + "Img");
+      inputObj["targetLevel"] = clickedMkb.getAttribute("value");
       const uploadedPicUrl = "url('" + inputObj["imgUrl"] + "')";
       profilePic.style.backgroundImage = uploadedPicUrl;
       profilePicSmall.style.backgroundImage = uploadedPicUrl;
@@ -294,6 +295,7 @@ export class MKBComment {
   applyChange(inputObj){
     const imgUrl = inputObj["imgUrl"];
     const targetLevel = inputObj["targetLevel"];
+    console.log(targetLevel);
     const targetLevelImg = document.querySelector("." + targetLevel + "Img");
     document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
 
@@ -301,7 +303,7 @@ export class MKBComment {
       document.querySelector("#mkbCommentOutsideMsg").innerText = document.querySelector("#commentTextInput").value;
     }
 
-    targetLevelImg.style.backgroundImage = "url('" + inputObj["imgUrl"] + "')";
+    // targetLevelImg.style.backgroundImage = "url('" + inputObj["imgUrl"] + "')";
 
     // const mkbComment = new MKBComment(inputObj["storeId"], inputObj["topThreeList"]);
 
