@@ -62,6 +62,7 @@ export class Review {
   }
 
   getReview(id) {
+
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -83,7 +84,6 @@ export class Review {
             const tempGrab = document.querySelector("#reviewTemplate").text;
             const result = eval('`' + tempGrab + '`');
             renderTarget.innerHTML += result;
-
           })
         }
       }
