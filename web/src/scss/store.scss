@@ -670,7 +670,7 @@
 }
 
 .p-title {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 /* 먹깨비 코멘트 관련 */
@@ -848,7 +848,7 @@
 
 .competition-podium .podium-block.bronze {
   color: #e6d6bf;
-  right: 9%;
+  right: 11%;
   width: 30%;
   z-index: 10;
   height:50%;
@@ -866,15 +866,16 @@
 .competition-podium .podium-block.bronze .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 100%;
+  padding-top: 80%;
   z-index: 1;
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .competition-podium .podium-block.gold {
   color: #ead679;
-  left: 32%;
+  left: 30%;
   z-index: 30;
   height: 70%;
   width: 34%;
@@ -891,15 +892,16 @@
 .competition-podium .podium-block.gold .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 100%;
+  padding-top: 80%;
   z-index: 1;
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .competition-podium .podium-block.silver {
   color: #cbd9de;
-  left: 9%;
+  left: 6%;
   width: 30%;
   z-index: 20;
   height: 60%;
@@ -916,10 +918,11 @@
 .competition-podium .podium-block.silver .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 100%;
+  padding-top: 80%;
   z-index: 1;
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 
@@ -1263,7 +1266,7 @@
 }
 
 .mkbModal-content{
-  background-color: #fff;
+  background-color: transparent;
   margin: 15% auto;
   padding: 20px;
   max-width: 400px;
