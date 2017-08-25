@@ -657,6 +657,11 @@
 }
 
 /* 먹깨비 코멘트 관련 */
+
+#upload-button{
+  margin-left: 15px;
+}
+
 .mkbCommentOutside{
   height: 300px;
   background: transparent;
@@ -1063,14 +1068,6 @@
   clear: both;
 }
 
-//uploadcare 오버라이드
-.uploadcare--widget__text {
-  display: none;
-}
-
-.uploadcare--powered-by {
-  display: none;
-}
 // 로그인 필요 모달
 .logInRequiredModal {
   border:none;
@@ -1090,6 +1087,12 @@
   -ms-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
+}
+
+.logInRequired button {
+  background: $bmOrangeColor;
+  color: $whiteColor;
+  border: none;
 }
 
 .logInRequiredModal-content {
@@ -1205,10 +1208,12 @@
 
 .mkbModalClose {
   float: right;
-  background: transparent;
+  background: $bmOrangeColor;
   border: none;
   color: #fff;
   font-size: 30px;
+  line-height: 30px;
+  line-height: 30px;
 }
 
 .mkbModal {
@@ -1250,10 +1255,10 @@
 }
 
 .mkbEdit{
-  color: $bmOrangeColor;
+  color: $whiteColor;
   float: right;
-  background:transparent;
-  cursor: pointer;
+  background:$bmOrangeColor;
+  border:none;
 }
 
 

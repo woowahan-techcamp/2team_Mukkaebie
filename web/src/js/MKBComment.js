@@ -17,7 +17,7 @@ export class MKBComment {
             .then(this.applyChange)
   }
 
-  makeMKBModal(id, top3List) {
+  makeMKBModal(id) {
 
     let modal = document.querySelector('#mkbModal');
     let modalBtn = Array.from(document.querySelectorAll(".mkbProfileImgs"));
@@ -55,7 +55,7 @@ export class MKBComment {
           let clickedUser = "";
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {
             let clickedUser = this.attributes["data-user"]["value"];
-            let clickedMkb;
+            let clickedMkb = [];
 
             let clickeMkbData = mkbResponse.filter(function (mkb) {
               return mkb["userId"] == clickedUser;
@@ -76,7 +76,15 @@ export class MKBComment {
 
             commentUser.innerText = clickedUser;
             commentUser.setAttribute("value", this.attributes["value"]["value"]);
-            mkbComment.innerText = clickedMkb["mkbComment"];
+            console.log("clickedUser", clickedUser)
+            if (clickedUser === ""){
+              mkbComment.innerText = "먹깨비 없음";
+            }
+            else if (clickedMkb["mkbComment"] == undefined) {
+              mkbComment.innerText = "우하하 나는 먹깨비다!";
+            } else {
+              mkbComment.innerText = clickedMkb["mkbComment"];
+            }
             mkbCommentUserId.innerText = clickedUser;
           }
         }
@@ -111,7 +119,7 @@ export class MKBComment {
           let targetArr = (response[0].mkb) ? response[0].mkb : [];
           let finalMkbList = [];
           top3List.forEach(function (topBuyer) {
-
+            console.log("top3", topBuyer)
             let oneBuyer = targetArr.filter(function (mkbRow) {
               return mkbRow.userId == topBuyer;
             });
@@ -140,19 +148,28 @@ export class MKBComment {
       const mkbLevel = mkbLevelList[idx];
       const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
 
-      console.log(comment);
+      console.log("코멘트",comment);
       if (typeof(comment) === "string") {
         profilePicSmall.setAttribute("data-user", comment);
         profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
+        if (comment === "") {
+          mkbOutsideCommentId.innerHTML = "大 먹깨비 공석";
+        }
 
       } else {
         profilePicSmall.setAttribute("data-user", comment["userId"]);
         profilePicSmall.style.backgroundImage = "url('" + comment['imgUrl'] + "')";
       }
       if (mkbLevel === "gold") {
-        console.log(comment["mkbComment"]);
-        mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
-        mkbOutsideCommentId.innerHTML = comment["userId"];
+
+
+        if (typeof(comment) === "string") {
+          mkbOutsideCommentId.innerHTML = comment;
+          mkbOutsideCommentMsg.innerHTML = "우하하! 나는 먹깨비다";
+        }
+        else{mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
+          mkbOutsideCommentId.innerHTML = comment["userId"];}
+
       }
       StoreUtil.setAttributes(profilePicSmall, {"value": mkbLevel,"data-store":id})
     });

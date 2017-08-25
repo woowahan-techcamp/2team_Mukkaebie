@@ -32,7 +32,7 @@ export class Review {
     let theButton = document.querySelector("#reviewTextInputBtn");
 
     theButton.addEventListener("click", function () {
-      if (session != "") {
+      if (session != "비회원") {
 
         let reviewStars = document.querySelector("#rated");
         let selectedStar = reviewStars.textContent;

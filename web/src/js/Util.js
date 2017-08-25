@@ -92,7 +92,7 @@ let StoreUtil = {
       let orderButton = document.querySelector("#cartOrderButton");
 
       orderButton.addEventListener("click", function () {
-        if (session != "") {
+        if (session != "비회원") {
           let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
 
           let cartContent = Array.from(document.querySelector(".storeCartContent").children);

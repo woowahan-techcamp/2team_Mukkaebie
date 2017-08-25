@@ -209,9 +209,13 @@ export class Graph {
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
         let top3UserList = [];
-        for (let i = 0; i < top3.length; i++) {
-          let name = top3[i].toString().split(",")[0];
-          let order = top3[i].toString().split(",")[1];
+        for (let i = 0; i < 3; i++) {
+          let name = ""
+          if (i < top3.length) {
+            name = top3[i].toString().split(",")[0];
+            // let order = top3[i].toString().split(",")[1];
+          }
+          console.log("name", name)
           top3UserList.push(name);
           // top3_name[i].innerHTML = name;
           // top3_order[i].innerHTML = order;
