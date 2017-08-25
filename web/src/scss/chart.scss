@@ -187,6 +187,20 @@ circle {
 
 }
 
+svg > .donut {
+    overflow: visible;
+}
+
+.donut-segment {
+    transition: all 1s;
+    transform-origin: 50% 50%;
+    cursor: pointer;
+}
+
+.donut-segment:hover {
+    stroke-width: 10;
+}
+
 
 .donutLabel {
     color:#000000;

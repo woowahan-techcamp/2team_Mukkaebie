@@ -90,10 +90,9 @@ export class Graph {
           share = Number(top5[i].toString().split(',')[1]) / total * 100;
           reverse = 100 - share;
           circleContent +=
-              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">`;
-          circleContent +=
-              `<title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>`;
-          circleContent += `</circle>`;
+              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">
+                  <title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>
+               </circle>`;
 
           labelText[i] = '';
           labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
@@ -104,6 +103,7 @@ export class Graph {
             labelText[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
         }
+
 
         let oldCircle = document.getElementsByClassName('donut-segment');
         let circleArr = Array.from(oldCircle);
