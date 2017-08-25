@@ -528,10 +528,9 @@
   cursor: pointer;
 }
 
-/* 리뷰 탭 관련 */
 .review-user {
   float: left;
-  padding-top: 0px;
+  padding-top: 5px;
 }
 
 .starWrapper {
@@ -540,11 +539,10 @@
 }
 
 .star-rating {
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
   fill: white;
   pointer-events: none;
-  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -555,8 +553,8 @@
 
 
   .star-rating {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.3em;
+    height: 1.3em;
     fill: white;
     pointer-events: none;
   }
@@ -600,6 +598,7 @@
 [dir="rtl"] {
   direction: rtl
 }
+
 
 
 #reviewTextInput {
