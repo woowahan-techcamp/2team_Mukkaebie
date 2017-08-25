@@ -64,7 +64,6 @@ export class StoreList {
           });
           let result = '';
           size = 30;
-          console.log(size);
           response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
@@ -91,7 +90,6 @@ export class StoreList {
             setTimeout(function () {
               renderTarget.innerHTML += result;
               spinner.style.display = 'none';
-              console.log("loadFirst finished!");
             }, 1000);
           }
         });
@@ -149,7 +147,6 @@ export class StoreList {
                 setTimeout(function () {
                   renderTarget.innerHTML += result;
                   spinner.style.display = 'none';
-                  console.log("loadMore finished!");
                 }, 1000);
               }
 

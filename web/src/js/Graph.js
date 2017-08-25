@@ -205,7 +205,6 @@ export class Graph {
         });
 
         let top3 = items.slice(0, 3);
-        console.log(top3);
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
         let top3UserList = [];
@@ -215,7 +214,6 @@ export class Graph {
             name = top3[i].toString().split(",")[0];
             // let order = top3[i].toString().split(",")[1];
           }
-          console.log("name", name)
           top3UserList.push(name);
           // top3_name[i].innerHTML = name;
           // top3_order[i].innerHTML = order;

@@ -279,6 +279,21 @@
 }
 
 /* 먹깨비 탭 관련 */
+
+.mkbGrandMkb {
+  font-size: 30px
+}
+
+.mkbGrandMkbQuote {
+  font-size: 100px; color:#FFDF00
+}
+
+#mkbCommentOutsideId{
+  font-size: 15px;
+}
+#mkbCommentOutsideMsg{
+  font-size: 40px
+}
 .logInRequired {
   display: none;
 }
@@ -304,6 +319,7 @@
   width: 100%;
   padding-top: 120.25%;
   position: relative;
+  background-color: $whiteColor;
 
 }
 
@@ -519,6 +535,7 @@
   height: 1em;
   fill: white;
   pointer-events: none;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {

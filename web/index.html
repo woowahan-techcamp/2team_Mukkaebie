@@ -189,7 +189,7 @@
           <!--그래프 시작-->
           <div class="menuTabGraph">
             <div class="dateTab"></div>
-            <figure style="text-align:center">
+            <figure class="donutFigure">
               <div class="figure-content">
                 <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut"
                      aria-labelledby="menu-title menu-desc"
@@ -248,14 +248,14 @@
         </div>
         <div class="mkbTabContent col-xs-12 storeTabContent p-a-0" id="cont-mkbTab">
 
-          <div class="mkbGraphWrapper" style="background-color: #fff;">
+          <div class="mkbGraphWrapper">
             <div class="mkbCommentOutside">
               <div class="mkbCommentOutsideBubble">
-                <div style="font-size: 30px">이 구역의 大 먹깨비</div>
-                <div id="mkbCommentOutsideId" style="font-size: 15px;">공 석</div>
-                <span style="font-size: 100px; color:#FFDF00">"</span>
-                <span id="mkbCommentOutsideMsg"  style="font-size: 40px">당신! 먹깨비가 되어라</span>
-                <span style="font-size: 100px; color:#FFDF00">"</span>
+                <div class="mkbGrandMkb">이 구역의 大 먹깨비</div>
+                <div id="mkbCommentOutsideId">공 석</div>
+                <span class="kbGrandMkbQuote">"</span>
+                <span id="mkbCommentOutsideMsg">당신! 먹깨비가 되어라</span>
+                <span class="kbGrandMkbQuote">"</span>
               </div>
             </div>
             <div class="competition-podium well m-a-0">
@@ -293,7 +293,7 @@
           <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
             <p class="review-user" name="userId" value="${session}">${session}</p>
-            <svg class="star-rating" style="display: none;">
+            <svg class="star-rating">
               <symbol id="star" viewBox="0 0 98 92">
                 <title>star</title>
                 <path stroke='#000' stroke-width='5' d='M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z' fill-rule='evenodd'/>
@@ -492,10 +492,8 @@
 
 
   <section class="award-area">
-    <div class="caroufredsel_wrapper"
-         style="display: block; text-align: left; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 888px; height: 41px; margin: 0px 0px 10px; overflow: hidden;">
-      <ul id="award" class="award list-inline xsmall"
-          style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 2664px; height: 41px;">
+    <div class="caroufredsel_wrapper">
+      <ul id="award" class="award list-inline xsmall">
         <li><span class="award1">kisa</span><em>대한민국 인터넷 대상<br>국무총리상 수상</em></li>
         <li><span class="award2">kisa</span><em>지식경제부 선정<br>올해의 청년기업인</em></li>
         <li><span class="award3">kisa</span><em>2012 스마트앱어워드<br>생활편의부분 대상</em></li>
@@ -503,7 +501,6 @@
         <li><span class="award4">kisa</span><em>대한민국 스마트 TV 앱<br>이노베이션 선정</em></li>
       </ul>
     </div>
-    <button type="button" class="nextcrs hidden" style="display: none;">다음으로</button>
   </section>
 
 </footer>
@@ -546,9 +543,9 @@
 </div>
 
 <div id="mkbModal" class="mkbModal">
-  <div class="mkbModal-content" style="background: rgba(0, 0, 0, 0)">
+  <div class="mkbModal-content">
     <button class="mkbModalClose">&times;</button>
-    <div class="mkbImgPreview" style="opacity: 1;width: 300px; height:300px; margin:0 auto; background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png'); background-size: contain; background-repeat: no-repeat"></div>
+    <div class="mkbImgPreview"></div>
     <div id="mkbCommentUserId"></div>
     <div id="mkbComment"></div>
     <button class="mkbEdit" onclick="toggleEdit()">수정</button>
@@ -573,7 +570,7 @@
   SERVER_BASE_URL  = "http://52.79.91.114:3000";
   IMAGE_SERVER_POST = "http://52.78.27.108:3000/profile/";
   IMAGE_SERVER_GET = "http://52.78.27.108:3000/uploads/";
-  DEFAULT_PROFILE_IMG = "./src/img/emptyProfile.png";
+  DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
   let session = "비회원"
 
 </script>
@@ -607,12 +604,11 @@
     setTimeout(function () {
       document.querySelector("#loginModal").style.display = "none";
     },1000)
-
-  })
+  });
   
   document.querySelector(".baeminMainLogo").addEventListener("click",function () {
     window.location.reload();
-  })
+  });
 </script>
 
 </body>

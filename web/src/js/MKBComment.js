@@ -76,7 +76,6 @@ export class MKBComment {
 
             commentUser.innerText = clickedUser;
             commentUser.setAttribute("value", this.attributes["value"]["value"]);
-            console.log("clickedUser", clickedUser)
             if (clickedUser === ""){
               mkbComment.innerText = "먹깨비 없음";
             }
@@ -119,7 +118,6 @@ export class MKBComment {
           let targetArr = (response[0].mkb) ? response[0].mkb : [];
           let finalMkbList = [];
           top3List.forEach(function (topBuyer) {
-            console.log("top3", topBuyer)
             let oneBuyer = targetArr.filter(function (mkbRow) {
               return mkbRow.userId == topBuyer;
             });
@@ -148,7 +146,6 @@ export class MKBComment {
       const mkbLevel = mkbLevelList[idx];
       const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
 
-      console.log("코멘트",comment);
       if (typeof(comment) === "string") {
         profilePicSmall.setAttribute("data-user", comment);
         profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
@@ -261,7 +258,7 @@ export class MKBComment {
 
 
   setProfilePics(inputObj){
-    console.log("imgUrl", inputObj["imgUrl"]);
+
     return new Promise(function (resolve) {
       const profilePic = document.querySelector(".mkbImgPreview");
       const clickedMkb = document.querySelector(".commentWriteBox p");
@@ -298,7 +295,6 @@ export class MKBComment {
     const imgUrl = inputObj["imgUrl"];
     const targetLevel = inputObj["targetLevel"];
     const targetLevelImg = document.querySelector("." + targetLevel + "Img");
-    console.log("targetLvlImg", targetLevelImg);
     document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
 
     if (targetLevel === "gold") {
