@@ -152,6 +152,22 @@ footer .footer-area .row .woowa-info > div a.mail, footer .footer-area .row .woo
   color: #999
 }
 
+.caroufredsel_wrapper{
+  display: block;
+  text-align: left;
+  float: none;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: auto;
+  width: 888px;
+  height: 41px;
+  margin: 0px 0px 10px;
+  overflow: hidden;
+}
+
 
 @media(min-width: 767px) {
   footer .footer-area .row .woowa-info > div {
@@ -241,6 +257,19 @@ footer .footer-area .foot-terms-of-use {
     border: 0;
     line-height: 1.6
   }
+}
+
+.award {
+  text-align: left;
+  float: none;
+  position: absolute;
+  top: 0px;
+  right: auto;
+  bottom: auto;
+  left: 0px;
+  margin: 0px;
+  width: 2664px;
+  height: 41px;
 }
 
 footer .award-area {

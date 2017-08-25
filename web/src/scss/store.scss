@@ -2,9 +2,7 @@
 
 /*페이지 레이아웃*/
 
-body {
-  -webkit-transform:translate3d(0,0,0);
-}
+
 
 .storeLayout {
   max-width: 960px;
@@ -281,6 +279,21 @@ body {
 }
 
 /* 먹깨비 탭 관련 */
+
+.mkbGrandMkb {
+  font-size: 30px
+}
+
+.mkbGrandMkbQuote {
+  font-size: 100px; color:#FFDF00
+}
+
+#mkbCommentOutsideId{
+  font-size: 15px;
+}
+#mkbCommentOutsideMsg{
+  font-size: 40px
+}
 .logInRequired {
   display: none;
 }
@@ -306,6 +319,7 @@ body {
   width: 100%;
   padding-top: 120.25%;
   position: relative;
+  background-color: $whiteColor;
 
 }
 
@@ -508,7 +522,7 @@ body {
 /* 리뷰 탭 관련 */
 .review-user {
   float: left;
-  padding-top: 5px;
+  padding-top: 0px;
 }
 
 .starWrapper {
@@ -517,10 +531,11 @@ body {
 }
 
 .star-rating {
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  height: 1em;
   fill: white;
   pointer-events: none;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -659,8 +674,13 @@ body {
 }
 
 /* 먹깨비 코멘트 관련 */
+
+#upload-button{
+  margin-left: 15px;
+}
+
 .mkbCommentOutside{
-  height: 100px;
+  height: 300px;
   background: transparent;
   position: absolute;
   width: 100%;
@@ -668,6 +688,33 @@ body {
   top:0;
   z-index: 100;
 }
+.mkbCommentOutsideBubble {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  top:30px;
+  //background-image:url("../img/goldbubble.svg");
+  border-radius: .4em;
+  width: 90%;
+  margin: 0 auto;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#mkbCommentUserId{
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+#mkbComment {
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
 
 #file-form input {
   color:#fff;
@@ -772,7 +819,7 @@ body {
   top: -100px;
   background: #fff;
   background-image: url("../img/particles_alpha.png");
-  -webkit-animation: rain 10s linear infinite;
+  -webkit-animation: rain 5s linear infinite;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -804,7 +851,7 @@ body {
   right: 9%;
   width: 30%;
   z-index: 10;
-  height:60%;
+  height:50%;
 }
 
 
@@ -829,7 +876,7 @@ body {
   color: #ead679;
   left: 32%;
   z-index: 30;
-  height: 90%;
+  height: 70%;
   width: 34%;
 }
 
@@ -855,7 +902,7 @@ body {
   left: 9%;
   width: 30%;
   z-index: 20;
-  height: 70%;
+  height: 60%;
 }
 
 
@@ -1038,13 +1085,109 @@ body {
   clear: both;
 }
 
-//uploadcare 오버라이드
-.uploadcare--widget__text {
+// 로그인 필요 모달
+.logInRequiredModal {
+  border:none;
   display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.uploadcare--powered-by {
+.logInRequired button {
+  background: $bmOrangeColor;
+  color: $whiteColor;
+  border: none;
+}
+
+.logInRequiredModal-content {
+  background-color: #000000;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 130px;
+}
+.logInRequiredModalTop {color: #ffffff; font-size: 30px;}
+.logInRequiredModalBtm {color:#ff6c00; font-size: 30px}
+/// 로그인 성공 후 모달
+.afterLoginModal {
   display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.afterLoginModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/loginsucess.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 250px;
+}
+// 리뷰 작성 후 모달
+.thxModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.thxModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/thankyoutear.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 300px;
 }
 
 // 주문 후 모달
@@ -1056,7 +1199,7 @@ body {
   top: 0;
   opacity: 0.0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
@@ -1072,7 +1215,6 @@ body {
   margin: 15% auto;
   padding: 20px;
   position: relative;
-  top: 50vh;
   border: 1px solid #888;
   max-width: 400px;
   background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
@@ -1083,10 +1225,12 @@ body {
 
 .mkbModalClose {
   float: right;
-  background: transparent;
+  background: $bmOrangeColor;
   border: none;
   color: #fff;
   font-size: 30px;
+  line-height: 30px;
+  line-height: 30px;
 }
 
 .mkbModal {
@@ -1127,8 +1271,22 @@ body {
   background-repeat: no-repeat;
 }
 
+.mkbEdit{
+  color: $whiteColor;
+  float: right;
+  background:$bmOrangeColor;
+  border:none;
+}
+
 
 //login
+
+#loginMsg {
+  font-size: 11px;
+  color:#ff0000;
+  height: 15px;
+  line-height: 15px;
+}
 
 #loginModal {
   position: fixed;
@@ -1136,7 +1294,7 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
@@ -1145,12 +1303,12 @@ body {
   -ms-transition: opacity 0.5s ease-in-out;
   -o-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
+
 }
 
 .loginModal-content{
   background-color: #fff;
   position: relative;
-  top: 25vh;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -1198,4 +1356,8 @@ body {
   background: #1abcaa;
   color: #fff;
   border:none
+}
+
+#topLoggedinInfo {
+  cursor: pointer;
 }

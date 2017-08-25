@@ -189,7 +189,7 @@
           <!--그래프 시작-->
           <div class="menuTabGraph">
             <div class="dateTab"></div>
-            <figure style="text-align:center">
+            <figure class="donutFigure">
               <div class="figure-content">
                 <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut"
                      aria-labelledby="menu-title menu-desc"
@@ -248,9 +248,15 @@
         </div>
         <div class="mkbTabContent col-xs-12 storeTabContent p-a-0" id="cont-mkbTab">
 
-          <div class="mkbGraphWrapper" style="background-color: #fff;">
+          <div class="mkbGraphWrapper">
             <div class="mkbCommentOutside">
-              여기에 한마디
+              <div class="mkbCommentOutsideBubble">
+                <div class="mkbGrandMkb">이 구역의 大 먹깨비</div>
+                <div id="mkbCommentOutsideId">공 석</div>
+                <span class="kbGrandMkbQuote">"</span>
+                <span id="mkbCommentOutsideMsg">당신! 먹깨비가 되어라</span>
+                <span class="kbGrandMkbQuote">"</span>
+              </div>
             </div>
             <div class="competition-podium well m-a-0">
               <div class="podium-block gold">
@@ -287,7 +293,7 @@
           <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
             <p class="review-user" name="userId" value="${session}">${session}</p>
-            <svg class="star-rating" style="display: none;">
+            <svg class="star-rating">
               <symbol id="star" viewBox="0 0 98 92">
                 <title>star</title>
                 <path stroke='#000' stroke-width='5' d='M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z' fill-rule='evenodd'/>
@@ -296,7 +302,7 @@
 
             <div class="starWrapper">
               <div id="stars" class="stars">
-                <a class="star" href="javascript:void(0)">
+                <a class="star is-selected" href="javascript:void(0)">
                   <svg class="star-rating"><use xlink:href="#star"></use></svg>
                 </a>
                 <a class="star" href="javascript:void(0)">
@@ -334,8 +340,6 @@
   </div>
 
 </script>
-
-
 <div class="row header m-x-0">
   <div class="float-right p-a-1 loginMenu">
     <span id="topLoggedinInfo">로그인</span>
@@ -488,10 +492,8 @@
 
 
   <section class="award-area">
-    <div class="caroufredsel_wrapper"
-         style="display: block; text-align: left; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 888px; height: 41px; margin: 0px 0px 10px; overflow: hidden;">
-      <ul id="award" class="award list-inline xsmall"
-          style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 2664px; height: 41px;">
+    <div class="caroufredsel_wrapper">
+      <ul id="award" class="award list-inline xsmall">
         <li><span class="award1">kisa</span><em>대한민국 인터넷 대상<br>국무총리상 수상</em></li>
         <li><span class="award2">kisa</span><em>지식경제부 선정<br>올해의 청년기업인</em></li>
         <li><span class="award3">kisa</span><em>2012 스마트앱어워드<br>생활편의부분 대상</em></li>
@@ -499,7 +501,6 @@
         <li><span class="award4">kisa</span><em>대한민국 스마트 TV 앱<br>이노베이션 선정</em></li>
       </ul>
     </div>
-    <button type="button" class="nextcrs hidden" style="display: none;">다음으로</button>
   </section>
 
 </footer>
@@ -509,7 +510,8 @@
     <div class="loginModalTitle">LOG IN</div>
     <div>아이디</div>
     <input class="loginIDInput" type="text" placeholder="Identification">
-    <div class="m-t-2">비밀번호</div>
+    <div id="loginMsg"></div>
+    <div>비밀번호</div>
     <input class="loginPWInput" type="password" placeholder="Password">
     <div class="m-t-1">
       <button class="loginButton">로그인</button>
@@ -518,29 +520,47 @@
   </div>
 </div>
 
+<div id="afterLoginModal" class="afterLoginModal">
+  <div class="afterLoginModal-content">
+  </div>
+</div>
+
+<div id="thxModal" class="thxModal">
+  <div class="thxModal-content">
+  </div>
+</div>
+
+
+<div id="loginRequiredModal" class="logInRequiredModal">
+  <div class="logInRequiredModal-content">
+    <div class="logInRequiredModalTop">이 서비스가 어떤 서비스입니까?</div>
+    <div class="logInRequiredModalBtm">로그인이 필요한 서비스</div>
+  </div>
+</div>
+
 <div id="orderModal" class="orderModal">
   <div class="modal-content"></div>
 </div>
 
 <div id="mkbModal" class="mkbModal">
-  <div class="mkbModal-content" style="background: rgba(0, 0, 0, 0)">
+  <div class="mkbModal-content">
     <button class="mkbModalClose">&times;</button>
-    <div class="mkbImgPreview" style="opacity: 1;width: 300px; height:300px; margin:0 auto; background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png'); background-size: contain; background-repeat: no-repeat"></div>
+    <div class="mkbImgPreview"></div>
+    <div id="mkbCommentUserId"></div>
     <div id="mkbComment"></div>
-    <button class="mkbEdit" onclick="toggleEdit()">수정하기</button>
+    <button class="mkbEdit" onclick="toggleEdit()">수정</button>
     <div class="logInRequired">
       <div class="commentBox">
         <div id="commentList"></div>
         <div class="commentWriteBox p-a-1">
-          <p name="userId" value="ygtech">ygtech</p>
+          <p name="userId" value=""></p>
           <textarea id="commentTextInput" type="text" name="content"></textarea>
         </div>
       </div>
       <form id="file-form" method="POST">
         <input type="file" id="file-select"/>
-        <button class="float-right" type="submit" id="upload-button">바꾸기</button>
+        <button class="float-right" type="submit" id="upload-button">수정완료</button>
       </form>
-      <button class="float-right m-x-1" onclick="toggleEdit()">취소</button>
       <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
     </div>
   </div>
@@ -548,9 +568,10 @@
 <script src="./dist/index.bundle.js"></script>
 <script>
   SERVER_BASE_URL  = "http://52.79.91.114:3000";
-  IMAGE_SERVER_URL = "http://52.78.27.108:3000";
+  IMAGE_SERVER_POST = "http://52.78.27.108:3000/profile/";
+  IMAGE_SERVER_GET = "http://52.78.27.108:3000/uploads/";
   DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
-  let session = ""
+  let session = "비회원"
 
 </script>
 <script>
@@ -560,16 +581,18 @@
     if (editBox.classList.contains("mkbShow")){
       editBox.classList.remove("mkbShow");
       editBtn.classList.remove("mkbHide");
+      editBtn.innerText = "수정"
     } else {
       editBox.classList.add("mkbShow");
       editBtn.classList.add("mkbHide");
+      editBtn.innerText = "접기"
     }
   }
 
   function setProfile(target) {
     const profilePic = document.querySelector(".mkbImgPreview");
     if (target === "clear"){
-      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+//      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
       document.querySelector("#file-form input").value = "";
     } else {
       profilePic.style.backgroundImage = "url('" + target + "')"
@@ -581,12 +604,11 @@
     setTimeout(function () {
       document.querySelector("#loginModal").style.display = "none";
     },1000)
-
-  })
+  });
   
   document.querySelector(".baeminMainLogo").addEventListener("click",function () {
     window.location.reload();
-  })
+  });
 </script>
 
 </body>

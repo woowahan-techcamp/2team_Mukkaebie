@@ -90,10 +90,9 @@ export class Graph {
           share = Number(top5[i].toString().split(',')[1]) / total * 100;
           reverse = 100 - share;
           circleContent +=
-              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">`;
-          circleContent +=
-              `<title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>`;
-          circleContent += `</circle>`;
+              `<circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="${colorArr[i]}" stroke-width="8" stroke-dasharray="${share} ${reverse}" stroke-dashoffset="${offset}">
+                  <title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>
+               </circle>`;
 
           labelText[i] = '';
           labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
@@ -104,6 +103,7 @@ export class Graph {
             labelText[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
         }
+
 
         let oldCircle = document.getElementsByClassName('donut-segment');
         let circleArr = Array.from(oldCircle);
@@ -205,13 +205,15 @@ export class Graph {
         });
 
         let top3 = items.slice(0, 3);
-        console.log(top3);
         let top3_name = document.querySelectorAll('.name');
         let top3_order = document.querySelectorAll('.orders');
         let top3UserList = [];
-        for (let i = 0; i < top3.length; i++) {
-          let name = top3[i].toString().split(",")[0];
-          let order = top3[i].toString().split(",")[1];
+        for (let i = 0; i < 3; i++) {
+          let name = ""
+          if (i < top3.length) {
+            name = top3[i].toString().split(",")[0];
+            // let order = top3[i].toString().split(",")[1];
+          }
           top3UserList.push(name);
           // top3_name[i].innerHTML = name;
           // top3_order[i].innerHTML = order;

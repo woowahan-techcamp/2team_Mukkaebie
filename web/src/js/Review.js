@@ -1,5 +1,5 @@
 
-
+import StoreUtil from "./Util.js";
 
 
 
@@ -32,7 +32,7 @@ export class Review {
     let theButton = document.querySelector("#reviewTextInputBtn");
 
     theButton.addEventListener("click", function () {
-      if (session != "") {
+      if (session != "비회원") {
 
         let reviewStars = document.querySelector("#rated");
         let selectedStar = reviewStars.textContent;
@@ -50,12 +50,12 @@ export class Review {
 
         xhr1.send(JSON.stringify(packet));
         xhr1.onloadend = function () {
-          alert("소중한 리뷰 감사합니다.");
+          StoreUtil.makeThxModal();
           this.getReview(id);
           document.querySelector("#reviewTextInput").value = "";
         }.bind(this);
       } else {
-        alert("로그인이 필요한 서비스입니다.")
+        StoreUtil.makeLoginRequiredModal();
       }
 
     }.bind(this));

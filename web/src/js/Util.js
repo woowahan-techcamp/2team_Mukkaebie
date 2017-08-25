@@ -42,6 +42,48 @@ let StoreUtil = {
         }, 500)
       }, 3000)
   },
+  makeAfterLoginModal(){
+    let modal = document.querySelector('#afterLoginModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 1500)
+  },
+
+  makeLoginRequiredModal(){
+    let modal = document.querySelector('#loginRequiredModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 3000)
+  },
+
+  makeThxModal(){
+    let modal = document.querySelector('#thxModal');
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
+      setTimeout(function () {
+        modal.style.display = "none";
+      }, 500)
+    }, 3000)
+  },
+
 
   makeOrder: function (storeId) {
 
@@ -50,7 +92,7 @@ let StoreUtil = {
       let orderButton = document.querySelector("#cartOrderButton");
 
       orderButton.addEventListener("click", function () {
-        if (session != "") {
+        if (session != "비회원") {
           let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
 
           let cartContent = Array.from(document.querySelector(".storeCartContent").children);
@@ -90,7 +132,7 @@ let StoreUtil = {
             StoreUtil.resetCart();
           }.bind(this);
         } else {
-          alert("로그인을 해주세요")
+          StoreUtil.makeLoginRequiredModal();
         }
       }.bind(this));
 
@@ -126,6 +168,27 @@ let StoreUtil = {
     for(let key in attrs) {
       el.setAttribute(key, attrs[key]);
       }
+  },
+
+  ajaxGet(url, cb){
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", cb);
+    xhr.open("GET", url);
+    xhr.send();
+  },
+
+  ajaxPost(url, data){
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(data);
+  },
+
+  ajaxPostWithCb(url, data, cb){
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", cb);
+    xhr.open("POST", url);
+    xhr.send(data);
   }
 }
 

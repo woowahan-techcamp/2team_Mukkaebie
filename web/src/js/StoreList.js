@@ -138,7 +138,9 @@ export class StoreList {
                 setTimeout(function () {
                   renderTarget.innerHTML += result;
                   spinner.style.display = 'none';
+
                 }, 800);
+
               }
             }
           }
