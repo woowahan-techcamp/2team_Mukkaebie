@@ -99,6 +99,10 @@ class PieChartView: UIView {
                 button.isEnabled = true
             }
             
+            if segment.title == nil {
+                button.isHidden = true
+            }
+                        
             button.isUserInteractionEnabled = true
             button.isHighlighted = true
             button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)
@@ -176,7 +180,9 @@ class PieChartView: UIView {
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
             // fill segment
+            
             ctx?.fillPath()
+            
             
             // update starting angle of the next segment to the ending angle of this segment
             startAngle = endAngle

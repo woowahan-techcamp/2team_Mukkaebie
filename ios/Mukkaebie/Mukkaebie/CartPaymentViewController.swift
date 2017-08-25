@@ -72,14 +72,19 @@ class CartPaymentViewController: UIViewController {
         
     }
     
-    
     @IBAction func touchedOrder(_ sender: Any) {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-    
-        let image = #imageLiteral(resourceName: "finishImage")
+        
+        let image = #imageLiteral(resourceName: "finishedOrder")
+
         alertController.addimage(image: image)
         alertController.view.tintColor = UIColor.black
+//        alertController.view.backgroundColor = UIColor.white
+        let backView = alertController.view.subviews.first as! UIView
+        backView.layer.backgroundColor = UIColor.white.cgColor
+        backView.backgroundColor = UIColor.white
+//        backView.backgroundColor = UIColor.black
         alertController.viewWillLayoutSubviews()
         alertController.addAction(UIAlertAction(title: "주문완료 ;)", style: .default, handler: { (_) in
             self.dismiss(animated: true, completion: nil)
