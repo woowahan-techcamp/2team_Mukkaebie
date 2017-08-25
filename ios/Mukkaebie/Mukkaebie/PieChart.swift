@@ -24,6 +24,9 @@ class PieChartView: UIView {
         }
     }
     
+    var baseCircle: CAShapeLayer!
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         isOpaque = false
@@ -32,7 +35,7 @@ class PieChartView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func draw(_ rect: CGRect) {
         
         //padding for view
@@ -217,6 +220,73 @@ class PieChartView: UIView {
         titleClick(title: (sender.titleLabel?.text)!)
     }
 }
+
+
+class AnimateView: UIView {
+    var circleLayer: CAShapeLayer!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clear
+        
+        // Use UIBezierPath as an easy way to create the CGPath for the layer.
+        // The path should be the entire circle.
+        
+        let center = CGPoint(x: 0, y: 0)
+
+        
+        let circlePath = UIBezierPath(arcCenter: center, radius: (min(frame.size.width, frame.size.height)/2.0), startAngle: -CGFloat.pi * 0.5, endAngle: CGFloat(M_PI * 2.0), clockwise: false)
+        
+        // Setup the CAShapeLayer with the path, colors, and line width
+        circleLayer = CAShapeLayer()
+        circleLayer.path = circlePath.cgPath
+        circleLayer.fillColor = UIColor.clear.cgColor
+
+        circleLayer.lineWidth = 110.0;
+        
+        // Don't draw the circle initially
+        circleLayer.strokeEnd = 0.0
+        
+        // Add the circleLayer to the view's layer's sublayers
+        layer.addSublayer(circleLayer)
+        
+    }
+    
+    func setStrokeColor(_ color : CGColor) {
+        circleLayer.strokeColor = color
+    }
+    
+    // This is what you call if you want to draw a full circle.
+    func animateCircle(_ duration: TimeInterval) {
+        animateCircleTo(duration, fromValue: 1.0, toValue: 0.0)
+    }
+    
+    // This is what you call to draw a partial circle.
+    func animateCircleTo(_ duration: TimeInterval, fromValue: CGFloat, toValue: CGFloat){
+        // We want to animate the strokeEnd property of the circleLayer
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        // Set the animation duration appropriately
+        animation.duration = duration
+        // Animate from 0 (no circle) to 1 (full circle)
+        animation.fromValue = 1.0
+        animation.toValue = toValue
+        // Do an easeout. Don't know how to do a spring instead
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
+        // right value when the animation ends.
+        circleLayer.strokeEnd = toValue
+        
+        // Do the actual animation
+        circleLayer.add(animation, forKey: "animateCircle")
+    }
+    
+    // required function
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 
 extension UIView {
     final func sizeToFitCustom() {
