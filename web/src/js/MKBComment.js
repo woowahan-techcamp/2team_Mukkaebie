@@ -51,7 +51,7 @@ export class MKBComment {
           }
           const previewTarget = document.querySelector(".mkbImgPreview");
           previewTarget.style.backgroundImage = event.target.style.backgroundImage;
-          const mkbResponse = res[0]["mkb"];
+          const mkbResponse = res[0]["mkb"] ? res[0]["mkb"] : [];
           let clickedUser = "";
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {
             let clickedUser = this.attributes["data-user"]["value"];

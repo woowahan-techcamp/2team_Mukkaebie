@@ -65,6 +65,7 @@ export class Login {
     const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
     topLoggedinInfo.innerText = userId;
     session = userId;
+    document.querySelector(".review-user").innerText = session;
   }
 
   failLogin(msg){
