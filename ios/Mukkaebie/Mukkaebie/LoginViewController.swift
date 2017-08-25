@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var successLabel: UILabel!
     
+    @IBOutlet weak var alartMessageLabel: UILabel!
     var modelUser = ModelUsers()
     
     
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController {
         passwordView.layer.borderWidth = 1
         passwordView.layer.borderColor = UIColor(hexString: "cccccc").cgColor
         
+        alartMessageLabel.isHidden = true
         
         successView.isHidden = true
 
@@ -63,8 +65,8 @@ class LoginViewController: UIViewController {
     }
     @IBAction func touchedLogOut(_ sender: Any) {
         successView.isHidden = true
-        idTextField.clearsOnInsertion = true
-        passwordTextField.clearsOnInsertion = true
+        idTextField.text = ""
+        passwordTextField.text = ""
     }
 
     override func didReceiveMemoryWarning() {

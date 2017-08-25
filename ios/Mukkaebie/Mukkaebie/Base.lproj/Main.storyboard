@@ -279,7 +279,7 @@
                                     <constraint firstAttribute="width" constant="244" id="QNW-tw-X0g"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디또는 비밀번호가 일치하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfI-AW-NOp">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디또는 비밀번호가 일치하지 않습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfI-AW-NOp">
                                 <rect key="frame" x="23" y="158" width="283" height="14.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="12"/>
                                 <color key="textColor" red="0.87637629533678751" green="0.12826657694600607" blue="0.318582471007956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -344,6 +344,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="the보기" id="RK1-2J-qDA"/>
                     <connections>
+                        <outlet property="alartMessageLabel" destination="ZfI-AW-NOp" id="Im1-M5-SUM"/>
                         <outlet property="idTextField" destination="G6d-yf-jJq" id="90X-an-n54"/>
                         <outlet property="idView" destination="tdE-PT-uLp" id="9qL-b4-h8R"/>
                         <outlet property="passwordTextField" destination="zRM-WY-5S2" id="flD-ae-S0f"/>
