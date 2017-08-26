@@ -38,7 +38,7 @@ export class Review {
         let selectedStar = reviewStars.textContent;
         let packet = {"review": {}};
         packet["storeId"] = id;
-        packet.review["content"] = document.querySelector("#reviewTextInput").value;
+        packet.review["content"] = StoreUtil.preventXss(document.querySelector("#reviewTextInput").value);
         packet.review["time"] = new Date().toLocaleString();
         packet.review["user"] = session;
         packet.review["stars"] = selectedStar;
@@ -77,7 +77,7 @@ export class Review {
             if (review) {
               const userId = review.user;
               const createdDate = review.time;
-              const reviewContent = review.content;
+              const reviewContent = StoreUtil.preventXss(review.content);
               const orangeStar = "★".repeat(review.stars);
               const greyStar = "★".repeat(5 - review.stars);
             }

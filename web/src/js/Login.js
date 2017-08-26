@@ -31,7 +31,7 @@ export class Login {
           const res = JSON.parse(this.responseText);
           resolve(res[0])}
       };
-      xhttp.open("GET", SERVER_BASE_URL + "/users/cf/" + userId["userId"], true);
+      xhttp.open("GET", SERVER_BASE_URL + "/users/cf/" + userId["userId"]);
       xhttp.send();
     })
   }

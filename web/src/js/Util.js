@@ -189,6 +189,12 @@ let StoreUtil = {
     xhr.addEventListener("load", cb);
     xhr.open("POST", url);
     xhr.send(data);
+  },
+
+  preventXss(textInput) {
+    textInput = textInput.replace(/\</g, "&lt;");
+    textInput = textInput.replace(/\>/g, "&gt;");
+    return textInput
   }
 }
 
