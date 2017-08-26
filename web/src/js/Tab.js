@@ -15,7 +15,6 @@ export class TabUiWithAjax {
     this.generalContentPrefix = inputObj.generalContentPrefix;
     this.tabId = [];
     this.cache = [];
-    this.baseUrl = inputObj.baseUrl;
     this.init();
   }
 
@@ -39,7 +38,6 @@ export class TabUiWithAjax {
 
   tabOperate(event) {
     let currentTabId = "";
-    //선택된 탭표시 제거 및 event delegation targetting
     document.querySelector(this.selectedTab).classList.remove(this.selectedTabName);
     if (event.target && event.target.tagName === "LI") {
       event.target.classList.add(this.selectedTabName);
@@ -54,23 +52,7 @@ export class TabUiWithAjax {
     const targetContent = document.querySelector(targetContentName);
     document.querySelector(this.selectedContent).classList.remove(this.selectedContentName);
     targetContent.classList.add(this.selectedContentName);
-    const pageNum = this.tabId.indexOf(currentTabId) + 1;
-    //this.tabAjaxData(event.target.id, pageNum, targetContent)
   }
-
-  // 후에 사용 예정
-  // tabAjaxData(tab, pageNum, targetContent) {
-  // 	if (this.cache[pageNum-1] === 0 ) {
-  // 		const tabAjax = new Ajax( this.baseUrl + "best/" + tab , function(){
-  // 			const cardResult = JSON.parse(this.responseText);
-  // 			const tempGrab = document.querySelector("#bfmain-tabui-card-temp");
-  // 			const cardTemp = Handlebars.compile(tempGrab.innerHTML);
-  // 			targetContent.innerHTML = cardTemp(cardResult);
-  // 		});
-  // 		this.cache[pageNum-1] += 1;
-  // 		this.cacheCount();
-  // 	}
-  // }
 
   cacheCount() {
     const result = [];
@@ -79,8 +61,7 @@ export class TabUiWithAjax {
       name: key,
       click: this.cache[idx]
     })
-  })
-    ;
+  });
   }
 }
 

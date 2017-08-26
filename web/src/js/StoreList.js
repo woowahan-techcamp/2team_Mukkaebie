@@ -1,34 +1,21 @@
 
 
 import {StoreInfo} from './StoreInfo.js'
+import StoreUtil from './Util.js'
 
 
 export class StoreList {
 
   constructor(cat) {
-    this.getStoreList(cat);
+
+    this.getListInfo(cat)
+        .then(this.renderBaseHtml)
+        .then(this.renderEachStore)
   }
 
-
-  getStoreList(cat) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-
-        const response = JSON.parse(this.responseText);
-        const layoutTarget = document.querySelector(".storeLayout");
-        const category = response[0].category;
-        const storeCount = response.length;
-
-        layoutTarget.innerHTML =
-            `<div class="m-x-3 m-b-2">
-                홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
-            </div>
-            <div class="col-xs-12 storeCardRow"></div>
-            <div class="load-button">더보기</div>
-            <div class="spinner" style="display: none"></div>`;
-
+  renderEachStore(response) {
         const renderTarget = document.querySelector(".storeCardRow");
+        const layoutTarget = document.querySelector(".storeLayout");
         renderTarget.innerHTML = "";
         let size = 30;
         let spinner = document.querySelector('.spinner');
@@ -175,10 +162,7 @@ export class StoreList {
 
         };
 
-
-
         let clickedStore = document.querySelector(".storeCardRow");
-
         clickedStore.addEventListener("click", function (e) {
           if (e.target && e.target.className == "storeCard") {
             var realTarget = e.target;
@@ -191,10 +175,32 @@ export class StoreList {
           }
           let storeInfo = new StoreInfo(realTarget.id);
         });
+  }
+
+  renderBaseHtml(response){
+    return new Promise(function (resolve) {
+      const layoutTarget = document.querySelector(".storeLayout");
+      const category = response[0].category;
+      const storeCount = response.length;
+
+      layoutTarget.innerHTML =
+          `<div class="m-x-3 m-b-2">
+                홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
+            </div>
+            <div class="col-xs-12 storeCardRow"></div>
+            <div class="load-button">더보기</div>
+            <div class="spinner" style="display: none"></div>`;
+      resolve(response)
+    });
+  }
+
+  getListInfo(cat){
+    return new Promise(function (resolve) {
+      function getListInfoCb(){
+        resolve(JSON.parse(this.responseText));
       }
-    };
-    xhttp.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
-    xhttp.send();
+      StoreUtil.ajaxGet(SERVER_BASE_URL + "/stores/bycategory/" + cat, getListInfoCb);
+    })
 
   }
 

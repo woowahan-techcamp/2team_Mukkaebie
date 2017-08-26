@@ -234,8 +234,9 @@ export class MKBComment {
           formData.append('profileImage', file);
           document.querySelector("#mkbModal").style.opacity = 0;
           setTimeout(function () {
-            document.querySelector("#mkbModal").style = "none";
-          }, 1000)
+            document.querySelector("#mkbModal").style.display = "none";
+            document.querySelector(".logInRequired").style.display = "none";
+          }, 1000);
 
 
           const xhr = new XMLHttpRequest();
