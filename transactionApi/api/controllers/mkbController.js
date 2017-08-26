@@ -108,7 +108,7 @@ exports.create_a_user = function(req, res) {
 };
 
 exports.read_a_user = function(req, res) {
-  User.find({userId: req.params.userId},{ _id: 0 }, function(err, user) {
+  User.find({userId: req.params.userId}, function(err, user) {
     if (err)
       res.send(err);
     res.json(user);
