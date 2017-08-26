@@ -538,7 +538,7 @@
     <div class="mkbImgPreview"></div>
     <div id="mkbCommentUserId"></div>
     <div id="mkbComment"></div>
-    <button class="mkbEdit" onclick="toggleEdit()">수정</button>
+    <button class="mkbEdit">수정</button>
     <div class="logInRequired">
       <div class="commentBox">
         <div id="commentList"></div>
@@ -565,19 +565,7 @@
 
 </script>
 <script>
-  function toggleEdit(){
-    const editBox = document.querySelector(".logInRequired");
-    const editBtn = document.querySelector(".mkbEdit");
-    if (editBox.classList.contains("mkbShow")){
-      editBox.classList.remove("mkbShow");
-      editBtn.classList.remove("mkbHide");
-      editBtn.innerText = "수정"
-    } else {
-      editBox.classList.add("mkbShow");
-      editBtn.classList.add("mkbHide");
-      editBtn.innerText = "접기"
-    }
-  }
+
 
   function setProfile(target) {
     const profilePic = document.querySelector(".mkbImgPreview");

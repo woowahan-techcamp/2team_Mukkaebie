@@ -213,7 +213,21 @@ let StoreUtil = {
         }
       })
     }
+  },
+
+  toggleEdit(){
+  const editBox = document.querySelector(".logInRequired");
+  const editBtn = document.querySelector(".mkbEdit");
+  if (editBox.classList.contains("mkbShow")){
+    editBox.classList.remove("mkbShow");
+    editBtn.classList.remove("mkbHide");
+    editBtn.innerText = "수정"
+  } else {
+    editBox.classList.add("mkbShow");
+    editBtn.classList.add("mkbHide");
+    editBtn.innerText = "접기"
   }
+}
 }
 
 
