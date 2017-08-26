@@ -235,7 +235,7 @@ export class MKBComment {
           document.querySelector("#mkbModal").style.opacity = 0;
           setTimeout(function () {
             document.querySelector("#mkbModal").style.display = "none";
-            document.querySelector(".logInRequired").style.display = "none";
+            document.querySelector(".logInRequired").classList.remove("mkbShow");
           }, 1000);
 
 
