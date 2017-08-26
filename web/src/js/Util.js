@@ -195,6 +195,24 @@ let StoreUtil = {
     textInput = textInput.replace(/\</g, "&lt;");
     textInput = textInput.replace(/\>/g, "&gt;");
     return textInput
+  },
+
+  makeFoldableMenu (levelOneClass){
+    let levelOne = document.getElementsByClassName(levelOneClass);
+    for (let i = 0; i < levelOne.length; i++) {
+      levelOne[i].addEventListener("click" ,function () {
+        this.classList.toggle("active");
+
+        let levelTwo = this.nextElementSibling;
+        if (levelTwo) {
+          if (levelTwo.style.maxHeight === "1500px") {
+            levelTwo.style.maxHeight = "0px";
+          } else {
+            levelTwo.style.maxHeight = "1500px";
+          }
+        }
+      })
+    }
   }
 }
 

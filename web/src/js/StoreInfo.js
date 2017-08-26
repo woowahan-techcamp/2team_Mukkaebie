@@ -61,7 +61,7 @@ export class StoreInfo {
     );
     let graph = new Graph(storeId);
     let review = new Review(storeId);
-    let foldable = new Foldable("foldableLevel1");
+    StoreUtil.makeFoldableMenu("foldableLevel1")
     StoreUtil.makeOrder(storeId);
     let cart = new Cart();
 
