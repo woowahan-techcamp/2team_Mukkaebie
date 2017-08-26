@@ -12,6 +12,15 @@
 
 <body>
 
+<script id="menuUnitTemplate" type="text/template">
+  <div class="menuName">${menuName}
+    <div class="menuPrice">
+      <span class="p-r-1">${menuPrice}</span>
+      <input type="checkbox" value="${menuName}" data="${menuPrice}">
+    </div>
+  </div>
+</script>
+
 <script id="reviewTemplate" type="text/template">
 
   <div class="reviewCard">
@@ -31,10 +40,32 @@
       </div>
       <div class="reviewCardMid p-x-1">
         <span class="reviewCardStar float-left">${orangeStar}</span>
-        <span class="reviewCardNostar float-left">${greyStar}</span>
+
       </div>
       <div class="reviewCardBtm p-a-1">
         ${reviewContent}
+      </div>
+    </div>
+  </div>
+
+</script>
+
+<script id="commentTemplate" type="text/template">
+  <div class="commentCard">
+    <div class="commentCardContent">
+      <div class="commentCardTop p-x-1">
+        <span class="commentCardId">
+          ${userId}
+        </span>
+        <span class="p-x-1">
+            |
+        </span>
+        <span class="commentCardDate">
+          ${time}
+        </span>
+      </div>
+      <div class="commentCardBtm p-a-1">
+        ${mkbComment}
       </div>
     </div>
   </div>
@@ -45,24 +76,24 @@
 
   <div class="col-xs-4">
     <div class="storeCard" id="${storeId}">
-      <div class="storeCardLeft">
+      <div class="storeCardLeft fadeIn">
         <img src=${storeImg}>
       </div>
       <div class="storeCardRight">
         <div class="storeCardTitle">${storeName}</div>
         <div class="storeCardStars">
                     <span class="storeCardGreyStar">
-                        <span class="storeCardOrangeStar"></span>
+                        <span class="storeCardOrangeStar" style="width:${ratingValue}%"></span>
                     </span>
         </div>
         <div class="storeCardAddress">
           ${address}
         </div>
         <div class="storeCardReviewSection">
-          <span class="storeCardReviewKey">리뷰</span>
-          <span class="storeCardReviewValue">11</span>
-          <span class="storeCardReviewKey">사장님 댓글</span>
-          <span class="storeCardReviewValue">11</span>
+          <span class="storeCardReviewKey">리뷰수</span>
+          <span class="storeCardReviewValue">${reviewCount}</span>
+          <span class="storeCardReviewKey">주문수</span>
+          <span class="storeCardReviewValue">${ratingCount}</span>
         </div>
         <div class="storeCardLabel">
           <span>바로결제</span>
@@ -82,9 +113,10 @@
         <span class="storeTitle">${storeName}</span>
         <span class="storeAddress">${address}</span>
       </div>
-      <div class="float-left m-l-2 storeStars">
-        <span class="orangeFontColor float-left">★★★★</span>
-        <span class="float-left">★</span>
+      <div class="float-left m-l-1 storeStars">
+        <span class="storeCardGreyStar">
+          <span class="storeCardOrangeStar" style="width:${ratingValue}%"></span>
+        </span>
         <span>${ratingCount}</span>
       </div>
       <div class="float-right">
@@ -144,7 +176,7 @@
         </li>
         <li class="storeTab" id="mkbTab">
           먹깨비
-          <span class="orangeFontColor">New</span>
+          <span class="orangeFontColor">HOT</span>
         </li>
         <li class="storeTab" id="reviewTab">
           리뷰
@@ -155,8 +187,10 @@
       <div id="storeTabContentWrapper">
         <div class="selectedContent menuTabContent col-xs-12 storeTabContent" id="cont-menuTab">
           <!--그래프 시작-->
+          <div class="menuTabMsg">사장님만 안다는<br> 이 가게 가장 많이 팔리는 메뉴!!!<br> 실시간으로 알려줌</div>
           <div class="menuTabGraph">
-            <figure style="text-align:center">
+            <div class="dateTab"></div>
+            <figure class="donutFigure">
               <div class="figure-content">
                 <svg width="80%" height="80%" viewBox="0 0 42 42" class="donut"
                      aria-labelledby="menu-title menu-desc"
@@ -213,60 +247,83 @@
 
 
         </div>
-        <div class="mkbTabContent col-xs-12 storeTabContent" id="cont-mkbTab">
-          <input type="hidden" role="uploadcare-uploader" name="먹깨비얼굴" data-crop="disabled" data-preview-step="true"
-                 data-images-only="true"/>
-          <div id="mkbPreview"></div>
-          <div class="menuTabGraph" style="background-color: #fff;">
-            <div class="competition-podium well">
+        <div class="mkbTabContent col-xs-12 storeTabContent p-a-0" id="cont-mkbTab">
+
+          <div class="mkbGraphWrapper">
+            <div class="mkbCommentOutside">
+              <div class="mkbCommentOutsideBubble">
+                <div class="mkbGrandMkb">이 구역의 大 먹깨비</div>
+                <div id="mkbCommentOutsideId">공 석</div>
+                <div class="mkbCommentOutsideWrap">
+                  <span class="mkbGrandMkbQuote">"</span>
+                  <span id="mkbCommentOutsideMsg">당신! 먹깨비가 되어라</span>
+                  <span class="mkbGrandMkbQuote">"</span></div>
+              </div>
+            </div>
+            <div class="competition-podium well m-a-0">
               <div class="podium-block gold">
                 <div class="orders"></div>
-                <div class="name">danb</div>
+                <div class="name">
+                  <div class="goldImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/first.png" alt="1등">
                 </div>
               </div>
               <div class="podium-block silver">
                 <div class="orders"></div>
-                <div class="name">youngun</div>
+                <div class="name">
+                  <div class="silverImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/second.png" alt="2등">
                 </div>
               </div>
               <div class="podium-block bronze">
                 <div class="orders"></div>
-                <div class="name">hjk</div>
+                <div class="name">
+                  <div class="bronzeImg mkbProfileImgs"></div>
+                </div>
                 <div class="podium">
                   <img src="./src/img/third.png" alt="3등">
                 </div>
               </div>
             </div>
-
-            <div class="commentBox">
-              <p class="p-center orangeFontColor">수상소감</p>
-              <div id="commentList"></div>
-              <div class="commentWriteBox p-a-1">
-                <p name="userId" value="ygtech">ygtech</p>
-                <textarea id="commentTextInput" type="text" name="content"></textarea>
-                <button id="commentTextInputBtn" class="float-right">작성</button>
-              </div>
-            </div>
-
           </div>
-
-
         </div>
         <div class="reviewTabContent col-xs-12 storeTabContent" id="cont-reviewTab">
           <p class="p-title orangeFontColor">리뷰 작성하기</p>
           <div class="reviewWriteBox p-a-3">
-            <p class="float-left" name="userId" value="ygtech">ygtech</p>
-            <select class="reviewStarSelect float-left m-l-1">
-              <option value="5">★★★★★</option>
-              <option value="4">★★★★</option>
-              <option value="3">★★★</option>
-              <option value="2">★★</option>
-              <option value="1">★</option>
-            </select>
+            <p class="review-user" name="userId" value="${session}">${session}</p>
+            <svg class="star-rating" style="display: none;">
+              <symbol id="star" viewBox="0 0 98 92">
+                <title>star</title>
+                <path stroke='#000' stroke-width='5' d='M49 73.5L22.55 87.406l5.05-29.453-21.398-20.86 29.573-4.296L49 6l13.225 26.797 29.573 4.297-21.4 20.86 5.052 29.452z' fill-rule='evenodd'/>
+              </symbol>
+            </svg>
+
+            <div class="starWrapper">
+              <div id="stars" class="stars">
+                <a class="star is-selected" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+                <a class="star" href="javascript:void(0)">
+                  <svg class="star-rating"><use xlink:href="#star"></use></svg>
+                </a>
+              </div>
+            </div>
+
+            <div id="rated"></div>
+
             <textarea id="reviewTextInput" type="text" name="content"></textarea>
             <button id="reviewTextInputBtn" class="float-right">작성</button>
           </div>
@@ -279,10 +336,11 @@
   </div>
 
 </script>
-
-
+<div class="float-right p-a-1 loginMenu">
+  <span id="topLoggedinInfo">로그인</span>
+</div>
 <div class="row header m-x-0">
-  <div class="float-right p-a-1 loginMenu">ygna91님 | 마이페이지 | 로그아웃 | 고객센터 | 즐겨찾기</div>
+
   <div class="baeminMainLogo"></div>
 
   <div class="searchArea">
@@ -321,29 +379,32 @@
   </ul>
 </div>
 
-<div class="mobileCategory col-xs-12">
+<div class="mobileCategory">
   <div class="mobileCategorySearch col-xs-12">
-    <input type="text" placeholder="업소명을 검색해주세요">
+    <input id="mobileSearchBox" type="text" placeholder="업소명을 검색해주세요">
+    <span class="mobileSearchButton"><button class="searchIcon">검색</button></span>
   </div>
-  <div class="mobileMenuWrap">
-    <div class="col-xs-4 mobileMenu" data="치킨">치킨</div>
-    <div class="col-xs-4 mobileMenu" data="중국집">중국집</div>
-    <div class="col-xs-4 mobileMenu" data="피자">피자</div>
-  </div>
-  <div class="mobileMenuWrap">
-    <div class="col-xs-4 mobileMenu" data="한식">한식,분식</div>
-    <div class="col-xs-4 mobileMenu" data="족발">족발,보쌈</div>
-    <div class="col-xs-4 mobileMenu" data="야식">야식</div>
-  </div>
-  <div class="mobileMenuWrap">
-    <div class="col-xs-4 mobileMenu" data="일식">돈까스,회,일식</div>
-    <div class="col-xs-4 mobileMenu" data="찜탕">찜,탕</div>
-    <div class="col-xs-4 mobileMenu" data="도시락">도시락</div>
-  </div>
-  <div class="mobileMenuWrap">
-    <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
-    <div class="col-xs-4 mobileMenu" data="바로결제">바로결제</div>
-    <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
+  <div class="mobileMenuWrapAll">
+    <div class="mobileMenuWrap">
+      <div class="col-xs-4 mobileMenu" data="치킨">치킨</div>
+      <div class="col-xs-4 mobileMenu" data="중국집">중국집</div>
+      <div class="col-xs-4 mobileMenu" data="피자">피자</div>
+    </div>
+    <div class="mobileMenuWrap">
+      <div class="col-xs-4 mobileMenu" data="한식">한식,분식</div>
+      <div class="col-xs-4 mobileMenu" data="족발">족발,보쌈</div>
+      <div class="col-xs-4 mobileMenu" data="야식">야식</div>
+    </div>
+    <div class="mobileMenuWrap">
+      <div class="col-xs-4 mobileMenu" data="일식">돈까스,회,일식</div>
+      <div class="col-xs-4 mobileMenu" data="찜탕">찜,탕</div>
+      <div class="col-xs-4 mobileMenu" data="도시락">도시락</div>
+    </div>
+    <div class="mobileMenuWrap">
+      <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
+      <div class="col-xs-4 mobileMenu" data="바로결제">바로결제</div>
+      <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
+    </div>
   </div>
 </div>
 
@@ -355,7 +416,7 @@
   <section class="footer-area">
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12">
-        <ul class="link list-inline xsmall">
+        <ul class="link xsmall">
           <li>
             <a href="https://www.baemin.com/service/service" target="_blank">배달의민족 소개</a> <em>|</em>
           </li>
@@ -423,10 +484,8 @@
 
 
   <section class="award-area">
-    <div class="caroufredsel_wrapper"
-         style="display: block; text-align: left; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 888px; height: 41px; margin: 0px 0px 10px; overflow: hidden;">
-      <ul id="award" class="award list-inline xsmall"
-          style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 2664px; height: 41px;">
+    <div class="caroufredsel_wrapper">
+      <ul id="award" class="award list-inline xsmall">
         <li><span class="award1">kisa</span><em>대한민국 인터넷 대상<br>국무총리상 수상</em></li>
         <li><span class="award2">kisa</span><em>지식경제부 선정<br>올해의 청년기업인</em></li>
         <li><span class="award3">kisa</span><em>2012 스마트앱어워드<br>생활편의부분 대상</em></li>
@@ -434,17 +493,112 @@
         <li><span class="award4">kisa</span><em>대한민국 스마트 TV 앱<br>이노베이션 선정</em></li>
       </ul>
     </div>
-    <button type="button" class="nextcrs hidden" style="display: none;">다음으로</button>
   </section>
 
 </footer>
 
+<div id="loginModal" class="mkbShow">
+  <div class="loginModal-content">
+    <div class="loginModalTitle">LOG IN</div>
+    <div>아이디</div>
+    <input class="loginIDInput" type="text" placeholder="Identification">
+    <div id="loginMsg"></div>
+    <div>비밀번호</div>
+    <input class="loginPWInput" type="password" placeholder="Password">
+    <div class="m-t-1">
+      <button class="loginButton">로그인</button>
+      <button id="nonmemberBtn">비회원으로 계속하기</button>
+    </div>
+  </div>
+</div>
 
-<div id="orderModal" class="modal">
+<div id="afterLoginModal" class="afterLoginModal">
+  <div class="afterLoginModal-content">
+  </div>
+</div>
+
+<div id="thxModal" class="thxModal">
+  <div class="thxModal-content">
+  </div>
+</div>
+
+
+<div id="loginRequiredModal" class="logInRequiredModal">
+  <div class="logInRequiredModal-content">
+    <div class="logInRequiredModalTop">이 서비스가 어떤 서비스입니까?</div>
+    <div class="logInRequiredModalBtm">로그인이 필요한 서비스</div>
+  </div>
+</div>
+
+<div id="orderModal" class="orderModal">
   <div class="modal-content"></div>
 </div>
-<script src="./dist/index.bundle.js"></script>
 
+<div id="mkbModal" class="mkbModal">
+  <div class="mkbModal-content">
+    <button class="mkbModalClose">&times;</button>
+    <div class="mkbImgPreview"></div>
+    <div id="mkbCommentUserId"></div>
+    <div id="mkbComment"></div>
+    <button class="mkbEdit" onclick="toggleEdit()">수정</button>
+    <div class="logInRequired">
+      <div class="commentBox">
+        <div id="commentList"></div>
+        <div class="commentWriteBox p-a-1">
+          <p name="userId" value=""></p>
+          <textarea id="commentTextInput" type="text" name="content"></textarea>
+        </div>
+      </div>
+      <form id="file-form" method="POST">
+        <input type="file" id="file-select"/>
+        <button class="float-right" type="submit" id="upload-button">수정완료</button>
+      </form>
+      <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
+    </div>
+  </div>
+</div>
+<script src="./dist/index.bundle.js"></script>
+<script>
+  SERVER_BASE_URL  = "http://52.79.91.114:3000";
+  IMAGE_SERVER_POST = "http://52.78.27.108:3000/profile/";
+  IMAGE_SERVER_GET = "http://52.78.27.108:3000/uploads/";
+  DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
+  let session = "비회원"
+
+</script>
+<script>
+  function toggleEdit(){
+    const editBox = document.querySelector(".logInRequired");
+    const editBtn = document.querySelector(".mkbEdit");
+    if (editBox.classList.contains("mkbShow")){
+      editBox.classList.remove("mkbShow");
+      editBtn.classList.remove("mkbHide");
+      editBtn.innerText = "수정"
+    } else {
+      editBox.classList.add("mkbShow");
+      editBtn.classList.add("mkbHide");
+      editBtn.innerText = "접기"
+    }
+  }
+
+  function setProfile(target) {
+    const profilePic = document.querySelector(".mkbImgPreview");
+    if (target === "clear"){
+//      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
+      document.querySelector("#file-form input").value = "";
+    } else {
+      profilePic.style.backgroundImage = "url('" + target + "')"
+    }
+  }
+
+  document.querySelector("#nonmemberBtn").addEventListener("click", function () {
+    document.querySelector("#loginModal").style.opacity = 0;
+    setTimeout(function () {
+      document.querySelector("#loginModal").style.display = "none";
+    },1000)
+  });
+
+</script>
 
 </body>
 </html>

@@ -34,17 +34,6 @@ footer .footer-area .foot-info {
   width: 100%;
 }
 
-@media(min-width: 767px) {
-  footer .footer-area .foot-info {
-    position: absolute;
-    bottom: 50px;
-    left: 10px;
-    width: 380px;
-    height: 30px;
-    border: 0;
-    line-height: 1.6
-  }
-}
 
 @media(min-width: 767px) {
   footer .footer-area {
@@ -163,6 +152,23 @@ footer .footer-area .row .woowa-info > div a.mail, footer .footer-area .row .woo
   color: #999
 }
 
+.caroufredsel_wrapper{
+  display: block;
+  text-align: left;
+  float: none;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: auto;
+  width: 888px;
+  height: 41px;
+  margin: 0px 0px 10px;
+  overflow: hidden;
+}
+
+
 @media(min-width: 767px) {
   footer .footer-area .row .woowa-info > div {
     padding: 2px 0
@@ -174,7 +180,26 @@ footer .footer-area .row .woowa-info address {
   margin-bottom: 0
 }
 
+@media(min-width: 768px) {
+  footer .footer-area .foot-info {
+    margin: 30px auto 0;
+    padding: 10px 10px 0;
+    text-align: left;
+  }
+}
+
+
 @media(min-width: 992px) {
+
+  footer .footer-area .foot-info {
+    position: absolute;
+    bottom: 50px;
+    width: 380px;
+    height: 30px;
+    border: 0;
+    line-height: 1.6;
+  }
+
   footer .footer-area .row .foot-info {
     padding: 0 10px;
     line-height: 1.6;
@@ -207,8 +232,8 @@ footer .footer-area .row .woowa-info address {
   }
 
   footer .footer-area .row .woowa-info {
-    margin-left: 20px;
-    padding: 0
+    margin-left: 0;
+    padding: 0 10px;
   }
 
   footer .footer-area .row .woowa-info .copyright {
@@ -232,6 +257,19 @@ footer .footer-area .foot-terms-of-use {
     border: 0;
     line-height: 1.6
   }
+}
+
+.award {
+  text-align: left;
+  float: none;
+  position: absolute;
+  top: 0px;
+  right: auto;
+  bottom: auto;
+  left: 0px;
+  margin: 0px;
+  width: 2664px;
+  height: 41px;
 }
 
 footer .award-area {
@@ -350,7 +388,15 @@ footer .award-area .nextcrs {
 }
 
 .xsmall {
-  font-size: 11px
+  font-size: 11px;
+  padding-left:0;
+  list-style:none
+}
+
+.xsmall > li {
+  display:inline-block;
+  padding-right:5px;
+  padding-left:5px
 }
 
 /* 전체에서 쓰이는 CSS component */
@@ -624,6 +670,14 @@ em {
   color: $bmOrangeColor;
 }
 
+.mkbShow {
+  display: block;
+}
+
+.mkbHide {
+  display: none;
+}
+
 /* Footer 관련 */
 .footer {
   background: #fff;
@@ -638,7 +692,7 @@ em {
 }
 
 .loginMenu {
-  font-size: 11px;
+  font-size: 15px;
   color: #aeaeae
 }
 

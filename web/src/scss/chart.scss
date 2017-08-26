@@ -10,6 +10,15 @@
     color: #FF0000;
 }
 
+.dateTab {
+    position: relative;
+    top: -30px;
+    margin-right: 5%;
+    color: dimgray;
+    font-size: 0.8em;
+    text-align: right;
+}
+
 .chart-text {
     fill: #000;
     -moz-transform: translateY(0.25em);
@@ -104,7 +113,8 @@ circle {
 }
 
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 767px) {
+
     .figure-content {
         height: auto;
         padding-left: 0px;
@@ -115,6 +125,7 @@ circle {
         align-self: center;
         max-width: 100%;
         padding-left: 5px;
+        margin-top: 20px;
     }
 
     .figure-key-list {
@@ -123,31 +134,18 @@ circle {
         max-width: 100%;
         font-size: 0.8em;
         padding-left: 5px;
-    }
-
-    .figure-key-list li{
-
-        display: inline;
-        list-style: none;
-    }
-
-}
-
-@media only screen and (max-width: 640px) {
-
-    .figure-key-list {
         column-count: 3;
     }
 
 
     .figure-key-list li{
         display: inline-block;
+        list-style: none;
     }
 
 }
 
-
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
 
     .figure-key-list {
         column-count: 2;
@@ -158,6 +156,49 @@ circle {
         display: inline-block;
     }
 
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    .figure-key-list {
+        column-count: 2;
+        font-size: 0.5em;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+
+    .figure-key-list {
+        column-count: 1;
+        font-size: 0.8em;
+    }
+
+
+    .figure-key-list li{
+        display: inline-block;
+    }
+
+}
+
+svg > .donut {
+    overflow: visible;
+}
+
+.donut-segment {
+    transition: all 1s;
+    transform-origin: 50% 50%;
+    cursor: pointer;
+}
+
+.donut-segment:hover {
+    stroke-width: 10;
 }
 
 
@@ -210,55 +251,59 @@ circle {
 
 .goldAnimate  {
     animation-name: goldHeightUp;
-    animation-duration: 1s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height:100%;
 }
 
 .goldOrdersAnimate  {
     animation-name: goldOrdersHeightUp;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .goldNameAnimate  {
     animation-name: goldNameHeightUp;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+
 }
 
 .silverAnimate  {
     animation-name: silverHeightUp;
-    animation-duration: 1.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .silverOrdersAnimate  {
     animation-name: silverOrdersHeightUp;
-    animation-duration: 3.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .silverNameAnimate  {
     animation-name: silverNameHeightUp;
-    animation-duration: 3.5s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .bronzeAnimate  {
     animation-name: bronzeHeightUp;
-    animation-duration: 2s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
+    height: 100%;
 }
 
 .bronzeOrdersAnimate  {
     animation-name: bronzeOrdersHeightUp;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
 .bronzeNameAnimate  {
     animation-name: bronzeNameHeightUp;
-    animation-duration: 3s;
+    animation-duration: 2.5s;
     animation-fill-mode: forwards;
 }
 
@@ -287,10 +332,10 @@ circle {
 
 @keyframes goldNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 303px;
+        bottom: 0;
     }
 }
 
@@ -317,10 +362,10 @@ circle {
 
 @keyframes silverNameHeightUp {
     from {
-        bottom: -140px;
+        bottom: -400px;
     }
     to {
-        bottom: 230px;
+        bottom: 0;
     }
 }
 
@@ -347,10 +392,14 @@ circle {
 
 @keyframes bronzeNameHeightUp {
     from {
-        bottom: -200px;
+        bottom: -400px;
     }
     to {
-        bottom: 160px;
+        bottom: 0;
     }
 }
 
+// 도넛 그래프 관련
+.donutFigure {
+    text-align: center;
+}

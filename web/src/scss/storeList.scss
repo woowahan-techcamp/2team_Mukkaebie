@@ -1,34 +1,121 @@
 @import './variables';
 
-  .storeCardRow .col-xs-4{margin-bottom: 20px;}
-  .storeCard {background: white; overflow: auto; padding:20px; border:1px solid #cccccc; cursor: pointer}
-  .storeCardLeft{float: left}
-  .storeCardLeft img{width: 100px;border-radius: 50%; border:1px solid #cccccc}
-  .storeCardRight{float: left; margin-left: 10px; width: calc(100% - 120px)}
-  .storeCardTitle{font-size: 14px; width: 100%;overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
-  .storeCardStars{overflow: auto; margin: 5px 0}
-  .storeCardStars .storeCardGreyStar{background-image: url('https://img.woowahan.com/www/common/img-star.png'); width:94px; background-position: 0 0; box-sizing: border-box; height: 16px; float: left}
-  .storeCardStars .storeCardOrangeStar{background-image: url('https://img.woowahan.com/www/common/img-star.png'); width: 87%; height: 100%; display: block; background-position: 0 -17px}
-  .storeCardAddress{color:#8a8b8f;font-size:11px; width: 100%;overflow: hidden; text-overflow: ellipsis; white-space: nowrap}
-  .storeCardReviewSection .storeCardReviewKey{font-size:11px}
-  .storeCardReviewSection .storeCardReviewValue{color:#ff4200; font-size:11px}
-  .storeCardLabel span{background: #1abcaa; padding: 5px 10px; font-size:10px; color:#ffffff}
+.storeCardRow .col-xs-4 {
+  margin-bottom: 20px;
+}
 
+.storeCard {
+  background: white;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  box-shadow: 1px 1px;
+}
+
+.storeCard:active{
+  box-shadow: 1px 1px 1px 1px inset;
+}
+
+.storeCardLeft {
+  float: left
+}
+
+.storeCardLeft img {
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid #cccccc
+}
+
+.storeCardRight {
+  float: left;
+  margin-left: 10px;
+  width: calc(100% - 120px)
+}
+
+.storeCardTitle {
+  font-size: 14px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.storeCardStars {
+  overflow: auto;
+  margin: 5px 0
+}
+
+.storeCardStars .storeCardGreyStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  width: 94px;
+  background-position: 0 0;
+  box-sizing: border-box;
+  height: 16px;
+  float: left
+}
+
+.storeCardGreyStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  width: 94px;
+  background-position: 0 0;
+  box-sizing: border-box;
+  height: 16px;
+  float: left;
+  margin-right: 5px;
+}
+
+.storeCardStars .storeCardOrangeStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  height: 100%;
+  display: block;
+  background-position: 0 -17px
+}
+
+.storeCardOrangeStar {
+  background-image: url('https://img.woowahan.com/www/common/img-star.png');
+  height: 100%;
+  display: block;
+  background-position: 0 -17px
+}
+
+.storeCardAddress {
+  color: #8a8b8f;
+  font-size: 11px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.storeCardReviewSection .storeCardReviewKey {
+  font-size: 11px
+}
+
+.storeCardReviewSection .storeCardReviewValue {
+  color: #ff4200;
+  font-size: 11px
+}
+
+.storeCardLabel span {
+  background: #1abcaa;
+  padding: 5px 5px;
+  font-size: 10px;
+  color: #ffffff
+}
 
 @media only screen and (max-width: 982px) {
 
-  .storeCardRow .col-xs-4{
+  .storeCardRow .col-xs-4 {
     width: 50%;
   }
-
 
 }
 
 @media only screen and (max-width: 768px) {
 
-  .storeCardRow .col-xs-4{
+  .storeCardRow .col-xs-4 {
     width: inherit;
   }
-
 
 }

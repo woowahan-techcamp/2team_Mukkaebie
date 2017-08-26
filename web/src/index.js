@@ -1,21 +1,16 @@
-import {
-  TabUiWithAjax,
-  Foldable,
-  Review,
-  scrollWithCart,
-  makeOrder,
-  toggleMobileCategory,
-  Graph,
-  StoreList,
-  StoreInfo,
-  StoreUtil,
-  addToCart
-} from './store.js'
+
+
+import {StoreList} from './js/StoreList.js';
+import {Login} from './js/Login.js';
+import StoreUtil from './js/Util.js';
+
 
 import style from './scss/main.scss';
 
 document.addEventListener("DOMContentLoaded", function () {
 
+
+  const login = new Login();
 
   //첫 화면에 치킨 리스트 인젝트
   let chickenStoreList = new StoreList("치킨");
@@ -34,14 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
     StoreUtil.toggleMobileCategory();
   })
   // 모바일 카테고리 클릭시 카테고리 리스트 인젝트
-  let clickedMobileMenu = document.querySelector(".mobileCategory");
+  let clickedMobileMenu = document.querySelector(".mobileMenuWrapAll");
   clickedMobileMenu.addEventListener("click", function (e) {
     if (e.target.className !== "col-xs-4 mobileMenu") {
-      e.target = e.target.closest(".mobilekMenu");
+      e.target = e.target.closest(".mobileMenu");
     }
-    let categoryList = new StoreList(e.target.attributes.data.value);
+  StoreUtil.toggleMobileCategory();
+  let categoryList = new StoreList(e.target.attributes.data.value);
   });
-
 });
 
 

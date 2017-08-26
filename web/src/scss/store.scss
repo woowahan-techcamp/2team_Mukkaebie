@@ -1,681 +1,1374 @@
 @import './variables';
 
-
-
-
 /*페이지 레이아웃*/
-.storeLayout{
-	max-width:960px;
-    margin:50px auto 300px auto;
-    background: $bmBeigeColor;
+
+
+
+.storeLayout {
+  max-width: 960px;
+  margin: 50px auto 300px auto;
+  background: $bmBeigeColor;
+  position: relative;
+}
+.load-button {
+  width: 150px;
+  background: #1abcaa;
+  border-color: #1abcaa;
+  color: #fff;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  display: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 60px auto 0;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  top: 50px;
 }
 
-.menuReviewWrap{
-    border:1px solid #cccccc;
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  opacity: 0.5;
+  position: absolute;
+  bottom: -250px;
+  left: 48%;
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
+
+.fadeIn > img {
+  animation: fadeInImage 1s;
+  animation-fill-mode: forwards;
+  -webkit-backface-visibility: hidden;
+}
+
+
+@keyframes fadeInImage {
+  0% {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px)
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg)
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+.menuReviewWrap {
+  border: 1px solid #cccccc;
+}
+
 /*페이지 레이아웃 끝*/
-
 
 /* 모바일 전용 타이틀 영역 */
 .mobileTitleArea {
-    height:90px; background:#fff; border-bottom:1px solid #cccccc; display: none;
-    padding: 20px;
+  height: 90px;
+  background: #fff;
+  border-bottom: 1px solid #cccccc;
+  display: none;
+  padding: 20px;
 }
+
 .mobileTitleImg {
-    background-image: url('https://img.woowahan.com/www/common/logo-bm-v2.png');background-repeat: no-repeat; width:196px; height:45px; margin:0 auto;
-    cursor: pointer;
+  background-image: url('https://img.woowahan.com/www/common/logo-bm-v2.png');
+  background-repeat: no-repeat;
+  width: 196px;
+  height: 45px;
+  margin: 0 auto;
+  cursor: pointer;
 }
+
 .mobileTitleButton {
-    width:22px;
-    height: 22px;
-    background-image: url("https://img.woowahan.com/www/common/ico-cate.png");
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 200%;
-    -webkit-background-size: 100% 200%;
-    cursor: pointer;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  width: 22px;
+  height: 22px;
+  background-image: url("https://img.woowahan.com/www/common/ico-cate.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 200%;
+  -webkit-background-size: 100% 200%;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
+
 .mobileTitleButton.unfolded {
-    background-position: 0 100%;
+  background-position: 0 100%;
 
 }
 
 .mobileCategory {
-    background: #000;
-    padding:15px;
-    display: none;
+  background: #000;
+  padding-top: 15px;
+  display: none;
+  z-index: 1000;
+  margin-bottom: 50px;
+  font-family: 'Dotum', 'Nanum Gothic';
+  width: 100%;
+  float: left;
+  position: relative;
+  min-height: 1px;
 }
 
-.mobileCategorySearch input{
-    width: 100%;
-    background: #393939;
-    border-color: #393939;
-    color: #555;
-    text-indent: 20px;
+.mobileCategoryShow {
+  display: block;
 }
+
+.mobileCategorySearch {
+  padding: 15px 10px;
+  background-color: #000;
+  border-bottom: 1px solid #212121;
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+}
+
+#mobileSearchBox {
+  height: 39px !important;
+  background-color: #393939;
+  box-shadow: none;
+  border: 0;
+  font-weight: normal;
+  display: table-cell;
+  width: 100%;
+  margin-bottom: 0;
+  line-height: 1.42857143;
+  color: #555;
+  vertical-align: middle;
+  padding: 6px 12px;
+  border-radius: 0;
+  font-size: 12px;
+  pointer-events:none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mobileSearchButton {
+  width: 1%;
+  vertical-align: middle;
+  display: table-cell;
+  box-sizing: border-box;
+  position: relative;
+  right: 25px;
+  pointer-events:none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  padding: 0 5px 0 0;
+  margin-top: -3px;
+  background: transparent url(https://img.woowahan.com/www/common/ico-srch-mobile.png) no-repeat right center;
+  background-size: 100% 100%;
+  text-indent: -9999px;
+  position: relative;
+  border-radius: 0;
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  user-select: none;
+}
+
+
+.mobileCategorySearch input {
+  width: 100%;
+  background: #393939;
+  border-color: #393939;
+  color: #555;
+  text-indent: 20px;
+}
+
 .mobileCategory * {
-    text-align: center;
-    color: #fff;
+  text-align: center;
+  color: #fff;
 }
 
 .mobileCategory .col-xs-4 {
-    padding: 15px 0px;
-    cursor: pointer;
-
+  padding: 20px 0px;
+  cursor: pointer;
+  border: solid #212121;
+  border-width: 0 1px 1px 0;
+  font-size: 85%;
 }
+
 .mobileCategory .col-xs-4:hover {
-    background: $bmOrangeColor;
+  background: $bmOrangeColor;
 }
 
 /* 가게명 AREA*/
-.storeTitleArea{
-    height:65px; background: #fff; overflow: auto;padding:20px; border:1px solid #dad3c7
+.storeTitleArea {
+  height: 65px;
+  background: #fff;
+  overflow: auto;
+  padding: 20px;
+  border: 1px solid #dad3c7
 }
-.storeTitleLabel{padding:3px 5px 3px 5px; background: #877b63; color:#fff}
+
+.storeTitleLabel {
+  padding: 3px 5px 3px 5px;
+  background: #877b63;
+  color: #fff
+}
 
 .storeTitle {
-    font-size:15px;
+  font-size: 15px;
 }
-.storeAddress{
-    font-size: 11px;
+
+.storeAddress {
+  font-size: 11px;
 }
-.storeStars{
-    font-size: 11px;
-    margin-top:5px
+
+.storeStars {
+  font-size: 11px;
+  margin-top: 3px;
 }
+
 /* 메뉴 탭 관련 */
+.menuTabMsg{
+  width:70%;
+  font-size:1.5vw;
+  margin: 20px auto -60px auto;
+  text-align: center
+}
 
 .menuTabContent {
-    background: #fff;
-    padding-bottom: 80px;
+  background: #fff;
+  padding-bottom: 80px;
 }
 
 /* 먹깨비 탭 관련 */
-.mkbTabContent{
-    background:#fff;
-    position:relative;
+
+.mkbGrandMkb {
+  font-size: 30px
+}
+
+.mkbGrandMkbQuote {
+  font-size: 100px; color:#FFDF00
+}
+.mkbCommentOutsideWrap{
+  margin-top: -55px;
+}
+#mkbCommentOutsideId{
+  font-size: 15px;
+  color: $bmOrangeColor;
+}
+#mkbCommentOutsideMsg{
+  font-size: 40px
+}
+.logInRequired {
+  display: none;
+}
+
+.mkbTabContent {
+  background: #fff;
+  position: relative;
 }
 
 #mkbPreview {
-    width:100px;
-    height:100px;
-    background-size:contain;
-    border-radius: 50%;
-    position:relative;
-    left:43%;
-    top: 180px;
-    z-index: 11;
-    display: block;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  border-radius: 50%;
+  position: relative;
+  left: 43%;
+  top: 180px;
+  z-index: 11;
+  display: block;
 }
+
+.mkbGraphWrapper{
+  width: 100%;
+  padding-top: 120.25%;
+  position: relative;
+  background-color: $whiteColor;
+
+}
+
 /* 폴더블메뉴 */
 .menuTabGraph {
-    width: 100%;
-    padding-bottom: 100px;
-    padding-top:100px;
-    position:relative;
+  width: 100%;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  position: relative;
 }
 
 .foldableLevel1 {
-    background-color: #817c74;
-    color: #fff;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    border-bottom: 1px solid #cccccc;
+  background-color: #817c74;
+  color: #fff;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-bottom: 1px solid #cccccc;
 }
 
 .foldableLevel1.active {
-    background-color: black;
-    clear: both;
+  background-color: black;
+  clear: both;
 }
 
 .foldableLevel1 h6, p {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .foldableLevel1 p {
-    font-size: 11px;
+  font-size: 11px;
+}
+
+.menuName {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  border-bottom: 1px solid #cccccc;
+}
+
+.menuPrice {
+  display: inline-block;
+  float: right;
 }
 
 .foldableLevel2 {
-    padding: 0;
-    background-color: #fff;
-    max-height: 0px;
-    height: auto;
-    transition: all 0.25s ease-in-out;
-    overflow: hidden;
+  padding: 0;
+  background-color: #fff;
+  max-height: 0px;
+  height: auto;
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
 }
 
 .foldableLevel2 .foldableLevel1 {
-    background: #fff;
-    color: black;
+  background: #fff;
+  color: black;
 }
 
 .foldableLevel2 .foldableLevel1.active {
-    background: #fff;
-    color: black;
+  background: #fff;
+  color: black;
 }
 
 .menuTabContent * {
-    clear: both;
+  clear: both;
 }
-
-
 
 /* 업소상세 박스 */
 
-@media screen and (max-width:768px){
-    .storeSideAreaWrap {
-        /*display: none;*/
-        float: none;
-        clear: both;
-        width: 100%;
-        margin-bottom:20px;
-    }
-
-    .tabAreaWrap {
-        width: 100%;
-    }
-
-    .storeTitleArea{
-        height:105px;
-    }
-    .storeTitleArea>.float-left, .storeTitleArea>.float-right {
-        float:none;
-        margin-left:0;
-    }
-
-    .mobileTitleArea {
-        display: block!important;
-    }
-
-    .header{
-        display: none;
-    }
-    .blackMenuArea {
-        display: none;
-    }
-    .storeStars{
-        margin-top: 0;
-    }
-
+@media screen and (min-width: 768px){
+  .mobileCategory {
+    display: none;
+  }
 }
 
+@media screen and (max-width: 768px) {
+  .storeSideAreaWrap {
+    /*display: none;*/
+    float: none;
+    clear: both;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
+  .tabAreaWrap {
+    width: 100%;
+  }
 
+  .storeTitleArea {
+    height: 120px;
+  }
+  .storeTitleArea > .float-left {
+    float: none;
+    margin-left: 0;
+    padding-top: 5px;
+  }
 
+  .storeTitleArea > .float-right {
+    float: none;
+    margin-left: 0;
+    padding-top: 15px;
+  }
 
+  .mobileTitleArea {
+    display: block !important;
+  }
+
+  .header {
+    display: none;
+  }
+  .blackMenuArea {
+    display: none;
+  }
+  .storeStars {
+    margin-top: 0;
+  }
+
+}
 
 .storeDetailTable table {
-    font-size: 11px;
+  font-size: 11px;
 
 }
 
-.storeDetailHead{
-    border: 1px solid #cccccc;
-    padding:15px;
-    font-size:11px;
-    font-weight:bold;
-    background: #fff;
-}
-
-
-.storeDetailTable {
-    background: #fff;
+.storeDetailHead {
+  border: 1px solid #cccccc;
+  padding: 15px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #fff;
 }
 
 .storeDetailTable {
-    padding: 10px;
-    border-color: #cccccc;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
+  background: #fff;
 }
 
-
-
+.storeDetailTable {
+  padding: 10px;
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
+}
 
 .storeDetailTable tr {
-    border-bottom: 10px solid transparent;
+  border-bottom: 10px solid transparent;
 }
+
 .storeDetailTableLeft {
-    width: 30%
+  width: 30%
 }
 
 .storeDetailTableRight {
-    width: 70%
+  width: 70%
 }
 
 /* 주문하기 박스 */
 .storeCart {
-    border:1px solid #cccccc;
-    margin-top:20px;
-    background: #fff;
-    transition: all 1s ease-in-out;
-}
-.storeCartHead{
-    padding:10px;
-    border-bottom:1px solid #cccccc;
-}
-.storeCartContent {
-    padding:10px;
-    border-bottom:1px solid #cccccc;
-}
-.storeCartTotal{
-    padding:10px;
-}
-.cartOrderButton {
-    background: $bmOrangeColor;
-    font-size:30px;
-    padding:20px;
-    color: #fff;
-    text-align: center;
-    font-weight: normal;
-    cursor: pointer;
+  border: 1px solid #cccccc;
+  margin-top: 20px;
+  background: #fff;
+  transition: all 1s ease-in-out;
 }
 
-/* 리뷰 탭 관련 */
+.storeCartHead {
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.storeCartContent {
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.storeCartTotal {
+  padding: 10px;
+}
+
+.cartOrderButton {
+  background: $bmOrangeColor;
+  font-size: 30px;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.review-user {
+  float: left;
+  padding-top: 5px;
+}
+
+.starWrapper {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.star-rating {
+  width: 1.5em;
+  height: 1.5em;
+  fill: white;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .review-user {
+    float: left;
+    padding-top: 0;
+  }
+
+
+  .star-rating {
+    width: 1.3em;
+    height: 1.3em;
+    fill: white;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .review-user {
+    float: left;
+    padding-top: 0;
+  }
+
+  .star-rating {
+    width: 1.2em;
+    height: 1.2em;
+    fill: white;
+    pointer-events: none;
+  }
+}
+
+.stars {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: flex-end;
+}
+
+.star.is-selected svg,
+.star.is-selected ~ .star svg {
+  fill: #ff6c00;
+}
+
+.star:hover svg,
+.star:hover ~ .star svg {
+  fill: orange;
+}
+
+
+#rated {
+  display: none;
+}
+
+[dir="rtl"] {
+  direction: rtl
+}
+
+
+
 #reviewTextInput {
-	width:100%; 
-	height:100px;
-	resize: none;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  border: 1px solid lightgray;
+}
+
+#reviewTextInputBtn {
+  background: #ff6c00;
+  border: 1px solid #ff6c00;
+  font-size: 1em;
+  padding: 2px 4px;
+  width: 50px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 .reviewTabContent {
-    background: #fff;
+  background: #fff;
 }
+
 .reviewCard {
-    padding: 15px;
-    display: flex;
-    align-items: flex-start;
-    background: #fff;
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
 }
 
 .reviewCardPic {
-    background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    min-width: 65px;
-    height: 65px;
-    float: left;
+  background-image: url("http://file.smartbaedal.com/usr/memphoto/ownerImg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-width: 65px;
+  height: 65px;
+  float: left;
 }
 
 .reviewCardContent {
-    max-width: 580px;
-    float: left;
+  max-width: 580px;
+  float: left;
 }
 
 .reviewCardBtm {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .reviewCardMid {
-    clear: both;
+  clear: both;
 }
 
 .reviewCardTop > span {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .reviewCardStar {
-    color: $bmOrangeColor;
+  color: $bmOrangeColor;
 }
 
 .reviewCardId {
-    font-size: 12px;
-    color: #222;
+  font-size: 12px;
+  color: #222;
 }
 
 .reviewCardDate {
-    font-size: 11px;
-    color: #8a8b8f;
+  font-size: 11px;
+  color: #8a8b8f;
 }
 
 .reviewCardBtm {
-    clear: both;
-    width: 100%;
+  clear: both;
+  width: 100%;
 }
 
 .p-title {
-    margin-top: 100px;
+  margin-top: 20px;
 }
 
 /* 먹깨비 코멘트 관련 */
 
+#upload-button{
+  margin-left: 15px;
+}
+
+.mkbCommentOutside{
+  height: 300px;
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top:0;
+  z-index: 100;
+}
+.mkbCommentOutsideBubble {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  top:30px;
+  //background-image:url("../img/goldbubble.svg");
+  border-radius: .4em;
+  width: 90%;
+  margin: 0 auto;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#mkbCommentUserId{
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+#mkbComment {
+  font-size: 20px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+
+#file-form input {
+  color:#fff;
+}
+
 #commentTextInput {
-    width:100%;
-    height:100px;
-    resize: none;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.commentWriteBox p{
+  color: #fff;
 }
 
 .p-center {
-    text-align: center;
+  text-align: center;
 }
+
+.commentCard {
+  color:#fff;
+  font-size:30px;
+}
+
+.commentCardContent {
+
+}
+
+.commentCardBtm {
+  font-size: 30px;
+  clear: both;
+  width: 100%;
+  text-align: center;
+}
+
+.commentCardTop{
+  text-align: center;
+}
+
+.commentCardTop > span {
+  font-size: 18px;
+  color: #fff;
+}
+
+.commentCardId {
+  font-size: 20px;
+  color: #fff;
+}
+
+.commentCardDate {
+  font-size: 20px;
+  color: #fff;
+}
+
 
 /* 포디움 관련 */
 
+
+.silverImg, .goldImg, .bronzeImg {
+  position:  absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+
+.goldImg {border: 10px solid #FFDF00;}
+.silverImg {border: 10px solid #D3D3D3;}
+.bronzeImg {border: 10px solid #cd7f32;}
+
+@-webkit-keyframes rain {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 0px 1340px;
+  }
+}
+.competition-podium.well {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border:none;
+  border-radius: 0px;
+}
+
+
 .competition-podium {
-    height: 400px;
-    position: relative;
-    width: 400px;
-    top: -100px;
-    background: #f6f3ed;
-    margin:0 auto;
-    overflow: hidden;
+  height: 400px;
+  position: relative;
+  width: 90%;
+  top: -100px;
+  background: #fff;
+  background-image: url("../img/particles_alpha.png");
+  -webkit-animation: rain 5s linear infinite;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .competition-podium .podium-block {
-    width: 120px;
-    text-align: left;
-    display: inline-block;
-    position: absolute;
-    bottom: -10px;
+  width: 20%;
+  text-align: left;
+  display: inline-block;
+  position: absolute;
+  bottom: -10px;
 }
 
 .competition-podium .podium-block .place {
-    font-size: 1em;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 15px;
 }
 
 .competition-podium .podium-block .sum {
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 70px;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 70px;
 }
 
 .competition-podium .podium-block.bronze {
-    color: #e6d6bf;
-    left: 251px;
-    width: 70px;
-    z-index: 10;
+  color: #e6d6bf;
+  right: 11%;
+  width: 30%;
+  z-index: 10;
+  height:50%;
 }
 
-.competition-podium .podium-block.bronze .podium {
-    height: 160px;
-}
+
 
 .competition-podium .podium-block.bronze .orders {
-    text-align: center;
-    left: 40%;
-    bottom: -20px;
-    position: absolute;
+  text-align: center;
+  left: 40%;
+  bottom: -20px;
+  position: absolute;
 }
 
 .competition-podium .podium-block.bronze .name {
-    color: #856e4e;
-    text-align: center;
-    left: 25%;
-    bottom: -20px;
-    position: absolute;
+  color: #856e4e;
+  text-align: center;
+  padding-top: 80%;
+  z-index: 1;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .competition-podium .podium-block.gold {
-    color: #ead679;
-    left: 145px;
-    z-index: 30;
+  color: #ead679;
+  left: 30%;
+  z-index: 30;
+  height: 70%;
+  width: 34%;
 }
 
-.competition-podium .podium-block.gold .podium {
-    height: 360px;
-}
 
 .competition-podium .podium-block.gold .orders {
-    text-align: center;
-    left: 50%;
-    bottom: -20px;
-    position: absolute;
+  text-align: center;
+  left: 50%;
+  bottom: -20px;
+  position: absolute;
 }
 
 .competition-podium .podium-block.gold .name {
-    color: #856e4e;
-    text-align: center;
-    left: 35%;
-    bottom: -20px;
-    position: absolute;
+  color: #856e4e;
+  text-align: center;
+  padding-top: 80%;
+  z-index: 1;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .competition-podium .podium-block.silver {
-    color: #cbd9de;
-    left: 71px;
-    width: 90px;
-    z-index: 20;
+  color: #cbd9de;
+  left: 6%;
+  width: 30%;
+  z-index: 20;
+  height: 60%;
 }
 
-.competition-podium .podium-block.silver .podium {
-    height: 230px;
-}
 
 .competition-podium .podium-block.silver .orders {
-    text-align: center;
-    left: 40%;
-    bottom: -20px;
-    position: absolute;
+  text-align: center;
+  left: 40%;
+  bottom: -20px;
+  position: absolute;
 }
 
 .competition-podium .podium-block.silver .name {
-    color: #856e4e;
-    text-align: center;
-    left: 30%;
-    bottom: -20px;
-    position: absolute;
+  color: #856e4e;
+  text-align: center;
+  padding-top: 80%;
+  z-index: 1;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
 }
+
 
 .podium > img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-
 .podium {
-    display: table;
-    width: 100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+  display: table;
+  width: 100%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .podium > * {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    color: #4D4D4D;
-    font-size: 1.5em;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #4D4D4D;
+  font-size: 1.5em;
 }
 
 @media only screen and (max-width: 768px) {
 
-    .competition-podium {
-        width: 350px;
-        margin: 0 auto;
-    }
+  //.competition-podium {
+  //  width: 90%;
+  //  margin: 0 auto;
+  //}
 
-    .podium > * {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        color: #4D4D4D;
-        font-size: 1.0em;
-    }
+  .podium > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 1.0em;
+  }
 
-    .competition-podium .podium-block {
-        width: 100px;
-        text-align: left;
-        display: inline-block;
-        position: absolute;
-        bottom: -10px;
-    }
-
-    .competition-podium .podium-block.gold {
-        left: 125px;
-    }
-
-    .competition-podium .podium-block.silver {
-        left: 48px;
-    }
-
-    .competition-podium .podium-block.bronze {
-        left: 213px;
-    }
-
-
+  //.competition-podium .podium-block {
+  //  width: 20%;
+  //  text-align: left;
+  //  display: inline-block;
+  //  position: absolute;
+  //  bottom: -10px;
+  //}
 }
 
 @media only screen and (max-width: 420px) {
 
-    .competition-podium {
-        width: 90%;
-        margin: 0 auto;
-    }
+  //.competition-podium {
+  //  width: 90%;
+  //  margin: 0 auto;
+  //}
 
-    .podium > * {
-        display: table-cell;
-        vertical-align: middle;
-        text-align: center;
-        color: #4D4D4D;
-        font-size: 1.0em;
-    }
+  .podium > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #4D4D4D;
+    font-size: 1.0em;
+  }
 
-    .competition-podium .podium-block {
-        width: 30%;
-        text-align: left;
-        display: inline-block;
-        position: absolute;
-        bottom: -10px;
-    }
-
-    .competition-podium .podium-block.gold {
-        left: 35%;
-    }
-
-    .competition-podium .podium-block.silver {
-        left: 15%;
-        width: 25%;
-    }
-
-    .competition-podium .podium-block.bronze {
-        left: 61%;
-        width: 20%
-    }
-
-
-    .competition-podium .podium-block.gold .name {
-        left: 30%;
-    }
-
-    .competition-podium .podium-block.silver .name {
-        left: 25%;
-    }
-
-    .competition-podium .podium-block.bronze .name {
-        left: 25%;
-    }
-
-
+//  .competition-podium .podium-block {
+//    width: 30%;
+//    text-align: left;
+//    display: inline-block;
+//    position: absolute;
+//    bottom: -10px;
+//  }
+//
+//  .competition-podium .podium-block.gold {
+//    left: 35%;
+//  }
+//
+//  .competition-podium .podium-block.silver {
+//    left: 15%;
+//    width: 25%;
+//  }
+//
+//  .competition-podium .podium-block.bronze {
+//    left: 61%;
+//    width: 20%
+//  }
+//
+//  .competition-podium .podium-block.gold .name {
+//    left: 30%;
+//  }
+//
+//  .competition-podium .podium-block.silver .name {
+//    left: 25%;
+//  }
+//
+//  .competition-podium .podium-block.bronze .name {
+//    left: 25%;
+//  }
+//
 }
 
 @media only screen and (max-width: 350px) {
 
-
-    .competition-podium .podium-block.gold .name {
-        left: 28%;
-        font-size: 0.9em;
-    }
-
-    .competition-podium .podium-block.silver .name {
-        left: 25%;
-        font-size: 0.9em;
-    }
-
-    .competition-podium .podium-block.bronze .name {
-        left: 21%;
-        font-size: 0.9em;
-    }
-
+  //.competition-podium .podium-block.gold .name {
+  //  left: 28%;
+  //  font-size: 0.9em;
+  //}
+  //
+  //.competition-podium .podium-block.silver .name {
+  //  left: 25%;
+  //  font-size: 0.9em;
+  //}
+  //
+  //.competition-podium .podium-block.bronze .name {
+  //  left: 21%;
+  //  font-size: 0.9em;
+  //}
 
 }
 
 /* 탭 기능 관련 CSS */
 .storeTab {
-    width: 33.3333333333%;
-    float:left;
-    background: #ddd7c7;
-    text-align: center;
-    height:40px;
-    line-height: 40px;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: bold;
-    list-style: none;
+  width: 33.3333333333%;
+  float: left;
+  background: #ddd7c7;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  list-style: none;
 }
-#storeTabWrapper li.selectedTab {background: #fff; border-bottom: 0px solid transparent;}
-.storeTabContent {display: none}
-.selectedContent {display: block;}
-#storeTabWrapper {cursor: pointer; padding-left: 0; margin: 0; overflow: auto; width: 100%}
+
+#storeTabWrapper li.selectedTab {
+  background: #fff;
+  border-bottom: 0px solid transparent;
+}
+
+.storeTabContent {
+  display: none
+}
+
+.selectedContent {
+  display: block;
+}
+
+#storeTabWrapper {
+  cursor: pointer;
+  padding-left: 0;
+  margin: 0;
+  overflow: auto;
+  width: 100%
+}
+
 #storeTabWrapper li {
-    border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
 }
+
 #mkbTab {
-    border-right:1px solid #cccccc;
-    border-left:1px solid #cccccc;
-}
-#storeTabContentWrapper {clear: both;}
-
-//uploadcare 오버라이드
-.uploadcare--widget__text{
-    display: none;
-}
-.uploadcare--powered-by{
-    display: none;
+  border-right: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
 }
 
+#storeTabContentWrapper {
+  clear: both;
+}
+
+// 로그인 필요 모달
+.logInRequiredModal {
+  border:none;
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.logInRequired button {
+  background: $bmOrangeColor;
+  color: $whiteColor;
+  border: none;
+}
+
+.logInRequiredModal-content {
+  background-color: #000000;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 130px;
+}
+.logInRequiredModalTop {color: #ffffff; font-size: 30px;}
+.logInRequiredModalBtm {color:#ff6c00; font-size: 30px}
+/// 로그인 성공 후 모달
+.afterLoginModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.afterLoginModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/loginsucess.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 250px;
+}
+// 리뷰 작성 후 모달
+.thxModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.thxModal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('../img/thankyoutear.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 300px;
+}
 
 // 주문 후 모달
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    opacity: 0.0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+.orderModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0.0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    max-width: 400px;
-    background-image:url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 150px;
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  position: relative;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
+.mkbModalClose {
+  float: right;
+  background: $bmOrangeColor;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  line-height: 30px;
+  line-height: 30px;
+}
+
+.mkbModal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.mkbImgPreview{
+  opacity: 1;
+  width: 300px;
+  height:300px;
+  margin:0 auto;
+  background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  clear:both;
+}
+
+.mkbModal-content{
+  background-color: transparent;
+  margin: 15% auto;
+  padding: 20px;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.mkbEdit{
+  color: $whiteColor;
+  float: right;
+  background:$bmOrangeColor;
+  border:none;
+}
+
+
+//login
+
+#loginMsg {
+  font-size: 11px;
+  color:#ff0000;
+  height: 15px;
+  line-height: 15px;
+}
+
+#loginModal {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 
 }
 
-.modal.modalShow{
-    opacity: 1.0;
-    -webkit-transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -ms-transition: opacity 0.5s ease-in-out;
-    -o-transition: opacity 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out;
+.loginModal-content{
+  background-color: #fff;
+  position: relative;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 400px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 400px;
+  border-radius: 3px;
+}
+
+.loginModalTitle{
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+}
+
+.loginIDInput{
+  width: 100%;
+  height: 40px;
+  text-indent: 10px;
+  border: 1px solid lightgray;
+}
+
+.loginPWInput{
+  width: 100%;
+  height: 40px;
+  text-indent: 10px;
+  margin-bottom: 20px
+}
+
+.loginButton{
+  width: 100%;
+  text-align: center;
+  height: 40px;
+  background: #1abcaa;
+  color: #fff;
+  border: none;
+  margin-bottom: 15px
+}
+
+#nonmemberBtn{
+  width: 100%;
+  text-align: center;
+  height: 40px;
+  background: #1abcaa;
+  color: #fff;
+  border:none
+}
+
+#topLoggedinInfo {
+  cursor: pointer;
 }
