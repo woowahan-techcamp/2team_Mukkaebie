@@ -9,7 +9,7 @@ export class MKBComment {
 
     this.storeId = storeId;
     this.topThreeList = topThreeList;
-    this.makeMKBModal(storeId, topThreeList);
+    this.buildMKBModal(storeId, topThreeList);
 
 
     this.sendImage(storeId, topThreeList)
@@ -23,7 +23,9 @@ export class MKBComment {
         .then(this.renderContent);
   }
 
-  makeMKBModal(id) {
+
+
+  buildMKBModal(id) {
 
     let modal = document.querySelector('#mkbModal');
     let modalBtn = Array.from(document.querySelectorAll(".mkbProfileImgs"));
@@ -31,51 +33,69 @@ export class MKBComment {
 
 
     modalBtn.forEach(function (circle) {
+
       circle.addEventListener("click", function (event) {
+
+        StoreUtil.showModal('#mkbModal');
+
+
 
         function getResponse() {
           return new Promise(function (resolve) {
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-              if (this.readyState == 4 && this.status == 200) {
-                const response = JSON.parse(this.responseText);
-                resolve(response)
-              }
-            };
-            xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-            xhr.send();
+            StoreUtil.ajaxGet(SERVER_BASE_URL + "/stores/" + id, getResponseCb);
+
+            function getResponseCb(){
+              const response = JSON.parse(this.responseText);
+              resolve(response)
+            }
           })
         }
 
         const renderModal = (res) => {
-          document.querySelector(".mkbEdit").innerText = "수정";
+
+
+          // 로그인 정보랑 맞을시만 수정버튼보이게 하는 부분
           if (this.attributes["data-user"]["value"] != session) {
-            document.querySelector(".mkbEdit").style.display = "none";
+            StoreUtil.changeDisplay(".mkbEdit", "none");
           }
           else{
-            document.querySelector(".mkbEdit").style.display = "block";
+            StoreUtil.changeDisplay(".mkbEdit", "block");
+            document.querySelector(".mkbEdit").innerText = "수정";
           }
+
+          //클릭시 보이는 사진 부분 설정하는 부분
           const previewTarget = document.querySelector(".mkbImgPreview");
           previewTarget.style.backgroundImage = event.target.style.backgroundImage;
+
+
+
           const mkbResponse = res[0]["mkb"] ? res[0]["mkb"] : [];
           let clickedUser = "";
+
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {
+
             let clickedUser = this.attributes["data-user"]["value"];
             let clickedMkb = [];
 
             let clickeMkbData = mkbResponse.filter(function (mkb) {
               return mkb["userId"] == clickedUser;
             });
+
             if (clickeMkbData.length > 0) {
               clickedMkb = clickeMkbData[clickeMkbData.length - 1];
             }
 
+
+            //textinput 바꾸는 부분
             if (clickedMkb) {
               document.getElementById("commentTextInput")["value"] = clickedMkb["mkbComment"];
             }
             else {
               document.getElementById("commentTextInput")["value"] = "";
             }
+
+
+            // 모달 클릭시 보이는 부분
             const mkbComment = document.querySelector("#mkbComment");
             const mkbCommentUserId = document.querySelector("#mkbCommentUserId");
             const commentUser = document.querySelector(".commentWriteBox p");
@@ -93,13 +113,16 @@ export class MKBComment {
             mkbCommentUserId.innerText = clickedUser;
           }
         }
+
         getResponse().then(renderModal);
-        modal.style.display = "block";
-        setTimeout(function () {
-          modal.style.opacity = "1";
-        }, 200)
+
+
       });
-    })
+
+
+
+    });
+
 
     closeBtn.addEventListener("click", function () {
       const editBox = document.querySelector(".logInRequired");
@@ -114,50 +137,48 @@ export class MKBComment {
     });
   }
 
-  getComment(id, top3List) {
+  getComment(storeId, top3List) {
     return new Promise(function (resolve) {
-      let xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          const response = JSON.parse(this.responseText);
-          const renderTarget = document.querySelector("#mkbComment");
-          let targetArr = (response[0].mkb) ? response[0].mkb : [];
-          let finalMkbList = [];
-          top3List.forEach(function (topBuyer) {
-            let oneBuyer = targetArr.filter(function (mkbRow) {
-              return mkbRow.userId == topBuyer;
-            });
 
-            if (oneBuyer.length > 0) {
-              finalMkbList.push(oneBuyer[oneBuyer.length - 1]);
-            } else {
-              finalMkbList.push(topBuyer);
-            }
+      function getCommentCb(){
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector("#mkbComment");
+        let targetArr = (response[0].mkb) ? response[0].mkb : [];
+        let finalMkbList = [];
+        top3List.forEach(function (topBuyer) {
+          let oneBuyer = targetArr.filter(function (mkbRow) {
+            return mkbRow.userId == topBuyer;
           });
 
-          resolve(finalMkbList, id);
-        }
-      };
-      xhr.open("GET", SERVER_BASE_URL + "/stores/" + id, true);
-      xhr.send();
+          if (oneBuyer.length > 0) {
+            finalMkbList.push(oneBuyer[oneBuyer.length - 1]);
+          } else {
+            finalMkbList.push(topBuyer);
+          }
+        });
+
+        resolve({"finalMkbList":finalMkbList, "storeId": storeId});
+      }
+
+      StoreUtil.ajaxGet(SERVER_BASE_URL + "/stores/" + storeId, getCommentCb)
+
     });
   }
 
-  renderContent(finalMkbList, id){
+  renderContent(inputObj){
     const mkbLevelList = ["gold", "silver", "bronze"];
     const mkbOutsideCommentId = document.querySelector("#mkbCommentOutsideId");
     const mkbOutsideCommentMsg = document.querySelector("#mkbCommentOutsideMsg");
 
-    finalMkbList.forEach(function(comment, idx){
+    inputObj["finalMkbList"].forEach(function(comment, idx){
+      console.log(comment)
       const mkbLevel = mkbLevelList[idx];
       const profilePicSmall = document.querySelector("." + mkbLevel + "Img");
 
       if (typeof(comment) === "string") {
         profilePicSmall.setAttribute("data-user", comment);
         profilePicSmall.style.backgroundImage = "url('" + DEFAULT_PROFILE_IMG + "')";
-        if (comment === "") {
-          mkbOutsideCommentId.innerHTML = "大 먹깨비 공석";
-        }
+
 
       } else {
         profilePicSmall.setAttribute("data-user", comment["userId"]);
@@ -169,12 +190,16 @@ export class MKBComment {
         if (typeof(comment) === "string") {
           mkbOutsideCommentId.innerHTML = comment;
           mkbOutsideCommentMsg.innerHTML = "우하하! 나는 먹깨비다";
+          if (comment === "") {
+            mkbOutsideCommentId.innerHTML = "大 먹깨비 공석";
+          }
         }
-        else{mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
+        else{
+          mkbOutsideCommentMsg.innerHTML = comment["mkbComment"];
           mkbOutsideCommentId.innerHTML = comment["userId"];}
 
       }
-      StoreUtil.setAttributes(profilePicSmall, {"value": mkbLevel,"data-store":id})
+      StoreUtil.setAttributes(profilePicSmall, {"value": mkbLevel,"data-store":inputObj["storeId"]})
     });
   }
 
@@ -196,28 +221,13 @@ export class MKBComment {
           const formData = new FormData();
           formData.append('profileImage', file);
 
-
           StoreUtil.ajaxPostWithCb(IMAGE_SERVER_POST, formData, sendImageCb);
 
           function sendImageCb(){
             const res = JSON.parse(this.responseText);
             resolveObj["imgUrl"] = IMAGE_SERVER_GET +res["filename"];
-            console.log(resolveObj);
             resolve(resolveObj)
           }
-
-          // const xhr = new XMLHttpRequest();
-          // xhr.onreadystatechange = function () {
-          //   if (this.readyState == 4 && this.status == 200) {
-          //     const res = JSON.parse(this.responseText);
-          //     resolveObj["imgUrl"] = IMAGE_SERVER_GET +res["filename"];
-          //     resolve(resolveObj)
-          //   }
-          // }
-          // xhr.open('POST', IMAGE_SERVER_POST);
-          // xhr.send(formData);
-
-
 
         } else {
           resolve(resolveObj);

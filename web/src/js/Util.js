@@ -237,6 +237,14 @@ let StoreUtil = {
   changeDisplay(targetDom, value){
     const targetDomNode = document.querySelector(targetDom);
     targetDomNode.style.display = value;
+  },
+
+  showModal(modal){
+    const targetDomNode = document.querySelector(modal);
+    targetDomNode.style.display = "block";
+    setTimeout(function () {
+      targetDomNode.style.opacity = "1";
+    }, 200)
   }
 }
 
