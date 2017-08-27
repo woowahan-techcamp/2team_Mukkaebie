@@ -9,6 +9,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Launch View Controller-->
         <scene sceneID="u9M-bO-eyJ">
@@ -34,16 +39,50 @@
                                     <constraint firstAttribute="width" secondItem="8l3-y9-GFw" secondAttribute="height" multiplier="334:73" id="MiC-Nu-bic"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wbE-Kd-hMh">
+                                <rect key="frame" x="151" y="609" width="73" height="33"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 민족" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLS-YI-UCf">
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="15"/>
+                                        <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feat. 미경이네" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hu-7g-iNc">
+                                        <rect key="frame" x="0.0" y="20" width="73" height="13"/>
+                                        <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="13"/>
+                                        <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="Uo1-o5-DAq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wbE-Kd-hMh" firstAttribute="centerX" secondItem="U9O-EC-R1h" secondAttribute="centerX" id="0eS-Rb-2kk"/>
+                            <constraint firstItem="jMQ-P8-0ul" firstAttribute="top" secondItem="wbE-Kd-hMh" secondAttribute="bottom" constant="25" id="1Jm-v3-v11"/>
+                            <constraint firstItem="Uo1-o5-DAq" firstAttribute="width" secondItem="OWe-nc-KGh" secondAttribute="height" multiplier="375:667" id="3FY-1O-E4p"/>
+                            <constraint firstItem="Uo1-o5-DAq" firstAttribute="centerX" secondItem="OWe-nc-KGh" secondAttribute="centerX" id="4xJ-AS-ef4"/>
                             <constraint firstItem="U9O-EC-R1h" firstAttribute="leading" secondItem="OWe-nc-KGh" secondAttribute="leading" id="53E-5E-Jr0"/>
-                            <constraint firstItem="8l3-y9-GFw" firstAttribute="bottom" secondItem="U9O-EC-R1h" secondAttribute="top" constant="-15" id="CYs-xc-T4R"/>
+                            <constraint firstItem="Uo1-o5-DAq" firstAttribute="bottom" secondItem="jMQ-P8-0ul" secondAttribute="top" id="9z5-i2-5m3"/>
+                            <constraint firstItem="Uo1-o5-DAq" firstAttribute="centerY" secondItem="OWe-nc-KGh" secondAttribute="centerY" id="JpC-DE-7AZ"/>
                             <constraint firstAttribute="trailing" secondItem="U9O-EC-R1h" secondAttribute="trailing" id="K7S-kj-hoJ"/>
+                            <constraint firstItem="8l3-y9-GFw" firstAttribute="top" secondItem="fdK-24-KvP" secondAttribute="bottom" constant="26" id="ZSB-sZ-voY"/>
                             <constraint firstItem="jMQ-P8-0ul" firstAttribute="top" secondItem="U9O-EC-R1h" secondAttribute="bottom" id="r41-3D-xUa"/>
                             <constraint firstItem="8l3-y9-GFw" firstAttribute="centerX" secondItem="OWe-nc-KGh" secondAttribute="centerX" id="zDF-QG-qmN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bannerCenter" destination="zDF-QG-qmN" id="yCa-19-xaO"/>
+                        <outlet property="bannerImage" destination="8l3-y9-GFw" id="JWI-Ao-MCa"/>
+                        <outlet property="mukkaebieBotton" destination="r41-3D-xUa" id="G3f-Sg-qxv"/>
+                        <outlet property="mukkaebieImage" destination="U9O-EC-R1h" id="ayq-45-rwf"/>
+                        <outlet property="rainBottom" destination="9z5-i2-5m3" id="Ub0-oC-yos"/>
+                        <outlet property="rainImage" destination="Uo1-o5-DAq" id="Cs3-8k-4tS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOl-53-zT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,6 +91,7 @@
     </scenes>
     <resources>
         <image name="LaunchingBanner" width="334" height="72"/>
-        <image name="launchScreen" width="374" height="531"/>
+        <image name="launchScreen" width="375" height="467"/>
+        <image name="particles_alpha" width="365" height="492"/>
     </resources>
 </document>
