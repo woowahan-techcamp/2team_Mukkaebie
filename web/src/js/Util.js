@@ -87,8 +87,6 @@ let StoreUtil = {
 
   makeOrder: function (storeId) {
 
-
-
       let orderButton = document.querySelector("#cartOrderButton");
 
       orderButton.addEventListener("click", function () {
