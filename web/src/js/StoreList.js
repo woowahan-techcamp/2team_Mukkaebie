@@ -35,7 +35,7 @@ export class StoreList {
           const tempGrab = document.querySelector("#storeListTemplate").text;
           const result = eval('`' + tempGrab + '`');
           renderTarget.innerHTML += result;
-        })
+        });
 
         let loadMoreButton = document.querySelector('.load-button');
 
@@ -133,7 +133,7 @@ export class StoreList {
           }
 
           function loadMore() {
-
+            console.log("loadMORE!!");
             let timer = null;
 
             if (layoutTarget.getElementsByClassName("storeCardRow").length !== 0) {
@@ -157,9 +157,7 @@ export class StoreList {
                 }, 250);
               }, false);
             }
-
           }
-
         };
 
         let clickedStore = document.querySelector(".storeCardRow");

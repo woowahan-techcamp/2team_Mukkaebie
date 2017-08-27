@@ -219,6 +219,7 @@ export class Graph {
           // top3_order[i].innerHTML = order;
         }
         let mkb = new MKBComment(storeId, top3UserList);
+        mkb.initialRendering();
       }
     }
     xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
