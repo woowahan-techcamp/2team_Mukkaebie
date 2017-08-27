@@ -10,6 +10,11 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Store Test View Controller-->
         <scene sceneID="Bl6-FE-7U6">
@@ -99,6 +104,8 @@
                     </view>
                     <connections>
                         <outlet property="cartAlertView" destination="RTM-ww-dW0" id="qUj-tJ-oMN"/>
+                        <outlet property="noMenuView" destination="OYS-8F-7tl" id="bU4-sF-E9U"/>
+                        <outlet property="noMukkaebieView" destination="U8D-jL-YAY" id="Zcu-eK-ycD"/>
                         <outlet property="tableView" destination="l1y-zC-cU9" id="71V-e9-JAj"/>
                     </connections>
                 </viewController>
@@ -125,8 +132,48 @@
                         <constraint firstItem="Kbc-Ev-vX2" firstAttribute="centerX" secondItem="RTM-ww-dW0" secondAttribute="centerX" id="kVM-Cu-ozU"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" id="U8D-jL-YAY" userLabel="No Mukkaebie View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shock.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QO2-MW-LJz">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="0.88004225489999999" green="0.22723588350000001" blue="0.2439522147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="뭐 먹깨비가 없다고?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knV-aw-t9c">
+                            <rect key="frame" x="33" y="42" width="138" height="76"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0a-iR-bzz">
+                            <rect key="frame" x="295" y="8" width="72" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.88004225489999999" green="0.22723588350000001" blue="0.2439522147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="OYS-8F-7tl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="menu.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="uQ8-5j-DWe">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2636" y="-824.43778110944538"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu.jpeg" width="750" height="664"/>
+        <image name="shock.jpg" width="730" height="470"/>
+    </resources>
 </document>
