@@ -106,7 +106,7 @@ export class MKBComment {
             that.setModalTextarea(recentMkbData);
             that.setModalIdAndMsg(recentMkbData, clickedUser, clickedScope)
           }
-        }
+        };
         that.getStoreInfoForModal(id).then(renderModal)
       });
     });
@@ -249,10 +249,8 @@ export class MKBComment {
       const profilePic = document.querySelector(".mkbImgPreview");
       const clickedMkb = document.querySelector(".commentWriteBox p");
       const profilePicSmall = document.querySelector("." + clickedMkb.getAttribute("value") + "Img");
-      console.log("pps", profilePicSmall);
       inputObj["targetLevel"] = clickedMkb.getAttribute("value");
       const uploadedPicUrl = "url('" + inputObj["imgUrl"] + "')";
-      console.log("URL!!!", uploadedPicUrl);
       profilePic.style.backgroundImage = uploadedPicUrl;
       profilePicSmall.style.backgroundImage = uploadedPicUrl;
       resolve(inputObj);
@@ -283,7 +281,6 @@ export class MKBComment {
   applyChange(inputObj) {
     const imgUrl = inputObj["imgUrl"];
     const targetLevel = inputObj["targetLevel"];
-    console.log(targetLevel);
     const targetLevelImg = document.querySelector("." + targetLevel + "Img");
     document.querySelector("#mkbComment").innerText = document.querySelector("#commentTextInput").value;
 

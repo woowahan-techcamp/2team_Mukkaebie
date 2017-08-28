@@ -14,7 +14,7 @@ export class Review {
   setStarRating() {
     let starContainer = document.getElementById('stars');
     let stars = Array.prototype.slice.call(starContainer.children);
-    let totalStars = stars.length
+    let totalStars = stars.length;
     let rated = document.getElementById('rated');
 
     starContainer.addEventListener('click', function(e) {

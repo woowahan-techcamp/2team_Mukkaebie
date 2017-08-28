@@ -250,7 +250,7 @@ let StoreUtil = {
       targetDomNode.style.display = "none";
     }, 200)
   },
-}
+};
 
 
 export default StoreUtil;

@@ -8,7 +8,6 @@ export class StoreList {
   }
 
   getStoreList(cat) {
-    // 카테고리별 업소 리스트를 보여준다.
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -19,7 +18,6 @@ export class StoreList {
         const storeCount = response.length;
 
         layoutTarget.innerHTML =
-            // 기본 레이아웃을 잡아준다.
             `<div class="m-x-3 m-b-2">
                 홈 >	${category} | 서울 송파구 방이1동을 중심으로 총 ${storeCount}곳을 찾았습니다.
             </div>
@@ -52,7 +50,6 @@ export class StoreList {
 
 
         function renderStoreList() {
-          // 업소 30개를 렌더링하는 함수
           response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
@@ -74,7 +71,6 @@ export class StoreList {
 
 
         function preventFadeIn() {
-          // 기존에 렌더링 됐던 storeCard들은 fadeIn 효과 적용되지 않도록 함
           let fadeInTarget = document.querySelectorAll('.fadeIn');
           let index = 0;
           let targetArr = [...fadeInTarget];
@@ -85,7 +81,6 @@ export class StoreList {
         }
 
         function loadFirst() {
-          // 더보기 버튼을 눌렀을 때 더보기 버튼 사라지고 1초뒤 업소 30개 불러옴
           loadMoreButton.style.display = 'none';
           spinner.style.display = 'block';
 
@@ -97,7 +92,6 @@ export class StoreList {
 
 
         function processScroll(scroll_pos) {
-          // 무한스크롤할 때 실행되어야 할 함수
           let contentHeight = renderTarget.offsetHeight;
           let y = scroll_pos + 300;
           if (y >= contentHeight) {
