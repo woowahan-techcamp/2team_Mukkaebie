@@ -129,12 +129,9 @@
 		983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukkaebieUITests.swift; sourceTree = "<group>"; };
 		983248381F32FD2C00ABFBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		983976651F4FBB480097581D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		983976691F52C1080097581D /* StaticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticFunction.swift; sourceTree = "<group>"; };
-=======
 		9839766B1F52FB050097581D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchSceen.storyboard; path = ../LaunchSceen.storyboard; sourceTree = "<group>"; };
->>>>>>> ios
 		9844286D1F3D755A0003CDF1 /* ygNa.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ygNa.jpeg; sourceTree = "<group>"; };
 		9844286F1F3D76390003CDF1 /* hj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hj.png; sourceTree = "<group>"; };
 		984428711F3D76660003CDF1 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
