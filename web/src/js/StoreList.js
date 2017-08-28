@@ -164,5 +164,3 @@ export class StoreList {
   }
 
 }
-
-

@@ -374,7 +374,6 @@
     <li class="blackMenuSoup blackMenu" data="찜탕"></li>
     <li class="blackMenuVento blackMenu" data="도시락"></li>
     <li class="blackMenuFastfood blackMenu" data="패스트푸드"></li>
-    <li class="blackMenuQuickpay blackMenu" data="바로결제"></li>
     <li class="blackMenuTogether blackMenu" data="모아보기"></li>
   </ul>
 </div>
@@ -402,7 +401,6 @@
     </div>
     <div class="mobileMenuWrap">
       <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
-      <div class="col-xs-4 mobileMenu" data="바로결제">바로결제</div>
       <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
     </div>
   </div>
@@ -540,7 +538,7 @@
     <div class="mkbImgPreview"></div>
     <div id="mkbCommentUserId"></div>
     <div id="mkbComment"></div>
-    <button class="mkbEdit" onclick="toggleEdit()">수정</button>
+    <button class="mkbEdit">수정</button>
     <div class="logInRequired">
       <div class="commentBox">
         <div id="commentList"></div>
@@ -553,53 +551,12 @@
         <input type="file" id="file-select"/>
         <button class="float-right" type="submit" id="upload-button">수정완료</button>
       </form>
-      <button class="float-right" onclick="setProfile('clear')">사진 제거</button>
+      <button id="resetProfile" class="float-right">사진 제거</button>
     </div>
   </div>
 </div>
+<script src="./dist/env.js"></script>
 <script src="./dist/index.bundle.js"></script>
-<script>
-  SERVER_BASE_URL  = "http://52.78.209.189:3000";
-  IMAGE_SERVER_POST = "http://52.78.27.108:3000/profile/";
-  IMAGE_SERVER_GET = "http://52.78.27.108:3000/uploads/";
-  DEFAULT_PROFILE_IMG = "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png";
-  let session = "비회원"
-
-</script>
-<script>
-  function toggleEdit(){
-    const editBox = document.querySelector(".logInRequired");
-    const editBtn = document.querySelector(".mkbEdit");
-    if (editBox.classList.contains("mkbShow")){
-      editBox.classList.remove("mkbShow");
-      editBtn.classList.remove("mkbHide");
-      editBtn.innerText = "수정"
-    } else {
-      editBox.classList.add("mkbShow");
-      editBtn.classList.add("mkbHide");
-      editBtn.innerText = "접기"
-    }
-  }
-
-  function setProfile(target) {
-    const profilePic = document.querySelector(".mkbImgPreview");
-    if (target === "clear"){
-//      profilePic.style.backgroundImage = "url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png')";
-      document.querySelector("#file-form input").value = "";
-    } else {
-      profilePic.style.backgroundImage = "url('" + target + "')"
-    }
-  }
-
-  document.querySelector("#nonmemberBtn").addEventListener("click", function () {
-    document.querySelector("#loginModal").style.opacity = 0;
-    setTimeout(function () {
-      document.querySelector("#loginModal").style.display = "none";
-    },1000)
-  });
-
-</script>
-
 </body>
 </html>
 
