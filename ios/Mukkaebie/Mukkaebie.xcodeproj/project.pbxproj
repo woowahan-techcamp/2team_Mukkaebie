@@ -21,6 +21,7 @@
 		9832482C1F32FD2C00ABFBFB /* MukkaebieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9832482B1F32FD2C00ABFBFB /* MukkaebieTests.swift */; };
 		983248371F32FD2C00ABFBFB /* MukkaebieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */; };
 		983976661F4FBB480097581D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983976651F4FBB480097581D /* LoginViewController.swift */; };
+		9839766A1F52C1080097581D /* StaticFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983976691F52C1080097581D /* StaticFunction.swift */; };
 		9839766C1F52FB050097581D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839766B1F52FB050097581D /* LaunchViewController.swift */; };
 		9839766E1F52FB3C0097581D /* LaunchSceen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */; };
 		9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9844286D1F3D755A0003CDF1 /* ygNa.jpeg */; };
@@ -126,6 +127,7 @@
 		983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukkaebieUITests.swift; sourceTree = "<group>"; };
 		983248381F32FD2C00ABFBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		983976651F4FBB480097581D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		983976691F52C1080097581D /* StaticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticFunction.swift; sourceTree = "<group>"; };
 		9839766B1F52FB050097581D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchSceen.storyboard; path = ../LaunchSceen.storyboard; sourceTree = "<group>"; };
 		9844286D1F3D755A0003CDF1 /* ygNa.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ygNa.jpeg; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				983248141F32FD2C00ABFBFB /* AppDelegate.swift */,
 				98B67CE61F3A9C2A00243F31 /* Extension.swift */,
 				986345851F4E9E0200453F3A /* Indicator.swift */,
+				983976691F52C1080097581D /* StaticFunction.swift */,
 				9832481F1F32FD2C00ABFBFB /* Launch.storyboard */,
 				9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */,
 				9839766B1F52FB050097581D /* LaunchViewController.swift */,
@@ -800,6 +803,7 @@
 				98B67CE71F3A9C2A00243F31 /* Extension.swift in Sources */,
 				985D09391F45244600A1F475 /* ReviewButtonTableViewCell.swift in Sources */,
 				986345831F49C1C800453F3A /* CartPaymentViewController.swift in Sources */,
+				9839766A1F52C1080097581D /* StaticFunction.swift in Sources */,
 				985D09031F3D31DD00A1F475 /* ModelOrders.swift in Sources */,
 				985D09001F3AFBDB00A1F475 /* MenuTableViewHeader.swift in Sources */,
 				989D41D31F4313A500AF2617 /* logoTableViewCell.swift in Sources */,
