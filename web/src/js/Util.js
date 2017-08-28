@@ -223,6 +223,7 @@ let StoreUtil = {
       editBtn.classList.add("mkbHide");
       editBtn.innerText = "접기"
     }
+    console.log("EX!")
   },
 
   changeOpacity(targetDom, value){

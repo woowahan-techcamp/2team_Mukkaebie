@@ -64,6 +64,7 @@ export class MKBComment {
   controllEditButton(clickedScope) {
     if (clickedScope.attributes["data-user"]["value"] != session) {
       StoreUtil.changeDisplay(".mkbEdit", "none");
+
     }
     else {
       StoreUtil.changeDisplay(".mkbEdit", "block");
@@ -228,7 +229,7 @@ export class MKBComment {
         StoreUtil.changeOpacity("#mkbModal", "0");
         setTimeout(function () {
           StoreUtil.changeDisplay("#mkbModal", "none");
-          document.querySelector(".logInRequired").classList.remove("mkbShow");
+          StoreUtil.toggleEdit();
         }, 1000);
       }
     })

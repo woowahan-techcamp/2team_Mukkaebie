@@ -4,6 +4,9 @@ import StoreUtil from "./js/Util.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  document.querySelector(".mkbEdit").addEventListener("click", function () {
+    StoreUtil.toggleEdit();
+  });
 
   const login = new Login();
 

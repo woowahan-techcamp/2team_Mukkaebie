@@ -56,9 +56,7 @@ export class StoreInfo {
     StoreUtil.makeOrder(storeId);
     let cart = new Cart();
 
-    document.querySelector(".mkbEdit").addEventListener("click", function () {
-      StoreUtil.toggleEdit();
-    })
+
   }
 
   renderMenu(menuObj){
