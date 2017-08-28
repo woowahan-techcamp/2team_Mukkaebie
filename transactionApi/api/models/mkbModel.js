@@ -11,7 +11,8 @@ let UserSchema = new Schema({
   createdDate: {type: Date, default: Date.now, required:true},
   spent : {type: Number, default:0},
   baeminLevel: String,
-  mkbBadges : Array
+  mkbBadges : Array,
+  pwd: String,
 },{versionKey: false});
 
 

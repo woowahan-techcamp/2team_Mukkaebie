@@ -118,7 +118,7 @@ exports.read_a_user = function(req, res) {
 exports.update_a_user = function(req, res) {
   User.findOneAndUpdate(
       {userId: req.body.userId},
-      {$push: {mkbBadges: req.body.mkbBadges}},
+      {$set: {pwd: req.body.pwd}},
       {safe: true, upsert: true},
       function(err, user) {
         if (err)
@@ -142,7 +142,7 @@ exports.delete_a_user = function(req, res) {
 
 
 exports.list_all_stores = function(req, res) {
-  Store.find({}, { _id: 0 }, function(err, store) {
+  Store.find({}, { _id: 0, pwd: 0}, function(err, store) {
     if (err)
       res.send(err);
     res.json(store);
