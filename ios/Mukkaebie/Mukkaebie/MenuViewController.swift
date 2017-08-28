@@ -12,13 +12,15 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var menuTableView: UITableView!
+    @IBOutlet var noOrderView: UIView!
+    
+    @IBOutlet weak var chartAnimationView: UIView!
     
     var modelStore : ModelStores?
-    let networkOrder = NetworkOrder()
-    var orderList = [ModelOrders]()
-    var orderByMenu = [String: Int]()
+    var noOrder = false
     var orderByMenuSorted = [(key: String, value: Int)]()
 
+    var top3Array = [(key:String, value:String)]()
     
     let colors = [UIColor(red: 251/255, green: 136/255, blue: 136/255, alpha: 1), UIColor(red: 251/255, green: 229/255, blue: 136/255, alpha: 1), UIColor(red: 232/255, green: 166/255, blue: 93/255, alpha: 1), UIColor(white: 179/255, alpha: 1)]
     
@@ -36,14 +38,66 @@ class MenuViewController: UIViewController {
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
     
-    func setSegment() {
-        pieChartView.segments = []
-        for subview in pieChartView.subviews {
-            subview.removeFromSuperview()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        self.addCircleView(self.chartAnimationView, isForeground: true, duration: 2, fromValue: 1,  toValue: 0.0)
+
+    }
+    
+    func addCircleView( _ myView : UIView, isForeground : Bool, duration : TimeInterval, fromValue: CGFloat, toValue : CGFloat ) {
+        var circleWidth = CGFloat(90)
+        var circleHeight = circleWidth
+        
+        var circleView = AnimateView(frame: CGRect(x: self.view.bounds.width * 0.5, y: chartAnimationView.bounds.height/2 - 20, width: circleWidth, height: circleHeight))
+        
+        //Setting the color.
+        if (isForeground == true) {
+            circleView.setStrokeColor(UIColor.white.cgColor)
         }
-        for i in 0 ..< orderByMenuSorted.count {
-            let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: orderByMenuSorted[i].key)
-            pieChartView.segments.append(segment)
+        
+        myView.addSubview(circleView)
+        
+        //Rotate the circle so it starts from the top.
+        circleView.transform = CGAffineTransform(rotationAngle: 0)
+        
+        // Animate the drawing of the circle
+        circleView.animateCircleTo(duration, fromValue: fromValue, toValue: toValue)
+    }
+    
+    func setSegment() {
+        if noOrder {
+            pieChartView.addSubview(noOrderView)
+        } else {
+            pieChartView.segments = []
+            for subview in pieChartView.subviews {
+                subview.removeFromSuperview()
+            }
+            
+            var orderCountArray = [Int]()
+            var menuPercentArray = [String]()
+            var totalOrder = Int()
+            
+            for i in 0 ..< orderByMenuSorted.count {
+                totalOrder += orderByMenuSorted[i].value
+            }
+            
+            let menusArray = menus.flatMap { $0 }
+            for i in 0 ..< orderByMenuSorted.count {
+                for j in 0 ..< menusArray.count {
+                    if menusArray[j].key == orderByMenuSorted[i].key {
+                        top3Array.append(menusArray[j])
+                    }
+                }
+            }
+            
+            for i in 0 ..< orderByMenuSorted.count {
+                orderCountArray.append(orderByMenuSorted[i].value)
+                menuPercentArray.append(String(floor((Double(orderCountArray[i]) / Double(totalOrder) * 100)*10)/10))
+                let titleButton = "\(orderByMenuSorted[i].key) " + "\((menuPercentArray[i]))%"
+                let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton, price: top3Array.count > i ? top3Array[i].value : "0원")
+                pieChartView.segments.append(segment)
+            }
         }
     }
     
@@ -119,6 +173,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         return 30
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 7
+    }
     
     func touchedArrowLabel(gestureRecognizer: UIGestureRecognizer) {
         if items[(gestureRecognizer.view?.tag)!].isCollapsible {
@@ -130,10 +187,11 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             //caculate new height for table view
             let heightOfCell: CGFloat = 44
             var expectedHeightOfTable: CGFloat = 0
-            
+            let heightOfHeaderView: CGFloat = 30
+            let heightOfFooterView: CGFloat = 7
             for i in 0..<menuTableView.numberOfSections {
                 //header section
-                let heightOfHeaderView: CGFloat = 30
+                
                 expectedHeightOfTable = expectedHeightOfTable + heightOfHeaderView
                 
                 //content section
@@ -142,6 +200,7 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
                 } else if i == (gestureRecognizer.view?.tag)! && collapsed == true {
                     expectedHeightOfTable = expectedHeightOfTable + heightOfCell * CGFloat(items[i].rowCount)
                 }
+                expectedHeightOfTable = expectedHeightOfTable + heightOfFooterView
             }
             
             //update height of table view

@@ -18,17 +18,19 @@ enum level {
 
 class ModelUsers: Mappable {
     
-    private var id = String()
-    private var name = String()
-    private var spent = Int()
-    private var createdDate = String()
-    private var baeminLevel = [level]()
+    private(set) var primaryKey = String()
+    private(set) var id = String()
+    private(set) var name = String()
+    private(set) var spent = Int()
+    private(set) var createdDate = String()
+    private(set) var baeminLevel = [level]()
     
     init() {}
     
     required init?(map: Map) {}
     
-    init(id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
+    init(primaryKey: String, id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
+        self.primaryKey = primaryKey
         self.id = id
         self.name = name
         self.spent = spent
@@ -37,6 +39,7 @@ class ModelUsers: Mappable {
     }
     
     func mapping(map: Map) {
+        primaryKey <- map["_id"]
         id <- map["userId"]
         name <- map["name"]
         spent <- map["spent"]
@@ -44,4 +47,14 @@ class ModelUsers: Mappable {
         baeminLevel <- map["baeminLevel"]
     }
     
+}
+
+class User {
+    static let sharedInstance = User()
+    var isUser = Bool() {
+        didSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "checkIsUser"), object: nil)
+        }
+    }
+    var user = ModelUsers()
 }

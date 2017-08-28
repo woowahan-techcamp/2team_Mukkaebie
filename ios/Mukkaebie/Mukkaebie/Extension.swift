@@ -56,7 +56,9 @@ extension UIAlertController {
     }
     
     func oneButtonAlert(target: UIViewController, title: String, message: String, isHandler: Bool) {
+        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
         alertController.addAction(UIAlertAction(title: "완료", style: .default, handler: { (_) in
             if isHandler {
                 target.dismiss(animated: true, completion: nil)
@@ -94,6 +96,7 @@ extension UIImage {
 }
 
 extension UIAlertController {
+    
     func changeFont(view: UIView, font:UIFont) {
         for item in view.subviews {
             if item.isKind(of: UICollectionView.self) {
@@ -117,6 +120,48 @@ extension UIAlertController {
         let font = UIFont(name: "AppleSDGothicNeo-Medium", size: 15)
         changeFont(view: self.view, font: font! )
     }
+}
+
+
+extension UIView {
+    
+//    func showProgressView(view: UIView) -> UIImageView {
+//        
+////        let containerView = UIView()
+//        let progressView = UIView()
+//        var activityIndicatorImageView = UIImageView()
+//        
+//        let statusImage = #imageLiteral(resourceName: "indictorIcon")
+//        let activityImageView = UIImageView(image: statusImage)
+////        containerView.frame = view.frame
+////        containerView.backgroundColor = UIColor.white
+//        progressView.frame = view.frame
+//        progressView.center = CGPoint(x:view.bounds.width / 2, y:view.bounds.height / 2)
+//        progressView.backgroundColor = UIColor.white
+//        progressView.clipsToBounds = true
+//        progressView.layer.cornerRadius = 10
+//
+//        activityImageView.animationImages = [#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2"),#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2"),#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2")]
+//        activityImageView.animationDuration = 1;
+//        activityImageView.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 77, height: 68)
+//        activityImageView.center = CGPoint(x: progressView.bounds.width/2, y: progressView.bounds.height/2)
+//        activityImageView.startAnimating()
+//        var alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "stopProgress", userInfo: nil, repeats: false)
+//            DispatchQueue.main.async() {
+//            progressView.addSubview(activityImageView)
+////            containerView.addSubview(progressView)
+//            view.addSubview(progressView)
+//            activityIndicatorImageView = activityImageView
+//        }
+//        
+//        return activityIndicatorImageView
+//    }
+//    
+//    func stopProgress(){
+//        self.isHidden = true
+//        
+//    }
+   
 }
 
 

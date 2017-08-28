@@ -14,13 +14,15 @@ class NetworkUser {
     
     private static let url = URLpath.getURL()
     
-    static func getUserList() {
-        Alamofire.request("\(url)users").responseJSON { (response) in
+    static func getUserList(userID : String) {
+        Alamofire.request("\(url)users/cf/"+"\(userID)").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
+                var userDic = ModelUsers()
                 for item in response {
-                    let user = ModelUsers(JSON: item)
-                    //dump(user)
+                    userDic = ModelUsers(JSON: item)!
+                    
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getUser"), object: nil, userInfo: ["User":userDic])
             }
         }
     }
