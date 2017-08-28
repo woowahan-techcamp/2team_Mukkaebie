@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Store Test View Controller-->
+        <!--Store Detail View Controller-->
         <scene sceneID="Bl6-FE-7U6">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="BCT-iU-b1f" customClass="StoreTestViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="BCT-iU-b1f" customClass="StoreDetailViewController" customModule="Mukkaebie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bis-uJ-0MW"/>
                         <viewControllerLayoutGuide type="bottom" id="qax-12-7M4"/>
