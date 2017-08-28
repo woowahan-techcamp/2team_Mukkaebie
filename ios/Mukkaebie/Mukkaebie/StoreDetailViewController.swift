@@ -60,7 +60,7 @@ class StoreDetailViewController: UIViewController {
         
         cartAlertView.center = self.view.center
         cartAlertView.layer.masksToBounds = true
-        cartAlertView.layer.cornerRadius = 1
+        cartAlertView.layer.cornerRadius = 1.5
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)

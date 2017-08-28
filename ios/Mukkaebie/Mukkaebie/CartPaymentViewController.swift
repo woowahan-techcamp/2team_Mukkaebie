@@ -77,10 +77,6 @@ class CartPaymentViewController: UIViewController {
     }
     
     @IBAction func touchedOrder(_ sender: Any) {
-
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        
-        let image = #imageLiteral(resourceName: "finishedOrder")
         
         self.view.addSubview(orderSuccessView)
         blurView.isHidden = false
