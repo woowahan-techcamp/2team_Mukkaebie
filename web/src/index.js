@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const clickedMenu = document.querySelector(".categoryWrapper");
   clickedMenu.addEventListener("click", function (e) {
-    if (e.target.tagName !== "LI") {
-      e.target = e.target.closest(".blackMenu");
+
+    if (e.target && e.target.tagName == "LI") {
+      const categoryList = new StoreList(e.target.attributes.data.value);
     }
-    const categoryList = new StoreList(e.target.attributes.data.value);
   });
 
 
