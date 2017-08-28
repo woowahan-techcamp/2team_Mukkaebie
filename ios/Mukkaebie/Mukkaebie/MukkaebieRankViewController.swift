@@ -65,13 +65,11 @@ class MukkaebieRankViewController: UIViewController {
         bottomConstraintList = [firstBottomConstraint, secondBottomConstraint, thirdBottomConstraint]
         labelList = [firstLabel, secondLabel, thirdLabel]
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
-        
-        getMkbDictionrayList()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !viewIsAnimated {
+        if !viewIsAnimated && orderByUserTop3.count > 0 {
             firstBottomConstraint.constant -= firstAward.frame.height
             secondBottomConstraint.constant -= secondAward.frame.height
             thirdBottomConstraint.constant -= thirdAward.frame.height
@@ -86,7 +84,7 @@ class MukkaebieRankViewController: UIViewController {
             orderLabelList[i].text = "주문수 \(orderByUserTop3[i].value)"
         }
         
-        if !imageCommentIsRequested {
+        if !imageCommentIsRequested && orderByUserTop3.count > 0 {
             for i in 0..<orderByUserTop3.count {
                 if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == orderByUserTop3[i].key}) {
                     if i == 0 && mkbDictionaryArray[mkbIndex]["mkbComment"] != nil {
@@ -105,7 +103,8 @@ class MukkaebieRankViewController: UIViewController {
             imageCommentIsRequested = true
         }
         
-        if !viewIsAnimated {
+        
+        if !viewIsAnimated && orderByUserTop3.count > 0 {
             for i in 0..<orderByUserTop3.count {
                 UIView.animate(withDuration: 1.5, delay: TimeInterval(i + 1), usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                     self.bottomConstraintList[i].constant += self.awardList[i].frame.height

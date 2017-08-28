@@ -39,15 +39,6 @@ class StoreDetailViewController: UIViewController {
     }()
     
     var storeId = Int()
-    var modelStore : ModelStores?
-    let networkStore = NetworkStore()
-    
-    let networkOrder = NetworkOrder()
-    var orderList = [ModelOrders]()
-    var orderByUser = [String:Int]()
-    var orderByUserTop3 = [(key: String, value: Int)]()
-    var orderByMenuSorted = [(key: String, value: Int)]()
-    
 
     let indicatorView = Indicator()
 
@@ -76,25 +67,7 @@ class StoreDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
-        NetworkStore.getStoreList(sellerId: self.storeId) {(storeList) in
-            Store.sharedInstance.specificStore = storeList[0]
-            
-            self.navigationItem.title = Store.sharedInstance.specificStore?.name
-            self.menuRankVC?.initItem()
-            self.menuRankVC?.initMenus()
-            
-            self.tableView.reloadData()
-            
-            NetworkOrder.getOrderList(sellerId: self.storeId) {(orderList) in
-                Order.sharedInstance.specificStoreOrder = orderList
-                
-                self.menuRankVC?.getOrderByMenuSorted()
-                self.mukkaebieVC?.getOrderByUserSorted()
-                
-                let indexPath = IndexPath(row: 0, section: 3)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        }
+        getStore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,16 +78,35 @@ class StoreDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func postOrder(_ notification: Notification) {
+    func getStore() {
+        NetworkStore.getStoreList(sellerId: self.storeId) {(storeList) in
+            Store.sharedInstance.specificStore = storeList[0]
+
+            self.navigationItem.title = Store.sharedInstance.specificStore?.name
+            self.menuRankVC?.initItem()
+            self.menuRankVC?.initMenus()
+            
+            self.tableView.reloadData()
+            
+            self.getOrder()
+        }
+    }
+    
+    func getOrder() {
         NetworkOrder.getOrderList(sellerId: self.storeId) {(orderList) in
             Order.sharedInstance.specificStoreOrder = orderList
             
             self.menuRankVC?.getOrderByMenuSorted()
             self.mukkaebieVC?.getOrderByUserSorted()
+            self.mukkaebieVC?.getMkbDictionrayList()
             
             let indexPath = IndexPath(row: 0, section: 3)
             self.tableView.reloadRows(at: [indexPath], with: .none)
         }
+    }
+    
+    func postOrder(_ notification: Notification) {
+        getOrder()
     }
     
     func changeTab(_ notification: Notification) {
@@ -235,7 +227,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         switch tabNumber {
         case 0:
-            if orderByUserTop3.count == 0 {
+            if Order.sharedInstance.specificStoreOrder != nil && Order.sharedInstance.specificStoreOrder.count == 0 {
                 cell.tabSubview.frame.size.height = noMukkaebieView.frame.height
                 cell.tabSubviewHeightConstraint.constant = noMukkaebieView.frame.height
                 cell.tabSubview.addSubview(noMukkaebieView)
@@ -275,7 +267,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         }
         switch tabNumber {
         case 0:
-            if orderByUserTop3.count == 0 {
+            if Order.sharedInstance.specificStoreOrder != nil && Order.sharedInstance.specificStoreOrder.count == 0 {
                 return noMukkaebieView.frame.height
             }
             return (mukkaebieVC?.view.frame.height)!

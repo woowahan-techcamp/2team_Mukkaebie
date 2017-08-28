@@ -41,7 +41,7 @@ class StoreListViewController: UIViewController {
     
     func storeCategorization (category : String) {
         var result = [ModelStores]()
-        for model in Store.sharedInstance.allStores! {
+        for model in allStores! {
             if category == model.category {
                 result.append(model)
             }
