@@ -16,7 +16,6 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var chartAnimationView: UIView!
     
-    var noOrder = false
     var orderByMenuSorted = [(key: String, value: Int)]()
 
     var top3Array = [(key:String, value:String)]()
@@ -78,11 +77,6 @@ class MenuViewController: UIViewController {
             orderByMenuSorted.append((key: "기타", value: count))
         }
         
-        if Order.sharedInstance.specificStoreOrder.count == 0 {
-            noOrder = true
-        } else {
-            noOrder = false
-        }
         if pieChartView != nil {
             setSegment()
         }
@@ -109,7 +103,7 @@ class MenuViewController: UIViewController {
     }
     
     func setSegment() {
-        if noOrder {
+        if Order.sharedInstance.specificStoreOrder.count == 0 {
             pieChartView.addSubview(noOrderView)
         } else {
             pieChartView.segments = []
@@ -154,7 +148,6 @@ class MenuViewController: UIViewController {
                 let cartPaymentcontroller = segue.destination as! CartPaymentViewController
                 cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
                 cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
-                cartPaymentcontroller.modelStore = Store.sharedInstance.specificStore
             }
         }
     }

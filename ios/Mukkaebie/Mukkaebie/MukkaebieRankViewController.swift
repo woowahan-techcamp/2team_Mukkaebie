@@ -149,14 +149,14 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
-                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
                 } else {
-                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
                 }
             }
-            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
         } else {
-            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
         }
     }
     
@@ -165,15 +165,15 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
-                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
                 } else {
-                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
                 }
             } else {
-                networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
             }
         } else {
-            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
         }
     }
     
