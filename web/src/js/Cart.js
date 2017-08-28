@@ -9,7 +9,6 @@ export class Cart {
     this.renderTarget = document.querySelector(".storeCartContent");
     this.itemsInCart = Array.from(this.renderTarget.children);
     this.init();
-
   }
 
   init() {

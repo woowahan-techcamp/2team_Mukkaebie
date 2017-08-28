@@ -1,6 +1,4 @@
-
-import {Graph} from './Graph.js'
-
+import {Graph} from "./Graph.js";
 
 
 let StoreUtil = {
@@ -31,16 +29,16 @@ let StoreUtil = {
 
   makeModal: function () {
     let modal = document.querySelector('#orderModal');
-      modal.style.display = "block";
+    modal.style.display = "block";
+    setTimeout(function () {
+      modal.style.opacity = 1;
+    }, 500)
+    setTimeout(function () {
+      modal.style.opacity = 0;
       setTimeout(function () {
-        modal.style.opacity = 1;
+        modal.style.display = "none";
       }, 500)
-      setTimeout(function () {
-        modal.style.opacity = 0;
-        setTimeout(function () {
-          modal.style.display = "none";
-        }, 500)
-      }, 3000)
+    }, 3000)
   },
   makeAfterLoginModal(){
     let modal = document.querySelector('#afterLoginModal');
@@ -87,52 +85,52 @@ let StoreUtil = {
 
   makeOrder: function (storeId) {
 
-      let orderButton = document.querySelector("#cartOrderButton");
+    let orderButton = document.querySelector("#cartOrderButton");
 
-      orderButton.addEventListener("click", function () {
-        if (session != "비회원") {
-          let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
+    orderButton.addEventListener("click", function () {
+      if (session != "비회원") {
+        let totalPrice = Number(document.querySelector("#cartTotalPrice").innerText);
 
-          let cartContent = Array.from(document.querySelector(".storeCartContent").children);
+        let cartContent = Array.from(document.querySelector(".storeCartContent").children);
 
-          let menuList = [];
+        let menuList = [];
 
-          cartContent.forEach(function (item) {
-            menuList.push(item.getAttribute("value"));
-          })
-
-
-          let packet = {};
-          packet["sellerId"] = storeId;
-          packet["buyerId"] = session;
-          packet["content"] = menuList;
-          packet["price"] = totalPrice;
-
-          let xhr1 = new XMLHttpRequest();
-          xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
-          xhr1.setRequestHeader('Content-Type', 'application/json');
-
-          // send the collected data as JSON
-          xhr1.send(JSON.stringify(packet));
+        cartContent.forEach(function (item) {
+          menuList.push(item.getAttribute("value"));
+        })
 
 
-          let i = window.pageYOffset, j = 1;
-          let int = setInterval(function() {
-            window.scrollTo(0, i);
-            i -= 5 * j;
-            j += 0.2;
-            if (i < 200) clearInterval(int);
-          }, 20);
+        let packet = {};
+        packet["sellerId"] = storeId;
+        packet["buyerId"] = session;
+        packet["content"] = menuList;
+        packet["price"] = totalPrice;
 
-          xhr1.onloadend = function () {
-            StoreUtil.makeModal();
-            let graph = new Graph(storeId);
-            StoreUtil.resetCart();
-          }.bind(this);
-        } else {
-          StoreUtil.makeLoginRequiredModal();
-        }
-      }.bind(this));
+        let xhr1 = new XMLHttpRequest();
+        xhr1.open("POST", SERVER_BASE_URL + "/orders", true);
+        xhr1.setRequestHeader('Content-Type', 'application/json');
+
+        // send the collected data as JSON
+        xhr1.send(JSON.stringify(packet));
+
+
+        let i = window.pageYOffset, j = 1;
+        let int = setInterval(function () {
+          window.scrollTo(0, i);
+          i -= 5 * j;
+          j += 0.2;
+          if (i < 200) clearInterval(int);
+        }, 20);
+
+        xhr1.onloadend = function () {
+          StoreUtil.makeModal();
+          let graph = new Graph(storeId);
+          StoreUtil.resetCart();
+        }.bind(this);
+      } else {
+        StoreUtil.makeLoginRequiredModal();
+      }
+    }.bind(this));
 
   },
 
@@ -163,9 +161,9 @@ let StoreUtil = {
   },
 
   setAttributes(el, attrs) {
-    for(let key in attrs) {
+    for (let key in attrs) {
       el.setAttribute(key, attrs[key]);
-      }
+    }
   },
 
   ajaxGet(url, cb){
@@ -198,7 +196,7 @@ let StoreUtil = {
   makeFoldableMenu (levelOneClass){
     let levelOne = document.getElementsByClassName(levelOneClass);
     for (let i = 0; i < levelOne.length; i++) {
-      levelOne[i].addEventListener("click" ,function () {
+      levelOne[i].addEventListener("click", function () {
         this.classList.toggle("active");
 
         let levelTwo = this.nextElementSibling;
@@ -216,7 +214,7 @@ let StoreUtil = {
   toggleEdit(){
     const editBox = document.querySelector(".logInRequired");
     const editBtn = document.querySelector(".mkbEdit");
-    if (editBox.classList.contains("mkbShow")){
+    if (editBox.classList.contains("mkbShow")) {
       editBox.classList.remove("mkbShow");
       editBtn.classList.remove("mkbHide");
       editBtn.innerText = "수정"
@@ -243,10 +241,16 @@ let StoreUtil = {
     setTimeout(function () {
       targetDomNode.style.opacity = "1";
     }, 200)
-  }
+  },
+
+  hideModal(modal){
+    const targetDomNode = document.querySelector(modal);
+    targetDomNode.style.opacity = "0";
+    setTimeout(function () {
+      targetDomNode.style.display = "none";
+    }, 200)
+  },
 }
-
-
 
 
 export default StoreUtil;

@@ -17,6 +17,7 @@ export class MKBComment {
   }
 
   initialRendering() {
+    this.resetProfile();
     this.getComment(this.storeId, this.topThreeList)
         .then(this.renderMkbPage);
   }
@@ -131,7 +132,6 @@ export class MKBComment {
     return new Promise(function (resolve) {
       function getCommentCb() {
         const response = JSON.parse(this.responseText);
-        const renderTarget = document.querySelector("#mkbComment");
         let targetArr = (response[0].mkb) ? response[0].mkb : [];
         let finalMkbList = [];
         top3List.forEach(function (topBuyer) {
@@ -200,14 +200,15 @@ export class MKBComment {
       const form = document.getElementById('file-form');
       const fileSelect = document.getElementById('file-select');
 
-      form.onsubmit = function (event) {
-        event.preventDefault();
+      form.onsubmit = function (e) {
+        e.preventDefault();
         const file = fileSelect.files[0];
         let resolveObj = {
           "imgUrl": DEFAULT_PROFILE_IMG,
           "storeId": storeId,
           "topThreeList": topThreeList
-        }
+        };
+
         if (file != undefined) {
           const formData = new FormData();
           formData.append('profileImage', file);
@@ -231,6 +232,14 @@ export class MKBComment {
         }, 1000);
       }
     })
+  }
+
+  resetProfile(){
+    const profileResetButton = document.querySelector("#resetProfile");
+    const profilePic = document.querySelector(".mkbImgPreview");
+    profileResetButton.addEventListener("click", function () {
+      document.querySelector("#file-form input").value = "";
+    });
   }
 
 
