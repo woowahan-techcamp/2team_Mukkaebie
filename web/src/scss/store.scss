@@ -627,8 +627,8 @@
 .reviewCard {
   padding: 15px;
   display: flex;
-  align-items: flex-start;
   background: #fff;
+  align-items: flex-start;
 }
 
 .reviewCardPic {
@@ -647,6 +647,7 @@
 
 .reviewCardBtm {
   font-size: 11px;
+  word-break: break-all;
 }
 
 .reviewCardMid {
