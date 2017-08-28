@@ -67,11 +67,8 @@ class StoreDetailViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-//        self.view.addSubview(cartAlertView)
-
         cartAlertView.center = self.view.center
         
-//        cartAlertView.alpha = 0
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1
         
