@@ -1,16 +1,84 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LaunchScreen" customModule="Mukkaebie" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="mOl-es-rd2">
+                    <rect key="frame" x="0.0" y="134" width="375" height="533"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="mOl-es-rd2" secondAttribute="height" multiplier="375:533" id="MqL-PC-bLN"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-17-hBp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchingBanner" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-Cs-OUo">
+                    <rect key="frame" x="20" y="46" width="334" height="73"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Kje-Cs-OUo" secondAttribute="height" multiplier="334:73" id="X4K-aj-jk5"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DbV-aZ-uBF">
+                    <rect key="frame" x="151.5" y="604" width="73" height="33"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 민족" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njj-4d-J07">
+                            <rect key="frame" x="0.0" y="0.0" width="73" height="15"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feat. 미경이네" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cba-F6-VFQ">
+                            <rect key="frame" x="0.0" y="20" width="73" height="13"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="13"/>
+                            <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ey-Sx-xvY"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="top" secondItem="Kje-Cs-OUo" secondAttribute="bottom" constant="15" id="BMp-JD-oDB"/>
+                <constraint firstAttribute="bottom" secondItem="mOl-es-rd2" secondAttribute="bottom" id="Iwu-xn-0nd"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="bottom" secondItem="bvi-17-hBp" secondAttribute="bottom" id="MRX-NZ-QsP"/>
+                <constraint firstItem="DbV-aZ-uBF" firstAttribute="centerX" secondItem="mOl-es-rd2" secondAttribute="centerX" id="MnE-cF-Q1J"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="trailing" secondItem="bvi-17-hBp" secondAttribute="trailing" id="Muq-3C-dZc"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="leading" secondItem="bvi-17-hBp" secondAttribute="leading" id="StI-l6-JTY"/>
+                <constraint firstAttribute="bottom" secondItem="DbV-aZ-uBF" secondAttribute="bottom" constant="30" id="gHp-Nq-Q5r"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="centerX" secondItem="Kje-Cs-OUo" secondAttribute="centerX" id="rqT-ao-Tt6"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="width" secondItem="mOl-es-rd2" secondAttribute="height" multiplier="375:533" id="zBe-y3-7pX"/>
+                <constraint firstItem="Kje-Cs-OUo" firstAttribute="width" secondItem="Kje-Cs-OUo" secondAttribute="height" multiplier="334:73" id="zEe-ao-nbf"/>
+            </constraints>
+            <connections>
+                <outlet property="bannerImage" destination="Kje-Cs-OUo" id="GzU-jS-wRP"/>
+                <outlet property="companyStackView" destination="DbV-aZ-uBF" id="jiX-Nm-TPr"/>
+                <outlet property="mukkaebieImage" destination="mOl-es-rd2" id="8hY-Bm-7sL"/>
+                <outlet property="rainyImage" destination="bvi-17-hBp" id="UXy-Mh-6JM"/>
+            </connections>
         </view>
     </objects>
+    <resources>
+        <image name="LaunchingBanner" width="334" height="72"/>
+        <image name="launchScreen" width="375" height="467"/>
+        <image name="particles_alpha" width="365" height="492"/>
+    </resources>
 </document>

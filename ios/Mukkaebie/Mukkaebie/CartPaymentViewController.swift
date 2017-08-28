@@ -80,7 +80,7 @@ class CartPaymentViewController: UIViewController {
         alertController.addimage(image: image)
         alertController.view.tintColor = UIColor.black
 //        alertController.view.backgroundColor = UIColor.white
-        let backView = alertController.view.subviews.first as! UIView
+        let backView = alertController.view.subviews.first!
         backView.layer.backgroundColor = UIColor.white.cgColor
         backView.backgroundColor = UIColor.white
 //        backView.backgroundColor = UIColor.black

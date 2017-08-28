@@ -183,6 +183,7 @@ class MukkaebieRankViewController: UIViewController {
 }
 
 extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.childViewControllers.count == 2 {
             UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
