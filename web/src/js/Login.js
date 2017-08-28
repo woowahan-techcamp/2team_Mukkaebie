@@ -5,7 +5,6 @@ import StoreUtil from './Util.js'
 
 export class Login {
   constructor(){
-    this.pw = "";
     this.init()
   }
 
@@ -54,7 +53,7 @@ export class Login {
         resolve(pwd["userId"])
       }
       else {
-        reject('비밀번호가 일치하지 않습니다')
+        reject('아이디나 비밀번호를 확인해 주세요');
       }
     })
   }
@@ -69,14 +68,8 @@ export class Login {
   }
 
   failLogin(msg){
-    document.querySelector("#loginMsg").innerText = "아이디나 비밀번호를 확인해 주세요"
+    document.querySelector("#loginMsg").innerText = msg;
     const newLogin = new Login();
   }
 
-
 }
-
-
-
-
-

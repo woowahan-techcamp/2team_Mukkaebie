@@ -5,48 +5,64 @@
 
 export class Cart {
   constructor() {
+    this.totalPriceDisplay = document.querySelector("#cartTotalPrice");
+    this.renderTarget = document.querySelector(".storeCartContent");
+    this.itemsInCart = Array.from(this.renderTarget.children);
     this.init();
   }
 
   init() {
     document.querySelector(".foldableMenu").addEventListener("click", function (e) {
       if (e.target.tagName === "INPUT") {
-        this.addToCart(e.target.value, e.target.attributes.data.value);
+        this.changeCart(e.target.value, e.target.attributes.data.value);
+        this.refreshCart();
+        this.calcTotal();
       }
     }.bind(this));
   }
 
-  addToCart(cont, price) {
-    let renderTarget = document.querySelector(".storeCartContent");
-    let renderTargetChildren = Array.from(renderTarget.children);
-    let numberPrice = price.slice(0, price.length - 1).split(',').join('');
-    let renderContent = "<li data='" + numberPrice + "' value='" + cont + "'>" + cont + " " + price + "</li>";
-    let hasContent = false;
-    let childToRemove;
-    renderTargetChildren.forEach(function (child) {
+  changeCart(cont, price) {
+    let numberTypePrice = price.slice(0, price.length - 1).split(',').join('');
+    let childToRemove = this.checkItemInCart(this.itemsInCart, cont, price);
+    let isInCart = Boolean(childToRemove);
+
+    if (isInCart === false) {
+      let renderContent = "<li data='" + numberTypePrice + "' value='" + cont + "'>" + cont + " " + price + "</li>";
+      this.addToCart(this.renderTarget, renderContent);
+    }
+    else {
+      this.removeFromCart(this.renderTarget, childToRemove);
+    }
+  }
+
+  checkItemInCart(itemsInCart, cont, price){
+    let childToRemove = undefined;
+    itemsInCart.forEach(function (child) {
       if (cont + " " + price === child.outerText) {
-        hasContent = true;
         childToRemove = child;
       }
     });
+    return childToRemove;
+  }
 
-    if (hasContent === false) {
-      renderTarget.innerHTML += renderContent;
-    } else {
-      renderTarget.removeChild(childToRemove);
-    }
-    this.calcTotal();
+
+  addToCart(renderTarget, renderContent) {
+    renderTarget.innerHTML += renderContent
+  }
+
+  removeFromCart(renderTarget, childToRemove){
+    renderTarget.removeChild(childToRemove);
+  }
+
+  refreshCart(){
+    this.itemsInCart = Array.from(this.renderTarget.children);
   }
 
   calcTotal() {
-    let cartList = document.querySelector(".storeCartContent");
-    let cartListChildren = Array.from(cartList.children);
     let totalPrice = 0;
-    cartListChildren.forEach(function (child) {
+    this.itemsInCart.forEach(function (child) {
       totalPrice += Number(child.attributes.data.value);
-    })
-    document.querySelector("#cartTotalPrice").innerText = totalPrice;
+    });
+    this.totalPriceDisplay.innerText = totalPrice;
   }
 }
-
-

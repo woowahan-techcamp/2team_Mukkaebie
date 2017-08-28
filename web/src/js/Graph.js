@@ -1,6 +1,4 @@
-
-
-import {MKBComment} from './MKBComment.js'
+import {MKBComment} from "./MKBComment.js";
 
 
 export class Graph {
@@ -212,15 +210,13 @@ export class Graph {
           let name = ""
           if (i < top3.length) {
             name = top3[i].toString().split(",")[0];
-            // let order = top3[i].toString().split(",")[1];
           }
           top3UserList.push(name);
-          // top3_name[i].innerHTML = name;
-          // top3_order[i].innerHTML = order;
         }
         let mkb = new MKBComment(storeId, top3UserList);
+        mkb.initialRendering();
       }
-    }
+    };
     xhr.open('GET', SERVER_BASE_URL + '/orders/bystore/' + storeId, true);
     xhr.send(null);
   }
