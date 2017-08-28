@@ -75,13 +75,30 @@ class StoreDetailViewController: UIViewController {
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getStore(_:)), name: NSNotification.Name(rawValue: "getStore"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
-        self.networkStore.getStoreList(sellerId: storeId)
+        NetworkStore.getStoreList(sellerId: self.storeId) {(storeList) in
+            Store.sharedInstance.specificStore = storeList[0]
+            specificStore = storeList[0]
+            
+            self.navigationItem.title = specificStore?.name
+            
+            self.mukkaebieVC?.modelStore = specificStore
+            self.menuRankVC?.modelStore = specificStore
+            self.infoVC?.introText = specificStore?.storeDesc
+            self.infoVC?.openHourText = specificStore?.openHour
+            self.infoVC?.telephoneText = specificStore?.telephone
+            self.infoVC?.nameText = specificStore?.name
+            
+            self.initMenuArray()
+            
+            self.networkOrder.getOrderList(sellerId: self.storeId)
+            self.tableView.reloadData()
+        }
     }
 
     
@@ -96,29 +113,9 @@ class StoreDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getStore(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
-        self.modelStore = storeInfo[0]
-        
-        self.navigationItem.title = modelStore?.name
-        
-        mukkaebieVC?.modelStore = self.modelStore
-        menuRankVC?.modelStore = self.modelStore
-        infoVC?.introText = self.modelStore?.storeDesc
-        infoVC?.openHourText = self.modelStore?.openHour
-        infoVC?.telephoneText = self.modelStore?.telephone
-        infoVC?.nameText = self.modelStore?.name
-        
-        initMenuArray()
-        
-        self.networkOrder.getOrderList(sellerId: storeId)
-        tableView.reloadData()
-    }
-    
     func initMenuArray() {
-        if (self.modelStore?.menu.count)! > 0 {
-            let menu = (self.modelStore?.menu)![0]
+        if (specificStore?.menu.count)! > 0 {
+            let menu = (specificStore?.menu)![0]
             for (title, submenu) in menu {
                 let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
                 menuRankVC?.items.append(item)
@@ -135,8 +132,8 @@ class StoreDetailViewController: UIViewController {
     
     func initOrderByMenu() {
         orderByMenu = [String:Int]()
-        if (self.modelStore?.menu.count)! > 0 {
-            let menu = (self.modelStore?.menu)![0]
+        if (specificStore?.menu.count)! > 0 {
+            let menu = (specificStore?.menu)![0]
             for (_, submenu) in menu {
                 for (name, _) in submenu {
                     orderByMenu[name] = 0
@@ -147,8 +144,8 @@ class StoreDetailViewController: UIViewController {
     
     func initPriceByMenu() {
         priceByMenu = [String:Int]()
-        if (self.modelStore?.menu.count)! > 0 {
-            let menu = (self.modelStore?.menu)![0]
+        if (specificStore?.menu.count)! > 0 {
+            let menu = (specificStore?.menu)![0]
             for (_, submenu) in menu {
                 for (name, price) in submenu {
                     priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
@@ -246,7 +243,7 @@ class StoreDetailViewController: UIViewController {
     }
     
     @IBAction func touchedOrderCall(_ sender: Any) {
-        let url = NSURL(string: "tel://\(modelStore?.telephone as! String)")
+        let url = NSURL(string: "tel://\(specificStore?.telephone)")
         UIApplication.shared.openURL(url as! URL)
     }
 }
@@ -263,7 +260,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         if section == 1 {
             let logoView = Bundle.main.loadNibNamed("logoTableViewCell", owner: self, options: nil)?.first as! logoTableViewCell
-            if let url = URL(string: (modelStore?.imgURL)!) {
+            if let url = URL(string: (specificStore?.imgURL)!) {
                 logoView.logoImage.af_setImage(withURL: url)
             } else {
                 logoView.logoImage.image  = #imageLiteral(resourceName:"woowatech")
@@ -273,7 +270,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
         if section == 2 {
             let rateView = Bundle.main.loadNibNamed("rateTableViewCell", owner: self, options: nil)?.first as! rateTableViewCell
-            rateView.ratingValue.text = String(describing: floor((modelStore?.ratingValue)!*10)/10)
+            rateView.ratingValue.text = String(describing: floor((specificStore?.ratingValue)!*10)/10)
             return rateView
         }
         
@@ -308,7 +305,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if modelStore == nil {
+        if specificStore == nil {
             return 0
         }
         return 4
@@ -333,9 +330,11 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TabSubviewTableViewCell
+        
         for subview in cell.tabSubview.subviews {
             subview.removeFromSuperview()
         }
+        
         switch tabNumber {
         case 0:
             if orderByUserTop3.count == 0 {
@@ -348,7 +347,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.tabSubview.addSubview((mukkaebieVC?.view)!)
             }
         case 1:
-            if modelStore?.menu.count == 0 {
+            if specificStore?.menu.count == 0 {
                 cell.tabSubview.frame.size.height = noMenuView.frame.height
                 cell.tabSubviewHeightConstraint.constant = noMenuView.frame.height
                 cell.tabSubview.addSubview(noMenuView)
@@ -373,7 +372,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if modelStore == nil {
+        if specificStore == nil {
             return 0
         }
         switch tabNumber {
@@ -383,7 +382,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             }
             return (mukkaebieVC?.view.frame.height)!
         case 1:
-            if modelStore?.menu.count == 0 {
+            if specificStore?.menu.count == 0 {
                 return noMenuView.frame.height
             }
             return (menuRankVC?.view.frame.height)!

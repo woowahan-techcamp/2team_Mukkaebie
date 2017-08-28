@@ -15,10 +15,25 @@ class NetworkStore {
     private static let url = URLpath.getURL()
     
     static func getStoreList(callback: @escaping (_ storeList: [ModelStores]) -> Void) {
-        var storeList = [ModelStores]()
-
+    
         Alamofire.request("\(url)stores").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
+                var storeList = [ModelStores]()
+                for item in response {
+                    let store = ModelStores(JSON: item)
+                    storeList.append(store!)
+                }
+                callback(storeList)
+            }
+        }
+    }
+    
+    static func getStoreList(sellerId: Int, callback: @escaping (_ storeList: [ModelStores]) -> Void) {
+        let encodedString = ("\(NetworkStore.url)stores/\(sellerId)").addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
+        
+        Alamofire.request(URL(string: encodedString!)!).responseJSON { (response) in
+            if let response = response.result.value as? [[String:Any]] {
+                var storeList = [ModelStores]()
                 for item in response {
                     let store = ModelStores(JSON: item)
                     storeList.append(store!)

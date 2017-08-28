@@ -41,10 +41,8 @@ class StoreListViewController: UIViewController {
     }
     
     func storeCategorization (category : String) {
-        let allstoreList = Store.sharedInstance.allStores
-        
         var result = [ModelStores]()
-        for model in allStores {
+        for model in allStores! {
             if category == model.category {
                 result.append(model)
             }
@@ -78,7 +76,7 @@ class StoreListViewController: UIViewController {
             if let storeDetailViewController = segue.destination as? StoreDetailViewController{
 
                 let indexPath = self.tableView.indexPathForSelectedRow
-                storeDetailViewController.storeId = self.storeList[(indexPath?.row)!].id
+                storeDetailViewController.storeId = self.categoryList[(indexPath?.row)!].id
             }
         }
     }

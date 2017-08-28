@@ -57,8 +57,8 @@ class ModelStores: Mappable {
 
 class Store {
     static let sharedInstance = Store()
-    var allStores = [ModelStores]()
-    var categoryStoreList = [ModelStores]()
-    var specificStore = ModelStores()
     
+    var allStores : [ModelStores]!
+    var categoryStoreList : [ModelStores]!
+    var specificStore : ModelStores!
 }
