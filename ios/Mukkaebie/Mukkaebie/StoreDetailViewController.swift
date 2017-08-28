@@ -51,6 +51,7 @@ class StoreDetailViewController: UIViewController {
     var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
+
     let indicatorView = Indicator()
 
     var tabNumber = 0
@@ -234,7 +235,6 @@ class StoreDetailViewController: UIViewController {
     }
     
     @IBAction func touchedShoppingCart(_ sender: Any) {
-        
 
         self.view.addSubview(cartAlertView)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) { 
@@ -301,6 +301,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             return 40
         }
         return 0
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

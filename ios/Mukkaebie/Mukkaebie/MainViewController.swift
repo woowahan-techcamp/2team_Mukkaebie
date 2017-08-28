@@ -12,9 +12,7 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
-    let foodCategoryArray = ["치킨","중국집","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
-    let foodCategoryArrayForURL = ["치킨","중국집","피자","한식","족발","야식","찜탕","일식","도시락","패스트푸드"]
-    let buttonArray = [#imageLiteral(resourceName: "ios_1_20140423"), #imageLiteral(resourceName: "ios_2_20140423"), #imageLiteral(resourceName: "ios_3_20140423"), #imageLiteral(resourceName: "ios_38_20170420"),#imageLiteral(resourceName: "ios_4_20140423") ,#imageLiteral(resourceName: "ios_5_20140423"),#imageLiteral(resourceName: "ios_6_20140423"),#imageLiteral(resourceName: "ios_10_20140423"), #imageLiteral(resourceName: "ios_9_20140423"),#imageLiteral(resourceName: "ios_7_20140423")]
+        let buttonArray = [#imageLiteral(resourceName: "ios_1_20140423"), #imageLiteral(resourceName: "ios_2_20140423"), #imageLiteral(resourceName: "ios_3_20140423"), #imageLiteral(resourceName: "ios_38_20170420"),#imageLiteral(resourceName: "ios_4_20140423") ,#imageLiteral(resourceName: "ios_5_20140423"),#imageLiteral(resourceName: "ios_6_20140423"),#imageLiteral(resourceName: "ios_10_20140423"), #imageLiteral(resourceName: "ios_9_20140423"),#imageLiteral(resourceName: "ios_7_20140423")]
     
     let selectedButtonArray = [#imageLiteral(resourceName: "ios_1_On_20140423"),#imageLiteral(resourceName: "ios_2_On_20140423"),#imageLiteral(resourceName: "ios_3_On_20140423"),#imageLiteral(resourceName: "ios_38_On_20170420"),#imageLiteral(resourceName: "ios_4_On_20140423"),#imageLiteral(resourceName: "ios_5_On_20140423"),#imageLiteral(resourceName: "ios_6_On_20140423"),#imageLiteral(resourceName: "ios_10_On_20140423"),#imageLiteral(resourceName: "ios_9_On_20140423"),#imageLiteral(resourceName: "ios_7_On_20140423")]
     
@@ -29,6 +27,7 @@ class MainViewController: UIViewController {
 
         navigationController?.setNavigationBarHidden(true, animated: false)
         mainCollectionView.reloadData()
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -54,7 +53,7 @@ class MainViewController: UIViewController {
         if (segue.identifier == "showStoreList") {
             let storeListViewController = segue.destination as? StoreListViewController
             let indexPath = self.mainCollectionView.indexPathsForSelectedItems
-            storeListViewController?.category = self.foodCategoryArrayForURL[(indexPath?[0].item)!]
+            storeListViewController?.category = foodCategoryArrayForURL[(indexPath?[0].item)!]
         }
     }
 

@@ -14,15 +14,10 @@ class StoreListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let indicatorView = Indicator()
-    
-    let foodCategoryArray = ["치킨","중식","피자","한식","족발,보쌈","야식","찜,탕","돈까스,회,일식","도시락","패스트푸드"]
-    let foodCategoryArrayForURL = ["치킨","중국집","피자","한식","족발","야식","찜탕","일식","도시락","패스트푸드"]
-    
     var category : String!
     let networkStore = NetworkStore()
     var storeList = [ModelStores]()
-
+    var categoryList = [ModelStores]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,19 +35,23 @@ class StoreListViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
         navigationController?.setNavigationBarHidden(false, animated: false)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(getStoreList(_:)), name: NSNotification.Name(rawValue: "getStoreList"), object: nil)
-        
-        networkStore.getStoreList(category: category)
+
+        storeCategorization(category: category)
+
     }
     
-    
-    func getStoreList(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let storeInfo = userInfo["storeList"] as? [ModelStores] else { return }
-        self.storeList = storeInfo
+    func storeCategorization (category : String) {
+        let allstoreList = Store.sharedInstance.allStores
         
-        tableView.reloadData()
+        var result = [ModelStores]()
+        for model in allStores {
+            if category == model.category {
+                result.append(model)
+            }
+        }
+        Store.sharedInstance.categoryStoreList = result
+        categoryList = result
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,9 +75,10 @@ class StoreListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStoreDetail"{
-            if let storeTestViewController = segue.destination as? StoreDetailViewController {
+            if let storeDetailViewController = segue.destination as? StoreDetailViewController{
+
                 let indexPath = self.tableView.indexPathForSelectedRow
-                storeTestViewController.storeId = self.storeList[(indexPath?.row)!].id
+                storeDetailViewController.storeId = self.storeList[(indexPath?.row)!].id
             }
         }
     }
@@ -91,14 +91,14 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storeList.count
+        return categoryList.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! StoreListTableViewCell
-        cell.storeNameLabel.text = storeList[indexPath.row].name as String
-        if let url = URL(string: storeList[indexPath.row].imgURL) {
+        cell.storeNameLabel.text = categoryList[indexPath.row].name as String
+        if let url = URL(string: categoryList[indexPath.row].imgURL) {
             cell.storeLogoImage.af_setImage(withURL: url)
         } else {
             cell.storeLogoImage.image = #imageLiteral(resourceName:"woowatech")
@@ -124,7 +124,8 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
+        
         let cell = collectionView.cellForItem(at: indexPath) != nil ? collectionView.cellForItem(at: indexPath) : self.collectionView(collectionView, cellForItemAt: indexPath)
         
         self.navigationItem.title = (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text
@@ -141,7 +142,10 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
             })
         }
         
-        networkStore.getStoreList(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!])
+        storeCategorization(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!] )
+
+        tableView.reloadData()
+
     }
     
 }

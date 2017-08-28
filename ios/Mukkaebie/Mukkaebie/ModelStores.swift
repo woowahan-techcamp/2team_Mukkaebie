@@ -54,3 +54,11 @@ class ModelStores: Mappable {
         createdDate <- map["createdDate"]
     }
 }
+
+class Store {
+    static let sharedInstance = Store()
+    var allStores = [ModelStores]()
+    var categoryStoreList = [ModelStores]()
+    var specificStore = ModelStores()
+    
+}
