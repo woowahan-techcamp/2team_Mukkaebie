@@ -93,7 +93,8 @@ export class StoreList {
 
         function processScroll(scroll_pos) {
           let contentHeight = renderTarget.offsetHeight;
-          let y = scroll_pos + 300;
+          let y = scroll_pos + 100;
+          console.log(contentHeight , " : " , y);
           if (y >= contentHeight) {
             preventFadeIn();
 
@@ -117,7 +118,7 @@ export class StoreList {
               let ticking = false;
               if (timer !== null) clearTimeout(timer);
               timer = setTimeout(function () {
-                last_known_scroll_position = window.scrollY;
+                last_known_scroll_position = renderTarget.scrollHeight;
                 if (!ticking) {
                   window.requestAnimationFrame(function () {
                     processScroll(last_known_scroll_position);
