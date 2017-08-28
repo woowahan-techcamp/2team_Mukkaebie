@@ -243,7 +243,7 @@ class StoreDetailViewController: UIViewController {
     }
     
     @IBAction func touchedOrderCall(_ sender: Any) {
-        let url = NSURL(string: "tel://\(specificStore?.telephone)")
+        let url = NSURL(string: "tel://\((specificStore?.telephone)!)")
         UIApplication.shared.openURL(url as! URL)
     }
 }
