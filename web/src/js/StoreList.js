@@ -46,7 +46,7 @@ export class StoreList {
         }
         ;
 
-        gotoStoreDetatil();
+        gotoStoreDetail();
 
 
         function renderStoreList() {
@@ -128,11 +128,11 @@ export class StoreList {
               }, 250);
             }, false);
           }
-
         }
 
 
-        function gotoStoreDetatil() {
+        function gotoStoreDetail() {
+
           let clickedStore = document.querySelector(".storeCardRow");
 
           clickedStore.addEventListener("click", function (e) {
@@ -148,13 +148,9 @@ export class StoreList {
             let storeInfo = new StoreInfo(realTarget.id);
           });
         }
-
-
       }
     };
     xhr.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
     xhr.send();
-
   }
-
 }

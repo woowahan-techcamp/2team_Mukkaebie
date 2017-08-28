@@ -50,13 +50,12 @@ export class StoreInfo {
           generalContentPrefix: "#cont-",
         }
     );
-    let graph = new Graph(storeId);
-    let review = new Review(storeId);
+
+    const graph = new Graph(storeId);
+    const review = new Review(storeId);
     StoreUtil.makeFoldableMenu("foldableLevel1");
     StoreUtil.makeOrder(storeId);
-    let cart = new Cart();
-
-
+    const cart = new Cart();
   }
 
   renderMenu(menuObj){

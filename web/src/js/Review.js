@@ -26,14 +26,14 @@ export class Review {
     })
   }
 
-  postReview(id) {
+  postReview(storeId) {
     let postButton = document.querySelector("#reviewTextInputBtn");
     postButton.addEventListener("click", function () {
       if (session != "비회원") {
         let reviewStars = document.querySelector("#rated");
         let selectedStar = reviewStars.textContent;
         let packet = {
-          "storeId" : id,
+          "storeId" : storeId,
           "review": {
             "content":StoreUtil.preventXss(document.querySelector("#reviewTextInput").value),
             "time":new Date().toLocaleString(),
@@ -41,14 +41,14 @@ export class Review {
             "stars": selectedStar
           }
         };
-        let xhr1 = new XMLHttpRequest();
-        xhr1.open("POST", SERVER_BASE_URL + "/stores/" + id, true);
-        xhr1.setRequestHeader('Content-Type', 'application/json');
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", SERVER_BASE_URL + "/stores/" + storeId, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
-        xhr1.send(JSON.stringify(packet));
-        xhr1.onloadend = function () {
+        xhr.send(JSON.stringify(packet));
+        xhr.onloadend = function () {
           StoreUtil.makeThxModal();
-          this.getReview(id);
+          this.getReview(storeId);
           document.querySelector("#reviewTextInput").value = "";
         }.bind(this);
       } else {
