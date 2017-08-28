@@ -15,11 +15,22 @@ export class Login {
         document.querySelector("#loginModal").style.opacity = "1";
       }, 100)
     });
-    this.getInputInfo()
-        .then(this.sendLoginInfo)
-        .then(this.checkValidity)
-        .then(this.succeedLogin)
-        .catch(this.failLogin)
+
+    document.querySelector(".loginButton").addEventListener("click", function () {
+      this.getInputInfo()
+          .then(this.sendLoginInfo)
+          .then(this.checkValidity)
+          .then(this.succeedLogin)
+          .catch(this.failLogin)
+    }.bind(this));
+  }
+
+  getInputInfo(){
+    return new Promise(function (resolve) {
+      const idInfo = document.querySelector(".loginIDInput").value;
+      const packet = {"userId" : idInfo};
+      resolve(packet);
+    });
   }
 
   sendLoginInfo(userId){
@@ -33,17 +44,6 @@ export class Login {
       xhttp.open("GET", SERVER_BASE_URL + "/users/cf/" + userId["userId"]);
       xhttp.send();
     })
-  }
-
-
-  getInputInfo(){
-    return new Promise(function (resolve) {
-      document.querySelector(".loginButton").addEventListener("click", function () {
-        const idInfo = document.querySelector(".loginIDInput").value;
-        const packet = {"userId" : idInfo};
-        resolve(packet);
-      })
-    });
   }
 
   checkValidity(pwd){
@@ -69,7 +69,6 @@ export class Login {
 
   failLogin(msg){
     document.querySelector("#loginMsg").innerText = msg;
-    const newLogin = new Login();
   }
 
 }
