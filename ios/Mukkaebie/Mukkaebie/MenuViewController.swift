@@ -25,21 +25,24 @@ class MenuViewController: UIViewController {
     var items: Array<MenuViewModelItem> = []
     var menus: [[(key: String, value: String)]] = []
     
+    var subviewOfPieChartViewIsAdded = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
         
         setSegment()
-        
+        print("파이",pieChartView.frame.size)
         self.menuTableView.reloadData()
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        self.addCircleView(self.chartAnimationView, isForeground: true, duration: 2, fromValue: 1,  toValue: 0.0)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Order.sharedInstance.specificStoreOrder.count != 0 {
+            pieChartView.animateCircleView()
+        }
     }
     
     func initItem() {
@@ -80,26 +83,6 @@ class MenuViewController: UIViewController {
         if pieChartView != nil {
             setSegment()
         }
-    }
-    
-    func addCircleView( _ myView : UIView, isForeground : Bool, duration : TimeInterval, fromValue: CGFloat, toValue : CGFloat ) {
-        var circleWidth = CGFloat(90)
-        var circleHeight = circleWidth
-        
-        var circleView = AnimateView(frame: CGRect(x: self.view.bounds.width * 0.5, y: chartAnimationView.bounds.height/2 - 20, width: circleWidth, height: circleHeight))
-        
-        //Setting the color.
-        if (isForeground == true) {
-            circleView.setStrokeColor(UIColor.white.cgColor)
-        }
-        
-        myView.addSubview(circleView)
-        
-        //Rotate the circle so it starts from the top.
-        circleView.transform = CGAffineTransform(rotationAngle: 0)
-        
-        // Animate the drawing of the circle
-        circleView.animateCircleTo(duration, fromValue: fromValue, toValue: toValue)
     }
     
     func setSegment() {
