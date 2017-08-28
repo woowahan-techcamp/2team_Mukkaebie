@@ -58,6 +58,8 @@ class StoreDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var cartAlertView: UIView!
+    @IBOutlet var noMukkaebieView: UIView!
+    @IBOutlet var noMenuView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +83,7 @@ class StoreDetailViewController: UIViewController {
         
         self.networkStore.getStoreList(sellerId: storeId)
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -336,8 +339,9 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         switch tabNumber {
         case 0:
             if orderByUserTop3.count == 0 {
-                let noMukkaebieCell = Bundle.main.loadNibNamed("noMukkaebieTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
-                return noMukkaebieCell
+                cell.tabSubview.frame.size.height = noMukkaebieView.frame.height
+                cell.tabSubviewHeightConstraint.constant = noMukkaebieView.frame.height
+                cell.tabSubview.addSubview(noMukkaebieView)
             } else {
                 cell.tabSubview.frame.size.height = (mukkaebieVC?.view.frame.height)!
                 cell.tabSubviewHeightConstraint.constant = (mukkaebieVC?.view.frame.height)!
@@ -345,8 +349,9 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             }
         case 1:
             if modelStore?.menu.count == 0 {
-                let noMenuCell = Bundle.main.loadNibNamed("noMenuTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
-                return noMenuCell
+                cell.tabSubview.frame.size.height = noMenuView.frame.height
+                cell.tabSubviewHeightConstraint.constant = noMenuView.frame.height
+                cell.tabSubview.addSubview(noMenuView)
             } else {
                 cell.tabSubview.frame.size.height = (menuRankVC?.view.frame.height)!
                 cell.tabSubviewHeightConstraint.constant = (menuRankVC?.view.frame.height)!
@@ -374,14 +379,12 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         switch tabNumber {
         case 0:
             if orderByUserTop3.count == 0 {
-                let noMukkaebieCell = Bundle.main.loadNibNamed("noMukkaebieTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
-                return noMukkaebieCell.frame.height
+                return noMukkaebieView.frame.height
             }
             return (mukkaebieVC?.view.frame.height)!
         case 1:
             if modelStore?.menu.count == 0 {
-                let noMenuCell = Bundle.main.loadNibNamed("noMenuTableViewCell", owner: self, options: nil)?.first as! UITableViewCell
-                return noMenuCell.frame.height
+                return noMenuView.frame.height
             }
             return (menuRankVC?.view.frame.height)!
         case 2:
