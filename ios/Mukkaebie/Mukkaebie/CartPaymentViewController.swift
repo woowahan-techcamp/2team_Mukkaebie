@@ -31,7 +31,6 @@ class CartPaymentViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-//        self.navigationItem.title = modelStore?.name
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
 
         
@@ -63,7 +62,7 @@ class CartPaymentViewController: UIViewController {
     }
     
     @IBAction func touchedMinusButton(_ sender: Any) {
-        if orderCount > 0 {
+        if orderCount > 1 {
             orderCount -= 1
             orderCountLabel.text = String(orderCount)
             totalPriceLabel.text = "\(totalPrice * orderCount)원"
