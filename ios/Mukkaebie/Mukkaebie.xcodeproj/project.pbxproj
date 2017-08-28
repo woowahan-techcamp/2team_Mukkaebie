@@ -17,11 +17,13 @@
 		983248171F32FD2C00ABFBFB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248161F32FD2C00ABFBFB /* MainViewController.swift */; };
 		9832481C1F32FD2C00ABFBFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9832481A1F32FD2C00ABFBFB /* Main.storyboard */; };
 		9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9832481D1F32FD2C00ABFBFB /* Assets.xcassets */; };
-		983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */; };
+		983248211F32FD2C00ABFBFB /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9832481F1F32FD2C00ABFBFB /* Launch.storyboard */; };
 		9832482C1F32FD2C00ABFBFB /* MukkaebieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9832482B1F32FD2C00ABFBFB /* MukkaebieTests.swift */; };
 		983248371F32FD2C00ABFBFB /* MukkaebieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */; };
 		983976661F4FBB480097581D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983976651F4FBB480097581D /* LoginViewController.swift */; };
 		9839766A1F52C1080097581D /* StaticFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983976691F52C1080097581D /* StaticFunction.swift */; };
+		9839766C1F52FB050097581D /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9839766B1F52FB050097581D /* LaunchViewController.swift */; };
+		9839766E1F52FB3C0097581D /* LaunchSceen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */; };
 		9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9844286D1F3D755A0003CDF1 /* ygNa.jpeg */; };
 		984428701F3D76390003CDF1 /* hj.png in Resources */ = {isa = PBXBuildFile; fileRef = 9844286F1F3D76390003CDF1 /* hj.png */; };
 		984428721F3D76660003CDF1 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 984428711F3D76660003CDF1 /* flash.png */; };
@@ -118,7 +120,7 @@
 		983248161F32FD2C00ABFBFB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9832481B1F32FD2C00ABFBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9832481D1F32FD2C00ABFBFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		983248201F32FD2C00ABFBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		983248201F32FD2C00ABFBFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Launch.storyboard; sourceTree = "<group>"; };
 		983248221F32FD2C00ABFBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		983248271F32FD2C00ABFBFB /* MukkaebieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MukkaebieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9832482B1F32FD2C00ABFBFB /* MukkaebieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukkaebieTests.swift; sourceTree = "<group>"; };
@@ -127,7 +129,12 @@
 		983248361F32FD2C00ABFBFB /* MukkaebieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukkaebieUITests.swift; sourceTree = "<group>"; };
 		983248381F32FD2C00ABFBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		983976651F4FBB480097581D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		983976691F52C1080097581D /* StaticFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticFunction.swift; sourceTree = "<group>"; };
+=======
+		9839766B1F52FB050097581D /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchSceen.storyboard; path = ../LaunchSceen.storyboard; sourceTree = "<group>"; };
+>>>>>>> ios
 		9844286D1F3D755A0003CDF1 /* ygNa.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ygNa.jpeg; sourceTree = "<group>"; };
 		9844286F1F3D76390003CDF1 /* hj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hj.png; sourceTree = "<group>"; };
 		984428711F3D76660003CDF1 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash.png; sourceTree = "<group>"; };
@@ -264,6 +271,9 @@
 				98B67CE61F3A9C2A00243F31 /* Extension.swift */,
 				986345851F4E9E0200453F3A /* Indicator.swift */,
 				983976691F52C1080097581D /* StaticFunction.swift */,
+				9832481F1F32FD2C00ABFBFB /* Launch.storyboard */,
+				9839766D1F52FB3C0097581D /* LaunchSceen.storyboard */,
+				9839766B1F52FB050097581D /* LaunchViewController.swift */,
 				98B67D041F3C7EE700243F31 /* Networking */,
 				98B67D011F3C7BAD00243F31 /* Model */,
 				985D092E1F4523CC00A1F475 /* Review */,
@@ -289,7 +299,6 @@
 				98497D731F4EF9FB0004C3D0 /* cry.jpg */,
 				98497D6D1F4EF2820004C3D0 /* shock.jpg */,
 				9832481D1F32FD2C00ABFBFB /* Assets.xcassets */,
-				9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */,
 				983248221F32FD2C00ABFBFB /* Info.plist */,
 				985D08F71F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf */,
 			);
@@ -587,7 +596,8 @@
 				985D08F81F3ADAC100A1F475 /* BMHANNA_11yrs_otf.otf in Resources */,
 				98497D6A1F4E9F450004C3D0 /* cloud_50pxHigh.png in Resources */,
 				985D09351F45242600A1F475 /* ReviewButtonTableViewCell.xib in Resources */,
-				983248211F32FD2C00ABFBFB /* LaunchScreen.storyboard in Resources */,
+				9839766E1F52FB3C0097581D /* LaunchSceen.storyboard in Resources */,
+				983248211F32FD2C00ABFBFB /* Launch.storyboard in Resources */,
 				981AAB181F4470C600CC443A /* firstGrade.png in Resources */,
 				985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */,
 				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
@@ -822,6 +832,7 @@
 				989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */,
 				984428741F41CE970003CDF1 /* circleView.swift in Sources */,
 				98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */,
+				9839766C1F52FB050097581D /* LaunchViewController.swift in Sources */,
 				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,
 				98B67CE51F3A991C00243F31 /* StoreListViewController.swift in Sources */,
 				98B67CF81F3AF09900243F31 /* StoreListMenuBar.swift in Sources */,
@@ -873,12 +884,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		9832481F1F32FD2C00ABFBFB /* LaunchScreen.storyboard */ = {
+		9832481F1F32FD2C00ABFBFB /* Launch.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				983248201F32FD2C00ABFBFB /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Launch.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

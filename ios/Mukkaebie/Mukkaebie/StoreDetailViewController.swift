@@ -51,8 +51,9 @@ class StoreDetailViewController: UIViewController {
     var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
-    var indicatorView = Indicator()
-    
+
+    let indicatorView = Indicator()
+
     var tabNumber = 0
     
     @IBOutlet weak var tableView: UITableView!
@@ -67,11 +68,8 @@ class StoreDetailViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        self.view.addSubview(cartAlertView)
-
         cartAlertView.center = self.view.center
         
-        cartAlertView.alpha = 0
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1
         
@@ -82,10 +80,13 @@ class StoreDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         
         self.networkStore.getStoreList(sellerId: storeId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         indicatorView.showProgressView(view: self.view)
 
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -234,17 +235,11 @@ class StoreDetailViewController: UIViewController {
     }
     
     @IBAction func touchedShoppingCart(_ sender: Any) {
-        
-        let alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "dismissAlert", userInfo: nil, repeats: false)
-        cartAlertView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        
-        UIView.animate(withDuration: 0.4) {
-            self.cartAlertView.alpha = 1
+
+        self.view.addSubview(cartAlertView)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) { 
+            self.cartAlertView.removeFromSuperview()
         }
-    }
-    
-    func dismissAlert() {
-        cartAlertView.alpha = 0
     }
     
     @IBAction func touchedOrderCall(_ sender: Any) {
@@ -306,6 +301,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             return 40
         }
         return 0
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
