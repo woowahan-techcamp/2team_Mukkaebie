@@ -34,7 +34,6 @@
 		98497D721F4EF72B0004C3D0 /* noMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98497D711F4EF72B0004C3D0 /* noMenuTableViewCell.xib */; };
 		98497D741F4EF9FB0004C3D0 /* cry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98497D731F4EF9FB0004C3D0 /* cry.jpg */; };
 		985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */; };
-		985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */; };
 		985D08F21F3AD4E800A1F475 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08F11F3AD4E800A1F475 /* MenuViewController.swift */; };
 		985D08F41F3AD51700A1F475 /* MenuView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 985D08F31F3AD51700A1F475 /* MenuView.storyboard */; };
 		985D08F61F3AD63000A1F475 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D08F51F3AD63000A1F475 /* PieChart.swift */; };
@@ -61,7 +60,7 @@
 		986345811F49C1AF00453F3A /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986345801F49C1AF00453F3A /* CartPayment.storyboard */; };
 		986345831F49C1C800453F3A /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986345821F49C1C800453F3A /* CartPaymentViewController.swift */; };
 		986345861F4E9E0200453F3A /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986345851F4E9E0200453F3A /* Indicator.swift */; };
-		989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreTestViewController.swift */; };
+		989D41C81F43046B00AF2617 /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C71F43046B00AF2617 /* StoreDetailViewController.swift */; };
 		989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41C91F430D5500AF2617 /* statusTableViewCell.swift */; };
 		989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */; };
 		989D41CF1F4310CC00AF2617 /* rateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41CD1F4310CC00AF2617 /* rateTableViewCell.swift */; };
@@ -142,7 +141,6 @@
 		98497D711F4EF72B0004C3D0 /* noMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = noMenuTableViewCell.xib; sourceTree = "<group>"; };
 		98497D731F4EF9FB0004C3D0 /* cry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cry.jpg; sourceTree = "<group>"; };
 		985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoreDetail.storyboard; sourceTree = "<group>"; };
-		985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		985D08F11F3AD4E800A1F475 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		985D08F31F3AD51700A1F475 /* MenuView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MenuView.storyboard; sourceTree = "<group>"; };
 		985D08F51F3AD63000A1F475 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
@@ -169,7 +167,7 @@
 		986345801F49C1AF00453F3A /* CartPayment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CartPayment.storyboard; sourceTree = "<group>"; };
 		986345821F49C1C800453F3A /* CartPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartPaymentViewController.swift; sourceTree = "<group>"; };
 		986345851F4E9E0200453F3A /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
-		989D41C71F43046B00AF2617 /* StoreTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTestViewController.swift; sourceTree = "<group>"; };
+		989D41C71F43046B00AF2617 /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
 		989D41C91F430D5500AF2617 /* statusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = statusTableViewCell.swift; sourceTree = "<group>"; };
 		989D41CA1F430D5500AF2617 /* statusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statusTableViewCell.xib; sourceTree = "<group>"; };
 		989D41CD1F4310CC00AF2617 /* rateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateTableViewCell.swift; sourceTree = "<group>"; };
@@ -419,8 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				989D41DC1F43D69800AF2617 /* xib */,
-				989D41C71F43046B00AF2617 /* StoreTestViewController.swift */,
-				985D08EF1F3ACB8F00A1F475 /* StoreDetailViewController.swift */,
+				989D41C71F43046B00AF2617 /* StoreDetailViewController.swift */,
 				989D41DA1F43D68000AF2617 /* SegmentView.swift */,
 				985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */,
 				985D08ED1F3ACB7E00A1F475 /* StoreDetail.storyboard */,
@@ -798,7 +795,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				989D41C81F43046B00AF2617 /* StoreTestViewController.swift in Sources */,
+				989D41C81F43046B00AF2617 /* StoreDetailViewController.swift in Sources */,
 				98B67D061F3C7F2000243F31 /* ModelStores.swift in Sources */,
 				985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */,
 				985D093B1F45245300A1F475 /* ReviewImageTableViewCell.swift in Sources */,
@@ -827,7 +824,6 @@
 				985D08FC1F3AF93100A1F475 /* MenuTableViewCell.swift in Sources */,
 				989D41CB1F430D5500AF2617 /* statusTableViewCell.swift in Sources */,
 				984428741F41CE970003CDF1 /* circleView.swift in Sources */,
-				985D08F01F3ACB8F00A1F475 /* StoreDetailViewController.swift in Sources */,
 				98B67D001F3C7BA100243F31 /* ModelUsers.swift in Sources */,
 				9839766C1F52FB050097581D /* LaunchViewController.swift in Sources */,
 				98B67CFA1F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift in Sources */,
