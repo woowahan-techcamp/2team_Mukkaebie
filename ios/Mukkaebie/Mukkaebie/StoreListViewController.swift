@@ -15,7 +15,6 @@ class StoreListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var category : String!
-    let networkStore = NetworkStore()
     var storeList = [ModelStores]()
     var categoryList = [ModelStores]()
     
@@ -37,7 +36,6 @@ class StoreListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         storeCategorization(category: category)
-
     }
     
     func storeCategorization (category : String) {
@@ -80,6 +78,7 @@ class StoreListViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
@@ -108,7 +107,6 @@ extension StoreListViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension StoreListViewController : UICollectionViewDataSource, UICollectionViewDelegate {
-
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return foodCategoryArray.count
@@ -143,7 +141,6 @@ extension StoreListViewController : UICollectionViewDataSource, UICollectionView
         storeCategorization(category: foodCategoryArrayForURL[foodCategoryArray.index(of: (cell as! StoreListMenuBarCollectionViewCell).foodCategoryLabel.text!)!] )
 
         tableView.reloadData()
-
     }
     
 }
@@ -154,13 +151,10 @@ extension StoreListViewController : UICollectionViewDelegateFlowLayout {
         
         let size = (foodCategoryArray[indexPath.row] as NSString).size(attributes: nil)
         return CGSize(width: size.width + 50, height: 35)
-        
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
-    
     
 }

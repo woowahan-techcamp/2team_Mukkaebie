@@ -18,9 +18,6 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    var modelStore = ModelStores()
-    let networkOrder = NetworkOrder()
-    
     var menuName = String()
     var menuPrice = String()
     
@@ -87,7 +84,7 @@ class CartPaymentViewController: UIViewController {
         alertController.viewWillLayoutSubviews()
         alertController.addAction(UIAlertAction(title: "주문완료 ;)", style: .default, handler: { (_) in
             self.dismiss(animated: true, completion: nil)
-            self.networkOrder.postOrder(sellderId: self.modelStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
+            NetworkOrder.postOrder(sellderId: Store.sharedInstance.specificStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
 
         }))
         

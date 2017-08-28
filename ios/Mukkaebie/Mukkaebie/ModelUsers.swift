@@ -46,7 +46,6 @@ class ModelUsers: Mappable {
         createdDate <- map["createdDate"]
         baeminLevel <- map["baeminLevel"]
     }
-    
 }
 
 class User {

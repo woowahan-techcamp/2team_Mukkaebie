@@ -29,22 +29,22 @@ class ModelOrders: Mappable {
         self.createdDate = createdDate
     }
     
-//    func getOrder() -> [String : Any] {
-//        var userDic = [String : Any]()
-//        userDic["buyerId"] = buyerId
-//        userDic["sellerId"] = sellerId
-//        userDic["price"] = price
-//        userDic["content"] = content
-//        userDic["createdDate"] = createdDate
-//        
-//        return userDic
-//    }
-    
     func mapping(map: Map) {
         buyerId <- map["buyerId"]
         sellerId <- map["sellerId"]
         price <- map["price"]
         content <- map["content"]
         createdDate <- map["createdDate"]
+    }
+}
+
+class Order {
+    static let sharedInstance = Order()
+    
+    var specificStoreOrder : [ModelOrders]! {
+        didSet {
+            Store.sharedInstance.specificStore.initOrderByMenu()
+            Store.sharedInstance.specificStore.initOrderByUser()
+        }
     }
 }

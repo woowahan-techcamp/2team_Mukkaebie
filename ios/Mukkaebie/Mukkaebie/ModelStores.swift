@@ -25,6 +25,9 @@ class ModelStores: Mappable {
     private(set) var menu = [[String:[String:String]]]()
     private(set) var createdDate = String()
     private(set) var mkb = [[String:String]]()
+    var orderByMenu = [String:Int]()
+    var priceByMenu = [String:Int]()
+    var orderByUser = [String:Int]()
     
     init() {}
     
@@ -53,6 +56,47 @@ class ModelStores: Mappable {
         mkb <- map["mkb"]
         createdDate <- map["createdDate"]
     }
+    
+    func initOrderByMenu() {
+        orderByMenu = [String:Int]()
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (_, submenu) in menu {
+                for (name, _) in submenu {
+                    orderByMenu[name] = 0
+                }
+            }
+        }
+        
+        for order in Order.sharedInstance.specificStoreOrder {
+            for content in order.content {
+                Store.sharedInstance.specificStore.orderByMenu[content]! += 1
+            }
+        }
+    }
+    
+    func initPriceByMenu() {
+        priceByMenu = [String:Int]()
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (_, submenu) in menu {
+                for (name, price) in submenu {
+                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                }
+            }
+        }
+    }
+    
+    func initOrderByUser() {
+        orderByUser = [String:Int]()
+        for order in Order.sharedInstance.specificStoreOrder {
+            if Store.sharedInstance.specificStore.orderByUser[order.buyerId] == nil {
+                Store.sharedInstance.specificStore.orderByUser[order.buyerId] = 1
+            } else {
+                Store.sharedInstance.specificStore.orderByUser[order.buyerId]! += 1
+            }
+        }
+    }
 }
 
 class Store {
@@ -60,5 +104,9 @@ class Store {
     
     var allStores : [ModelStores]!
     var categoryStoreList : [ModelStores]!
-    var specificStore : ModelStores!
+    var specificStore : ModelStores! {
+        didSet {
+            self.specificStore.initPriceByMenu()
+        }
+    }
 }

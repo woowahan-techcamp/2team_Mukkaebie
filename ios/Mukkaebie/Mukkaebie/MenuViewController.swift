@@ -16,8 +16,6 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var chartAnimationView: UIView!
     
-    var modelStore : ModelStores?
-    var noOrder = false
     var orderByMenuSorted = [(key: String, value: Int)]()
 
     var top3Array = [(key:String, value:String)]()
@@ -42,7 +40,46 @@ class MenuViewController: UIViewController {
         super.viewWillAppear(true)
         
         self.addCircleView(self.chartAnimationView, isForeground: true, duration: 2, fromValue: 1,  toValue: 0.0)
-
+    }
+    
+    func initItem() {
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (title, submenu) in menu {
+                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
+                self.items.append(item)
+            }
+        }
+    }
+    
+    func initMenus() {
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (title, submenu) in menu {
+                var menu : [(key: String, value: String)] = []
+                for (name, price) in submenu {
+                    menu.append((key: name, value: price))
+                }
+                self.menus.append(menu)
+            }
+        }
+    }
+    
+    func getOrderByMenuSorted() {
+        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 })
+        
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.removeLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
+        
+        if pieChartView != nil {
+            setSegment()
+        }
     }
     
     func addCircleView( _ myView : UIView, isForeground : Bool, duration : TimeInterval, fromValue: CGFloat, toValue : CGFloat ) {
@@ -66,7 +103,7 @@ class MenuViewController: UIViewController {
     }
     
     func setSegment() {
-        if noOrder {
+        if Order.sharedInstance.specificStoreOrder.count == 0 {
             pieChartView.addSubview(noOrderView)
         } else {
             pieChartView.segments = []
@@ -111,7 +148,6 @@ class MenuViewController: UIViewController {
                 let cartPaymentcontroller = segue.destination as! CartPaymentViewController
                 cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
                 cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
-                cartPaymentcontroller.modelStore = self.modelStore!
             }
         }
     }

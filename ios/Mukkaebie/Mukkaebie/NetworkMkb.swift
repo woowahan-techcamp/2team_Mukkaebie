@@ -11,13 +11,13 @@ import Alamofire
 
 class NetworkMkb {
     
-    private let url = URLpath.getURL()
-    private let urlImage = URLpath.getURLImage()
+    private static let url = URLpath.getURL()
+    private static let urlImage = URLpath.getURLImage()
     
-    func postMkb(storeId: Int, userId: String, mkbComment: String, imgData: Data) {
+    static func postMkb(storeId: Int, userId: String, mkbComment: String, imgData: Data) {
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(imgData, withName: "profileImage", fileName: userId+".jpg", mimeType: "image/jpeg")
-        }, to:"\(urlImage)profile/")
+        }, to:"\(NetworkMkb.urlImage)profile/")
         { (result) in
             switch result {
             case .success(let upload, _, _):
@@ -37,11 +37,10 @@ class NetworkMkb {
             case .failure(let encodingError):
                 print(encodingError)
             }
-            
         }
     }
     
-    func postMkb(storeId: Int, userId: String, mkbComment: String, imgUrl: String) {
+    static func postMkb(storeId: Int, userId: String, mkbComment: String, imgUrl: String) {
         let current = Date()
         let cal = Calendar(identifier: .gregorian)
         var comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: current)
@@ -49,6 +48,6 @@ class NetworkMkb {
         comps.hour = comps.hour! < 13 ? comps.hour : comps.hour! - 12
         let time = "\(comps.year!). \(comps.month!). \(comps.hour!). \(meridiem) \(comps.hour!):\(comps.minute!):\(comps.second!)"
         let parameters = ["storeId": storeId, "mkb": ["userId": userId, "imgUrl": imgUrl, "mkbComment":mkbComment, "time": time]] as [String : Any]
-        Alamofire.request("\(self.url)stores/mkb/"+"\(storeId)", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request("\(NetworkMkb.url)stores/mkb/"+"\(storeId)", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default)
     }
 }

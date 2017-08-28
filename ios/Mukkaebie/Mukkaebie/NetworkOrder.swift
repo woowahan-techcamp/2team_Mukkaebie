@@ -11,10 +11,9 @@ import Alamofire
 
 class NetworkOrder {
     
-    private let url = URLpath.getURL()
+    private static let url = URLpath.getURL()
     
-    
-    func getOrderList(sellerId: Int) {
+    static func getOrderList(sellerId: Int, callback: @escaping (_ storeList: [ModelOrders]) -> Void) {
         Alamofire.request("\(url)orders/bystore/"+"\(sellerId)").responseJSON { (response) in
             if let response = response.result.value as? [[String:Any]] {
                 var orderList = [ModelOrders]()
@@ -22,15 +21,14 @@ class NetworkOrder {
                     let order = ModelOrders(JSON: item)
                     orderList.append(order!)
                 }
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getOrder"), object: nil, userInfo: ["orderList":orderList])
+                callback(orderList)
             }
         }
     }
     
-    func postOrder(sellderId: Int, buyerId: String, price: Int, content: [String]) {
+    static func postOrder(sellderId: Int, buyerId: String, price: Int, content: [String]) {
         let parameters = ["sellerId": sellderId, "buyerId": buyerId, "price": price, "content": content] as [String : Any]
-        Alamofire.request("\(url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request("\(NetworkOrder.url)orders", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "postOrder"), object: nil, userInfo: nil)
@@ -38,6 +36,5 @@ class NetworkOrder {
                 print(error)
             }
         }
-
     }
 }

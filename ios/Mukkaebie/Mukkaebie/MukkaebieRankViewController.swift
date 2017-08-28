@@ -38,7 +38,6 @@ class MukkaebieRankViewController: UIViewController {
     var labelList = [UILabel]()
     var orderLabelList = [UILabel]()
     
-    var modelStore : ModelStores?
     var orderByUserTop3 = [(key: String, value: Int)]()
     var mkbDictionaryArray = [[String : String]]()
     
@@ -66,13 +65,11 @@ class MukkaebieRankViewController: UIViewController {
         bottomConstraintList = [firstBottomConstraint, secondBottomConstraint, thirdBottomConstraint]
         labelList = [firstLabel, secondLabel, thirdLabel]
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
-        
-        getMkbDictionrayList()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !viewIsAnimated {
+        if !viewIsAnimated && orderByUserTop3.count > 0 {
             firstBottomConstraint.constant -= firstAward.frame.height
             secondBottomConstraint.constant -= secondAward.frame.height
             thirdBottomConstraint.constant -= thirdAward.frame.height
@@ -87,7 +84,7 @@ class MukkaebieRankViewController: UIViewController {
             orderLabelList[i].text = "주문수 \(orderByUserTop3[i].value)"
         }
         
-        if !imageCommentIsRequested {
+        if !imageCommentIsRequested && orderByUserTop3.count > 0 {
             for i in 0..<orderByUserTop3.count {
                 if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == orderByUserTop3[i].key}) {
                     if i == 0 && mkbDictionaryArray[mkbIndex]["mkbComment"] != nil {
@@ -106,7 +103,8 @@ class MukkaebieRankViewController: UIViewController {
             imageCommentIsRequested = true
         }
         
-        if !viewIsAnimated {
+        
+        if !viewIsAnimated && orderByUserTop3.count > 0 {
             for i in 0..<orderByUserTop3.count {
                 UIView.animate(withDuration: 1.5, delay: TimeInterval(i + 1), usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                     self.bottomConstraintList[i].constant += self.awardList[i].frame.height
@@ -122,18 +120,16 @@ class MukkaebieRankViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
-        let mkbComment = sender.text
-        comment = mkbComment
-        postComment(userId: "hjtech", mkbComment: mkbComment!)
-    }
-    
-    @IBAction func firstProfileImagePicker(_ sender: Any) {
-        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
+    func getOrderByUserSorted() {
+        let orderByUserSorted = Store.sharedInstance.specificStore.orderByUser.sorted(by: { $0.1 > $1.1 })
+        
+        for i in orderByUserSorted.count > 3 ? 0..<3 : 0..<orderByUserSorted.count {
+            orderByUserTop3.append(orderByUserSorted[i])
+        }
     }
     
     func getMkbDictionrayList() {
-        for mkb in (modelStore?.mkb)!.reversed() {
+        for mkb in (Store.sharedInstance.specificStore?.mkb)!.reversed() {
             for user in orderByUserTop3 {
                 if mkb["userId"] == user.key {
                     if !mkbDictionaryArray.contains(where: { $0["userId"] == user.key }) {
@@ -153,14 +149,14 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
-                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
-                    } else {
-                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
-                    }
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                } else {
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                }
             }
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
         } else {
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
         }
     }
     
@@ -169,16 +165,26 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
-                    networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
                 } else {
-                    networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
                 }
             } else {
-                networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
             }
         } else {
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
         }
+    }
+    
+    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+        let mkbComment = sender.text
+        comment = mkbComment
+        postComment(userId: "hjtech", mkbComment: mkbComment!)
+    }
+    
+    @IBAction func firstProfileImagePicker(_ sender: Any) {
+        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
     }
 }
 
