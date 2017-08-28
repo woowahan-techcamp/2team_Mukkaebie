@@ -8,6 +8,14 @@ export class StoreList {
   }
 
   getStoreList(cat) {
+    let urlCategoryPart = "/stores/bycategory/";
+    if (cat === "모아보기") {
+      urlCategoryPart = "/stores"
+    }
+    else {
+      urlCategoryPart += cat;
+    }
+
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -150,7 +158,7 @@ export class StoreList {
         }
       }
     };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
+    xhr.open("GET", SERVER_BASE_URL + urlCategoryPart, true);
     xhr.send();
   }
 }

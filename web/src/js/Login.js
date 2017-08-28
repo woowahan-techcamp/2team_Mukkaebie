@@ -49,7 +49,7 @@ export class Login {
   checkValidity(pwd){
     return new Promise(function (resolve, reject) {
       const pwInfo = document.querySelector(".loginPWInput").value;
-      if (pwd["_id"] === pwInfo){
+      if (pwd["pwd"] === pwInfo){
         resolve(pwd["userId"])
       }
       else {
