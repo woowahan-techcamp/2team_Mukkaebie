@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,11 +10,6 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="BMHANNA_11yrs_otf.otf">
-            <string>BMHANNA11yrsoldOTF</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Store Detail View Controller-->
         <scene sceneID="Bl6-FE-7U6">
@@ -133,29 +128,20 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="U8D-jL-YAY" userLabel="No Mukkaebie View">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shock.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="QO2-MW-LJz">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" red="0.88004225489999999" green="0.22723588350000001" blue="0.2439522147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nilMukkaebieRank" translatesAutoresizingMaskIntoConstraints="NO" id="5V4-Cf-UTj">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="뭐 먹깨비가 없다고?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knV-aw-t9c">
-                            <rect key="frame" x="33" y="42" width="138" height="76"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0a-iR-bzz">
-                            <rect key="frame" x="295" y="8" width="72" height="27"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.88004225489999999" green="0.22723588350000001" blue="0.2439522147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="5V4-Cf-UTj" firstAttribute="width" secondItem="U8D-jL-YAY" secondAttribute="width" id="5e6-YK-wiE"/>
+                        <constraint firstItem="5V4-Cf-UTj" firstAttribute="centerY" secondItem="U8D-jL-YAY" secondAttribute="centerY" id="I46-QW-S2r"/>
+                        <constraint firstItem="5V4-Cf-UTj" firstAttribute="height" secondItem="U8D-jL-YAY" secondAttribute="height" id="W1a-vC-1Li"/>
+                        <constraint firstItem="5V4-Cf-UTj" firstAttribute="centerX" secondItem="U8D-jL-YAY" secondAttribute="centerX" id="z46-aE-RH0"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="OYS-8F-7tl">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="222"/>
@@ -174,6 +160,6 @@
     </scenes>
     <resources>
         <image name="menu.jpeg" width="750" height="664"/>
-        <image name="shock.jpg" width="730" height="470"/>
+        <image name="nilMukkaebieRank" width="365" height="235"/>
     </resources>
 </document>

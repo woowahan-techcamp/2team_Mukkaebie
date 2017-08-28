@@ -18,6 +18,10 @@ class CartPaymentViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
+    @IBOutlet var orderSuccessView: UIView!
+    @IBOutlet weak var blurView: UIView!
+    
+    
     var menuName = String()
     var menuPrice = String()
     
@@ -29,7 +33,11 @@ class CartPaymentViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
-
+        
+        blurView.isHidden = true
+        orderSuccessView.isHidden = true
+        orderSuccessView.center = self.view.center
+        
         
         menuPriceLabel.text = menuPrice
         menuNameLabel.text = menuName
@@ -73,24 +81,23 @@ class CartPaymentViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
         let image = #imageLiteral(resourceName: "finishedOrder")
-
-        alertController.addimage(image: image)
-        alertController.view.tintColor = UIColor.black
-//        alertController.view.backgroundColor = UIColor.white
-        let backView = alertController.view.subviews.first!
-        backView.layer.backgroundColor = UIColor.white.cgColor
-        backView.backgroundColor = UIColor.white
-//        backView.backgroundColor = UIColor.black
-        alertController.viewWillLayoutSubviews()
-        alertController.addAction(UIAlertAction(title: "주문완료 ;)", style: .default, handler: { (_) in
-            self.dismiss(animated: true, completion: nil)
-            NetworkOrder.postOrder(sellderId: Store.sharedInstance.specificStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
-
-        }))
         
-        self.present(alertController, animated: true, completion: nil)
-        
+        self.view.addSubview(orderSuccessView)
+        blurView.isHidden = false
+        orderSuccessView.isHidden = false
+
     }
+    
+
+    @IBAction func touchedConfirm(_ sender: Any) {
+        self.blurView.removeFromSuperview()
+        self.orderSuccessView.removeFromSuperview()
+        self.dismiss(animated: true, completion: nil)
+        NetworkOrder.postOrder(sellderId: Store.sharedInstance.specificStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
+    }
+    
+    
+    
     
     @IBAction func touchedCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
