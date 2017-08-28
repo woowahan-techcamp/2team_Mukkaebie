@@ -72,7 +72,6 @@ class StoreDetailViewController: UIViewController {
         cartAlertView.layer.cornerRadius = 1
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(getOrderList(_:)), name: NSNotification.Name(rawValue: "getOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
@@ -84,11 +83,19 @@ class StoreDetailViewController: UIViewController {
             self.menuRankVC?.initItem()
             self.menuRankVC?.initMenus()
             
-            self.networkOrder.getOrderList(sellerId: self.storeId)
             self.tableView.reloadData()
+            
+            NetworkOrder.getOrderList(sellerId: self.storeId) {(orderList) in
+                Order.sharedInstance.specificStoreOrder = orderList
+                
+                self.menuRankVC?.getOrderByMenuSorted()
+                self.mukkaebieVC?.getOrderByUserSorted()
+                
+                let indexPath = IndexPath(row: 0, section: 3)
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+            }
         }
     }
-
     
     override func viewWillAppear(_ animated: Bool) {
         indicatorView.showProgressView(view: self.view)
@@ -98,69 +105,16 @@ class StoreDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func getOrderList(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-            let orderInfo = userInfo["orderList"] as? [ModelOrders] else { return }
-        self.orderList = orderInfo
-        
-        getOrderByMenu()
-        getOrderByUser()
-        let indexPath = IndexPath(row: 0, section: 3)
-        tableView.reloadRows(at: [indexPath], with: .none)
-    }
-    
-    func getOrderByMenu() {
-        Store.sharedInstance.specificStore.initOrderByMenu()
-        
-        for order in self.orderList {
-            for content in order.content {
-                Store.sharedInstance.specificStore.orderByMenu[content]! += 1
-            }
-        }
-        
-        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 })
-        
-        if orderByMenuSorted.count > 3 {
-            var count = 0
-            for i in (3 ..< orderByMenuSorted.count).reversed() {
-                count += orderByMenuSorted[i].value
-                orderByMenuSorted.removeLast()
-            }
-            orderByMenuSorted.append((key: "기타", value: count))
-        }
-        
-        menuRankVC?.orderByMenuSorted = self.orderByMenuSorted
-        
-        if orderList.count == 0 {
-            menuRankVC?.noOrder = true
-        } else {
-            menuRankVC?.noOrder = false
-        }
-        if (menuRankVC?.pieChartView != nil) {
-            menuRankVC?.setSegment()
-        }
-    }
-    
-    func getOrderByUser() {
-        for order in self.orderList {
-            if orderByUser[order.buyerId] == nil {
-                orderByUser[order.buyerId] = 1
-            } else {
-                orderByUser[order.buyerId]! += 1
-            }
-        }
-        
-        let orderByUserSorted = orderByUser.sorted(by: { $0.1 > $1.1 })
-        
-        for i in orderByUserSorted.count > 3 ? 0..<3 : 0..<orderByUserSorted.count {
-            self.orderByUserTop3.append(orderByUserSorted[i])
-        }
-    
-        mukkaebieVC?.orderByUserTop3 = self.orderByUserTop3
-    }
-    
     func postOrder(_ notification: Notification) {
-        self.networkOrder.getOrderList(sellerId: storeId)
+        NetworkOrder.getOrderList(sellerId: self.storeId) {(orderList) in
+            Order.sharedInstance.specificStoreOrder = orderList
+            
+            self.menuRankVC?.getOrderByMenuSorted()
+            self.mukkaebieVC?.getOrderByUserSorted()
+            
+            let indexPath = IndexPath(row: 0, section: 3)
+            self.tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
     
     func changeTab(_ notification: Notification) {

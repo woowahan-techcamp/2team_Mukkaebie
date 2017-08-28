@@ -121,14 +121,12 @@ class MukkaebieRankViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
-        let mkbComment = sender.text
-        comment = mkbComment
-        postComment(userId: "hjtech", mkbComment: mkbComment!)
-    }
-    
-    @IBAction func firstProfileImagePicker(_ sender: Any) {
-        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
+    func getOrderByUserSorted() {
+        let orderByUserSorted = Store.sharedInstance.specificStore.orderByUser.sorted(by: { $0.1 > $1.1 })
+        
+        for i in orderByUserSorted.count > 3 ? 0..<3 : 0..<orderByUserSorted.count {
+            orderByUserTop3.append(orderByUserSorted[i])
+        }
     }
     
     func getMkbDictionrayList() {
@@ -152,10 +150,10 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
-                        networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
-                    } else {
-                        networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
-                    }
+                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                } else {
+                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                }
             }
             networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
         } else {
@@ -178,6 +176,16 @@ class MukkaebieRankViewController: UIViewController {
         } else {
             networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
         }
+    }
+    
+    @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
+        let mkbComment = sender.text
+        comment = mkbComment
+        postComment(userId: "hjtech", mkbComment: mkbComment!)
+    }
+    
+    @IBAction func firstProfileImagePicker(_ sender: Any) {
+        self.view.window?.rootViewController?.present(imagePicker, animated: false, completion: nil)
     }
 }
 

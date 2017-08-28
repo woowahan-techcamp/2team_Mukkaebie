@@ -27,6 +27,7 @@ class ModelStores: Mappable {
     private(set) var mkb = [[String:String]]()
     var orderByMenu = [String:Int]()
     var priceByMenu = [String:Int]()
+    var orderByUser = [String:Int]()
     
     init() {}
     
@@ -66,6 +67,12 @@ class ModelStores: Mappable {
                 }
             }
         }
+        
+        for order in Order.sharedInstance.specificStoreOrder {
+            for content in order.content {
+                Store.sharedInstance.specificStore.orderByMenu[content]! += 1
+            }
+        }
     }
     
     func initPriceByMenu() {
@@ -79,6 +86,17 @@ class ModelStores: Mappable {
             }
         }
     }
+    
+    func initOrderByUser() {
+        orderByUser = [String:Int]()
+        for order in Order.sharedInstance.specificStoreOrder {
+            if Store.sharedInstance.specificStore.orderByUser[order.buyerId] == nil {
+                Store.sharedInstance.specificStore.orderByUser[order.buyerId] = 1
+            } else {
+                Store.sharedInstance.specificStore.orderByUser[order.buyerId]! += 1
+            }
+        }
+    }
 }
 
 class Store {
@@ -88,7 +106,6 @@ class Store {
     var categoryStoreList : [ModelStores]!
     var specificStore : ModelStores! {
         didSet {
-            self.specificStore.initOrderByMenu()
             self.specificStore.initPriceByMenu()
         }
     }

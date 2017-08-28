@@ -66,6 +66,28 @@ class MenuViewController: UIViewController {
         }
     }
     
+    func getOrderByMenuSorted() {
+        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 })
+        
+        if orderByMenuSorted.count > 3 {
+            var count = 0
+            for i in (3 ..< orderByMenuSorted.count).reversed() {
+                count += orderByMenuSorted[i].value
+                orderByMenuSorted.removeLast()
+            }
+            orderByMenuSorted.append((key: "기타", value: count))
+        }
+        
+        if Order.sharedInstance.specificStoreOrder.count == 0 {
+            noOrder = true
+        } else {
+            noOrder = false
+        }
+        if pieChartView != nil {
+            setSegment()
+        }
+    }
+    
     func addCircleView( _ myView : UIView, isForeground : Bool, duration : TimeInterval, fromValue: CGFloat, toValue : CGFloat ) {
         var circleWidth = CGFloat(90)
         var circleHeight = circleWidth

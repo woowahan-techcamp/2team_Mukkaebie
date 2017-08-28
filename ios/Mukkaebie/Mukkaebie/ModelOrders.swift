@@ -48,3 +48,14 @@ class ModelOrders: Mappable {
         createdDate <- map["createdDate"]
     }
 }
+
+class Order {
+    static let sharedInstance = Order()
+    
+    var specificStoreOrder : [ModelOrders]! {
+        didSet {
+            Store.sharedInstance.specificStore.initOrderByMenu()
+            Store.sharedInstance.specificStore.initOrderByUser()
+        }
+    }
+}
