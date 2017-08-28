@@ -42,13 +42,10 @@ class StoreDetailViewController: UIViewController {
     var modelStore : ModelStores?
     let networkStore = NetworkStore()
     
-    var priceByMenu = [String:Int]()
-    
     let networkOrder = NetworkOrder()
     var orderList = [ModelOrders]()
     var orderByUser = [String:Int]()
     var orderByUserTop3 = [(key: String, value: Int)]()
-    var orderByMenu = [String:Int]()
     var orderByMenuSorted = [(key: String, value: Int)]()
     
 
@@ -71,7 +68,6 @@ class StoreDetailViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         
         cartAlertView.center = self.view.center
-        
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1
         
@@ -83,18 +79,10 @@ class StoreDetailViewController: UIViewController {
         
         NetworkStore.getStoreList(sellerId: self.storeId) {(storeList) in
             Store.sharedInstance.specificStore = storeList[0]
-            specificStore = storeList[0]
             
-            self.navigationItem.title = specificStore?.name
-            
-            self.mukkaebieVC?.modelStore = specificStore
-            self.menuRankVC?.modelStore = specificStore
-            self.infoVC?.introText = specificStore?.storeDesc
-            self.infoVC?.openHourText = specificStore?.openHour
-            self.infoVC?.telephoneText = specificStore?.telephone
-            self.infoVC?.nameText = specificStore?.name
-            
-            self.initMenuArray()
+            self.navigationItem.title = Store.sharedInstance.specificStore?.name
+            self.menuRankVC?.initItem()
+            self.menuRankVC?.initMenus()
             
             self.networkOrder.getOrderList(sellerId: self.storeId)
             self.tableView.reloadData()
@@ -103,55 +91,11 @@ class StoreDetailViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        
         indicatorView.showProgressView(view: self.view)
-
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func initMenuArray() {
-        if (specificStore?.menu.count)! > 0 {
-            let menu = (specificStore?.menu)![0]
-            for (title, submenu) in menu {
-                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
-                menuRankVC?.items.append(item)
-                var menu : [(key: String, value: String)] = []
-                for (name, price) in submenu {
-                    menu.append((key: name, value: price))
-                }
-                menuRankVC?.menus.append(menu)
-            }
-        }
-        initOrderByMenu()
-        initPriceByMenu()
-    }
-    
-    func initOrderByMenu() {
-        orderByMenu = [String:Int]()
-        if (specificStore?.menu.count)! > 0 {
-            let menu = (specificStore?.menu)![0]
-            for (_, submenu) in menu {
-                for (name, _) in submenu {
-                    orderByMenu[name] = 0
-                }
-            }
-        }
-    }
-    
-    func initPriceByMenu() {
-        priceByMenu = [String:Int]()
-        if (specificStore?.menu.count)! > 0 {
-            let menu = (specificStore?.menu)![0]
-            for (_, submenu) in menu {
-                for (name, price) in submenu {
-                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
-                }
-            }
-        }
     }
     
     func getOrderList(_ notification: Notification) {
@@ -166,15 +110,15 @@ class StoreDetailViewController: UIViewController {
     }
     
     func getOrderByMenu() {
-        initOrderByMenu()
+        Store.sharedInstance.specificStore.initOrderByMenu()
         
         for order in self.orderList {
             for content in order.content {
-                orderByMenu[content]! += 1
+                Store.sharedInstance.specificStore.orderByMenu[content]! += 1
             }
         }
         
-        orderByMenuSorted = orderByMenu.sorted(by: { $0.1 > $1.1 })
+        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 })
         
         if orderByMenuSorted.count > 3 {
             var count = 0
@@ -243,7 +187,7 @@ class StoreDetailViewController: UIViewController {
     }
     
     @IBAction func touchedOrderCall(_ sender: Any) {
-        let url = NSURL(string: "tel://\((specificStore?.telephone)!)")
+        let url = NSURL(string: "tel://\((Store.sharedInstance.specificStore?.telephone)!)")
         UIApplication.shared.openURL(url as! URL)
     }
 }
@@ -260,7 +204,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         if section == 1 {
             let logoView = Bundle.main.loadNibNamed("logoTableViewCell", owner: self, options: nil)?.first as! logoTableViewCell
-            if let url = URL(string: (specificStore?.imgURL)!) {
+            if let url = URL(string: (Store.sharedInstance.specificStore?.imgURL)!) {
                 logoView.logoImage.af_setImage(withURL: url)
             } else {
                 logoView.logoImage.image  = #imageLiteral(resourceName:"woowatech")
@@ -270,7 +214,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
         if section == 2 {
             let rateView = Bundle.main.loadNibNamed("rateTableViewCell", owner: self, options: nil)?.first as! rateTableViewCell
-            rateView.ratingValue.text = String(describing: floor((specificStore?.ratingValue)!*10)/10)
+            rateView.ratingValue.text = String(describing: floor((Store.sharedInstance.specificStore?.ratingValue)!*10)/10)
             return rateView
         }
         
@@ -305,7 +249,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if specificStore == nil {
+        if Store.sharedInstance.specificStore == nil {
             return 0
         }
         return 4
@@ -347,7 +291,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.tabSubview.addSubview((mukkaebieVC?.view)!)
             }
         case 1:
-            if specificStore?.menu.count == 0 {
+            if Store.sharedInstance.specificStore?.menu.count == 0 {
                 cell.tabSubview.frame.size.height = noMenuView.frame.height
                 cell.tabSubviewHeightConstraint.constant = noMenuView.frame.height
                 cell.tabSubview.addSubview(noMenuView)
@@ -372,7 +316,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if specificStore == nil {
+        if Store.sharedInstance.specificStore == nil {
             return 0
         }
         switch tabNumber {
@@ -382,7 +326,7 @@ extension StoreDetailViewController: UITableViewDataSource, UITableViewDelegate 
             }
             return (mukkaebieVC?.view.frame.height)!
         case 1:
-            if specificStore?.menu.count == 0 {
+            if Store.sharedInstance.specificStore?.menu.count == 0 {
                 return noMenuView.frame.height
             }
             return (menuRankVC?.view.frame.height)!

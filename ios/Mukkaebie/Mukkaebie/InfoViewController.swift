@@ -9,11 +9,6 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
-    var introText : String!
-    var openHourText : String!
-    var telephoneText : String!
-    var nameText : String!
     
     @IBOutlet weak var introLabel: UILabel!
     @IBOutlet weak var openHourLabel: UILabel!
@@ -22,10 +17,12 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        introLabel.text = introText
-        openHourLabel.text = openHourText
-        telephoneLabel.text = telephoneText
-        nameLabel.text = nameText
+        
+        introLabel.text = Store.sharedInstance.specificStore?.storeDesc
+        openHourLabel.text = Store.sharedInstance.specificStore?.openHour
+        telephoneLabel.text = Store.sharedInstance.specificStore?.telephone
+        nameLabel.text = Store.sharedInstance.specificStore?.name
+
         // Do any additional setup after loading the view.
     }
 

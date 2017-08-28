@@ -38,7 +38,6 @@ class MukkaebieRankViewController: UIViewController {
     var labelList = [UILabel]()
     var orderLabelList = [UILabel]()
     
-    var modelStore : ModelStores?
     var orderByUserTop3 = [(key: String, value: Int)]()
     var mkbDictionaryArray = [[String : String]]()
     
@@ -133,7 +132,7 @@ class MukkaebieRankViewController: UIViewController {
     }
     
     func getMkbDictionrayList() {
-        for mkb in (modelStore?.mkb)!.reversed() {
+        for mkb in (Store.sharedInstance.specificStore?.mkb)!.reversed() {
             for user in orderByUserTop3 {
                 if mkb["userId"] == user.key {
                     if !mkbDictionaryArray.contains(where: { $0["userId"] == user.key }) {
@@ -153,14 +152,14 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
-                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
+                        networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
                     } else {
-                        networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                        networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
                     }
             }
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
         } else {
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
+            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
         }
     }
     
@@ -169,15 +168,15 @@ class MukkaebieRankViewController: UIViewController {
             if let mkbIndex = mkbDictionaryArray.index(where: {$0["userId"] == userId}) {
                 let mkb = mkbDictionaryArray[mkbIndex]
                 if mkb["userId"] == userId && mkb["mkbComment"] != nil && mkb["mkbComment"] != "" {
-                    networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
+                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkb["mkbComment"]!, imgData: imgData)
                 } else {
-                    networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                    networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
                 }
             } else {
-                networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
+                networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: "먹깨비가 되었다!", imgData: imgData)
             }
         } else {
-            networkMkb.postMkb(storeId: (modelStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
+            networkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: comment!, imgData: imgData)
         }
     }
 }

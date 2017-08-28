@@ -37,12 +37,11 @@ class StoreListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         storeCategorization(category: category)
-
     }
     
     func storeCategorization (category : String) {
         var result = [ModelStores]()
-        for model in allStores! {
+        for model in Store.sharedInstance.allStores! {
             if category == model.category {
                 result.append(model)
             }

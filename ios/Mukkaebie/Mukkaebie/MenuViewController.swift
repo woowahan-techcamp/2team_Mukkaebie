@@ -16,7 +16,6 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var chartAnimationView: UIView!
     
-    var modelStore : ModelStores?
     var noOrder = false
     var orderByMenuSorted = [(key: String, value: Int)]()
 
@@ -42,7 +41,29 @@ class MenuViewController: UIViewController {
         super.viewWillAppear(true)
         
         self.addCircleView(self.chartAnimationView, isForeground: true, duration: 2, fromValue: 1,  toValue: 0.0)
-
+    }
+    
+    func initItem() {
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (title, submenu) in menu {
+                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
+                self.items.append(item)
+            }
+        }
+    }
+    
+    func initMenus() {
+        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
+            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            for (title, submenu) in menu {
+                var menu : [(key: String, value: String)] = []
+                for (name, price) in submenu {
+                    menu.append((key: name, value: price))
+                }
+                self.menus.append(menu)
+            }
+        }
     }
     
     func addCircleView( _ myView : UIView, isForeground : Bool, duration : TimeInterval, fromValue: CGFloat, toValue : CGFloat ) {
@@ -111,7 +132,7 @@ class MenuViewController: UIViewController {
                 let cartPaymentcontroller = segue.destination as! CartPaymentViewController
                 cartPaymentcontroller.menuName = self.menus[indexPath.section][indexPath.row].key
                 cartPaymentcontroller.menuPrice = self.menus[indexPath.section][indexPath.row].value
-                cartPaymentcontroller.modelStore = self.modelStore!
+                cartPaymentcontroller.modelStore = Store.sharedInstance.specificStore
             }
         }
     }
