@@ -55,7 +55,6 @@
 		985D093F1F457C2400A1F475 /* TabSubviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */; };
 		9863457A1F46CAFD00453F3A /* favorite.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 986345781F46CAFD00453F3A /* favorite.jpeg */; };
 		9863457B1F46CAFD00453F3A /* jang.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 986345791F46CAFD00453F3A /* jang.jpeg */; };
-		9863457F1F46CB8300453F3A /* 750x1334_merge_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */; };
 		986345811F49C1AF00453F3A /* CartPayment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986345801F49C1AF00453F3A /* CartPayment.storyboard */; };
 		986345831F49C1C800453F3A /* CartPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986345821F49C1C800453F3A /* CartPaymentViewController.swift */; };
 		986345861F4E9E0200453F3A /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986345851F4E9E0200453F3A /* Indicator.swift */; };
@@ -69,7 +68,6 @@
 		989D41DB1F43D68000AF2617 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41DA1F43D68000AF2617 /* SegmentView.swift */; };
 		989D41DF1F43D7B900AF2617 /* segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D41DD1F43D7B900AF2617 /* segment.swift */; };
 		989D41E01F43D7B900AF2617 /* segment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 989D41DE1F43D7B900AF2617 /* segment.xib */; };
-		98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CDC1F39C8D600243F31 /* bm_ad2.png */; };
 		98B67CDF1F39D0E700243F31 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */; };
 		98B67CE11F39D7B100243F31 /* MainHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */; };
 		98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B67CE21F3A990A00243F31 /* StoreList.storyboard */; };
@@ -161,7 +159,6 @@
 		985D093E1F457C2400A1F475 /* TabSubviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSubviewTableViewCell.swift; sourceTree = "<group>"; };
 		986345781F46CAFD00453F3A /* favorite.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = favorite.jpeg; sourceTree = "<group>"; };
 		986345791F46CAFD00453F3A /* jang.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jang.jpeg; sourceTree = "<group>"; };
-		9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 750x1334_merge_alpha.png; sourceTree = "<group>"; };
 		986345801F49C1AF00453F3A /* CartPayment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CartPayment.storyboard; sourceTree = "<group>"; };
 		986345821F49C1C800453F3A /* CartPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartPaymentViewController.swift; sourceTree = "<group>"; };
 		986345851F4E9E0200453F3A /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
@@ -175,7 +172,6 @@
 		989D41DA1F43D68000AF2617 /* SegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
 		989D41DD1F43D7B900AF2617 /* segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = segment.swift; sourceTree = "<group>"; };
 		989D41DE1F43D7B900AF2617 /* segment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = segment.xib; sourceTree = "<group>"; };
-		98B67CDC1F39C8D600243F31 /* bm_ad2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bm_ad2.png; sourceTree = "<group>"; };
 		98B67CDE1F39D0E700243F31 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		98B67CE01F39D7B100243F31 /* MainHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		98B67CE21F3A990A00243F31 /* StoreList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoreList.storyboard; sourceTree = "<group>"; };
@@ -274,10 +270,8 @@
 				98B67CEB1F3AD56400243F31 /* StoreList */,
 				986345841F49C1E000453F3A /* CartPayment */,
 				98B67CEC1F3AD57C00243F31 /* StoreDetail */,
-				98B67CDC1F39C8D600243F31 /* bm_ad2.png */,
 				9844286F1F3D76390003CDF1 /* hj.png */,
 				984428711F3D76660003CDF1 /* flash.png */,
-				9863457E1F46CB8300453F3A /* 750x1334_merge_alpha.png */,
 				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
 				986345781F46CAFD00453F3A /* favorite.jpeg */,
 				986345791F46CAFD00453F3A /* jang.jpeg */,
@@ -593,7 +587,6 @@
 				989D41D41F4313A500AF2617 /* logoTableViewCell.xib in Resources */,
 				989D41CC1F430D5500AF2617 /* statusTableViewCell.xib in Resources */,
 				983976721F53D3700097581D /* LaunchView.xib in Resources */,
-				9863457F1F46CB8300453F3A /* 750x1334_merge_alpha.png in Resources */,
 				9832481E1F32FD2C00ABFBFB /* Assets.xcassets in Resources */,
 				98B67CE31F3A990A00243F31 /* StoreList.storyboard in Resources */,
 				984428701F3D76390003CDF1 /* hj.png in Resources */,
@@ -604,7 +597,6 @@
 				98B67CFE1F3BDB3D00243F31 /* MukkaebieRank.storyboard in Resources */,
 				986345811F49C1AF00453F3A /* CartPayment.storyboard in Resources */,
 				985D093D1F45258E00A1F475 /* review.jpeg in Resources */,
-				98B67CDD1F39C8D600243F31 /* bm_ad2.png in Resources */,
 				9844286E1F3D755A0003CDF1 /* ygNa.jpeg in Resources */,
 				9832481C1F32FD2C00ABFBFB /* Main.storyboard in Resources */,
 				985D08EE1F3ACB7E00A1F475 /* StoreDetail.storyboard in Resources */,
