@@ -136,20 +136,14 @@ export class StoreList {
           let clickedStore = document.querySelector(".storeCardRow");
 
           clickedStore.addEventListener("click", function (e) {
-            if (e.target && e.target.className == "storeCard") {
-              var realTarget = e.target;
-            } else if (e.target.className == "col-xs-4") {
-              var realTarget = e.target.children[0];
-            } else if (e.target.className == 'col-xs-12') {
-              var realTarget = e.target.children[0].children[0];
-            } else {
-              var realTarget = e.target.closest(".storeCard");
+            if (e.target && e.target.closest(".storeCard")) {
+              let realTarget = e.target.closest(".storeCard");
+              let storeInfo = new StoreInfo(realTarget.id);
             }
-            let storeInfo = new StoreInfo(realTarget.id);
           });
-        }
+        };
       }
-    };
+    }
     xhr.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
     xhr.send();
   }
