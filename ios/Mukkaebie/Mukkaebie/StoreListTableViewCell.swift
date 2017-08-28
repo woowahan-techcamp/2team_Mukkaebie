@@ -19,7 +19,7 @@ class StoreListTableViewCell: UITableViewCell {
     
     
     override func prepareForReuse() {
-    
+        super.prepareForReuse()
     }
     
     override func awakeFromNib() {

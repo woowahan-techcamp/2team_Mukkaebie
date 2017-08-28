@@ -37,6 +37,14 @@ class CircleView : UIView {
     override func draw(_ rect: CGRect) {
         layer.cornerRadius = frame.height / 2
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let radius: CGFloat = self.bounds.size.width / 2.0
+        
+        self.layer.cornerRadius = radius
+    }
 
 }
 

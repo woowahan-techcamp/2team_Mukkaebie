@@ -24,7 +24,7 @@ class ModelStores: Mappable {
     private(set) var review = [String()]
     private(set) var menu = [[String:[String:String]]]()
     private(set) var createdDate = String()
-    private(set) var orders = [ModelOrders]()
+    private(set) var mkb = [[String:String]]()
     
     init() {}
     
@@ -50,6 +50,15 @@ class ModelStores: Mappable {
         storeDesc <- map["storeDesc"]
         review <- map["review"]
         menu <- map["menu"]
+        mkb <- map["mkb"]
         createdDate <- map["createdDate"]
     }
+}
+
+class Store {
+    static let sharedInstance = Store()
+    
+    var allStores : [ModelStores]!
+    var categoryStoreList : [ModelStores]!
+    var specificStore : ModelStores!
 }

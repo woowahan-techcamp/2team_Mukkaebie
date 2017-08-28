@@ -11,11 +11,11 @@ import ObjectMapper
 
 class ModelOrders: Mappable {
     
-    private var buyerId = String()
-    private var sellerId = Int()
-    private var price = Int()
-    private var content = [String]()
-    private var createdDate = String()
+    private(set) var buyerId = String()
+    private(set) var sellerId = Int()
+    private(set) var price = Int()
+    private(set) var content = [String]()
+    private(set) var createdDate = String()
     
     init() {}
     
@@ -47,9 +47,4 @@ class ModelOrders: Mappable {
         content <- map["content"]
         createdDate <- map["createdDate"]
     }
-    
-    func getContent() -> [String] {
-        return content
-    }
-    
 }
