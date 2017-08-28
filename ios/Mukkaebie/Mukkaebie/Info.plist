@@ -54,7 +54,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>URL</key>
-	<string>http://52.79.91.114:3000/</string>
+	<string>http://52.78.209.189:3000/</string>
 	<key>URLImage</key>
 	<string>http://52.78.27.108:3000/</string>
 </dict>
