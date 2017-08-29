@@ -50,8 +50,6 @@ class LoginViewController: UIViewController {
             let userModel = userInfo["User"] as? ModelUsers else { return }
         self.modelUser = userModel
         checkedUser()
-
-        print("========",modelUser.id)
         
     }
     
@@ -70,6 +68,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func touchedLogin(_ sender: Any) {
         NetworkUser.getUserList(userID: idTextField.text!)
+        self.view.endEditing(true)
     }
     
     @IBAction func touchedLogOut(_ sender: Any) {

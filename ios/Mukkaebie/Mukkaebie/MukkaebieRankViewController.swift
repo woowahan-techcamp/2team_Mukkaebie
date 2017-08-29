@@ -59,9 +59,11 @@ class MukkaebieRankViewController: UIViewController {
         
         view.frame.size.height = view.frame.size.width * 118 / 75
         
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
+        UIApplication.shared.statusBarStyle = .lightContent
         
         imageButtonList = [firstImageButton]
         mukkaebieImageList = [firstMukkaebieImage, secondMukkaebieImage, thirdMukkaebieImage]
@@ -87,6 +89,7 @@ class MukkaebieRankViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         
         for i in 0..<orderByUserTop3.count {
             if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
@@ -206,10 +209,11 @@ class MukkaebieRankViewController: UIViewController {
 }
 
 extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
+  
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.childViewControllers.count == 2 {
-            UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+            UIApplication.shared.statusBarStyle = .lightContent
             let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
             let statusBarColor = UIColor(hexString: "3B342C")
             statusBarView.backgroundColor = statusBarColor
@@ -218,6 +222,7 @@ extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let imgData = UIImageJPEGRepresentation(image, 0.1)
             firstMukkaebieImage.image = image
