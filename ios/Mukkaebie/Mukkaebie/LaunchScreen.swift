@@ -13,21 +13,45 @@ class LaunchScreen: UIView {
 
     @IBOutlet weak var mukkaebieImage: UIImageView!
     
-     @IBOutlet weak var rainyImage: UIImageView!
+    @IBOutlet weak var rainyImage: UIImageView!
     
     @IBOutlet weak var companyStackView: UIStackView!
     
+    @IBOutlet weak var mukkaebieImageBottomConstraint: NSLayoutConstraint!
     
-    static func startLaunch(target: MainViewController) {
-        var launchView = UINib(nibName: "LaunchView", bundle: nil).instantiate(withOwner: target, options: nil)[0] as! UIView
-        launchView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+(target.tabBarController?.tabBar.frame.height)!)
-        target.tabBarController?.tabBar.isHidden = true
-        target.view.addSubview(launchView)
+    @IBOutlet weak var bannerImageCenterConstraint: NSLayoutConstraint!
+    
+    func initLaunch(target: MainViewController) {
+        self.frame =  CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+(target.tabBarController?.tabBar.frame.height)!)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) { 
-            launchView.removeFromSuperview()
+        bannerImageCenterConstraint.constant -= bannerImage.frame.width
+
+        mukkaebieImageBottomConstraint.constant -= mukkaebieImage.frame.height
+        
+        self.layoutIfNeeded()
+    }
+    
+    func startLaunch(target: MainViewController) {
+        target.tabBarController?.tabBar.isHidden = true
+        target.view.addSubview(self)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
+            self.removeFromSuperview()
             target.tabBarController?.tabBar.isHidden = false
         }
+    }
+    
+    func animate() {
+        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
+            //
+            self.bannerImageCenterConstraint.constant += self.bannerImage.frame.width
+            self.layoutSubviews()
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseInOut, animations: {
+            self.mukkaebieImageBottomConstraint.constant += self.mukkaebieImage.frame.height
+            self.layoutSubviews()
+        }, completion: nil)
     }
     
     
@@ -41,9 +65,7 @@ class LaunchScreen: UIView {
     }
      
      super.viewDidLoad()
-     bannerCenter.constant += bannerImage.frame.width
-     mukkaebieBotton.constant -= mukkaebieImage.frame.height
-     self.rainBottom.constant -= rainImage.frame.height
+     
      
      // Do any additional setup after loading the view.
      }

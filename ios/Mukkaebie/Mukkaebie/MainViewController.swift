@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let launchScreeView = UINib(nibName: "LaunchView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! LaunchScreen
+    let launchScreenView = UINib(nibName: "LaunchView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! LaunchScreen
 
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
@@ -23,10 +23,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LaunchScreen.startLaunch(target: self)
-//        tabBarController?.tabBar.isHidden = true
-//        launchScreeView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height+(tabBarController?.tabBar.frame.height)!)
-//        view.addSubview(launchScreeView)
+        launchScreenView.initLaunch(target: self)
+        launchScreenView.startLaunch(target: self)
         
         mainCollectionView.delegate = self
         mainCollectionView.dataSource = self
@@ -46,6 +44,7 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        launchScreenView.animate()
         navigationController?.setNavigationBarHidden(true, animated: false)
 //        self.tabBarController?.tabBar.isHidden = false
         if let indexPathForSelect = self.mainCollectionView.indexPathsForSelectedItems {
