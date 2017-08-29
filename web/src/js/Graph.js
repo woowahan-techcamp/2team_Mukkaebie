@@ -97,6 +97,8 @@ export class Graph {
         let reverse = 0;
         let offset = 25;
         let totalLength = 0;
+        let donutLabelList = document.querySelectorAll(".donutLabel");
+        let donutArr = [...donutLabelList];
         let labelText = document.querySelectorAll('.labelText');
         let labelArr = [...labelText];
 
@@ -113,6 +115,7 @@ export class Graph {
                   <title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>
                </circle>`;
 
+          donutArr[i].classList.remove("hideLabel");
           labelArr[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
           totalLength = totalLength + share;
           offset = (100 - totalLength + 25) % 100;
