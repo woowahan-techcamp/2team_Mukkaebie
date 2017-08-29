@@ -95,13 +95,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-zp-n37">
-<<<<<<< HEAD
-                                        <rect key="frame" x="13" y="-3" width="86" height="91.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-=======
                                         <rect key="frame" x="13" y="-3" width="86" height="92"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
->>>>>>> ios
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -167,13 +162,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="fFR-Ry-AwY">
-<<<<<<< HEAD
-                                        <rect key="frame" x="13" y="0.0" width="86" height="91.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-=======
                                         <rect key="frame" x="13" y="0.0" width="86" height="92"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
->>>>>>> ios
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -264,13 +254,6 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-1S-qbC">
-                                <rect key="frame" x="0.0" y="583" width="375" height="32"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2TM-1S-qbC" secondAttribute="height" multiplier="375:32" id="mYU-BY-Un0"/>
-                                </constraints>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentBox" translatesAutoresizingMaskIntoConstraints="NO" id="U6H-lV-U6B">
                                 <rect key="frame" x="36" y="66" width="303" height="89"/>
                                 <constraints>
@@ -299,26 +282,16 @@
                                 <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-1S-qbC">
+                                <rect key="frame" x="0.0" y="583" width="375" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2TM-1S-qbC" secondAttribute="height" multiplier="375:32" id="mYU-BY-Un0"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
                                 <rect key="frame" x="0.0" y="44" width="375" height="615"/>
                             </imageView>
-<<<<<<< HEAD
-                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCM-We-vzm">
-                                <rect key="frame" x="322" y="161" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="editCommentButton"/>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTP-lU-LFa">
-                                <rect key="frame" x="41" y="142" width="300" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud_50pxHigh.png" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
-                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-=======
->>>>>>> ios
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
