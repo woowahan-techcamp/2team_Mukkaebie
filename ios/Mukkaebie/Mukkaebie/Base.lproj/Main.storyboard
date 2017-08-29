@@ -11,6 +11,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="hNz-n2-bh7">
@@ -286,32 +291,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQO-dQ-q31">
-                                <rect key="frame" x="0.0" y="52" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HJTech님 환영합니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjR-SF-Lo6">
-                                        <rect key="frame" x="29" y="29" width="317" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HJTech님 환영합니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjR-SF-Lo6">
+                                        <rect key="frame" x="91" y="424" width="192" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="sjR-SF-Lo6" secondAttribute="height" multiplier="317:33" id="4V9-tY-gr1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="20"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQz-zm-4mp">
-                                        <rect key="frame" x="125" y="93" width="126" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-cx-yP3">
+                                        <rect key="frame" x="123" y="472" width="127" height="43.5"/>
                                         <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
-                                        <state key="normal" title="주문하러 가기">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="9pv-A4-QxB" kind="show" id="DjM-sU-2QQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-cx-yP3">
-                                        <rect key="frame" x="125" y="148" width="126" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43.5" id="0LL-le-g1p"/>
+                                            <constraint firstAttribute="width" secondItem="4h4-cx-yP3" secondAttribute="height" multiplier="126:43" id="uso-8D-Rq4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                         <state key="normal" title="로그아웃">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -319,10 +317,21 @@
                                             <action selector="touchedLogOut:" destination="aOI-fG-m2x" eventType="touchUpInside" id="gNo-Zr-JcW"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="welcom" translatesAutoresizingMaskIntoConstraints="NO" id="nHN-cT-kB3">
+                                        <rect key="frame" x="-1" y="110" width="375" height="278"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="211" id="R1K-dS-pXA"/>
+                                    <constraint firstItem="4h4-cx-yP3" firstAttribute="centerX" secondItem="mQO-dQ-q31" secondAttribute="centerX" constant="-1" id="8Fw-6t-Nzf"/>
+                                    <constraint firstItem="sjR-SF-Lo6" firstAttribute="top" secondItem="mQO-dQ-q31" secondAttribute="top" constant="424" id="M9q-wn-GpN"/>
+                                    <constraint firstAttribute="bottom" secondItem="4h4-cx-yP3" secondAttribute="bottom" constant="38.5" id="QrB-E4-qj7"/>
+                                    <constraint firstAttribute="height" constant="554" id="R1K-dS-pXA"/>
+                                    <constraint firstItem="nHN-cT-kB3" firstAttribute="width" secondItem="mQO-dQ-q31" secondAttribute="width" id="Yd8-59-zZs"/>
+                                    <constraint firstItem="nHN-cT-kB3" firstAttribute="top" secondItem="mQO-dQ-q31" secondAttribute="top" constant="110" id="aUr-wc-n2z"/>
+                                    <constraint firstItem="nHN-cT-kB3" firstAttribute="leading" secondItem="mQO-dQ-q31" secondAttribute="leading" id="fwp-E8-6is"/>
+                                    <constraint firstItem="sjR-SF-Lo6" firstAttribute="centerX" secondItem="mQO-dQ-q31" secondAttribute="centerX" id="hhG-c3-NgV"/>
+                                    <constraint firstAttribute="trailing" secondItem="nHN-cT-kB3" secondAttribute="trailing" id="xKO-Sk-KJQ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -338,7 +347,7 @@
                             <constraint firstItem="8tC-as-i3D" firstAttribute="top" secondItem="AuI-RM-ICf" secondAttribute="bottom" constant="410" id="aM4-Zh-0Z1"/>
                             <constraint firstItem="WNC-o0-gMh" firstAttribute="leading" secondItem="0At-ff-SsW" secondAttribute="leading" constant="23" id="eFg-CD-vSX"/>
                             <constraint firstAttribute="trailing" secondItem="AuI-RM-ICf" secondAttribute="trailing" constant="16" id="o5A-8P-FJ9"/>
-                            <constraint firstItem="mQO-dQ-q31" firstAttribute="top" secondItem="sJ6-Vx-0Yu" secondAttribute="bottom" constant="52" id="sAR-8n-vVp"/>
+                            <constraint firstItem="mQO-dQ-q31" firstAttribute="top" secondItem="sJ6-Vx-0Yu" secondAttribute="bottom" id="sAR-8n-vVp"/>
                             <constraint firstItem="ZfI-AW-NOp" firstAttribute="top" secondItem="WNC-o0-gMh" secondAttribute="bottom" constant="15" id="uEM-aT-Pf7"/>
                         </constraints>
                     </view>
@@ -512,8 +521,6 @@
         <image name="tab3_on" width="64" height="49"/>
         <image name="tab5" width="64" height="49"/>
         <image name="tab5_on" width="64" height="49"/>
+        <image name="welcom" width="360" height="262"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="DjM-sU-2QQ"/>
-    </inferredMetricsTieBreakers>
 </document>

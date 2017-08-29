@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
     }
     
     func checkedUser() {
-        if modelUser.id == idTextField.text && modelUser.primaryKey == passwordTextField.text {
+        if modelUser.id == idTextField.text && modelUser.password == passwordTextField.text {
             successView.isHidden = false
             successLabel.text = "\(idTextField.text!)님 환영합니다!"
         }
@@ -60,9 +60,9 @@ class LoginViewController: UIViewController {
     
     @IBAction func touchedLogin(_ sender: Any) {
         NetworkUser.getUserList(userID: idTextField.text!)
-      
         
     }
+    
     @IBAction func touchedLogOut(_ sender: Any) {
         successView.isHidden = true
         idTextField.text = ""
@@ -74,7 +74,6 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
