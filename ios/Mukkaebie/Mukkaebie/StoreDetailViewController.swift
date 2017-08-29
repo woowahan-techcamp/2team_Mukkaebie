@@ -95,11 +95,9 @@ class StoreDetailViewController: UIViewController {
     func getOrder() {
         NetworkOrder.getOrderList(sellerId: self.storeId) {(orderList) in
             Order.sharedInstance.specificStoreOrder = orderList
-            
             self.menuRankVC?.getOrderByMenuSorted()
             self.mukkaebieVC?.getOrderByUserSorted()
             self.mukkaebieVC?.getMkbDictionrayList()
-            
             let indexPath = IndexPath(row: 0, section: 3)
             self.tableView.reloadRows(at: [indexPath], with: .none)
         }

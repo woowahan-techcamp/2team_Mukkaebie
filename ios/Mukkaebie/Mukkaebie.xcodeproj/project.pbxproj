@@ -261,15 +261,17 @@
 				986345851F4E9E0200453F3A /* Indicator.swift */,
 				983976691F52C1080097581D /* StaticFunction.swift */,
 				9832481F1F32FD2C00ABFBFB /* Launch.storyboard */,
+				984428731F41CE970003CDF1 /* circleView.swift */,
 				98B67D041F3C7EE700243F31 /* Networking */,
 				98B67D011F3C7BAD00243F31 /* Model */,
-				985D092E1F4523CC00A1F475 /* Review */,
-				985D09291F45133400A1F475 /* Info */,
-				985D09011F3C28C500A1F475 /* Menu */,
 				98B67CEA1F3AD55000243F31 /* Main */,
 				98B67CEB1F3AD56400243F31 /* StoreList */,
-				986345841F49C1E000453F3A /* CartPayment */,
 				98B67CEC1F3AD57C00243F31 /* StoreDetail */,
+				9866842B1F54EC3B0099E2E6 /* MukkaebieRank */,
+				986345841F49C1E000453F3A /* CartPayment */,
+				985D09011F3C28C500A1F475 /* Menu */,
+				985D092E1F4523CC00A1F475 /* Review */,
+				985D09291F45133400A1F475 /* Info */,
 				9844286F1F3D76390003CDF1 /* hj.png */,
 				984428711F3D76660003CDF1 /* flash.png */,
 				9844286D1F3D755A0003CDF1 /* ygNa.jpeg */,
@@ -360,6 +362,15 @@
 			name = CartPayment;
 			sourceTree = "<group>";
 		};
+		9866842B1F54EC3B0099E2E6 /* MukkaebieRank */ = {
+			isa = PBXGroup;
+			children = (
+				98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */,
+				98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */,
+			);
+			name = MukkaebieRank;
+			sourceTree = "<group>";
+		};
 		989D41DC1F43D69800AF2617 /* xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,9 +408,6 @@
 				98B67CE21F3A990A00243F31 /* StoreList.storyboard */,
 				98B67CF91F3B056500243F31 /* StoreListMenuBarCollectionViewCell.swift */,
 				98B67CF71F3AF09900243F31 /* StoreListMenuBar.swift */,
-				98B67CFB1F3BDAFA00243F31 /* MukkaebieRankViewController.swift */,
-				984428731F41CE970003CDF1 /* circleView.swift */,
-				98B67CFD1F3BDB3D00243F31 /* MukkaebieRank.storyboard */,
 			);
 			name = StoreList;
 			sourceTree = "<group>";
