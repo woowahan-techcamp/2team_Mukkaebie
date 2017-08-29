@@ -120,6 +120,7 @@ export class Graph {
           totalLength = totalLength + share;
           offset = (100 - totalLength + 25) % 100;
           if (i == 4) {
+            donutArr[5].classList.remove("hideLabel");
             labelArr[5].innerHTML = '';
             labelArr[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
