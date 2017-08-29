@@ -247,7 +247,6 @@
 .storeTitleArea {
   height: 65px;
   background: #fff;
-  overflow: auto;
   padding: 20px;
   border: 1px solid #dad3c7
 }
@@ -425,7 +424,13 @@
     width: 100%;
     margin-bottom: 20px;
   }
-
+  .storeCart {
+    position: fixed;
+    bottom: 0;
+    z-index: 32;
+    width: 100%;
+    left: 0;
+  }
   .tabAreaWrap {
     width: 100%;
   }
@@ -508,11 +513,14 @@
 .storeCartHead {
   padding: 10px;
   border-bottom: 1px solid #cccccc;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .storeCartContent {
   padding: 10px;
   border-bottom: 1px solid #cccccc;
+  color: $bmOrangeColor;
 }
 
 .storeCartTotal {
@@ -697,7 +705,7 @@
   width: 100%;
   text-align: center;
   top:0;
-  z-index: 100;
+  z-index: 31;
 }
 
 .mkbCommentCloud {
@@ -845,6 +853,7 @@
   -webkit-animation: rain 5s linear infinite;
   margin: 0 auto;
   overflow: hidden;
+  background-size: 120%;
 }
 
 .competition-podium .podium-block {
