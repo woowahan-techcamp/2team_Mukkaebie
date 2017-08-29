@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,17 +27,17 @@
                         <constraint firstAttribute="width" secondItem="mOl-es-rd2" secondAttribute="height" multiplier="375:533" id="MqL-PC-bLN"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-17-hBp">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-17-hBp">
+                    <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchingBanner" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-Cs-OUo">
-                    <rect key="frame" x="20" y="46" width="334" height="73"/>
+                    <rect key="frame" x="20" y="46" width="335" height="73"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kje-Cs-OUo" secondAttribute="height" multiplier="334:73" id="X4K-aj-jk5"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DbV-aZ-uBF">
-                    <rect key="frame" x="151.5" y="604" width="73" height="33"/>
+                    <rect key="frame" x="151" y="604" width="73" height="33"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 민족" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njj-4d-J07">
                             <rect key="frame" x="0.0" y="0.0" width="73" height="15"/>
@@ -56,17 +56,19 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="Kje-Cs-OUo" secondAttribute="trailing" constant="20" id="68z-Lm-ddM"/>
                 <constraint firstItem="mOl-es-rd2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ey-Sx-xvY"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="top" secondItem="Kje-Cs-OUo" secondAttribute="bottom" constant="15" id="BMp-JD-oDB"/>
-                <constraint firstAttribute="bottom" secondItem="mOl-es-rd2" secondAttribute="bottom" id="Iwu-xn-0nd"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="bottom" secondItem="bvi-17-hBp" secondAttribute="bottom" id="MRX-NZ-QsP"/>
-                <constraint firstItem="DbV-aZ-uBF" firstAttribute="centerX" secondItem="mOl-es-rd2" secondAttribute="centerX" id="MnE-cF-Q1J"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="trailing" secondItem="bvi-17-hBp" secondAttribute="trailing" id="Muq-3C-dZc"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="leading" secondItem="bvi-17-hBp" secondAttribute="leading" id="StI-l6-JTY"/>
-                <constraint firstAttribute="bottom" secondItem="DbV-aZ-uBF" secondAttribute="bottom" constant="30" id="gHp-Nq-Q5r"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="centerX" secondItem="Kje-Cs-OUo" secondAttribute="centerX" id="rqT-ao-Tt6"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="width" secondItem="mOl-es-rd2" secondAttribute="height" multiplier="375:533" id="zBe-y3-7pX"/>
-                <constraint firstItem="Kje-Cs-OUo" firstAttribute="width" secondItem="Kje-Cs-OUo" secondAttribute="height" multiplier="334:73" id="zEe-ao-nbf"/>
+                <constraint firstItem="Kje-Cs-OUo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DQc-vn-csh"/>
+                <constraint firstItem="Kje-Cs-OUo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="46" id="DfU-TH-boZ"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Iwu-xn-0nd"/>
+                <constraint firstItem="bvi-17-hBp" firstAttribute="bottom" secondItem="mOl-es-rd2" secondAttribute="bottom" id="MRX-NZ-QsP"/>
+                <constraint firstItem="bvi-17-hBp" firstAttribute="trailing" secondItem="mOl-es-rd2" secondAttribute="trailing" id="Muq-3C-dZc"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Olm-of-Jer"/>
+                <constraint firstItem="bvi-17-hBp" firstAttribute="leading" secondItem="mOl-es-rd2" secondAttribute="leading" id="StI-l6-JTY"/>
+                <constraint firstItem="DbV-aZ-uBF" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-30" id="gHp-Nq-Q5r"/>
+                <constraint firstItem="Kje-Cs-OUo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="mVa-OJ-BwP"/>
+                <constraint firstItem="DbV-aZ-uBF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uDA-Hk-8k7"/>
+                <constraint firstItem="bvi-17-hBp" firstAttribute="top" secondItem="mOl-es-rd2" secondAttribute="top" id="yYd-JM-Skc"/>
             </constraints>
             <connections>
                 <outlet property="bannerImage" destination="Kje-Cs-OUo" id="GzU-jS-wRP"/>
