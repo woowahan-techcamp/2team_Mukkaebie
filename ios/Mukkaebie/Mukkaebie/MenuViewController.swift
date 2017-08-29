@@ -73,7 +73,7 @@ class MenuViewController: UIViewController {
     }
     
     func getOrderByMenuSorted() {
-        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 })
+        orderByMenuSorted = Store.sharedInstance.specificStore.orderByMenu.sorted(by: { $0.1 > $1.1 }).filter({$0.1 > 0})
         
         if orderByMenuSorted.count > 3 {
             var count = 0
