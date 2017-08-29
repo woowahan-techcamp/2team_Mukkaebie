@@ -101,7 +101,8 @@ export class StoreList {
 
         function processScroll(scroll_pos) {
           let contentHeight = renderTarget.offsetHeight;
-          let y = scroll_pos + 300;
+          let y = scroll_pos + 100;
+          console.log(contentHeight , " : " , y);
           if (y >= contentHeight) {
             preventFadeIn();
 
@@ -125,7 +126,7 @@ export class StoreList {
               let ticking = false;
               if (timer !== null) clearTimeout(timer);
               timer = setTimeout(function () {
-                last_known_scroll_position = window.scrollY;
+                last_known_scroll_position = renderTarget.scrollHeight;
                 if (!ticking) {
                   window.requestAnimationFrame(function () {
                     processScroll(last_known_scroll_position);
@@ -144,18 +145,12 @@ export class StoreList {
           let clickedStore = document.querySelector(".storeCardRow");
 
           clickedStore.addEventListener("click", function (e) {
-            if (e.target && e.target.className == "storeCard") {
-              var realTarget = e.target;
-            } else if (e.target.className == "col-xs-4") {
-              var realTarget = e.target.children[0];
-            } else if (e.target.className == 'col-xs-12') {
-              var realTarget = e.target.children[0].children[0];
-            } else {
-              var realTarget = e.target.closest(".storeCard");
+            if (e.target && e.target.closest(".storeCard")) {
+              let realTarget = e.target.closest(".storeCard");
+              let storeInfo = new StoreInfo(realTarget.id);
             }
-            let storeInfo = new StoreInfo(realTarget.id);
           });
-        }
+        };
       }
     };
     xhr.open("GET", SERVER_BASE_URL + urlCategoryPart, true);
