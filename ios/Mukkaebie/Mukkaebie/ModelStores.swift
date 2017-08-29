@@ -59,8 +59,8 @@ class ModelStores: Mappable {
     
     func initOrderByMenu() {
         orderByMenu = [String:Int]()
-        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
-            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+        if menu.count > 0 {
+            let menu = self.menu[0]
             for (_, submenu) in menu {
                 for (name, _) in submenu {
                     orderByMenu[name] = 0
@@ -70,8 +70,8 @@ class ModelStores: Mappable {
         
         for order in Order.sharedInstance.specificStoreOrder {
             for content in order.content {
-                if Store.sharedInstance.specificStore.orderByMenu[content] != nil {
-                Store.sharedInstance.specificStore.orderByMenu[content]! += 1
+                if orderByMenu[content] != nil {
+                orderByMenu[content]! += 1
                 }
             }
         }
@@ -79,8 +79,8 @@ class ModelStores: Mappable {
     
     func initPriceByMenu() {
         priceByMenu = [String:Int]()
-        if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
-            let menu = (Store.sharedInstance.specificStore?.menu)![0]
+        if menu.count > 0 {
+            let menu = self.menu[0]
             for (_, submenu) in menu {
                 for (name, price) in submenu {
                     if price != "" {
