@@ -201,15 +201,18 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
         if !User.sharedInstance.isUser {
-            loginAlertView.center = (self.parent?.view.center)!
+            loginAlertView.center = (self.view.window?.rootViewController?.view.center)!
             loginAlertView.layer.masksToBounds = true
             loginAlertView.layer.cornerRadius = 1.5
-            self.parent?.view.addSubview(loginAlertView)
+            self.view.window?.rootViewController?.view.addSubview(loginAlertView)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
                 self.loginAlertView.removeFromSuperview()
             }
         }
+        
+        cell?.isSelected = false
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
