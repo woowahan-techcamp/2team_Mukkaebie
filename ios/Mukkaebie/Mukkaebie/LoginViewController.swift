@@ -30,6 +30,11 @@ class LoginViewController: UIViewController {
         passwordView.layer.borderWidth = 1
         passwordView.layer.borderColor = UIColor(hexString: "cccccc").cgColor
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        self.view.addGestureRecognizer(tapGesture)
+        self.view.isUserInteractionEnabled = true
+
+        
         alartMessageLabel.isHidden = true
         
         successView.isHidden = true
@@ -68,6 +73,16 @@ class LoginViewController: UIViewController {
         idTextField.text = ""
         passwordTextField.text = ""
     }
+    
+    func tap(gesture: UITapGestureRecognizer) {
+        idTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
