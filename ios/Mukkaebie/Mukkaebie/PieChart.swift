@@ -24,6 +24,11 @@ class PieChartView: UIView {
         }
     }
     
+    let padding: CGFloat = 20
+    let titleHeight: CGFloat = 25
+    var titleViews: [UIView] = []
+    var circleView: AnimateView!
+    
     var baseCircle: CAShapeLayer!
 
     
@@ -37,120 +42,12 @@ class PieChartView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        
-        //padding for view
-        let padding: CGFloat = 25
-        
-        // height for title
-        let titleHeight: CGFloat = 15
-        
-        //array for titleView
-        var titleViews : [UIView] = []
-        
-        //add first titleView
-        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 15)))
-        
-        //x position of composition
-        var compX: CGFloat = 0
-        
-        //count for titleViews
-        var titleViewsCount = 0
-        
-        //function for adding titleViews
-        func addTitle(segment: Segment, newLine: Bool, overWidth: Bool) {
-            
-            //add new line
-            if newLine {
-                titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
-                
-                compX = 0
-                titleViewsCount += 1
-            }
-            
-            //make color rectangle
-            let colorRect = CGRect(x: compX, y: 5 + titleHeight * CGFloat(titleViewsCount), width: 10, height: 10)
-            
-            //setting the view for rectangle
-            let rectView = UIView(frame: colorRect)
-            rectView.backgroundColor = segment.color
-            titleViews[titleViewsCount].addSubview(rectView)
-            
-            //update compX
-            compX += 9 + 6
-            
-            let button : UIButton
-            
-            //if text is over the width of frame, then width of button is width of frame
-            if !overWidth {
-                button = UIButton(frame: CGRect(x: compX, y: titleHeight * CGFloat(titleViewsCount), width: 200, height: 20))
-            } else {
-                button = UIButton(frame: CGRect(x: compX, y: titleHeight * CGFloat(titleViewsCount), width: frame.size.width - padding - 15, height: 20))
-            }
-            
-            //setting the button
-            let buttonAttributes : [String: Any] = [
-                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 16),
-                NSForegroundColorAttributeName : UIColor.init(hexString: "333333"),
-                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
-            
-            if segment.title.contains("기타") == true {
-                button.isEnabled = false
-            } else {
-                button.isEnabled = true
-            }
-            
-            if segment.title == nil {
-                button.isHidden = true
-            }
-                        
-            button.isUserInteractionEnabled = true
-            button.isHighlighted = true
-            button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)
-            
-            let attributeString = NSMutableAttributedString(string: segment.title, attributes: buttonAttributes)
-            button.setAttributedTitle(attributeString, for: .normal)
-            button.setTitleColor(UIColor(hexString: "333333"), for: .normal)
-
-            
-            //if text is not over the width of frame, then manipulate the size of button to fit the size of it's content
-            if !overWidth {
-                button.titleLabel?.frame.size = button.titleLabel!.intrinsicContentSize
-                button.frame.size.width = button.titleLabel!.frame.size.width
-            }
-            
-            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-            
-            titleViews[titleViewsCount].addSubview(button)
-            
-            //update compX
-            compX += button.frame.size.width+20
-        }
-        
-        for segment in segments {
-            let width = segment.title.size(attributes: [NSFontAttributeName: UIFont(name: "BMHANNA11yrsoldOTF", size: 15)!]).width
-            
-            if 15 + width > frame.size.width - padding {
-                if titleViews[titleViewsCount].subviews.count == 0 {
-                    addTitle(segment: segment, newLine: false, overWidth: true)
-                } else {
-                    addTitle(segment: segment, newLine: true, overWidth: true)
-                }
-            } else if compX + 15 + width > frame.size.width - padding {
-                addTitle(segment: segment, newLine: true, overWidth: false)
-            } else {
-                addTitle(segment: segment, newLine: false, overWidth: false)
-            }
-        }
-        
-        for titleView in titleViews {
-            titleView.frame = CGRect(x: 0, y: frame.size.height - titleHeight * CGFloat(titleViewsCount) - padding, width: frame.size.width, height: 20)
-            titleViewsCount -= 1
-        
-            self.addSubview(titleView)
-            titleView.sizeToFitCustom()
-            titleView.center.x = self.frame.size.width / 2
-        }
-        
+        addTitleViews()
+        addCircleView()
+        drawPieGraphView()
+    }
+    
+    func drawPieGraphView() {
         // get current context
         let ctx = UIGraphicsGetCurrentContext()
         
@@ -173,19 +70,139 @@ class PieChartView: UIView {
             // update the end angle of the segment
             let endAngle = startAngle + 2 * .pi * (segment.value / valueCount)
             
-            // move to the center of the pie chart
-            //ctx?.move(to: viewCenter)
             ctx?.addArc(center: viewCenter, radius: 0.45 * radius, startAngle: endAngle, endAngle: startAngle, clockwise: true)
-
             ctx?.addArc(center: viewCenter, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
             // fill segment
-            
             ctx?.fillPath()
-            
             
             // update starting angle of the next segment to the ending angle of this segment
             startAngle = endAngle
+        }
+    }
+    
+    func addTitleViews() {
+        //add first titleView
+        titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 15)))
+        
+        //x position of composition
+        var compX: CGFloat = 0
+        
+        //count for titleViews
+        var titleViewsCount = 1
+        
+        //function for adding titleViews
+        func addTitle(segment: Segment, newLine: Bool, overWidth: Bool) {
+            
+            //add new line
+            if newLine {
+                titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 20)))
+                
+                compX = 0
+                titleViewsCount += 1
+            }
+            
+            //make color rectangle
+            let colorRect = CGRect(x: compX, y: 5 , width: 10, height: 10)
+            
+            //setting the view for rectangle
+            let rectView = UIView(frame: colorRect)
+            rectView.backgroundColor = segment.color
+            titleViews[titleViewsCount-1].addSubview(rectView)
+            
+            //update compX
+            compX += 9 + 6
+            
+            let button : UIButton
+            
+            //if text is over the width of frame, then width of button is width of frame
+            if !overWidth {
+                button = UIButton(frame: CGRect(x: compX, y: 0, width: 200, height: 20))
+            } else {
+                button = UIButton(frame: CGRect(x: compX, y: 0, width: frame.size.width - padding - 15, height: 20))
+            }
+            
+            //setting the button
+            let buttonAttributes : [String: Any] = [
+                NSFontAttributeName : UIFont.init(name: "BMHANNA11yrsoldOTF", size: 16),
+                NSForegroundColorAttributeName : UIColor.init(hexString: "333333"),
+                NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
+            
+            if segment.title.contains("기타") == true {
+                button.isEnabled = false
+            } else {
+                button.isEnabled = true
+            }
+            
+            if segment.title == nil {
+                button.isHidden = true
+            }
+            
+            button.isUserInteractionEnabled = true
+            button.isHighlighted = true
+            button.setTitleColor(UIColor.init(hexString: "999999"), for: .highlighted)
+            
+            let attributeString = NSMutableAttributedString(string: segment.title, attributes: buttonAttributes)
+            button.setAttributedTitle(attributeString, for: .normal)
+            button.setTitleColor(UIColor(hexString: "333333"), for: .normal)
+            
+            
+            //if text is not over the width of frame, then manipulate the size of button to fit the size of it's content
+            if !overWidth {
+                button.titleLabel?.frame.size = button.titleLabel!.intrinsicContentSize
+                button.frame.size.width = button.titleLabel!.frame.size.width
+            }
+            
+            button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            
+            titleViews[titleViewsCount-1].addSubview(button)
+            
+            //update compX
+            compX += button.frame.size.width+20
+        }
+        
+        for segment in segments {
+            let width = segment.title.size(attributes: [NSFontAttributeName: UIFont(name: "BMHANNA11yrsoldOTF", size: 15)!]).width
+            
+            if 15 + width > frame.size.width - padding {
+                if titleViews[titleViewsCount].subviews.count == 0 {
+                    addTitle(segment: segment, newLine: false, overWidth: true)
+                } else {
+                    addTitle(segment: segment, newLine: true, overWidth: true)
+                }
+            } else if compX + 15 + width > frame.size.width - padding {
+                addTitle(segment: segment, newLine: true, overWidth: false)
+            } else {
+                addTitle(segment: segment, newLine: false, overWidth: false)
+            }
+        }
+        
+        for titleView in titleViews {
+            titleView.frame = CGRect(x: 0, y: min(bounds.size.width, bounds.size.height) - titleHeight * CGFloat(titleViewsCount), width: frame.size.width, height: 20)
+            titleViewsCount -= 1
+            
+            self.addSubview(titleView)
+            titleView.sizeToFitCustom()
+            titleView.center.x = self.frame.size.width / 2
+        }
+    }
+    
+    func addCircleView() {
+        let radius = (min(bounds.size.width, bounds.size.height) - titleHeight * CGFloat(titleViews.count) - padding ) * 0.5
+        
+        circleView = AnimateView(frame: CGRect(x: bounds.size.width * 0.5, y: (bounds.size.height - titleHeight * CGFloat(titleViews.count) - padding) * 0.5, width: radius, height: radius))
+        circleView.setStrokeColor(UIColor.white.cgColor)
+        self.addSubview(circleView)
+    }
+    
+    func animateCircleView() {
+        if circleView != nil {
+            //Rotate the circle so it starts from the top.
+            
+            circleView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -0.5)
+            circleView.transform = circleView.transform.translatedBy(x: circleView.frame.width, y: 0)
+            // Animate the drawing of the circle
+            circleView.animateCircleTo(2, fromValue: 1, toValue: 0)
         }
     }
     
@@ -239,16 +256,15 @@ class AnimateView: UIView {
         // The path should be the entire circle.
         
         let center = CGPoint(x: 0, y: 0)
-
         
-        let circlePath = UIBezierPath(arcCenter: center, radius: (min(frame.size.width, frame.size.height)/2.0), startAngle: -CGFloat.pi * 0.5, endAngle: CGFloat(M_PI * 2.0), clockwise: false)
+        let circlePath = UIBezierPath(arcCenter: center, radius: frame.size.width/2, startAngle: CGFloat.pi * 0, endAngle: CGFloat.pi * 2, clockwise: false)
         
         // Setup the CAShapeLayer with the path, colors, and line width
         circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.cgPath
         circleLayer.fillColor = UIColor.clear.cgColor
 
-        circleLayer.lineWidth = 110.0;
+        circleLayer.lineWidth = frame.size.width+1;
         
         // Don't draw the circle initially
         circleLayer.strokeEnd = 0.0
@@ -290,7 +306,6 @@ class AnimateView: UIView {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 

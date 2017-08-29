@@ -81,7 +81,11 @@ class ModelStores: Mappable {
             let menu = (Store.sharedInstance.specificStore?.menu)![0]
             for (_, submenu) in menu {
                 for (name, price) in submenu {
-                    priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                    if price != "" {
+                        priceByMenu[name] = Int(price.substring(to: price.index(before: price.endIndex)).replacingOccurrences(of: ",", with: ""))
+                    } else {
+                        priceByMenu[name] = 0
+                    }
                 }
             }
         }
