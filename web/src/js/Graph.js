@@ -10,12 +10,15 @@ export class Graph {
   }
 
   podiumAnimate(storeId) {
+
     let gold = document.querySelector('.gold .podium');
     gold.classList.add('goldAnimate');
     let goldOrders = document.querySelector('.gold .orders');
     goldOrders.classList.add('goldOrdersAnimate');
     let goldName = document.querySelector('.gold .name');
     goldName.classList.add('goldNameAnimate');
+
+
 
     let silver = document.querySelector('.silver .podium');
     silver.classList.add('silverAnimate');
@@ -24,12 +27,18 @@ export class Graph {
     let silverName = document.querySelector('.silver .name');
     silverName.classList.add('silverNameAnimate');
 
+
+
     let bronze = document.querySelector('.bronze .podium');
     bronze.classList.add('bronzeAnimate');
     let bronzeOrders = document.querySelector('.bronze .orders');
     bronzeOrders.classList.add('bronzeOrdersAnimate');
     let bronzeName = document.querySelector('.bronze .name');
     bronzeName.classList.add('bronzeNameAnimate');
+
+
+
+
 
     this.mkbLoad(storeId);
   }
