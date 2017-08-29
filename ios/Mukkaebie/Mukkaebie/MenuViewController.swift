@@ -32,7 +32,7 @@ class MenuViewController: UIViewController {
         self.menuTableView.dataSource = self
         self.menuTableView.delegate = self
         
-        setSegment()
+        initPieChartView()
 
         self.menuTableView.reloadData()
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
@@ -85,11 +85,11 @@ class MenuViewController: UIViewController {
         }
         
         if pieChartView != nil {
-            setSegment()
+            initPieChartView()
         }
     }
     
-    func setSegment() {
+    func initPieChartView() {
         if Order.sharedInstance.specificStoreOrder.count == 0 {
             pieChartView.addSubview(noOrderView)
         } else {
@@ -98,8 +98,7 @@ class MenuViewController: UIViewController {
                 subview.removeFromSuperview()
             }
             
-            var orderCountArray = [Int]()
-            var menuPercentArray = [String]()
+            top3Array = [(key:String, value:String)]()
             var totalOrder = Int()
             
             for i in 0 ..< orderByMenuSorted.count {
@@ -116,10 +115,10 @@ class MenuViewController: UIViewController {
             }
             
             for i in 0 ..< orderByMenuSorted.count {
-                orderCountArray.append(orderByMenuSorted[i].value)
-                menuPercentArray.append(String(floor((Double(orderCountArray[i]) / Double(totalOrder) * 100)*10)/10))
-                let titleButton = "\(orderByMenuSorted[i].key) " + "\((menuPercentArray[i]))%"
-                let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton, price: top3Array.count > i ? top3Array[i].value : "0원")
+                
+                let titleButton = "\(orderByMenuSorted[i].key) " + "\((floor((Double(orderByMenuSorted[i].value) / Double(totalOrder) * 100)*10)/10))%"
+                
+                let segment = Segment(color: colors[i], value: CGFloat(orderByMenuSorted[i].value), title: titleButton, menuName: orderByMenuSorted[i].key, price: top3Array.count > i ? top3Array[i].value : "0원")
                 pieChartView.segments.append(segment)
             }
         }

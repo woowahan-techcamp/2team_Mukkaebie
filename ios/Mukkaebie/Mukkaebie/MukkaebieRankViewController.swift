@@ -121,6 +121,7 @@ class MukkaebieRankViewController: UIViewController {
     }
     
     func getOrderByUserSorted() {
+        orderByUserTop3 = [(key: String, value: Int)]()
         let orderByUserSorted = Store.sharedInstance.specificStore.orderByUser.sorted(by: { $0.1 > $1.1 })
         
         for i in orderByUserSorted.count > 3 ? 0..<3 : 0..<orderByUserSorted.count {
