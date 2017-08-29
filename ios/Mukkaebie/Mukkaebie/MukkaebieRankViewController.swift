@@ -13,6 +13,9 @@ class MukkaebieRankViewController: UIViewController {
     @IBOutlet weak var mukkaebieMessage: UILabel!
     @IBOutlet weak var mukkaebieCommentTextField: UITextField!
     
+    @IBOutlet weak var firstImageButton: UIButton!
+    var imageButtonList = [UIButton]()
+    
     @IBOutlet weak var firstMukkaebieImage: UIImageView!
     @IBOutlet weak var secondMukkaebieImage: UIImageView!
     @IBOutlet weak var thirdMukkaebieImage: UIImageView!
@@ -60,13 +63,30 @@ class MukkaebieRankViewController: UIViewController {
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
         
+        imageButtonList = [firstImageButton]
         mukkaebieImageList = [firstMukkaebieImage, secondMukkaebieImage, thirdMukkaebieImage]
         awardList = [firstAward, secondAward, thirdAward]
         bottomConstraintList = [firstBottomConstraint, secondBottomConstraint, thirdBottomConstraint]
         labelList = [firstLabel, secondLabel, thirdLabel]
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
+        
+        mukkaebieCommentTextField.isEnabled = false
+        for i in 0..<imageButtonList.count {
+            imageButtonList[0].isHidden = true
+        }
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        for i in 0..<orderByUserTop3.count {
+            if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
+                mukkaebieCommentTextField.isEnabled = true
+                imageButtonList[0].isHidden = false
+                print("============")
+            }
+        }
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !viewIsAnimated && orderByUserTop3.count > 0 {
@@ -181,7 +201,7 @@ class MukkaebieRankViewController: UIViewController {
     @IBAction func textFieldEditingDidEnd(_ sender: UITextField) {
         let mkbComment = sender.text
         comment = mkbComment
-        postComment(userId: "hjtech", mkbComment: mkbComment!)
+        postComment(userId: User.sharedInstance.user.id, mkbComment: mkbComment!)
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
@@ -206,7 +226,7 @@ extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINaviga
             let imgData = UIImageJPEGRepresentation(image, 0.1)
             firstMukkaebieImage.image = image
             self.imgData = imgData
-            postImgData(userId: "hjtech", imgData: imgData!)
+            postImgData(userId: User.sharedInstance.user.id, imgData: imgData!)
         } else{
             print("something went wrong")
         }

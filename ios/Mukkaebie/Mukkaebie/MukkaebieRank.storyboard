@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vny-Ij-fKP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vny-Ij-fKP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,10 +29,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud_50pxHigh.png" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
-                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 세상 먹깨비가 아니다.. ㄷㄷ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iD7-oo-ECK">
                                 <rect key="frame" x="80.5" y="62" width="214" height="18"/>
                                 <constraints>
@@ -54,6 +50,24 @@
                                     <action selector="textFieldEditingDidEnd:" destination="Vny-Ij-fKP" eventType="editingDidEnd" id="Uup-yT-iVb"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jId-8l-hc8">
+                                <rect key="frame" x="3" y="72" width="26" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="Gaa-mU-aFe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="60"/>
+                                <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-Tm-Z0i">
+                                <rect key="frame" x="346" y="72" width="26" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="MDy-Mu-8bz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="60"/>
+                                <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
                                 <rect key="frame" x="15" y="16" width="26" height="25"/>
                                 <constraints>
@@ -121,7 +135,7 @@
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-zp-n37">
                                         <rect key="frame" x="13" y="-3" width="86" height="91.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -188,7 +202,7 @@
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="fFR-Ry-AwY">
                                         <rect key="frame" x="13" y="0.0" width="86" height="91.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -255,7 +269,7 @@
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="g26-V1-ggK">
                                         <rect key="frame" x="23" y="25" width="93" height="99"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EL-27-7iz">
                                         <rect key="frame" x="93.5" y="86" width="30" height="30"/>
@@ -304,6 +318,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud_50pxHigh.png" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
+                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -336,6 +354,7 @@
                     <connections>
                         <outlet property="firstAward" destination="9N7-Wg-pWv" id="VSp-1Q-zPC"/>
                         <outlet property="firstBottomConstraint" destination="IiL-Ig-Nwl" id="xRB-aS-sPA"/>
+                        <outlet property="firstImageButton" destination="5EL-27-7iz" id="gE4-tZ-YWS"/>
                         <outlet property="firstLabel" destination="aU3-og-ZVa" id="S0m-Xc-jsL"/>
                         <outlet property="firstMukkaebieImage" destination="i68-20-dDV" id="csa-bA-QGw"/>
                         <outlet property="firstOrderLabel" destination="AyK-Yp-isg" id="uDo-ca-4sw"/>
