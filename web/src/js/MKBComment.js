@@ -5,6 +5,8 @@ export class MKBComment {
 
   constructor(storeId, topThreeList) {
 
+
+
     this.storeId = storeId;
     this.topThreeList = topThreeList;
     this.addMkbModalEventListener(storeId, topThreeList);
@@ -20,6 +22,34 @@ export class MKBComment {
     }.bind(this));
 
 
+  }
+
+  previewImg(clickedScope){
+    const fileSelect = document.getElementById('file-select');
+    function mimicFileUpload(){
+      fileSelect.click();
+    }
+    if (clickedScope.attributes["data-user"]["value"] === session) {
+      function handleFileSelect(evt) {
+        var files = evt.target.files;
+        for (var i = 0, f; f = files[i]; i++) {
+          if (!f.type.match('image.*')) {
+            continue;
+          }
+          var reader = new FileReader();
+
+          reader.onload = (function(theFile) {
+            return function(e) {
+
+              document.querySelector('.mkbImgPreview').style.backgroundImage = "url('"+ e.target.result +"')"
+            };
+          })(f);
+          reader.readAsDataURL(f);
+        }
+      }
+      fileSelect.addEventListener('change', handleFileSelect, false);
+      document.querySelector("#chooseImg").addEventListener("click", mimicFileUpload);
+    }
   }
 
   initialRendering() {
@@ -105,6 +135,7 @@ export class MKBComment {
           const mkbResponse = res[0]["mkb"] ? res[0]["mkb"] : [];
           StoreUtil.showModal('#mkbModal');
           that.controllEditButton(clickedScope);
+          that.previewImg(clickedScope);
           that.setModalImg(event);
 
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {
@@ -243,10 +274,16 @@ export class MKBComment {
 
   resetProfile(){
     const profileResetButton = document.querySelector("#resetProfile");
+    const cancelReviseButton = document.querySelector("#cancelRevise");
     const profilePic = document.querySelector(".mkbImgPreview");
     profileResetButton.addEventListener("click", function () {
       document.querySelector("#file-form input").value = "";
+      profilePic.style.backgroundImage = "url(" + DEFAULT_PROFILE_IMG + ")";
     });
+    cancelReviseButton.addEventListener("click", function () {
+      document.querySelector(".mkbModalClose").click();
+    })
+
   }
 
 
