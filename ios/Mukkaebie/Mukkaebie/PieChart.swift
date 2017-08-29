@@ -13,6 +13,7 @@ struct Segment {
     var color: UIColor
     var value: CGFloat
     var title: String
+    var menuName: String
     var price: String
 }
 
@@ -40,14 +41,16 @@ class PieChartView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     override func draw(_ rect: CGRect) {
         addTitleViews()
-        addCircleView()
         drawPieGraphView()
+        addCircleView()
+        animateCircleView()
     }
     
     func drawPieGraphView() {
+        
         // get current context
         let ctx = UIGraphicsGetCurrentContext()
         
@@ -82,6 +85,7 @@ class PieChartView: UIView {
     }
     
     func addTitleViews() {
+        titleViews = []
         //add first titleView
         titleViews.append(UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: 15)))
         
@@ -213,15 +217,17 @@ class PieChartView: UIView {
         let currentController = self.getCurrentViewController()
         var titleArray = title.components(separatedBy: " ")
         titleArray.removeLast()
-        let titleString = titleArray.reduce(" ") { $0 + $1 }
+        let titleString = titleArray.reduce("") { $0 + $1 }
         var menuPriceString = String()
+        var menuNameString = String()
         for segment in segments {
             if title == segment.title {
-            menuPriceString = segment.price
+                menuPriceString = segment.price
+                menuNameString = segment.menuName
             }
         }
         cartViewController.menuPrice = menuPriceString
-        cartViewController.menuName = titleString
+        cartViewController.menuName = menuNameString
         currentController?.present(cartViewController, animated: false, completion: nil)
         
     }
