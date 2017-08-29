@@ -7,8 +7,14 @@ export class Review {
 
   constructor(id) {
     this.setStarRating();
-    this.getReview(id);
+    this.getReviewPack(id);
     this.postReview(id);
+  }
+
+  getReviewPack(id){
+    this.getReview(id)
+        .then(this.getProfilePic)
+        .then(this.renderProfilePic);
   }
 
   setStarRating() {
@@ -48,7 +54,8 @@ export class Review {
         xhr.send(JSON.stringify(packet));
         xhr.onloadend = function () {
           StoreUtil.makeThxModal();
-          this.getReview(storeId);
+          this.getReviewPack(storeId);
+
           document.querySelector("#reviewTextInput").value = "";
         }.bind(this);
       } else {
@@ -58,27 +65,59 @@ export class Review {
   }
 
   getReview(id) {
-
-    StoreUtil.ajaxGet(SERVER_BASE_URL + "/stores/" + id, getReviewCb);
-
-    function getReviewCb() {
-      const response = JSON.parse(this.responseText);
-      const renderTarget = document.querySelector("#reviewList");
-      renderTarget.innerHTML = "";
-      if (response[0].review !== []) {
-        response[0].review.reverse().forEach(function (review) {
-          if (review) {
-            const userId = review.user;
-            const createdDate = review.time;
-            const reviewContent = StoreUtil.preventXss(review.content);
-            const orangeStar = "★".repeat(review.stars);
-            const greyStar = "★".repeat(5 - review.stars);
-          }
-          const tempGrab = document.querySelector("#reviewTemplate").text;
-          const result = eval('`' + tempGrab + '`');
-          renderTarget.innerHTML += result;
-        })
+    return new Promise(function (resolve) {
+      StoreUtil.ajaxGet(SERVER_BASE_URL + "/stores/" + id, getReviewCb);
+      function getReviewCb() {
+        const response = JSON.parse(this.responseText);
+        const renderTarget = document.querySelector("#reviewList");
+        let userIdList  = [];
+        renderTarget.innerHTML = "";
+        if (response[0].review !== []) {
+          response[0].review.reverse().forEach(function (review) {
+            if (review) {
+              const userId = review.user;
+              const createdDate = review.time;
+              const reviewContent = StoreUtil.preventXss(review.content);
+              const orangeStar = "★".repeat(review.stars);
+              const greyStar = "★".repeat(5 - review.stars);
+              const profilePic = review.user;
+              userIdList.push(review.user);
+            }
+            const tempGrab = document.querySelector("#reviewTemplate").text;
+            const result = eval('`' + tempGrab + '`');
+            renderTarget.innerHTML += result;
+          })
+        }
+        const userIdSet = new Set (userIdList);
+        resolve(Array.from(userIdSet));
       }
-    }
+    });
+
+
+
+  }
+
+  getProfilePic(userIdSet){
+    return new Promise(function (resolve) {
+      let userPicObj = {};
+      function getProfilePicCb (){
+        const response = JSON.parse(this.responseText);
+        response.forEach(function (user) {
+          if (userIdSet.includes(user["userId"])){
+            userPicObj[user["userId"]] =  user["profilePic"];
+          }
+        });
+        resolve(userPicObj);
+      }
+      StoreUtil.ajaxGet(SERVER_BASE_URL + '/users/', getProfilePicCb)
+    })
+  }
+
+  renderProfilePic(userPicObj){
+    const reviewPics = Array.from(document.querySelectorAll(".reviewCardPic"));
+    reviewPics.forEach(function (picDiv) {
+      const divUserId = picDiv.getAttribute("value");
+      picDiv.style.backgroundImage = "url('" + userPicObj[divUserId] + "')"
+    })
   }
 }
