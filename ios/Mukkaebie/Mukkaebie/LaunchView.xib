@@ -27,27 +27,28 @@
                         <constraint firstAttribute="width" secondItem="mOl-es-rd2" secondAttribute="height" multiplier="375:533" id="MqL-PC-bLN"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-17-hBp">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-17-hBp">
                     <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchingBanner" translatesAutoresizingMaskIntoConstraints="NO" id="Kje-Cs-OUo">
-                    <rect key="frame" x="20" y="46" width="335" height="73"/>
+                    <rect key="frame" x="20.5" y="46" width="334" height="73"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kje-Cs-OUo" secondAttribute="height" multiplier="334:73" id="X4K-aj-jk5"/>
+                        <constraint firstAttribute="height" constant="73" id="joi-nw-zSl"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DbV-aZ-uBF">
-                    <rect key="frame" x="151" y="604" width="73" height="33"/>
+                    <rect key="frame" x="145.5" y="600" width="84" height="37"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 민족" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njj-4d-J07">
-                            <rect key="frame" x="0.0" y="0.0" width="73" height="15"/>
-                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="0.0" width="84" height="17"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="feat. 미경이네" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cba-F6-VFQ">
-                            <rect key="frame" x="0.0" y="20" width="73" height="13"/>
-                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="13"/>
+                            <rect key="frame" x="0.0" y="22" width="84" height="15"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="15"/>
                             <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -56,24 +57,24 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Kje-Cs-OUo" secondAttribute="trailing" constant="20" id="68z-Lm-ddM"/>
                 <constraint firstItem="mOl-es-rd2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ey-Sx-xvY"/>
-                <constraint firstItem="Kje-Cs-OUo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DQc-vn-csh"/>
                 <constraint firstItem="Kje-Cs-OUo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="46" id="DfU-TH-boZ"/>
-                <constraint firstItem="mOl-es-rd2" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Iwu-xn-0nd"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="centerX" secondItem="Kje-Cs-OUo" secondAttribute="centerX" id="GCL-g8-OWe"/>
+                <constraint firstAttribute="bottom" secondItem="mOl-es-rd2" secondAttribute="bottom" id="Iwu-xn-0nd"/>
                 <constraint firstItem="bvi-17-hBp" firstAttribute="bottom" secondItem="mOl-es-rd2" secondAttribute="bottom" id="MRX-NZ-QsP"/>
                 <constraint firstItem="bvi-17-hBp" firstAttribute="trailing" secondItem="mOl-es-rd2" secondAttribute="trailing" id="Muq-3C-dZc"/>
                 <constraint firstItem="mOl-es-rd2" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Olm-of-Jer"/>
                 <constraint firstItem="bvi-17-hBp" firstAttribute="leading" secondItem="mOl-es-rd2" secondAttribute="leading" id="StI-l6-JTY"/>
-                <constraint firstItem="DbV-aZ-uBF" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-30" id="gHp-Nq-Q5r"/>
-                <constraint firstItem="Kje-Cs-OUo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="mVa-OJ-BwP"/>
+                <constraint firstItem="mOl-es-rd2" firstAttribute="bottom" secondItem="DbV-aZ-uBF" secondAttribute="bottom" constant="30" id="pSD-Ns-V5F"/>
                 <constraint firstItem="DbV-aZ-uBF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uDA-Hk-8k7"/>
                 <constraint firstItem="bvi-17-hBp" firstAttribute="top" secondItem="mOl-es-rd2" secondAttribute="top" id="yYd-JM-Skc"/>
             </constraints>
             <connections>
                 <outlet property="bannerImage" destination="Kje-Cs-OUo" id="GzU-jS-wRP"/>
+                <outlet property="bannerImageCenterConstraint" destination="GCL-g8-OWe" id="myb-sA-u8o"/>
                 <outlet property="companyStackView" destination="DbV-aZ-uBF" id="jiX-Nm-TPr"/>
                 <outlet property="mukkaebieImage" destination="mOl-es-rd2" id="8hY-Bm-7sL"/>
+                <outlet property="mukkaebieImageBottomConstraint" destination="Iwu-xn-0nd" id="XcO-MM-v9F"/>
                 <outlet property="rainyImage" destination="bvi-17-hBp" id="UXy-Mh-6JM"/>
             </connections>
         </view>
