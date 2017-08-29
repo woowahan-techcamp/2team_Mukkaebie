@@ -14,6 +14,9 @@ class MukkaebieRankViewController: UIViewController {
     @IBOutlet weak var mukkaebieCommentTextField: UITextField!
     
     @IBOutlet weak var firstImageButton: UIButton!
+    @IBOutlet weak var sencondImageButton: UIButton!
+    @IBOutlet weak var thirdImageButton: UIButton!
+    
     var imageButtonList = [UIButton]()
     
     @IBOutlet weak var firstMukkaebieImage: UIImageView!
@@ -65,7 +68,7 @@ class MukkaebieRankViewController: UIViewController {
         imagePicker.navigationBar.isTranslucent = false
         UIApplication.shared.statusBarStyle = .lightContent
         
-        imageButtonList = [firstImageButton]
+        imageButtonList = [firstImageButton,sencondImageButton,thirdImageButton]
         mukkaebieImageList = [firstMukkaebieImage, secondMukkaebieImage, thirdMukkaebieImage]
         awardList = [firstAward, secondAward, thirdAward]
         bottomConstraintList = [firstBottomConstraint, secondBottomConstraint, thirdBottomConstraint]
@@ -73,8 +76,9 @@ class MukkaebieRankViewController: UIViewController {
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
         
         mukkaebieCommentTextField.isEnabled = false
+        
         for i in 0..<imageButtonList.count {
-            imageButtonList[0].isHidden = true
+            imageButtonList[i].isHidden = true
         }
     }
     
@@ -91,10 +95,10 @@ class MukkaebieRankViewController: UIViewController {
         super.viewDidAppear(animated)
 
         
-        for i in 0..<orderByUserTop3.count {
-            if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
+        for (index,val) in orderByUserTop3.enumerated() {
+            if val.key == User.sharedInstance.user.id {
                 mukkaebieCommentTextField.isEnabled = true
-                imageButtonList[0].isHidden = false
+                imageButtonList[index].isHidden = false
             }
         }
         

@@ -29,6 +29,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
+                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
                                 <rect key="frame" x="15" y="16" width="26" height="25"/>
                                 <constraints>
@@ -95,9 +98,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hornProfil" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-zp-n37">
-                                        <rect key="frame" x="13" y="-3" width="86" height="92"/>
+                                        <rect key="frame" x="14" y="-3" width="86" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OxR-WJ-6iM">
+                                        <rect key="frame" x="75" y="59" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="profileSettingButton"/>
+                                        <connections>
+                                            <action selector="firstProfileImagePicker:" destination="Vny-Ij-fKP" eventType="touchUpInside" id="mim-At-Vwq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DuR-uh-roo" secondAttribute="height" multiplier="22:69" id="Suk-Dd-c5s"/>
@@ -165,6 +176,14 @@
                                         <rect key="frame" x="13" y="0.0" width="86" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhy-Ld-tsp">
+                                        <rect key="frame" x="75" y="60" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="profileSettingButton"/>
+                                        <connections>
+                                            <action selector="firstProfileImagePicker:" destination="Vny-Ij-fKP" eventType="touchUpInside" id="YY7-be-7aD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7oJ-5w-P1E" secondAttribute="height" multiplier="17:42" id="1Jj-8o-2jt"/>
@@ -289,9 +308,6 @@
                                     <constraint firstAttribute="width" secondItem="2TM-1S-qbC" secondAttribute="height" multiplier="375:32" id="mYU-BY-Un0"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
-                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -339,8 +355,10 @@
                         <outlet property="secondLabel" destination="z0F-zq-oYE" id="j36-yw-qUx"/>
                         <outlet property="secondMukkaebieImage" destination="oGp-KY-J0V" id="Bah-mG-p17"/>
                         <outlet property="secondOrderLabel" destination="6q2-EB-eCD" id="lhF-4d-gH7"/>
+                        <outlet property="sencondImageButton" destination="OxR-WJ-6iM" id="a42-PI-i57"/>
                         <outlet property="thirdAward" destination="7oJ-5w-P1E" id="8pm-JW-rTK"/>
                         <outlet property="thirdBottomConstraint" destination="GP9-Xv-r6d" id="vHY-BH-9Nv"/>
+                        <outlet property="thirdImageButton" destination="Fhy-Ld-tsp" id="sza-5Q-YQ5"/>
                         <outlet property="thirdLabel" destination="LXM-2b-qsR" id="KGC-Ar-60c"/>
                         <outlet property="thirdMukkaebieImage" destination="q01-VE-Imk" id="mql-jB-YXj"/>
                         <outlet property="thirdOrderLabel" destination="vtG-5J-Upd" id="HES-kT-H43"/>
