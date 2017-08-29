@@ -539,17 +539,17 @@
 
 .review-user {
   float: left;
-  padding-top: 5px;
 }
 
 .starWrapper {
-  display: inline-block;
+  float:left;
   margin-left: 10px;
+  margin-top:1px;
 }
 
 .star-rating {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   fill: white;
   pointer-events: none;
 }
@@ -1394,5 +1394,18 @@
 }
 
 #topLoggedinInfo {
+  float: left;
+}
+
+#topLogoutButton{
   cursor: pointer;
+  display: none;
+  float: left;
+  margin-left: 15px;
+
+}
+
+#topLoggedinButton{
+  cursor: pointer;
+  float: left;
 }

@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     StoreUtil.toggleEdit();
   });
 
+  document.querySelector(".baeminMainLogo").addEventListener("click", function(){
+    const chickenStoreList = new StoreList("치킨");
+  })
 
 });
 

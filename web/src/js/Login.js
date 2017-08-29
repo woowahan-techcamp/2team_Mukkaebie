@@ -9,12 +9,7 @@ export class Login {
   }
 
   init(){
-    document.querySelector("#topLoggedinInfo").addEventListener("click", function () {
-      document.querySelector("#loginModal").style.display = "block";
-      setTimeout(function () {
-        document.querySelector("#loginModal").style.opacity = "1";
-      }, 100)
-    });
+    document.querySelector("#topLoggedinButton").addEventListener("click", this.makeLoginModal);
 
     document.querySelector(".loginButton").addEventListener("click", function () {
       this.getInputInfo()
@@ -22,7 +17,15 @@ export class Login {
           .then(this.checkValidity)
           .then(this.succeedLogin)
           .catch(this.failLogin)
+          .then(this.logout)
     }.bind(this));
+  }
+
+  makeLoginModal(){
+    document.querySelector("#loginModal").style.display = "block";
+    setTimeout(function () {
+      document.querySelector("#loginModal").style.opacity = "1";
+    }, 100)
   }
 
   getInputInfo(){
@@ -59,16 +62,43 @@ export class Login {
   }
 
   succeedLogin(userId){
-    StoreUtil.makeAfterLoginModal();
-    document.querySelector("#loginModal").style.display = "none";
-    const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
-    topLoggedinInfo.innerText = userId;
-    session = userId;
-    document.querySelector(".review-user").innerText = session;
+
+    return new Promise(function(resolve){
+      StoreUtil.makeAfterLoginModal();
+      document.querySelector("#loginModal").style.display = "none";
+      const topLoginButton = document.querySelector("#topLoggedinButton");
+      const topLogoutButton = document.querySelector("#topLogoutButton");
+      const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
+      topLoginButton.style.display = "none";
+      topLogoutButton.style.display = "block";
+      topLoggedinInfo.innerText = userId + " 님";
+
+      if (document.querySelector("p.review-user")) {
+        document.querySelector("p.review-user").innerText = userId;
+      }
+
+      session = userId;
+
+      document.querySelector(".loginIDInput").value = "";
+      document.querySelector(".loginPWInput").value = "";
+      resolve();
+    })
   }
 
   failLogin(msg){
     document.querySelector("#loginMsg").innerText = msg;
   }
 
+  logout(){
+
+    document.querySelector("#topLogoutButton").addEventListener("click", function (event) {
+      document.querySelector("#topLoggedinButton").style.display = "block";
+      document.querySelector("#topLogoutButton").style.display = "none";
+      document.querySelector("#topLoggedinInfo").innerText = "";
+      session = "비회원";
+      if (document.querySelector("p.review-user")) {
+        document.querySelector("p.review-user").innerText = "비회원";
+      }
+    })
+  }
 }
