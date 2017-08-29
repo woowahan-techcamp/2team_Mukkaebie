@@ -49,9 +49,16 @@ export class Graph {
     xhr.onload = function () {
       if (xhr.status === 200) {
 
-
         let orders = JSON.parse(xhr.responseText);
         let topMenu = {};
+
+        if (orders.length == 0) {
+          document.querySelector(".menuTabGraph").classList.add("menuTabHeight");
+          document.querySelector(".donutFigure").innerHTML = '';
+          document.querySelector(".menuTabGraph").innerHTML +=
+              `<div class="noOrderRecord"></div>
+               <div class="noOrderRecordComment">본 업소는 아직까지 주문이 1도 없습니다!</div>`;
+        }
 
         for (let i = 0; i < orders.length; i++) {
 
@@ -77,8 +84,6 @@ export class Graph {
 
         let top5 = items.slice(0, 5);
 
-
-        let datetimeContent = '';
         let circleContent = '';
         let colorArr = ['rgb(110,239,192)', 'rgb(42,193,188)', 'rgb(130,198,255)', 'rgb(251,136,136)', 'rgb(251,229,136)'];
         let total = 0;
@@ -172,13 +177,10 @@ export class Graph {
           return this.toString().zf(len);
         };
 
-
         let datetime = new Date().format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초 기준");
-
-        datetimeContent = `${datetime}`;
+        let datetimeContent = `${datetime}`;
         let dateTarget = document.querySelector('.dateTab');
         dateTarget.innerHTML = datetimeContent;
-
 
         let svg = document.querySelector('svg');
         svg.insertAdjacentHTML('beforeend', circleContent);

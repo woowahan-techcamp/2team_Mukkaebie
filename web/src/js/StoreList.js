@@ -102,7 +102,6 @@ export class StoreList {
         function processScroll(scroll_pos) {
           let contentHeight = renderTarget.offsetHeight;
           let y = scroll_pos + 100;
-          console.log(contentHeight , " : " , y);
           if (y >= contentHeight) {
             preventFadeIn();
 
