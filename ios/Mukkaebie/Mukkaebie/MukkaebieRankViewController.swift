@@ -74,19 +74,8 @@ class MukkaebieRankViewController: UIViewController {
         for i in 0..<imageButtonList.count {
             imageButtonList[0].isHidden = true
         }
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        for i in 0..<orderByUserTop3.count {
-            if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
-                mukkaebieCommentTextField.isEnabled = true
-                imageButtonList[0].isHidden = false
-                print("============")
-            }
-        }
-    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !viewIsAnimated && orderByUserTop3.count > 0 {
@@ -98,6 +87,13 @@ class MukkaebieRankViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        for i in 0..<orderByUserTop3.count {
+            if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
+                mukkaebieCommentTextField.isEnabled = true
+                imageButtonList[0].isHidden = false
+            }
+        }
         
         for i in 0..<orderByUserTop3.count {
             labelList[i].text = orderByUserTop3[i].key

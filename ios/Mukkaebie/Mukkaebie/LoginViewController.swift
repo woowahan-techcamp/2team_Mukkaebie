@@ -58,6 +58,7 @@ class LoginViewController: UIViewController {
     func checkedUser() {
         if modelUser.id == idTextField.text && modelUser.password == passwordTextField.text {
             successView.isHidden = false
+            User.sharedInstance.user = modelUser
             successLabel.text = "\(idTextField.text!)님 환영합니다!"
         }
         else {
@@ -72,6 +73,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func touchedLogOut(_ sender: Any) {
+        User.sharedInstance.isUser = false
         successView.isHidden = true
         idTextField.text = ""
         passwordTextField.text = ""
