@@ -213,7 +213,7 @@ class PieChartView: UIView {
         let currentController = self.getCurrentViewController()
         var titleArray = title.components(separatedBy: " ")
         titleArray.removeLast()
-        let titleString = titleArray.reduce(" ") { $0 + $1 }
+        let titleString = titleArray.reduce("") { $0 + $1 }
         var menuPriceString = String()
         for segment in segments {
             if title == segment.title {
