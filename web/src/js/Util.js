@@ -97,8 +97,7 @@ let StoreUtil = {
 
         cartContent.forEach(function (item) {
           menuList.push(item.getAttribute("value"));
-        })
-
+        });
 
         let packet = {};
         packet["sellerId"] = storeId;
@@ -112,15 +111,6 @@ let StoreUtil = {
 
         // send the collected data as JSON
         xhr1.send(JSON.stringify(packet));
-
-
-        let i = window.pageYOffset, j = 1;
-        let int = setInterval(function () {
-          window.scrollTo(0, i);
-          i -= 5 * j;
-          j += 0.2;
-          if (i < 200) clearInterval(int);
-        }, 20);
 
         xhr1.onloadend = function () {
           StoreUtil.makeModal();
@@ -139,13 +129,15 @@ let StoreUtil = {
     let cartTotalPrice = document.querySelector("#cartTotalPrice");
     cartTotalPrice.innerText = 0;
     cartTotalPrice.value = 0;
-    renderTarget.innerHTML = "";
-    Array.from(document.querySelectorAll("input[type='checkbox']")).forEach(function (cb) {
-      cb.checked = false
+
+    Array.from(document.querySelectorAll("input[type='checkbox']:checked")).forEach(function (cb) {
+      // cb.checked = false;
+      cb.click();
     });
     Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
       fb.click()
     })
+    renderTarget.innerHTML = "장바구니가 비어있어요";
   },
 
   toggleMobileCategory: function () {

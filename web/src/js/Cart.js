@@ -54,6 +54,10 @@ export class Cart {
   }
 
   removeFromCart(renderTarget, childToRemove){
+
+    console.log("renderTarget", renderTarget)
+    console.log("childToRemove", childToRemove)
+
     renderTarget.removeChild(childToRemove);
     if (renderTarget.children[0] === undefined ) {
       renderTarget.innerHTML = "장바구니가 비어있어요"

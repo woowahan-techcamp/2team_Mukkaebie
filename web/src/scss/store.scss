@@ -714,13 +714,21 @@
   bottom:0;
   z-index: 31;
 }
-
+.mkbCommentOutsideBadge{
+  position: absolute;
+  top:10px;
+  left:10px;
+  font-size: 1.4vw;
+}
+.mkbCommentOutsideBadge img {
+  width: 40px;
+}
 .mkbCommentOutsideBubble {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
-  top:1vh;
+  top: 4vh;
   border-radius: .4em;
   width: 90%;
   margin: 0 auto;
@@ -890,10 +898,10 @@
 .competition-podium .podium-block.bronze .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 70%;
+  padding-top: 67%;
   z-index: 1;
   position: relative;
-  width: 70%;
+  width: 67%;
   margin: 0 auto;
   background-image: url('../img/horn.png');
   background-size: 100% 100%;
@@ -919,10 +927,10 @@
 .competition-podium .podium-block.gold .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 65%;
+  padding-top: 63%;
   z-index: 1;
   position: relative;
-  width: 65%;
+  width: 63%;
   margin: 4vw auto;
   background-image: url('../img/horn.png');
   background-size: 100% 100%;
@@ -948,10 +956,10 @@
 .competition-podium .podium-block.silver .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 70%;
+  padding-top: 67%;
   z-index: 1;
   position: relative;
-  width: 70%;
+  width: 67%;
   margin: 0 auto;
   background-image: url('../img/horn.png');
   background-size: 100% 100%;
