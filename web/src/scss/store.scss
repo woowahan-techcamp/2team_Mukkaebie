@@ -9,6 +9,11 @@
   margin: 50px auto 100px auto;
   background: $mkbBackgroundColor;
   position: relative;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 .load-button {
   width: 150px;
@@ -531,6 +536,10 @@
   text-align: center;
   font-weight: normal;
   cursor: pointer;
+}
+
+.cartOrderButton:hover{
+  background: #095c59;
 }
 
 .review-user {

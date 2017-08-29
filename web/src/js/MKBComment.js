@@ -41,11 +41,11 @@ export class MKBComment {
 
   setModalTextarea(clickedMkb) {
     const modalTextarea = document.getElementById("commentTextInput");
-    if (clickedMkb) {
-      modalTextarea["value"] = clickedMkb["mkbComment"];
+    if (clickedMkb["mkbComment"] === undefined || clickedMkb["mkbComment"] === "undefined") {
+      modalTextarea["value"] = "";
     }
     else {
-      modalTextarea["value"] = "";
+      modalTextarea["value"] = clickedMkb["mkbComment"];
     }
   }
 

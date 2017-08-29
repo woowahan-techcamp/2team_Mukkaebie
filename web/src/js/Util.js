@@ -136,7 +136,7 @@ let StoreUtil = {
     });
     Array.from(document.querySelectorAll(".foldableLevel1.active")).forEach(function (fb) {
       fb.click()
-    })
+    });
     renderTarget.innerHTML = "장바구니가 비어있어요";
   },
 
