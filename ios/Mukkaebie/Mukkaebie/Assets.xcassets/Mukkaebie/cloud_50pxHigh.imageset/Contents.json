@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "cloud_50pxHigh.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "ios_35_On_20170522@2x.png",
       "scale" : "2x"
     },
     {
