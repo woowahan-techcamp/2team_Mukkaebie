@@ -6,9 +6,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BMHANNA_11yrs_otf.otf">
+            <string>BMHANNA11yrsoldOTF</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Cart Payment View Controller-->
         <scene sceneID="qRS-pS-XEH">
@@ -32,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="91" width="375" height="57"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jET-R4-JIE">
-                                        <rect key="frame" x="26" y="20" width="24.5" height="17"/>
+                                        <rect key="frame" x="26" y="20" width="36" height="17"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -191,6 +197,10 @@
                                     <action selector="touchedCancel:" destination="bNo-8D-H9U" eventType="touchUpInside" id="nE6-1V-NRv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slU-g4-lXb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -202,28 +212,72 @@
                             <constraint firstItem="Wvt-yp-ns5" firstAttribute="centerX" secondItem="uJs-1N-p9g" secondAttribute="centerX" id="PoT-YM-RwS"/>
                             <constraint firstItem="uJs-1N-p9g" firstAttribute="leading" secondItem="gvP-sd-oy1" secondAttribute="leading" id="Riv-rz-mfi"/>
                             <constraint firstItem="Wvt-yp-ns5" firstAttribute="bottom" secondItem="ONy-79-lwn" secondAttribute="top" id="SNv-Xe-QeD"/>
+                            <constraint firstItem="slU-g4-lXb" firstAttribute="centerX" secondItem="X8r-za-yuF" secondAttribute="centerX" id="Soj-W8-xNr"/>
+                            <constraint firstItem="slU-g4-lXb" firstAttribute="height" secondItem="X8r-za-yuF" secondAttribute="height" id="TIs-Yt-AMS"/>
+                            <constraint firstItem="slU-g4-lXb" firstAttribute="width" secondItem="X8r-za-yuF" secondAttribute="width" id="XXF-Wy-YEI"/>
                             <constraint firstItem="uJs-1N-p9g" firstAttribute="trailing" secondItem="gvP-sd-oy1" secondAttribute="trailing" id="bVV-a2-uHe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FT1-xd-j9D" secondAttribute="trailing" constant="24" id="k6R-FO-m9y"/>
                             <constraint firstItem="7m0-eO-o9Y" firstAttribute="top" secondItem="KGY-BO-S2a" secondAttribute="bottom" id="kI1-L1-Mdx"/>
+                            <constraint firstItem="slU-g4-lXb" firstAttribute="centerY" secondItem="X8r-za-yuF" secondAttribute="centerY" id="mra-c5-LrM"/>
                             <constraint firstItem="uJs-1N-p9g" firstAttribute="top" secondItem="gvP-sd-oy1" secondAttribute="bottom" id="nAF-3K-LcS"/>
                             <constraint firstAttribute="trailing" secondItem="gvP-sd-oy1" secondAttribute="trailing" id="qU9-YG-nhA"/>
                             <constraint firstItem="7m0-eO-o9Y" firstAttribute="leading" secondItem="X8r-za-yuF" secondAttribute="leading" constant="16" id="yvx-sO-oj8"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blurView" destination="slU-g4-lXb" id="yVM-oz-o2f"/>
                         <outlet property="menuNameLabel" destination="FT1-xd-j9D" id="hoK-rw-5wh"/>
                         <outlet property="menuPriceLabel" destination="10V-UN-5fb" id="auo-no-0cq"/>
                         <outlet property="minusButton" destination="gmG-F3-pb9" id="npk-yc-7aw"/>
                         <outlet property="orderCountLabel" destination="JNx-av-Awo" id="cjv-2k-DT5"/>
+                        <outlet property="orderSuccessView" destination="awF-Uz-egF" id="K3R-Uh-7db"/>
                         <outlet property="plusButton" destination="ASf-NB-4Dq" id="Fxv-eu-zRC"/>
                         <outlet property="totalPriceLabel" destination="RO3-EN-85c" id="Oyd-2W-sb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJd-8l-OhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="awF-Uz-egF">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="270" height="250"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderSuccess" translatesAutoresizingMaskIntoConstraints="NO" id="h1F-rv-SJR">
+                            <rect key="frame" x="51" y="50" width="171" height="152"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="171" id="3Ig-V2-fnl"/>
+                                <constraint firstAttribute="width" secondItem="h1F-rv-SJR" secondAttribute="height" multiplier="9:8" id="YOb-qV-DyS"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주.문.완.료!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-Kt-Y8c">
+                            <rect key="frame" x="97.5" y="23" width="75" height="17"/>
+                            <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="17"/>
+                            <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xw8-qV-NNV">
+                            <rect key="frame" x="0.0" y="205" width="270" height="45"/>
+                            <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="lrK-0A-8se"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
+                            <state key="normal" title="확인">
+                                <color key="titleColor" red="0.98958333333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="touchedConfirm:" destination="bNo-8D-H9U" eventType="touchUpInside" id="Aqz-i7-AXC"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Xw8-qV-NNV" secondAttribute="bottom" id="82B-2O-ysT"/>
+                        <constraint firstItem="Bgc-Kt-Y8c" firstAttribute="top" secondItem="awF-Uz-egF" secondAttribute="top" constant="23" id="9qS-mQ-CZJ"/>
+                        <constraint firstItem="Xw8-qV-NNV" firstAttribute="centerX" secondItem="awF-Uz-egF" secondAttribute="centerX" id="FQC-PG-4cB"/>
+                        <constraint firstItem="h1F-rv-SJR" firstAttribute="centerX" secondItem="awF-Uz-egF" secondAttribute="centerX" constant="1.5" id="Vv1-VP-dnz"/>
+                        <constraint firstItem="Bgc-Kt-Y8c" firstAttribute="centerX" secondItem="awF-Uz-egF" secondAttribute="centerX" id="Zop-nf-meU"/>
+                        <constraint firstItem="Xw8-qV-NNV" firstAttribute="width" secondItem="awF-Uz-egF" secondAttribute="width" id="tge-49-p8P"/>
+                        <constraint firstItem="h1F-rv-SJR" firstAttribute="top" secondItem="Bgc-Kt-Y8c" secondAttribute="bottom" constant="10" id="ygr-0h-bNz"/>
+                    </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="164" y="122.78860569715144"/>
@@ -231,5 +285,6 @@
     </scenes>
     <resources>
         <image name="cancelIcon" width="20" height="20"/>
+        <image name="orderSuccess" width="182" height="162"/>
     </resources>
 </document>
