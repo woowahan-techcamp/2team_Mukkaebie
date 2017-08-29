@@ -47,11 +47,17 @@ export class Cart {
 
 
   addToCart(renderTarget, renderContent) {
+    if (renderTarget.children[0] === undefined ) {
+      renderTarget.innerHTML = ""
+    }
     renderTarget.innerHTML += renderContent
   }
 
   removeFromCart(renderTarget, childToRemove){
     renderTarget.removeChild(childToRemove);
+    if (renderTarget.children[0] === undefined ) {
+      renderTarget.innerHTML = "장바구니가 비어있어요"
+    }
   }
 
   refreshCart(){

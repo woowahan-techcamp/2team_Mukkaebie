@@ -6,7 +6,7 @@
 
 .storeLayout {
   max-width: 960px;
-  margin: 50px auto 300px auto;
+  margin: 50px auto 100px auto;
   background: $bmBeigeColor;
   position: relative;
 }
@@ -247,7 +247,6 @@
 .storeTitleArea {
   height: 65px;
   background: #fff;
-  overflow: auto;
   padding: 20px;
   border: 1px solid #dad3c7
 }
@@ -287,21 +286,23 @@
 /* 먹깨비 탭 관련 */
 
 .mkbGrandMkb {
-  font-size: 30px
+  font-size: 5vw;
 }
 
 .mkbGrandMkbQuote {
   font-size: 100px; color:#FFDF00
 }
 .mkbCommentOutsideWrap{
-  margin-top: -55px;
+  background-image: url("../img/quote.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 #mkbCommentOutsideId{
-  font-size: 15px;
+  font-size: 2vw;
   color: $bmOrangeColor;
 }
 #mkbCommentOutsideMsg{
-  font-size: 40px
+  font-size: 5vw;
 }
 .logInRequired {
   display: none;
@@ -370,7 +371,6 @@
 .menuName {
   background-color: #fff;
   color: #000;
-  cursor: pointer;
   padding: 18px;
   width: 100%;
   text-align: left;
@@ -424,7 +424,13 @@
     width: 100%;
     margin-bottom: 20px;
   }
-
+  .storeCart {
+    position: fixed;
+    bottom: 0;
+    z-index: 32;
+    width: 100%;
+    left: 0;
+  }
   .tabAreaWrap {
     width: 100%;
   }
@@ -507,11 +513,14 @@
 .storeCartHead {
   padding: 10px;
   border-bottom: 1px solid #cccccc;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .storeCartContent {
   padding: 10px;
   border-bottom: 1px solid #cccccc;
+  color: $bmOrangeColor;
 }
 
 .storeCartTotal {
@@ -530,17 +539,17 @@
 
 .review-user {
   float: left;
-  padding-top: 5px;
 }
 
 .starWrapper {
-  display: inline-block;
+  float:left;
   margin-left: 10px;
+  margin-top:1px;
 }
 
 .star-rating {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1em;
+  height: 1em;
   fill: white;
   pointer-events: none;
 }
@@ -627,8 +636,8 @@
 .reviewCard {
   padding: 15px;
   display: flex;
-  align-items: flex-start;
   background: #fff;
+  align-items: flex-start;
 }
 
 .reviewCardPic {
@@ -647,6 +656,7 @@
 
 .reviewCardBtm {
   font-size: 11px;
+  word-break: break-all;
 }
 
 .reviewCardMid {
@@ -685,28 +695,40 @@
 
 #upload-button{
   margin-left: 15px;
+  cursor: pointer;
 }
 
 .mkbCommentOutside{
-  height: 300px;
+  height: 20%;
   background: transparent;
   position: absolute;
   width: 100%;
   text-align: center;
   top:0;
-  z-index: 100;
+  z-index: 31;
 }
+
+.mkbCommentCloud {
+  background-image: url("../img/cloud.png");
+  background-repeat: no-repeat;
+  background-size: 100% 200%;
+  position: absolute;
+  width:100%;
+  height: 20%;
+  bottom:0;
+  z-index: 31;
+}
+
 .mkbCommentOutsideBubble {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
-  top:30px;
-  //background-image:url("../img/goldbubble.svg");
+  top:1vh;
   border-radius: .4em;
   width: 90%;
   margin: 0 auto;
-  height: 80%;
+  height: 100%;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -793,11 +815,12 @@
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
+  border: 1vw solid #1abcaa;
 }
 
-.goldImg {border: 10px solid #FFDF00;}
-.silverImg {border: 10px solid #D3D3D3;}
-.bronzeImg {border: 10px solid #cd7f32;}
+//.goldImg {border: 1vw solid #FFDF00;}
+//.silverImg {border: 1vw solid #D3D3D3;}
+//.bronzeImg {border: 1vw solid #cd7f32;}
 
 @-webkit-keyframes rain {
   0% {
@@ -830,6 +853,7 @@
   -webkit-animation: rain 5s linear infinite;
   margin: 0 auto;
   overflow: hidden;
+  background-size: 120%;
 }
 
 .competition-podium .podium-block {
@@ -874,10 +898,10 @@
 .competition-podium .podium-block.bronze .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 80%;
+  padding-top: 70%;
   z-index: 1;
   position: relative;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -885,7 +909,7 @@
   color: #ead679;
   left: 30%;
   z-index: 30;
-  height: 70%;
+  height: 80%;
   width: 34%;
 }
 
@@ -900,11 +924,11 @@
 .competition-podium .podium-block.gold .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 80%;
+  padding-top: 65%;
   z-index: 1;
   position: relative;
-  width: 80%;
-  margin: 0 auto;
+  width: 65%;
+  margin: 4vw auto;
 }
 
 .competition-podium .podium-block.silver {
@@ -926,10 +950,10 @@
 .competition-podium .podium-block.silver .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 80%;
+  padding-top: 70%;
   z-index: 1;
   position: relative;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -1370,5 +1394,18 @@
 }
 
 #topLoggedinInfo {
+  float: left;
+}
+
+#topLogoutButton{
   cursor: pointer;
+  display: none;
+  float: left;
+  margin-left: 15px;
+
+}
+
+#topLoggedinButton{
+  cursor: pointer;
+  float: left;
 }

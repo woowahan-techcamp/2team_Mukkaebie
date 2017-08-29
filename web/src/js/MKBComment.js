@@ -10,10 +10,16 @@ export class MKBComment {
     this.addMkbModalEventListener(storeId, topThreeList);
 
 
-    this.sendImage(storeId, topThreeList)
-        .then(this.setProfilePics)
-        .then(this.postComment)
-        .then(this.applyChange)
+    const form = document.getElementById('upload-button');
+
+    form.addEventListener("click", function (e) {
+      this.sendImage(storeId, topThreeList,e)
+          .then(this.setProfilePics)
+          .then(this.postComment)
+          .then(this.applyChange)
+    }.bind(this));
+
+
   }
 
   initialRendering() {
@@ -196,7 +202,7 @@ export class MKBComment {
   }
 
 
-  sendImage(storeId, topThreeList) {
+  sendImage(storeId, topThreeList, e) {
     return new Promise(function (resolve) {
       const form = document.getElementById('file-form');
       const fileSelect = document.getElementById('file-select');
@@ -288,6 +294,5 @@ export class MKBComment {
     if (targetLevel === "gold") {
       document.querySelector("#mkbCommentOutsideMsg").innerText = document.querySelector("#commentTextInput").value;
     }
-    const newMkb = new MKBComment(inputObj["storeId"], inputObj["topThreeList"])
   }
 }

@@ -173,6 +173,17 @@ let StoreUtil = {
     xhr.send();
   },
 
+  ajaxGetProfile(userId){
+    const xhr = new XMLHttpRequest();
+    function ajaxGetProfileCb(){
+      const response = JSON.parse(this.responseText);
+      return response;
+    }
+    xhr.addEventListener("load", ajaxGetProfileCb);
+    xhr.open("GET", "http://52.78.209.189:3000/users");
+    xhr.send();
+  },
+
   ajaxPost(url, data){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url);

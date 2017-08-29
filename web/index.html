@@ -24,7 +24,7 @@
 <script id="reviewTemplate" type="text/template">
 
   <div class="reviewCard">
-    <div class="reviewCardPic">
+    <div class="reviewCardPic" value="${profilePic}">
     </div>
     <div class="reviewCardContent">
       <div class="reviewCardTop p-x-1">
@@ -158,6 +158,7 @@
     <div class="storeCart">
       <div class="storeCartHead">장바구니</div>
       <div class="storeCartContent">
+        장바구니가 비어있어요
       </div>
       <div class="storeCartTotal">
         <span>주문금액합계</span>
@@ -253,13 +254,14 @@
             <div class="mkbCommentOutside">
               <div class="mkbCommentOutsideBubble">
                 <div class="mkbGrandMkb">이 구역의 大 먹깨비</div>
-                <div id="mkbCommentOutsideId">공 석</div>
                 <div class="mkbCommentOutsideWrap">
-                  <span class="mkbGrandMkbQuote">"</span>
+
                   <span id="mkbCommentOutsideMsg">당신! 먹깨비가 되어라</span>
-                  <span class="mkbGrandMkbQuote">"</span></div>
+                </div>
+                <div id="mkbCommentOutsideId">공 석</div>
               </div>
             </div>
+            <div class="mkbCommentCloud"></div>
             <div class="competition-podium well m-a-0">
               <div class="podium-block gold">
                 <div class="orders"></div>
@@ -322,7 +324,7 @@
               </div>
             </div>
 
-            <div id="rated"></div>
+            <div id="rated">5</div>
 
             <textarea id="reviewTextInput" type="text" name="content"></textarea>
             <button id="reviewTextInputBtn" class="float-right">작성</button>
@@ -338,7 +340,9 @@
 </script>
 
 <div class="float-right p-a-1 loginMenu">
-  <span id="topLoggedinInfo">로그인</span>
+  <span id="topLoggedinButton">로그인</span>
+  <span id="topLoggedinInfo"></span>
+  <span id="topLogoutButton">로그아웃</span>
 </div>
 <div class="row header m-x-0">
 

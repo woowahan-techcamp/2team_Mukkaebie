@@ -2,6 +2,8 @@ import {StoreList} from "./js/StoreList.js";
 import {Login} from "./js/Login.js";
 import StoreUtil from "./js/Util.js";
 
+import style from './scss/main.scss';
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const login = new Login();
@@ -40,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
     StoreUtil.toggleEdit();
   });
 
+  document.querySelector(".baeminMainLogo").addEventListener("click", function(){
+    const chickenStoreList = new StoreList("치킨");
+  })
 
 });
 
