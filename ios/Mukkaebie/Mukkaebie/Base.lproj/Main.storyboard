@@ -306,10 +306,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQO-dQ-q31">
-                                <rect key="frame" x="0.0" y="74" width="375" height="406"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HJTech님 환영합니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjR-SF-Lo6">
-                                        <rect key="frame" x="91" y="314" width="192" height="20"/>
+                                        <rect key="frame" x="91" y="272" width="192" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sjR-SF-Lo6" secondAttribute="height" multiplier="317:33" id="4V9-tY-gr1"/>
                                         </constraints>
@@ -318,7 +318,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-cx-yP3">
-                                        <rect key="frame" x="124" y="362" width="127" height="43.5"/>
+                                        <rect key="frame" x="124" y="312" width="127" height="43.5"/>
                                         <color key="backgroundColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43.5" id="0LL-le-g1p"/>
@@ -340,11 +340,10 @@
                                 <constraints>
                                     <constraint firstItem="4h4-cx-yP3" firstAttribute="centerX" secondItem="mQO-dQ-q31" secondAttribute="centerX" id="8Fw-6t-Nzf"/>
                                     <constraint firstItem="nHN-cT-kB3" firstAttribute="width" secondItem="mQO-dQ-q31" secondAttribute="width" id="Yd8-59-zZs"/>
-                                    <constraint firstAttribute="width" secondItem="mQO-dQ-q31" secondAttribute="height" multiplier="375:406" id="Yyg-zb-nIG"/>
                                     <constraint firstItem="nHN-cT-kB3" firstAttribute="top" secondItem="mQO-dQ-q31" secondAttribute="top" id="aUr-wc-n2z"/>
-                                    <constraint firstItem="4h4-cx-yP3" firstAttribute="top" secondItem="sjR-SF-Lo6" secondAttribute="bottom" constant="28" id="fjh-Yw-SpQ"/>
+                                    <constraint firstItem="4h4-cx-yP3" firstAttribute="top" secondItem="sjR-SF-Lo6" secondAttribute="bottom" constant="20" id="fjh-Yw-SpQ"/>
                                     <constraint firstItem="nHN-cT-kB3" firstAttribute="leading" secondItem="mQO-dQ-q31" secondAttribute="leading" id="fwp-E8-6is"/>
-                                    <constraint firstItem="sjR-SF-Lo6" firstAttribute="top" secondItem="nHN-cT-kB3" secondAttribute="bottom" constant="52" id="hGc-lJ-qw7"/>
+                                    <constraint firstItem="sjR-SF-Lo6" firstAttribute="top" secondItem="nHN-cT-kB3" secondAttribute="bottom" constant="10" id="hGc-lJ-qw7"/>
                                     <constraint firstItem="sjR-SF-Lo6" firstAttribute="centerX" secondItem="mQO-dQ-q31" secondAttribute="centerX" id="hhG-c3-NgV"/>
                                     <constraint firstAttribute="trailing" secondItem="nHN-cT-kB3" secondAttribute="trailing" id="xKO-Sk-KJQ"/>
                                 </constraints>
@@ -354,10 +353,14 @@
                         <constraints>
                             <constraint firstItem="mQO-dQ-q31" firstAttribute="centerY" secondItem="0At-ff-SsW" secondAttribute="centerY" id="3Jb-we-ajo"/>
                             <constraint firstItem="mQO-dQ-q31" firstAttribute="leading" secondItem="0At-ff-SsW" secondAttribute="leading" id="72f-7K-LBf"/>
+                            <constraint firstItem="mQO-dQ-q31" firstAttribute="leading" secondItem="0At-ff-SsW" secondAttribute="leading" id="D8F-JX-2hI"/>
+                            <constraint firstItem="mQO-dQ-q31" firstAttribute="top" secondItem="sJ6-Vx-0Yu" secondAttribute="bottom" id="OWZ-2V-mkq"/>
                             <constraint firstItem="ZOb-CS-3xS" firstAttribute="leading" secondItem="0At-ff-SsW" secondAttribute="leadingMargin" constant="8" id="aD4-0a-UqV"/>
                             <constraint firstItem="ZOb-CS-3xS" firstAttribute="centerY" secondItem="0At-ff-SsW" secondAttribute="centerY" id="dGL-rB-gSF"/>
+                            <constraint firstItem="8tC-as-i3D" firstAttribute="top" secondItem="mQO-dQ-q31" secondAttribute="bottom" id="dNk-km-zhp"/>
                             <constraint firstItem="ZOb-CS-3xS" firstAttribute="trailing" secondItem="0At-ff-SsW" secondAttribute="trailingMargin" constant="8" id="eOp-s6-8bR"/>
                             <constraint firstAttribute="trailing" secondItem="mQO-dQ-q31" secondAttribute="trailing" id="hzC-S5-y4A"/>
+                            <constraint firstAttribute="trailing" secondItem="mQO-dQ-q31" secondAttribute="trailing" id="oAR-NW-SxM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="the보기" id="RK1-2J-qDA"/>
@@ -433,7 +436,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gXq-cF-Daf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gXq-cF-Daf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -457,7 +460,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="qjx-xE-SGw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qjx-xE-SGw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -481,7 +484,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ChN-iY-Lqc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ChN-iY-Lqc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -505,7 +508,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="w8l-DR-EWy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="w8l-DR-EWy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
