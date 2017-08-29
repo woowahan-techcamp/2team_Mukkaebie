@@ -60,18 +60,22 @@ class LoginViewController: UIViewController {
             successView.isHidden = false
             successLabel.text = "\(idTextField.text!)님 환영합니다!"
         }
+        else {
+            alartMessageLabel.isHidden = false
+            alartMessageLabel.text = "id와 password를 확인해주세요."
+        }
     }
 
     
     @IBAction func touchedLogin(_ sender: Any) {
         NetworkUser.getUserList(userID: idTextField.text!)
-        
     }
     
     @IBAction func touchedLogOut(_ sender: Any) {
         successView.isHidden = true
         idTextField.text = ""
         passwordTextField.text = ""
+        alartMessageLabel.isHidden = true
     }
     
     func tap(gesture: UITapGestureRecognizer) {
