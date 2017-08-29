@@ -39,7 +39,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DuR-uh-roo" userLabel="View2">
                                 <rect key="frame" x="10" y="242" width="111" height="348"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="secondGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="gUt-zq-N3J">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="secondGrade" translatesAutoresizingMaskIntoConstraints="NO" id="gUt-zq-N3J">
                                         <rect key="frame" x="0.0" y="28" width="123" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -106,7 +106,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7oJ-5w-P1E" userLabel="View3">
                                 <rect key="frame" x="246" y="293" width="120" height="297"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thirdGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="QC8-3a-5tl">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thirdGrade" translatesAutoresizingMaskIntoConstraints="NO" id="QC8-3a-5tl">
                                         <rect key="frame" x="0.0" y="28" width="110" height="269"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -173,7 +173,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9N7-Wg-pWv" userLabel="View1">
                                 <rect key="frame" x="121" y="176" width="134" height="414"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="firstGrade.png" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-z9-5vb">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="firstGrade" translatesAutoresizingMaskIntoConstraints="NO" id="FIN-z9-5vb">
                                         <rect key="frame" x="0.0" y="2" width="134" height="414"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -289,7 +289,7 @@
                                 <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh.png" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
                                 <rect key="frame" x="0.0" y="44" width="375" height="615"/>
                             </imageView>
                         </subviews>
@@ -351,14 +351,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud_50pxHigh.png" width="750" height="1334"/>
+        <image name="cloud_50pxHigh" width="750" height="1334"/>
         <image name="comentBox" width="300" height="89"/>
-        <image name="firstGrade.png" width="309" height="851"/>
+        <image name="firstGrade" width="154" height="425"/>
         <image name="hornProfil" width="86" height="92"/>
         <image name="mukkeabieRankIcon" width="26" height="25"/>
         <image name="profile" width="75" height="75"/>
         <image name="profileSettingButton" width="20" height="20"/>
-        <image name="secondGrade.png" width="235" height="637"/>
-        <image name="thirdGrade.png" width="205" height="486"/>
+        <image name="secondGrade" width="117" height="318"/>
+        <image name="thirdGrade" width="102" height="243"/>
     </resources>
 </document>

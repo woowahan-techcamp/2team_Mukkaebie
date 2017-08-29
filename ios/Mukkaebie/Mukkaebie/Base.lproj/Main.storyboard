@@ -199,12 +199,15 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favorite.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="EJg-gt-t3P">
-                                <rect key="frame" x="0.0" y="132" width="375" height="355"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nilFavorite" translatesAutoresizingMaskIntoConstraints="NO" id="EJg-gt-t3P">
+                                <rect key="frame" x="0.0" y="38" width="375" height="516"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="EJg-gt-t3P" secondAttribute="bottom" id="vQk-bd-5WE"/>
+                            <constraint firstItem="EJg-gt-t3P" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="zVw-pL-9W2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="단골매장" id="43V-sv-LUp"/>
                 </viewController>
@@ -378,12 +381,16 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jang.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Zsq-xH-fvI">
-                                <rect key="frame" x="0.0" y="132" width="375" height="355"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nilCart" translatesAutoresizingMaskIntoConstraints="NO" id="Zsq-xH-fvI">
+                                <rect key="frame" x="0.0" y="40" width="375" height="514"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zsq-xH-fvI" firstAttribute="leading" secondItem="Ycg-hT-JP3" secondAttribute="leading" id="9OE-2D-71G"/>
+                            <constraint firstAttribute="trailing" secondItem="Zsq-xH-fvI" secondAttribute="trailing" id="NTM-Yy-ISB"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Zsq-xH-fvI" secondAttribute="bottom" id="Z3M-yH-1eR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="장바구니" id="rwp-ga-hfz"/>
                 </viewController>
@@ -420,7 +427,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="gXq-cF-Daf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="gXq-cF-Daf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -444,7 +451,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qjx-xE-SGw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="qjx-xE-SGw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -468,7 +475,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ChN-iY-Lqc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ChN-iY-Lqc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -492,7 +499,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="w8l-DR-EWy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="w8l-DR-EWy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -511,8 +518,8 @@
     </scenes>
     <resources>
         <image name="banner1" width="646" height="181"/>
-        <image name="favorite.jpeg" width="750" height="520"/>
-        <image name="jang.jpeg" width="750" height="615"/>
+        <image name="nilCart" width="375" height="514"/>
+        <image name="nilFavorite" width="375" height="516"/>
         <image name="tab1" width="64" height="49"/>
         <image name="tab1_on" width="64" height="49"/>
         <image name="tab2" width="64" height="49"/>
