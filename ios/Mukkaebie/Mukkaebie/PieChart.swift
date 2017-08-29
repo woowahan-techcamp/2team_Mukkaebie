@@ -178,7 +178,6 @@ class PieChartView: UIView {
         }
         
         for titleView in titleViews {
-            print(titleViewsCount)
             titleView.frame = CGRect(x: 0, y: min(bounds.size.width, bounds.size.height) - titleHeight * CGFloat(titleViewsCount), width: frame.size.width, height: 20)
             titleViewsCount -= 1
             

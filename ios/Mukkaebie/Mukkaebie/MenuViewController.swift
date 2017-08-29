@@ -33,7 +33,7 @@ class MenuViewController: UIViewController {
         self.menuTableView.delegate = self
         
         setSegment()
-        print("파이",pieChartView.frame.size)
+
         self.menuTableView.reloadData()
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
     }
@@ -61,7 +61,11 @@ class MenuViewController: UIViewController {
             for (title, submenu) in menu {
                 var menu : [(key: String, value: String)] = []
                 for (name, price) in submenu {
-                    menu.append((key: name, value: price))
+                    if price != "" {
+                        menu.append((key: name, value: price))
+                    } else {
+                        menu.append((key: name, value: "0원"))
+                    }
                 }
                 self.menus.append(menu)
             }
