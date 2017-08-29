@@ -10,6 +10,10 @@
     color: #FF0000;
 }
 
+.hideDonut {
+    display: none;
+}
+
 .menuTabHeight {
     height: 80%;
 }
@@ -65,7 +69,12 @@ figure {
     flex-direction: column;
     margin-left: -15px;
     margin-right: -15px;
-    flex-direction:row;
+}
+
+@media (min-width: 768px) {
+    figure {
+        flex-direction: row;
+    }
 }
 
 
@@ -153,6 +162,12 @@ circle {
 
 }
 
+@media screen and (max-width: 768px){
+    .figure-key {
+        margin-left: 12%;
+    }
+}
+
 @media only screen and (max-width: 600px) {
 
     .figure-key-list {
@@ -182,6 +197,10 @@ circle {
 }
 
 @media only screen and (max-width: 350px) {
+
+    .figure-key {
+        margin-left: 20%;
+    }
 
     .figure-key-list {
         column-count: 1;
@@ -219,6 +238,27 @@ svg > .donut {
     vertical-align: middle;
     width: 20px;
     height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .shape-rect {
+        width: 18px;
+        height: 18px
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .shape-rect {
+        width: 16px;
+        height: 16px
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .shape-rect {
+        width: 14px;
+        height: 14px
+    }
 }
 
 .shape-1 {

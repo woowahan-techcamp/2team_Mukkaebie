@@ -54,10 +54,16 @@ export class Graph {
 
         if (orders.length == 0) {
           document.querySelector(".menuTabGraph").classList.add("menuTabHeight");
-          document.querySelector(".donutFigure").innerHTML = '';
+          document.querySelector(".donutFigure").classList.add("hideDonut");
           document.querySelector(".menuTabGraph").innerHTML +=
               `<div class="noOrderRecord"></div>
                <div class="noOrderRecordComment">본 업소는 아직까지 주문이 1도 없습니다!</div>`;
+        } else {
+          document.querySelector(".donutFigure").classList.remove("hideDonut");
+          let noOrderImage = document.querySelector(".noOrderRecord");
+          let noOrderComment = document.querySelector(".noOrderRecordComment");
+          if(noOrderComment) noOrderComment.parentNode.removeChild(noOrderComment);
+          if(noOrderImage) noOrderImage.parentNode.removeChild(noOrderImage);
         }
 
         for (let i = 0; i < orders.length; i++) {
@@ -92,6 +98,7 @@ export class Graph {
         let offset = 25;
         let totalLength = 0;
         let labelText = document.querySelectorAll('.labelText');
+        let labelArr = [...labelText];
 
 
         for (let key in topMenu) {
@@ -106,13 +113,12 @@ export class Graph {
                   <title class="donut-segment-title">${top5[i].toString().split(',')[0]}</title>
                </circle>`;
 
-          labelText[i] = '';
-          labelText[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
+          labelArr[i].innerHTML = top5[i].toString().split(',')[0] + ' ' + share.toFixed(2) + '%';
           totalLength = totalLength + share;
           offset = (100 - totalLength + 25) % 100;
           if (i == 4) {
-            labelText[5].innerHTML = '';
-            labelText[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
+            labelArr[5].innerHTML = '';
+            labelArr[5].innerHTML = '기타 ' + (100 - totalLength).toFixed(2) + '%';
           }
         }
 
