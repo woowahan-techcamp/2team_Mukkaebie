@@ -95,9 +95,9 @@ class MukkaebieRankViewController: UIViewController {
                     }
                 } else {
                     if i == 0 {
-                        mukkaebieCommentTextField.text = "메세지를 입력해주세요"
+                        mukkaebieCommentTextField.placeholder = "먹깨비만 남길 수 있는 영광의 한마디!"
                     }
-                    mukkaebieImageList[i].af_setImage(withURL: URL(string: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
+                    mukkaebieImageList[i].af_setImage(withURL: URL(string: "http://52.78.27.108:3000/uploads/profileImage-1503980151599.jpg")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                 }
             }
             imageCommentIsRequested = true
@@ -152,10 +152,10 @@ class MukkaebieRankViewController: UIViewController {
                 if mkb["userId"] == userId && mkb["imgUrl"] != nil{
                     NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: mkb["imgUrl"]!)
                 } else {
-                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+                    NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "http://52.78.27.108:3000/uploads/profileImage-1503980151599.jpg")
                 }
             }
-            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png")
+            NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgUrl: "http://52.78.27.108:3000/uploads/profileImage-1503980151599.jpg")
         } else {
             NetworkMkb.postMkb(storeId: (Store.sharedInstance.specificStore?.id)!, userId: userId, mkbComment: mkbComment, imgData: imgData!)
         }
