@@ -286,7 +286,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="BMHANNA11yrsoldOTF" family="BM HANNA 11yrs old OTF" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <action selector="textFieldEditingDidEnd:" destination="Vny-Ij-fKP" eventType="editingDidEnd" id="Uup-yT-iVb"/>
                                 </connections>

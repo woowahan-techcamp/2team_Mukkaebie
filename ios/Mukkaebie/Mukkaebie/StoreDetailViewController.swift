@@ -58,7 +58,6 @@ class StoreDetailViewController: UIViewController {
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1.5
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)

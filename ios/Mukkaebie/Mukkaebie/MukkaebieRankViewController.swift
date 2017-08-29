@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class MukkaebieRankViewController: UIViewController {
+class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
     @IBOutlet weak var mukkaebieCommentTextField: UITextField!
     
@@ -75,7 +75,13 @@ class MukkaebieRankViewController: UIViewController {
         labelList = [firstLabel, secondLabel, thirdLabel]
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
         
+        mukkaebieCommentTextField.delegate = self
         mukkaebieCommentTextField.isEnabled = false
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        self.view.addGestureRecognizer(tapGesture)
+        self.view.isUserInteractionEnabled = true
+        
         
         for i in 0..<imageButtonList.count {
             imageButtonList[i].isHidden = true
@@ -205,6 +211,26 @@ class MukkaebieRankViewController: UIViewController {
         let mkbComment = sender.text
         comment = mkbComment
         postComment(userId: User.sharedInstance.user.id, mkbComment: mkbComment!)
+        mukkaebieCommentTextField.endEditing(true)
+        
+    }
+    
+//    func textFieldShouldReturn(textField: UITextField) -> Bool {
+//        mukkaebieCommentTextField.resignFirstResponder()
+//        return true;
+//    }
+    
+    func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        mukkaebieCommentTextField.resignFirstResponder()
+        self.parent?.view.endEditing(true)
+    }
+    
+    func tap(gesture: UITapGestureRecognizer) {
+        mukkaebieCommentTextField.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
