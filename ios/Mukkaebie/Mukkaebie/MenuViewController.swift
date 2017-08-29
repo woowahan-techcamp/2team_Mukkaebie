@@ -13,6 +13,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet var noOrderView: UIView!
+    @IBOutlet var loginAlertView: UIView!
     
     @IBOutlet weak var chartAnimationView: UIView!
     
@@ -128,6 +129,14 @@ class MenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String,
+                                                   sender: Any!) -> Bool {
+        if identifier == "menuOrder" {
+            return User.sharedInstance.isUser
+        }
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "menuOrder" {
             if let indexPath = self.menuTableView.indexPathForSelectedRow {
@@ -189,6 +198,21 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
         header.contentView.tag = section
         
         return header.contentView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        if !User.sharedInstance.isUser {
+            loginAlertView.center = (self.view.window?.rootViewController?.view.center)!
+            loginAlertView.layer.masksToBounds = true
+            loginAlertView.layer.cornerRadius = 1.5
+            self.view.window?.rootViewController?.view.addSubview(loginAlertView)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.loginAlertView.removeFromSuperview()
+            }
+        }
+        
+        cell?.isSelected = false
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

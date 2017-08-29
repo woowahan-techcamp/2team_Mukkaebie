@@ -86,10 +86,16 @@ class CartPaymentViewController: UIViewController {
     
 
     @IBAction func touchedConfirm(_ sender: Any) {
-        self.blurView.removeFromSuperview()
-        self.orderSuccessView.removeFromSuperview()
-        self.dismiss(animated: true, completion: nil)
-        NetworkOrder.postOrder(sellderId: Store.sharedInstance.specificStore.id, buyerId: "hjtech", price: self.totalPrice, content: [self.menuName])
+        if User.sharedInstance.isUser {
+            self.blurView.removeFromSuperview()
+            self.orderSuccessView.removeFromSuperview()
+            self.dismiss(animated: true, completion: nil)
+            NetworkOrder.postOrder(sellderId: Store.sharedInstance.specificStore.id, buyerId: User.sharedInstance.user.id, price: self.totalPrice, content: [self.menuName])
+        } else {
+            self.blurView.removeFromSuperview()
+            self.orderSuccessView.removeFromSuperview()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     

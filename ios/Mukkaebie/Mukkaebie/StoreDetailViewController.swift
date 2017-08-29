@@ -13,28 +13,24 @@ class StoreDetailViewController: UIViewController {
     lazy var mukkaebieVC : MukkaebieRankViewController? = {
         let storyboard = UIStoryboard(name: "MukkaebieRank", bundle: nil)
         let mukkaebieVC = storyboard.instantiateViewController(withIdentifier: "MukkaebieRank") as? MukkaebieRankViewController
-        
         return mukkaebieVC
     }()
     
     lazy var menuRankVC : MenuViewController? = {
         let storyboard = UIStoryboard(name: "MenuView", bundle: nil)
         let menuRankVC = storyboard.instantiateViewController(withIdentifier: "Menu") as? MenuViewController
-        
         return menuRankVC
     }()
     
     lazy var infoVC : InfoViewController? = {
         let storyboard = UIStoryboard(name: "Info", bundle: nil)
         let infoVC = storyboard.instantiateViewController(withIdentifier: "Info") as? InfoViewController
-
         return infoVC
     }()
     
     lazy var reviewVC : ReviewTableViewController? = {
         let storyboard = UIStoryboard(name: "Review", bundle: nil)
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "Review") as? ReviewTableViewController
-        
         return reviewVC
     }()
     

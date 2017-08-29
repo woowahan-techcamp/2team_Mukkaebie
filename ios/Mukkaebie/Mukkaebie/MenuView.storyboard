@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aE5-Zg-1TS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aE5-Zg-1TS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -152,6 +152,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="rrrr" id="5md-cb-gNs"/>
                     <connections>
+                        <outlet property="loginAlertView" destination="1ck-uh-bxt" id="K2o-AM-EvK"/>
                         <outlet property="menuTableView" destination="6Bz-b8-Vfs" id="ibb-dK-wNx"/>
                         <outlet property="noOrderView" destination="tdg-qs-y7v" id="fw4-v8-4f5"/>
                         <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
@@ -172,6 +173,28 @@
                         <constraint firstItem="WEa-0X-jff" firstAttribute="width" secondItem="tdg-qs-y7v" secondAttribute="width" id="Zve-0D-cjL"/>
                         <constraint firstItem="WEa-0X-jff" firstAttribute="centerY" secondItem="tdg-qs-y7v" secondAttribute="centerY" id="iNB-tR-HIU"/>
                         <constraint firstItem="WEa-0X-jff" firstAttribute="centerX" secondItem="tdg-qs-y7v" secondAttribute="centerX" id="lx4-fg-GrX"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="1ck-uh-bxt">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CL-ZL-tH1">
+                            <rect key="frame" x="0.0" y="8" width="140" height="14"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.23210149999999999" green="0.2043522894" blue="0.1706772745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="leading" secondItem="1ck-uh-bxt" secondAttribute="leading" id="2dp-wM-VRn"/>
+                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="centerX" secondItem="1ck-uh-bxt" secondAttribute="centerX" id="Nvt-Rn-TSx"/>
+                        <constraint firstAttribute="trailing" secondItem="8CL-ZL-tH1" secondAttribute="trailing" id="U57-83-6cH"/>
+                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="centerY" secondItem="1ck-uh-bxt" secondAttribute="centerY" id="ab9-Wy-fki"/>
+                        <constraint firstAttribute="trailing" secondItem="8CL-ZL-tH1" secondAttribute="trailing" id="aqx-oL-wy2"/>
+                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="top" secondItem="1ck-uh-bxt" secondAttribute="top" constant="8" id="o6Q-EI-BIO"/>
+                        <constraint firstAttribute="bottom" secondItem="8CL-ZL-tH1" secondAttribute="bottom" constant="8" id="qM2-6Z-BSH"/>
                     </constraints>
                 </view>
             </objects>

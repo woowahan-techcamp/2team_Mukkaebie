@@ -50,10 +50,11 @@ class ModelUsers: Mappable {
 
 class User {
     static let sharedInstance = User()
-    var isUser = Bool() {
+    var isUser = false
+    
+    var user = ModelUsers() {
         didSet {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "checkIsUser"), object: nil)
+            isUser = true
         }
     }
-    var user = ModelUsers()
 }
