@@ -70,7 +70,9 @@ class ModelStores: Mappable {
         
         for order in Order.sharedInstance.specificStoreOrder {
             for content in order.content {
+                if Store.sharedInstance.specificStore.orderByMenu[content] != nil {
                 Store.sharedInstance.specificStore.orderByMenu[content]! += 1
+                }
             }
         }
     }
