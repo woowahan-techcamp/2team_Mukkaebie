@@ -102,8 +102,13 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
 
         
         for (index,val) in orderByUserTop3.enumerated() {
-            if val.key == User.sharedInstance.user.id {
+            if index == 0 && val.key == User.sharedInstance.user.id {
                 mukkaebieCommentTextField.isEnabled = true
+                imageButtonList[index].isHidden = false
+            }
+
+            else if val.key == User.sharedInstance.user.id {
+                mukkaebieCommentTextField.isEnabled = false
                 imageButtonList[index].isHidden = false
             }
         }
