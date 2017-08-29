@@ -7,7 +7,7 @@
 .storeLayout {
   max-width: 960px;
   margin: 50px auto 100px auto;
-  background: $bmBeigeColor;
+  background: $mkbBackgroundColor;
   position: relative;
 }
 .load-button {
@@ -90,9 +90,6 @@
   }
 }
 
-.menuReviewWrap {
-  border: 1px solid #cccccc;
-}
 
 /*페이지 레이아웃 끝*/
 
@@ -248,12 +245,12 @@
   height: 65px;
   background: #fff;
   padding: 20px;
-  border: 1px solid #dad3c7
 }
 
 .storeTitleLabel {
   padding: 3px 5px 3px 5px;
-  background: #877b63;
+  background: rgb(9, 92, 89);
+;
   color: #fff
 }
 
@@ -472,7 +469,7 @@
 }
 
 .storeDetailHead {
-  border: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   padding: 15px;
   font-size: 11px;
   font-weight: bold;
@@ -487,7 +484,7 @@
   padding: 10px;
   border-color: #cccccc;
   border-style: solid;
-  border-width: 0px 1px 1px 1px;
+  border-width: 0px 0px 0px 0px;
 }
 
 .storeDetailTable tr {
@@ -504,7 +501,6 @@
 
 /* 주문하기 박스 */
 .storeCart {
-  border: 1px solid #cccccc;
   margin-top: 20px;
   background: #fff;
   transition: all 1s ease-in-out;
@@ -528,7 +524,7 @@
 }
 
 .cartOrderButton {
-  background: $bmOrangeColor;
+  background: $bmMintColor;
   font-size: 30px;
   padding: 20px;
   color: #fff;
@@ -811,16 +807,12 @@
   bottom: 0;
   right: 0;
   text-align: center;
-  background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png');
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
-  border: 1vw solid #1abcaa;
+  border: 1vw solid rgb(42, 202, 200);
 }
 
-//.goldImg {border: 1vw solid #FFDF00;}
-//.silverImg {border: 1vw solid #D3D3D3;}
-//.bronzeImg {border: 1vw solid #cd7f32;}
 
 @-webkit-keyframes rain {
   0% {
@@ -832,7 +824,7 @@
 }
 .competition-podium.well {
   position: absolute;
-  height: auto;
+  height: 95%;
   width: 100%;
   top: 0;
   left: 0;
@@ -903,6 +895,9 @@
   position: relative;
   width: 70%;
   margin: 0 auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .competition-podium .podium-block.gold {
@@ -929,6 +924,9 @@
   position: relative;
   width: 65%;
   margin: 4vw auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .competition-podium .podium-block.silver {
@@ -955,6 +953,9 @@
   position: relative;
   width: 70%;
   margin: 0 auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 
@@ -976,6 +977,20 @@
   text-align: center;
   color: #4D4D4D;
   font-size: 1.5em;
+}
+
+@media only screen and (min-width: 1000px) {
+  .mkbGrandMkb {
+    font-size: 50px;
+  }
+
+  #mkbCommentOutsideMsg{
+    font-size: 50px;
+  }
+
+  #mkbCommentOutsideId{
+    font-size: 21px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -1076,10 +1091,10 @@
 .storeTab {
   width: 33.3333333333%;
   float: left;
-  background: #ddd7c7;
+  background: $bmLightMintColor;
   text-align: center;
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 50px;
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
@@ -1107,14 +1122,7 @@
   width: 100%
 }
 
-#storeTabWrapper li {
-  border-bottom: 1px solid #cccccc;
-}
 
-#mkbTab {
-  border-right: 1px solid #cccccc;
-  border-left: 1px solid #cccccc;
-}
 
 #storeTabContentWrapper {
   clear: both;
