@@ -18,7 +18,7 @@ enum level {
 
 class ModelUsers: Mappable {
     
-    private(set) var primaryKey = String()
+    private(set) var password = String()
     private(set) var id = String()
     private(set) var name = String()
     private(set) var spent = Int()
@@ -29,8 +29,8 @@ class ModelUsers: Mappable {
     
     required init?(map: Map) {}
     
-    init(primaryKey: String, id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
-        self.primaryKey = primaryKey
+    init(password: String, id: String, name: String, spent: Int, createdDate: String, baeminLevel: [level]) {
+        self.password = password
         self.id = id
         self.name = name
         self.spent = spent
@@ -39,7 +39,7 @@ class ModelUsers: Mappable {
     }
     
     func mapping(map: Map) {
-        primaryKey <- map["_id"]
+        password <- map["pwd"]
         id <- map["userId"]
         name <- map["name"]
         spent <- map["spent"]
