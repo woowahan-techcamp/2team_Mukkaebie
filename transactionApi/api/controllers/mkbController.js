@@ -80,7 +80,8 @@ exports.delete_an_order_by_store = function(req, res) {
 
 exports.delete_an_order_by_user = function(req, res) {
   Order.remove({
-    buyerId: req.body.userId
+    buyerId: req.body.userId,
+    sellerId: req.body.storeId
   }, function(err) {
     if (err)
       res.send(err);
