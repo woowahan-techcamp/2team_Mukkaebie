@@ -30,6 +30,48 @@
     position: relative;
 }
 
+.noOrderRecordComment {
+    text-align: center;
+    margin-top: -100px;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 768px){
+    .noOrderRecordComment {
+        margin-top: 30px;
+        position: relative;
+        bottom: 0px;
+        font-size: 1.2em;
+    }
+}
+
+.noMkbImage {
+    background-image: url(../img/noMkb.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50vw;
+    max-height: 100%;
+    position: relative;
+}
+
+.noMkbComment {
+    text-align: center;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 768px){
+    .noMkbComment {
+        margin-top: 30px;
+        position: relative;
+        bottom: 0px;
+        font-size: 1.2em;
+    }
+}
+
+.hideMkb {
+    display: none;
+}
+
 .dateTab {
     position: relative;
     top: -30px;
@@ -448,21 +490,5 @@ svg > .donut {
     }
     to {
         bottom: 0;
-    }
-}
-
-// 주문 없을 시 멘트
-.noOrderRecordComment {
-    text-align: center;
-    margin-top: -100px;
-    font-size: 2vw;
-}
-
-@media screen and (max-width: 768px){
-    .noOrderRecordComment {
-        margin-top: 30px;
-        position: relative;
-        bottom: 0px;
-        font-size: 1.2em;
     }
 }

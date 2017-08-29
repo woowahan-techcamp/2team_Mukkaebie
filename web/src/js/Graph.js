@@ -1,4 +1,6 @@
 import {MKBComment} from "./MKBComment.js";
+import StoreUtil from "./Util.js";
+
 
 
 export class Graph {
@@ -10,6 +12,27 @@ export class Graph {
   }
 
   podiumAnimate(storeId) {
+
+    StoreUtil.ajaxGet(SERVER_BASE_URL + '/stores/' + storeId, getMkbRank);
+
+    function getMkbRank() {
+      let response = JSON.parse(this.responseText);
+      let storeInfo = response[0];
+
+      if (storeInfo["mkb"] == undefined) {
+        // document.querySelector(".menuTabGraph").classList.add("menuTabHeight");
+        document.querySelector(".mkbGraphWrapper").classList.add("hideMkb");
+        document.querySelector(".mkbTabContent").innerHTML +=
+            `<div class="noMkbImage"></div>
+             <div class="noMkbComment">본 업소에는 아직까지 먹깨비가 없습니다!</div>`;
+      } else {
+        document.querySelector(".mkbGraphWrapper").classList.remove("hideMkb");
+        let noMkbImage = document.querySelector(".noMkbImage");
+        let noMkbComment = document.querySelector(".noMkbComment");
+        if(noMkbImage) noMkbImage.parentNode.removeChild(noMkbImage);
+        if(noMkbComment) noMkbComment.parentNode.removeChild(noMkbComment);
+      }
+    }
 
     let gold = document.querySelector('.gold .podium');
     gold.classList.add('goldAnimate');
