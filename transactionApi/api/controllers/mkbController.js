@@ -119,7 +119,7 @@ exports.read_a_user = function(req, res) {
 exports.update_a_user = function(req, res) {
   User.findOneAndUpdate(
       {userId: req.body.userId},
-      {$set: {pwd: req.body.pwd}},
+      {$set: {profilePic: req.body.profilePic}},
       {safe: true, upsert: true},
       function(err, user) {
         if (err)
