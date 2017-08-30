@@ -44,6 +44,7 @@ class StoreDetailViewController: UIViewController {
     @IBOutlet var cartAlertView: UIView!
     @IBOutlet var noMukkaebieView: UIView!
     @IBOutlet var noMenuView: UIView!
+    @IBOutlet var loginAlertView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +59,14 @@ class StoreDetailViewController: UIViewController {
         cartAlertView.layer.masksToBounds = true
         cartAlertView.layer.cornerRadius = 1.5
         
+        loginAlertView.center = self.view.center
+        loginAlertView.layer.masksToBounds = true
+        loginAlertView.layer.cornerRadius = 1.5
+        
         NotificationCenter.default.addObserver(self, selector: #selector(postOrder(_:)), name: NSNotification.Name(rawValue: "postOrder"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableViewCell(_:)), name: NSNotification.Name(rawValue: "touchedSubTableViewCell"), object: nil)
         
         getStore()
     }
@@ -115,6 +121,15 @@ class StoreDetailViewController: UIViewController {
     func touchedSubTableView(_ notification: Notification) {
         let indexPath = IndexPath(row: 0, section: 3)
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func touchedSubTableViewCell(_ notification: Notification) {
+        if !User.sharedInstance.isUser {
+            self.view.addSubview(loginAlertView)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.loginAlertView.removeFromSuperview()
+            }
+        }
     }
     
     @IBAction func touchedShoppingCart(_ sender: Any) {

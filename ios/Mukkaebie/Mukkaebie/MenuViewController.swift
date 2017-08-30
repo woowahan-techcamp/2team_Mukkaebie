@@ -13,7 +13,6 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet var noOrderView: UIView!
-    @IBOutlet var loginAlertView: UIView!
     
     @IBOutlet weak var chartAnimationView: UIView!
     
@@ -34,6 +33,8 @@ class MenuViewController: UIViewController {
         self.menuTableView.delegate = self
         
         initPieChartView()
+        
+        tabBarController?.tabBar.isHidden = true
 
         self.menuTableView.reloadData()
         view.frame.size.height = view.frame.size.height - menuTableView.frame.size.height + menuTableView.contentSize.height
@@ -202,16 +203,7 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        if !User.sharedInstance.isUser {
-            loginAlertView.center = (self.view.window?.rootViewController?.view.center)!
-            loginAlertView.layer.masksToBounds = true
-            loginAlertView.layer.cornerRadius = 1.5
-            self.view.window?.rootViewController?.view.addSubview(loginAlertView)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
-                self.loginAlertView.removeFromSuperview()
-            }
-        }
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "touchedSubTableViewCell"), object: nil, userInfo: nil)
         cell?.isSelected = false
     }
     

@@ -46,7 +46,9 @@ class PieChartView: UIView {
         addTitleViews()
         drawPieGraphView()
         addCircleView()
-        animateCircleView()
+        if segments.count > 0 {
+            animateCircleView()
+        }
     }
     
     func drawPieGraphView() {
