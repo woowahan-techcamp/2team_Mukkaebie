@@ -122,46 +122,14 @@ extension UIAlertController {
     }
 }
 
-
-extension UIView {
-    
-//    func showProgressView(view: UIView) -> UIImageView {
-//        
-////        let containerView = UIView()
-//        let progressView = UIView()
-//        var activityIndicatorImageView = UIImageView()
-//        
-//        let statusImage = #imageLiteral(resourceName: "indictorIcon")
-//        let activityImageView = UIImageView(image: statusImage)
-////        containerView.frame = view.frame
-////        containerView.backgroundColor = UIColor.white
-//        progressView.frame = view.frame
-//        progressView.center = CGPoint(x:view.bounds.width / 2, y:view.bounds.height / 2)
-//        progressView.backgroundColor = UIColor.white
-//        progressView.clipsToBounds = true
-//        progressView.layer.cornerRadius = 10
-//
-//        activityImageView.animationImages = [#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2"),#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2"),#imageLiteral(resourceName: "indictorIcon"),#imageLiteral(resourceName: "indicarotIcon2")]
-//        activityImageView.animationDuration = 1;
-//        activityImageView.frame = CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 77, height: 68)
-//        activityImageView.center = CGPoint(x: progressView.bounds.width/2, y: progressView.bounds.height/2)
-//        activityImageView.startAnimating()
-//        var alertTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "stopProgress", userInfo: nil, repeats: false)
-//            DispatchQueue.main.async() {
-//            progressView.addSubview(activityImageView)
-////            containerView.addSubview(progressView)
-//            view.addSubview(progressView)
-//            activityIndicatorImageView = activityImageView
-//        }
-//        
-//        return activityIndicatorImageView
-//    }
-//    
-//    func stopProgress(){
-//        self.isHidden = true
-//        
-//    }
-   
+extension UIImagePickerController {
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.navigationBar.topItem?.rightBarButtonItem?.tintColor = UIColor.white
+        self.navigationBar.topItem?.rightBarButtonItem?.isEnabled = true
+    }
 }
+
+
 
 

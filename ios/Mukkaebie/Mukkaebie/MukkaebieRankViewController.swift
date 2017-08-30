@@ -9,11 +9,14 @@
 import UIKit
 import AlamofireImage
 
-class MukkaebieRankViewController: UIViewController {
+class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var mukkaebieMessage: UILabel!
     @IBOutlet weak var mukkaebieCommentTextField: UITextField!
     
     @IBOutlet weak var firstImageButton: UIButton!
+    @IBOutlet weak var sencondImageButton: UIButton!
+    @IBOutlet weak var thirdImageButton: UIButton!
+    
     var imageButtonList = [UIButton]()
     
     @IBOutlet weak var firstMukkaebieImage: UIImageView!
@@ -59,20 +62,29 @@ class MukkaebieRankViewController: UIViewController {
         
         view.frame.size.height = view.frame.size.width * 118 / 75
         
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.navigationBar.isTranslucent = false
+        UIApplication.shared.statusBarStyle = .lightContent
         
-        imageButtonList = [firstImageButton]
+        imageButtonList = [firstImageButton,sencondImageButton,thirdImageButton]
         mukkaebieImageList = [firstMukkaebieImage, secondMukkaebieImage, thirdMukkaebieImage]
         awardList = [firstAward, secondAward, thirdAward]
         bottomConstraintList = [firstBottomConstraint, secondBottomConstraint, thirdBottomConstraint]
         labelList = [firstLabel, secondLabel, thirdLabel]
         orderLabelList = [firstOrderLabel, secondOrderLabel, thirdOrderLabel]
         
+        mukkaebieCommentTextField.delegate = self
         mukkaebieCommentTextField.isEnabled = false
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tap(gesture:)))
+        self.view.addGestureRecognizer(tapGesture)
+        self.view.isUserInteractionEnabled = true
+        
+        
         for i in 0..<imageButtonList.count {
-            imageButtonList[0].isHidden = true
+            imageButtonList[i].isHidden = true
         }
     }
     
@@ -87,11 +99,17 @@ class MukkaebieRankViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         
-        for i in 0..<orderByUserTop3.count {
-            if i == 0 && User.sharedInstance.user.id == orderByUserTop3[0].key {
+        for (index,val) in orderByUserTop3.enumerated() {
+            if index == 0 && val.key == User.sharedInstance.user.id {
                 mukkaebieCommentTextField.isEnabled = true
-                imageButtonList[0].isHidden = false
+                imageButtonList[index].isHidden = false
+            }
+
+            else if val.key == User.sharedInstance.user.id {
+                mukkaebieCommentTextField.isEnabled = false
+                imageButtonList[index].isHidden = false
             }
         }
         
@@ -198,6 +216,26 @@ class MukkaebieRankViewController: UIViewController {
         let mkbComment = sender.text
         comment = mkbComment
         postComment(userId: User.sharedInstance.user.id, mkbComment: mkbComment!)
+        mukkaebieCommentTextField.endEditing(true)
+        
+    }
+    
+//    func textFieldShouldReturn(textField: UITextField) -> Bool {
+//        mukkaebieCommentTextField.resignFirstResponder()
+//        return true;
+//    }
+    
+    func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        mukkaebieCommentTextField.resignFirstResponder()
+        self.parent?.view.endEditing(true)
+    }
+    
+    func tap(gesture: UITapGestureRecognizer) {
+        mukkaebieCommentTextField.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @IBAction func firstProfileImagePicker(_ sender: Any) {
@@ -206,10 +244,11 @@ class MukkaebieRankViewController: UIViewController {
 }
 
 extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
+  
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.childViewControllers.count == 2 {
-            UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+            UIApplication.shared.statusBarStyle = .lightContent
             let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
             let statusBarColor = UIColor(hexString: "3B342C")
             statusBarView.backgroundColor = statusBarColor
@@ -218,6 +257,7 @@ extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINaviga
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+  
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let imgData = UIImageJPEGRepresentation(image, 0.1)
             firstMukkaebieImage.image = image
