@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vny-Ij-fKP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vny-Ij-fKP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,9 +29,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
-                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mukkeabieRankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="eau-yw-rW9">
                                 <rect key="frame" x="15" y="16" width="26" height="25"/>
                                 <constraints>
@@ -308,6 +305,15 @@
                                     <constraint firstAttribute="width" secondItem="2TM-1S-qbC" secondAttribute="height" multiplier="375:32" id="mYU-BY-Un0"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_50pxHigh" translatesAutoresizingMaskIntoConstraints="NO" id="zPx-7C-gVk">
+                                <rect key="frame" x="0.0" y="44" width="375" height="615"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="particles_alpha" translatesAutoresizingMaskIntoConstraints="NO" id="qD3-cf-X1t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qD3-cf-X1t" secondAttribute="height" multiplier="25:41" id="8ib-sg-ec1"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -322,10 +328,12 @@
                             <constraint firstItem="DuR-uh-roo" firstAttribute="width" secondItem="G5O-Um-ko7" secondAttribute="width" multiplier="110.5:375" id="F4o-aH-zw9"/>
                             <constraint firstItem="9N7-Wg-pWv" firstAttribute="centerX" secondItem="2TM-1S-qbC" secondAttribute="centerX" id="FxK-nD-e5s"/>
                             <constraint firstAttribute="bottom" secondItem="7oJ-5w-P1E" secondAttribute="bottom" constant="25" id="GP9-Xv-r6d"/>
+                            <constraint firstItem="qD3-cf-X1t" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leading" id="ISC-KI-KQ5"/>
                             <constraint firstAttribute="bottom" secondItem="9N7-Wg-pWv" secondAttribute="bottom" constant="25" id="IiL-Ig-Nwl"/>
                             <constraint firstItem="xpz-MR-hnU" firstAttribute="top" secondItem="2TM-1S-qbC" secondAttribute="bottom" id="JAe-Sd-UeJ"/>
                             <constraint firstItem="eau-yw-rW9" firstAttribute="top" secondItem="G5O-Um-ko7" secondAttribute="top" constant="16" id="JbY-KN-u6A"/>
                             <constraint firstItem="U6H-lV-U6B" firstAttribute="top" secondItem="eau-yw-rW9" secondAttribute="bottom" constant="25" id="LnB-rG-eK5"/>
+                            <constraint firstAttribute="trailing" secondItem="qD3-cf-X1t" secondAttribute="trailing" id="Ske-ha-a1H"/>
                             <constraint firstItem="DuR-uh-roo" firstAttribute="trailing" secondItem="9N7-Wg-pWv" secondAttribute="leading" id="XP1-JP-vCV"/>
                             <constraint firstItem="7oJ-5w-P1E" firstAttribute="width" secondItem="G5O-Um-ko7" secondAttribute="width" multiplier="119.5:375" id="XaU-N9-q2a"/>
                             <constraint firstItem="9N7-Wg-pWv" firstAttribute="centerX" secondItem="zPx-7C-gVk" secondAttribute="centerX" id="YfJ-rk-d0d"/>
@@ -338,6 +346,7 @@
                             <constraint firstItem="uLE-gu-RwF" firstAttribute="leading" secondItem="G5O-Um-ko7" secondAttribute="leadingMargin" constant="27" id="o8o-ul-jyr"/>
                             <constraint firstItem="uLE-gu-RwF" firstAttribute="top" secondItem="U6H-lV-U6B" secondAttribute="top" constant="20" id="peL-KE-1Jq"/>
                             <constraint firstItem="9N7-Wg-pWv" firstAttribute="width" secondItem="G5O-Um-ko7" secondAttribute="width" multiplier="134:375" id="qPV-kw-xLd"/>
+                            <constraint firstItem="UYW-pH-d5r" firstAttribute="bottom" secondItem="qD3-cf-X1t" secondAttribute="top" constant="20" id="uZp-eF-sx6"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -350,6 +359,8 @@
                         <outlet property="firstMukkaebieImage" destination="i68-20-dDV" id="csa-bA-QGw"/>
                         <outlet property="firstOrderLabel" destination="AyK-Yp-isg" id="uDo-ca-4sw"/>
                         <outlet property="mukkaebieCommentTextField" destination="uLE-gu-RwF" id="kTn-w0-1nC"/>
+                        <outlet property="particleImageView" destination="qD3-cf-X1t" id="vVj-mN-WSP"/>
+                        <outlet property="particleTopConstraint" destination="uZp-eF-sx6" id="RiJ-RK-bNr"/>
                         <outlet property="secondAward" destination="DuR-uh-roo" id="95U-Nl-djM"/>
                         <outlet property="secondBottomConstraint" destination="7Jh-1g-0lI" id="AOv-Sr-9EK"/>
                         <outlet property="secondLabel" destination="z0F-zq-oYE" id="j36-yw-qUx"/>
@@ -375,6 +386,7 @@
         <image name="firstGrade" width="154" height="425"/>
         <image name="hornProfil" width="86" height="92"/>
         <image name="mukkeabieRankIcon" width="26" height="25"/>
+        <image name="particles_alpha" width="365" height="492"/>
         <image name="profile" width="75" height="75"/>
         <image name="profileSettingButton" width="20" height="20"/>
         <image name="secondGrade" width="117" height="318"/>

@@ -34,7 +34,9 @@ class LaunchScreen: UIView {
     func startLaunch(target: MainViewController) {
         target.tabBarController?.tabBar.isHidden = true
         target.view.addSubview(self)
-        
+    }
+    
+    func finishLaunch(target: MainViewController) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3) {
             self.removeFromSuperview()
             target.tabBarController?.tabBar.isHidden = false

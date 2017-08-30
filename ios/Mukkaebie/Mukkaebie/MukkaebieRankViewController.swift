@@ -27,9 +27,13 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var secondAward: UIView!
     @IBOutlet weak var thirdAward: UIView!
     
+    @IBOutlet weak var particleImageView: UIImageView!
+    
     @IBOutlet weak var firstBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var secondBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var thirdBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var particleTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var firstOrderLabel: UILabel!
@@ -94,6 +98,7 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
             firstBottomConstraint.constant -= firstAward.frame.height
             secondBottomConstraint.constant -= secondAward.frame.height
             thirdBottomConstraint.constant -= thirdAward.frame.height
+            particleTopConstraint.constant += particleImageView.frame.height
         }
     }
     
@@ -145,6 +150,10 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
                     self.view.layoutSubviews()
                 }, completion: nil)
             }
+            UIView.animate(withDuration: 4, delay: 3, options: .curveEaseInOut, animations: {
+                self.particleTopConstraint.constant -= self.particleImageView.frame.height * 2
+                self.view.layoutSubviews()
+            }, completion: nil)
             viewIsAnimated = true
         }
     }

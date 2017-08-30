@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BCT-iU-b1f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -99,6 +99,7 @@
                     </view>
                     <connections>
                         <outlet property="cartAlertView" destination="RTM-ww-dW0" id="qUj-tJ-oMN"/>
+                        <outlet property="loginAlertView" destination="msq-cj-uOr" id="z9X-hD-cg3"/>
                         <outlet property="noMenuView" destination="OYS-8F-7tl" id="zZO-Kv-1FU"/>
                         <outlet property="noMukkaebieView" destination="U8D-jL-YAY" id="4Aq-8M-cUw"/>
                         <outlet property="tableView" destination="l1y-zC-cU9" id="71V-e9-JAj"/>
@@ -153,6 +154,28 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" id="msq-cj-uOr">
+                    <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebr-4h-Qbb">
+                            <rect key="frame" x="0.0" y="8" width="140" height="14"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.23210149999999999" green="0.2043522894" blue="0.1706772745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Ebr-4h-Qbb" firstAttribute="top" secondItem="msq-cj-uOr" secondAttribute="top" constant="8" id="J5T-gB-i1y"/>
+                        <constraint firstAttribute="trailing" secondItem="Ebr-4h-Qbb" secondAttribute="trailing" id="Men-0P-iVl"/>
+                        <constraint firstItem="Ebr-4h-Qbb" firstAttribute="leading" secondItem="msq-cj-uOr" secondAttribute="leading" id="VCq-Lq-fDB"/>
+                        <constraint firstAttribute="trailing" secondItem="Ebr-4h-Qbb" secondAttribute="trailing" id="iAs-is-Ltg"/>
+                        <constraint firstAttribute="bottom" secondItem="Ebr-4h-Qbb" secondAttribute="bottom" constant="8" id="jL2-vE-fpG"/>
+                        <constraint firstItem="Ebr-4h-Qbb" firstAttribute="centerY" secondItem="msq-cj-uOr" secondAttribute="centerY" id="kT2-QJ-A2c"/>
+                        <constraint firstItem="Ebr-4h-Qbb" firstAttribute="centerX" secondItem="msq-cj-uOr" secondAttribute="centerX" id="oej-im-aVk"/>
+                    </constraints>
                 </view>
             </objects>
             <point key="canvasLocation" x="2636" y="-824.43778110944538"/>

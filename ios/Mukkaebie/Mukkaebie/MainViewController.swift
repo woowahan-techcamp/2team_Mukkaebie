@@ -23,6 +23,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(finishLaunch(_:)), name: NSNotification.Name(rawValue: "finishLaunch"), object: nil)
+        
         launchScreenView.initLaunch(target: self)
         launchScreenView.startLaunch(target: self)
         
@@ -37,7 +39,6 @@ class MainViewController: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,6 +65,9 @@ class MainViewController: UIViewController {
         }
     }
 
+    func finishLaunch(_ notification: Notification) {
+        launchScreenView.finishLaunch(target: self)
+    }
 }
 
 

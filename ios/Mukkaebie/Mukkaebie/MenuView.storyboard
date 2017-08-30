@@ -98,23 +98,26 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6l-V7-b4X">
-                                                            <rect key="frame" x="17" y="14.5" width="29" height="14.5"/>
+                                                            <rect key="frame" x="18" y="15" width="275" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="275" id="iAt-PF-Sob"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXI-lg-3lZ">
-                                                            <rect key="frame" x="330" y="14.5" width="27" height="14.5"/>
+                                                            <rect key="frame" x="330" y="15" width="27" height="15"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                             <color key="textColor" red="0.1647058824" green="0.75686274509999996" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="leading" secondItem="IAx-ge-uuO" secondAttribute="leadingMargin" constant="9" id="4fM-8P-TuT"/>
-                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="baseline" secondItem="nXI-lg-3lZ" secondAttribute="baseline" id="IEU-02-8Zv"/>
-                                                        <constraint firstAttribute="trailing" secondItem="nXI-lg-3lZ" secondAttribute="trailing" constant="18" id="iIz-FV-i47"/>
-                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="centerY" secondItem="IAx-ge-uuO" secondAttribute="centerY" id="x3q-Co-urO"/>
+                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="leading" secondItem="IAx-ge-uuO" secondAttribute="leadingMargin" constant="10" id="4CG-Fy-UMD"/>
+                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="centerY" secondItem="IAx-ge-uuO" secondAttribute="centerY" id="Om4-7B-ZtK"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="nXI-lg-3lZ" secondAttribute="trailing" constant="10" id="XZF-oV-oGs"/>
+                                                        <constraint firstItem="N6l-V7-b4X" firstAttribute="baseline" secondItem="nXI-lg-3lZ" secondAttribute="baseline" id="e5H-yW-ChD"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -152,7 +155,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="rrrr" id="5md-cb-gNs"/>
                     <connections>
-                        <outlet property="loginAlertView" destination="1ck-uh-bxt" id="K2o-AM-EvK"/>
                         <outlet property="menuTableView" destination="6Bz-b8-Vfs" id="ibb-dK-wNx"/>
                         <outlet property="noOrderView" destination="tdg-qs-y7v" id="fw4-v8-4f5"/>
                         <outlet property="pieChartView" destination="X0y-nk-Jzt" id="HD2-Od-dv6"/>
@@ -173,28 +175,6 @@
                         <constraint firstItem="WEa-0X-jff" firstAttribute="width" secondItem="tdg-qs-y7v" secondAttribute="width" id="Zve-0D-cjL"/>
                         <constraint firstItem="WEa-0X-jff" firstAttribute="centerY" secondItem="tdg-qs-y7v" secondAttribute="centerY" id="iNB-tR-HIU"/>
                         <constraint firstItem="WEa-0X-jff" firstAttribute="centerX" secondItem="tdg-qs-y7v" secondAttribute="centerX" id="lx4-fg-GrX"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" id="1ck-uh-bxt">
-                    <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CL-ZL-tH1">
-                            <rect key="frame" x="0.0" y="8" width="140" height="14"/>
-                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="11"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.23210149999999999" green="0.2043522894" blue="0.1706772745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="leading" secondItem="1ck-uh-bxt" secondAttribute="leading" id="2dp-wM-VRn"/>
-                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="centerX" secondItem="1ck-uh-bxt" secondAttribute="centerX" id="Nvt-Rn-TSx"/>
-                        <constraint firstAttribute="trailing" secondItem="8CL-ZL-tH1" secondAttribute="trailing" id="U57-83-6cH"/>
-                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="centerY" secondItem="1ck-uh-bxt" secondAttribute="centerY" id="ab9-Wy-fki"/>
-                        <constraint firstAttribute="trailing" secondItem="8CL-ZL-tH1" secondAttribute="trailing" id="aqx-oL-wy2"/>
-                        <constraint firstItem="8CL-ZL-tH1" firstAttribute="top" secondItem="1ck-uh-bxt" secondAttribute="top" constant="8" id="o6Q-EI-BIO"/>
-                        <constraint firstAttribute="bottom" secondItem="8CL-ZL-tH1" secondAttribute="bottom" constant="8" id="qM2-6Z-BSH"/>
                     </constraints>
                 </view>
             </objects>
