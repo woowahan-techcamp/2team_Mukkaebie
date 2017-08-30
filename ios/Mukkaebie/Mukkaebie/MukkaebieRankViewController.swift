@@ -133,7 +133,7 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
                         mukkaebieImageList[i].af_setImage(withURL: URL(string:mkbDictionaryArray[mkbIndex]["imgUrl"]!)!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
                     }
                 } else {
-                    if orderByUserTop3[i].key == User.sharedInstance.user.id {
+                    if orderByUserTop3[0].key == User.sharedInstance.user.id {
                         mukkaebieCommentTextField.placeholder = "먹깨비만 남길 수 있는 영광의 한마디!"
                     }
                     mukkaebieImageList[i].af_setImage(withURL: URL(string: "http://52.78.27.108:3000/uploads/profileImage-1503980151599.jpg")!, placeholderImage: #imageLiteral(resourceName: "woowatech"), filter: .none, progress: .none, progressQueue: DispatchQueue.global(), imageTransition: .noTransition, runImageTransitionIfCached: true, completion: nil)
@@ -270,7 +270,6 @@ extension MukkaebieRankViewController: UIImagePickerControllerDelegate, UINaviga
                     mukkaebieImageList[index].image = image
                 }
             }
-//            firstMukkaebieImage.image = image
             self.imgData = imgData
             postImgData(userId: User.sharedInstance.user.id, imgData: imgData!)
         } else{
