@@ -10,6 +10,68 @@
     color: #FF0000;
 }
 
+.hideDonut {
+    display: none;
+}
+
+.hideLabel {
+    display: none;
+}
+
+.menuTabHeight {
+    height: 80%;
+}
+
+.noOrderRecord {
+    background-image: url(../img/noOrderRecord.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50vw;
+    position: relative;
+}
+
+.noOrderRecordComment {
+    text-align: center;
+    margin-top: -100px;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 768px){
+    .noOrderRecordComment {
+        margin-top: 30px;
+        position: relative;
+        bottom: 0px;
+        font-size: 1.2em;
+    }
+}
+
+.noMkbImage {
+    background-image: url(../img/noMkb.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 50vw;
+    max-height: 100%;
+    position: relative;
+}
+
+.noMkbComment {
+    text-align: center;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 768px){
+    .noMkbComment {
+        margin-top: 30px;
+        position: relative;
+        bottom: 0px;
+        font-size: 1.2em;
+    }
+}
+
+.hideMkb {
+    display: none;
+}
+
 .dateTab {
     position: relative;
     top: -30px;
@@ -60,6 +122,7 @@ figure {
         flex-direction: row;
     }
 }
+
 
 .figure-content {
     flex: 1;
@@ -145,6 +208,12 @@ circle {
 
 }
 
+@media screen and (max-width: 768px){
+    .figure-key {
+        margin-left: 12%;
+    }
+}
+
 @media only screen and (max-width: 600px) {
 
     .figure-key-list {
@@ -174,6 +243,10 @@ circle {
 }
 
 @media only screen and (max-width: 350px) {
+
+    .figure-key {
+        margin-left: 20%;
+    }
 
     .figure-key-list {
         column-count: 1;
@@ -211,6 +284,27 @@ svg > .donut {
     vertical-align: middle;
     width: 20px;
     height: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .shape-rect {
+        width: 18px;
+        height: 18px
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .shape-rect {
+        width: 16px;
+        height: 16px
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .shape-rect {
+        width: 14px;
+        height: 14px
+    }
 }
 
 .shape-1 {
@@ -397,9 +491,4 @@ svg > .donut {
     to {
         bottom: 0;
     }
-}
-
-// 도넛 그래프 관련
-.donutFigure {
-    text-align: center;
 }
