@@ -90,7 +90,10 @@ export class MKBComment {
       mkbComment.innerText = "먹깨비 없음";
     }
     else if (clickedMkb["mkbComment"] == undefined) {
-      mkbComment.innerText = "우하하 나는 먹깨비다!";
+      const mkbRandomMsgs = ["우하하! 나는 먹깨비다!", "먹기위해 살아도 된다!", "살 찌는 것은 죄가 아니다!",
+        "저는 위에서 시키는 대로 했을 뿐입니다.", "오늘 먹을 음식을 내일로 미루지 말라!"];
+      let randNum = Math.floor((Math.random() * 5));
+      mkbComment.innerText = mkbRandomMsgs[randNum];
     } else {
       mkbComment.innerText = clickedMkb["mkbComment"];
     }
@@ -193,7 +196,10 @@ export class MKBComment {
   renderGoldMkb (comment, mkbOutsideCommentId, mkbOutsideCommentMsg){
     if (typeof(comment) === "string") {
       mkbOutsideCommentId.innerHTML = comment;
-      mkbOutsideCommentMsg.innerHTML = "우하하! 나는 먹깨비다";
+      const mkbRandomMsgs = ["우하하! 나는 먹깨비다!", "먹기위해 살아도 된다!", "살 찌는 것은 죄가 아니다!",
+      "저는 위에서 시키는 대로 했을 뿐입니다.", "오늘 먹을 음식을 내일로 미루지 말라!"];
+      let randNum = Math.floor((Math.random() * 5));
+      mkbOutsideCommentMsg.innerHTML = mkbRandomMsgs[randNum];
       if (comment === "") {
         mkbOutsideCommentId.innerHTML = "大 먹깨비 공석";
       }

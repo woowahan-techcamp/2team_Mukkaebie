@@ -112,6 +112,14 @@ let StoreUtil = {
         // send the collected data as JSON
         xhr1.send(JSON.stringify(packet));
 
+        let i = window.pageYOffset, j = 1;
+        let int = setInterval(function () {
+          window.scrollTo(0, i);
+          i -= 5 * j;
+          j += 0.2;
+          if (i < 200) clearInterval(int);
+        }, 20);
+
         xhr1.onloadend = function () {
           StoreUtil.makeModal();
           let graph = new Graph(storeId);

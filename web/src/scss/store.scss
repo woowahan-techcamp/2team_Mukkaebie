@@ -32,6 +32,7 @@
   text-align: center;
   position: relative;
   top: 50px;
+  cursor: pointer;
 }
 
 .spinner {
@@ -298,6 +299,10 @@
   background-image: url("../img/quote.png");
   background-repeat: no-repeat;
   background-size: contain;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 5% 0 5%;
 }
 #mkbCommentOutsideId{
   font-size: 2vw;
@@ -1282,11 +1287,11 @@
   padding: 20px;
   position: relative;
   border: 1px solid #888;
-  max-width: 400px;
+  width: 55vw;
   background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 150px;
+  height: 25vw;
 }
 
 .mkbModalClose {
