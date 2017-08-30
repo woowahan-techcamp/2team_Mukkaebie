@@ -26,29 +26,35 @@ export class MKBComment {
 
   previewImg(){
     const fileSelect = document.getElementById('file-select');
-    function mimicFileUpload(){
+    function mimicFileUpload(evt){
+      evt.preventDefault();
       fileSelect.click();
+      console.log("yes")
     }
-      function handleFileSelect(evt) {
-        var files = evt.target.files;
-        for (var i = 0, f; f = files[i]; i++) {
-          if (!f.type.match('image.*')) {
-            continue;
+
+    document.querySelector("#chooseImg").removeEventListener("click", mimicFileUpload);
+      if (!document.querySelector("#chooseImg").data) {
+        function handleFileSelect(evt) {
+          var files = evt.target.files;
+          for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+              continue;
+            }
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+              return function(e) {
+
+                document.querySelector('.mkbImgPreview').style.backgroundImage = "url('"+ e.target.result +"')"
+              };
+            })(f);
+            reader.readAsDataURL(f);
           }
-          var reader = new FileReader();
-
-          reader.onload = (function(theFile) {
-            return function(e) {
-
-              document.querySelector('.mkbImgPreview').style.backgroundImage = "url('"+ e.target.result +"')"
-            };
-          })(f);
-          reader.readAsDataURL(f);
         }
+        fileSelect.addEventListener('change', handleFileSelect, false);
+        document.querySelector("#chooseImg").addEventListener("click", mimicFileUpload);
+        document.querySelector("#chooseImg").data = true;
       }
-      fileSelect.addEventListener('change', handleFileSelect, false);
-      document.querySelector("#chooseImg").addEventListener("click", mimicFileUpload);
-
   }
 
   initialRendering() {
