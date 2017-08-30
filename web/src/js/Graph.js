@@ -13,13 +13,13 @@ export class Graph {
 
   podiumAnimate(storeId) {
 
-    StoreUtil.ajaxGet(SERVER_BASE_URL + '/stores/' + storeId, getMkbRank);
+    StoreUtil.ajaxGet(SERVER_BASE_URL + '/orders/bystore/' + storeId, getMkbRank);
 
     function getMkbRank() {
       let response = JSON.parse(this.responseText);
-      let storeInfo = response[0];
+      // let storeInfo = response[0];
 
-      if (storeInfo["mkb"] == undefined) {
+      if (response.length == 0) {
         // document.querySelector(".menuTabGraph").classList.add("menuTabHeight");
         document.querySelector(".mkbGraphWrapper").classList.add("hideMkb");
         document.querySelector(".mkbTabContent").innerHTML +=
