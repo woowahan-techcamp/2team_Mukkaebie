@@ -142,13 +142,21 @@ export class StoreList {
         function gotoStoreDetail() {
 
           let clickedStore = document.querySelector(".storeCardRow");
+          let storeLayout = document.querySelector(".storeLayout");
 
           clickedStore.addEventListener("click", function (e) {
             if (e.target && e.target.closest(".storeCard")) {
-              let realTarget = e.target.closest(".storeCard");
-              let storeInfo = new StoreInfo(realTarget.id);
+              storeLayout.style.opacity = "0";
+              setTimeout(function () {
+                let realTarget = e.target.closest(".storeCard");
+                let storeInfo = new StoreInfo(realTarget.id);
+              },500)
+              setTimeout(function () {
+                storeLayout.style.opacity = "1";
+              },500)
             }
           });
+
         };
       }
     };

@@ -7,8 +7,13 @@
 .storeLayout {
   max-width: 960px;
   margin: 50px auto 100px auto;
-  background: $bmBeigeColor;
+  background: $mkbBackgroundColor;
   position: relative;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 .load-button {
   width: 150px;
@@ -27,19 +32,20 @@
   text-align: center;
   position: relative;
   top: 50px;
+  cursor: pointer;
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  background-color: #333;
-  opacity: 0.5;
+  width: 50px;
+  height: 50px;
+  //background-color: #333;
+  //opacity: 0.5;
   position: absolute;
-  bottom: -250px;
+  bottom: -70px;
   left: 48%;
-  margin: 100px auto;
-  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-  animation: sk-rotateplane 1.2s infinite ease-in-out;
+  background-size: contain;
+  background-image: url("../img/loading.gif");
+  background-repeat: no-repeat;
 }
 
 .fadeIn > img {
@@ -90,9 +96,6 @@
   }
 }
 
-.menuReviewWrap {
-  border: 1px solid #cccccc;
-}
 
 /*페이지 레이아웃 끝*/
 
@@ -248,12 +251,12 @@
   height: 65px;
   background: #fff;
   padding: 20px;
-  border: 1px solid #dad3c7
 }
 
 .storeTitleLabel {
   padding: 3px 5px 3px 5px;
-  background: #877b63;
+  background: rgb(9, 92, 89);
+;
   color: #fff
 }
 
@@ -296,6 +299,10 @@
   background-image: url("../img/quote.png");
   background-repeat: no-repeat;
   background-size: contain;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 5% 0 5%;
 }
 #mkbCommentOutsideId{
   font-size: 2vw;
@@ -472,7 +479,7 @@
 }
 
 .storeDetailHead {
-  border: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   padding: 15px;
   font-size: 11px;
   font-weight: bold;
@@ -487,7 +494,7 @@
   padding: 10px;
   border-color: #cccccc;
   border-style: solid;
-  border-width: 0px 1px 1px 1px;
+  border-width: 0px 0px 0px 0px;
 }
 
 .storeDetailTable tr {
@@ -504,7 +511,6 @@
 
 /* 주문하기 박스 */
 .storeCart {
-  border: 1px solid #cccccc;
   margin-top: 20px;
   background: #fff;
   transition: all 1s ease-in-out;
@@ -528,13 +534,17 @@
 }
 
 .cartOrderButton {
-  background: $bmOrangeColor;
+  background: $bmMintColor;
   font-size: 30px;
   padding: 20px;
   color: #fff;
   text-align: center;
   font-weight: normal;
   cursor: pointer;
+}
+
+.cartOrderButton:hover{
+  background: #095c59;
 }
 
 .review-user {
@@ -698,6 +708,11 @@
   cursor: pointer;
 }
 
+#resetProfile {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .mkbCommentOutside{
   height: 20%;
   background: transparent;
@@ -718,13 +733,21 @@
   bottom:0;
   z-index: 31;
 }
-
+.mkbCommentOutsideBadge{
+  position: absolute;
+  top:10px;
+  left:10px;
+  font-size: 1.4vw;
+}
+.mkbCommentOutsideBadge img {
+  width: 40px;
+}
 .mkbCommentOutsideBubble {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
-  top:1vh;
+  top: 4vh;
   border-radius: .4em;
   width: 90%;
   margin: 0 auto;
@@ -748,6 +771,7 @@
 
 #file-form input {
   color:#fff;
+  display: none;
 }
 
 #commentTextInput {
@@ -811,16 +835,12 @@
   bottom: 0;
   right: 0;
   text-align: center;
-  background-image: url('https://unstats.un.org/unsd/trade/events/2015/abudhabi/img/no-pic.png');
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
-  border: 1vw solid #1abcaa;
+  border: 1vw solid rgb(42, 202, 200);
 }
 
-//.goldImg {border: 1vw solid #FFDF00;}
-//.silverImg {border: 1vw solid #D3D3D3;}
-//.bronzeImg {border: 1vw solid #cd7f32;}
 
 @-webkit-keyframes rain {
   0% {
@@ -832,7 +852,7 @@
 }
 .competition-podium.well {
   position: absolute;
-  height: auto;
+  height: 95%;
   width: 100%;
   top: 0;
   left: 0;
@@ -898,11 +918,14 @@
 .competition-podium .podium-block.bronze .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 70%;
+  padding-top: 67%;
   z-index: 1;
   position: relative;
-  width: 70%;
+  width: 67%;
   margin: 0 auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .competition-podium .podium-block.gold {
@@ -924,11 +947,14 @@
 .competition-podium .podium-block.gold .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 65%;
+  padding-top: 63%;
   z-index: 1;
   position: relative;
-  width: 65%;
+  width: 63%;
   margin: 4vw auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .competition-podium .podium-block.silver {
@@ -950,11 +976,14 @@
 .competition-podium .podium-block.silver .name {
   color: #856e4e;
   text-align: center;
-  padding-top: 70%;
+  padding-top: 67%;
   z-index: 1;
   position: relative;
-  width: 70%;
+  width: 67%;
   margin: 0 auto;
+  background-image: url('../img/horn.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 
@@ -976,6 +1005,20 @@
   text-align: center;
   color: #4D4D4D;
   font-size: 1.5em;
+}
+
+@media only screen and (min-width: 1000px) {
+  .mkbGrandMkb {
+    font-size: 50px;
+  }
+
+  #mkbCommentOutsideMsg{
+    font-size: 50px;
+  }
+
+  #mkbCommentOutsideId{
+    font-size: 21px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -1076,10 +1119,10 @@
 .storeTab {
   width: 33.3333333333%;
   float: left;
-  background: #ddd7c7;
+  background: $bmLightMintColor;
   text-align: center;
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 50px;
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
@@ -1107,14 +1150,7 @@
   width: 100%
 }
 
-#storeTabWrapper li {
-  border-bottom: 1px solid #cccccc;
-}
 
-#mkbTab {
-  border-right: 1px solid #cccccc;
-  border-left: 1px solid #cccccc;
-}
 
 #storeTabContentWrapper {
   clear: both;
@@ -1251,11 +1287,11 @@
   padding: 20px;
   position: relative;
   border: 1px solid #888;
-  max-width: 400px;
+  width: 55vw;
   background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 150px;
+  height: 25vw;
 }
 
 .mkbModalClose {

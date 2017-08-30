@@ -82,19 +82,18 @@ export class Review {
               const greyStar = "★".repeat(5 - review.stars);
               const profilePic = review.user;
               userIdList.push(review.user);
+
+              const tempGrab = document.querySelector("#reviewTemplate").text;
+              const result = eval('`' + tempGrab + '`');
+              renderTarget.innerHTML += result;
             }
-            const tempGrab = document.querySelector("#reviewTemplate").text;
-            const result = eval('`' + tempGrab + '`');
-            renderTarget.innerHTML += result;
+
           })
         }
         const userIdSet = new Set (userIdList);
         resolve(Array.from(userIdSet));
       }
     });
-
-
-
   }
 
   getProfilePic(userIdSet){
