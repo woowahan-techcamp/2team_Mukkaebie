@@ -19,6 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  const blackMenuArea = document.querySelector(".blackMenuArea");
+
+  blackMenuArea.addEventListener("touchstart", function () {
+    blackMenuArea.style.height = "200px";
+  });
+
+  blackMenuArea.addEventListener("touchend", function () {
+    blackMenuArea.style.height = "100px";
+    blackMenuArea.style.transitionDuration = "1s";
+  });
+
 
   const clickedMobileMenu = document.querySelector(".mobileMenuWrapAll");
   clickedMobileMenu.addEventListener("click", function (e) {

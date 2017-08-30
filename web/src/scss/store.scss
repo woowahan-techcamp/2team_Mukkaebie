@@ -424,7 +424,7 @@
 
 /* 업소상세 박스 */
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 769px){
   .mobileCategory {
     display: none;
   }
@@ -1205,6 +1205,17 @@
 }
 .logInRequiredModalTop {color: #ffffff; font-size: 30px;}
 .logInRequiredModalBtm {color:#ff6c00; font-size: 30px}
+
+@media screen and (max-width: 400px){
+  .logInRequiredModalTop {color: #ffffff; font-size: 28px;}
+  .logInRequiredModalBtm {color:#ff6c00; font-size: 28px}
+}
+
+@media screen and (max-width: 350px){
+  .logInRequiredModalTop {color: #ffffff; font-size: 24px;}
+  .logInRequiredModalBtm {color:#ff6c00; font-size: 24px}
+}
+
 /// 로그인 성공 후 모달
 .afterLoginModal {
   display: none;
