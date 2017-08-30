@@ -276,7 +276,7 @@
                                     <constraint firstAttribute="width" secondItem="U6H-lV-U6B" secondAttribute="height" multiplier="75:22" id="Nw8-yR-t1k"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="먹깨비만 남길 수 있는 영광의 한마디!" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uLE-gu-RwF">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="먹깨비만 남길 수 있는 영광의 한마디!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uLE-gu-RwF">
                                 <rect key="frame" x="43" y="86" width="296" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="3tC-6k-1dF"/>

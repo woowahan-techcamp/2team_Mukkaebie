@@ -229,11 +229,11 @@ class MukkaebieRankViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         mukkaebieCommentTextField.resignFirstResponder()
-        self.parent?.view.endEditing(true)
+        return true
     }
+
     
     func tap(gesture: UITapGestureRecognizer) {
         mukkaebieCommentTextField.resignFirstResponder()
