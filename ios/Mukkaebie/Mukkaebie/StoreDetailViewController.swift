@@ -49,6 +49,8 @@ class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        indicatorView.showProgressView(view: self.view)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsSelection = false
@@ -67,6 +69,8 @@ class StoreDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(changeTab(_:)), name: NSNotification.Name(rawValue: "changeTab"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableView(_:)), name: NSNotification.Name(rawValue: "touchedSubTableView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(touchedSubTableViewCell(_:)), name: NSNotification.Name(rawValue: "touchedSubTableViewCell"), object: nil)
+        
+        
         
         getStore()
     }

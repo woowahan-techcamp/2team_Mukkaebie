@@ -50,9 +50,11 @@ class MenuViewController: UIViewController {
     func initItem() {
         if (Store.sharedInstance.specificStore?.menu.count)! > 0 {
             let menu = (Store.sharedInstance.specificStore?.menu)![0]
+            var index = 0
             for (title, submenu) in menu {
-                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: false)
+                let item = MenuViewModelItem(sectionTitle: title, rowCount: submenu.count, isCollapsed: index > 1 ? true : false)
                 self.items.append(item)
+                index += 1
             }
         }
     }
