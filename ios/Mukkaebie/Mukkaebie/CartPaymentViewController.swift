@@ -38,6 +38,8 @@ class CartPaymentViewController: UIViewController {
         orderSuccessView.isHidden = true
         orderSuccessView.center = self.view.center
         
+        UIApplication.shared.statusBarStyle = .default
+        
         
         menuPriceLabel.text = menuPrice
         menuNameLabel.text = menuName
