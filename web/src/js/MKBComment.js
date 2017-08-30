@@ -5,7 +5,7 @@ export class MKBComment {
 
   constructor(storeId, topThreeList) {
 
-
+    this.previewImg();
 
     this.storeId = storeId;
     this.topThreeList = topThreeList;
@@ -24,12 +24,11 @@ export class MKBComment {
 
   }
 
-  previewImg(clickedScope){
+  previewImg(){
     const fileSelect = document.getElementById('file-select');
     function mimicFileUpload(){
       fileSelect.click();
     }
-    if (clickedScope.attributes["data-user"]["value"] === session) {
       function handleFileSelect(evt) {
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
@@ -49,7 +48,7 @@ export class MKBComment {
       }
       fileSelect.addEventListener('change', handleFileSelect, false);
       document.querySelector("#chooseImg").addEventListener("click", mimicFileUpload);
-    }
+
   }
 
   initialRendering() {
@@ -138,7 +137,7 @@ export class MKBComment {
           const mkbResponse = res[0]["mkb"] ? res[0]["mkb"] : [];
           StoreUtil.showModal('#mkbModal');
           that.controllEditButton(clickedScope);
-          that.previewImg(clickedScope);
+          // that.previewImg(clickedScope);
           that.setModalImg(event);
 
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {
@@ -159,6 +158,7 @@ export class MKBComment {
       const editBox = document.querySelector(".logInRequired");
       const editBtn = document.querySelector(".mkbEdit");
       modal.style.opacity = "0";
+      document.querySelector("#file-form input").value = "";
 
       setTimeout(function () {
         modal.style.display = "none";
