@@ -847,7 +847,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   cursor:pointer;
-  border: 1vw solid rgb(42, 202, 200);
+  border: 0.7vw solid rgb(42, 202, 200);
 }
 
 
@@ -1018,7 +1018,7 @@
 
 @media only screen and (min-width: 1000px) {
   .mkbGrandMkb {
-    font-size: 48px;
+    font-size: 45px;
   }
 
   #mkbCommentOutsideMsg{
