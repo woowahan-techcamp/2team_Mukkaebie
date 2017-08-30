@@ -19,5 +19,5 @@ target 'Mukkaebie' do
 
   pod 'AlamofireObjectMapper', '~> 4.0'
   pod 'AlamofireImage', '~>3.1'
-  
+  pod 'Fingertips'
 end

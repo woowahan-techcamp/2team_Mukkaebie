@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Fingertips
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let mainViewController = window?.rootViewController
+        window = MBFingerTipWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = mainViewController!
+        window!.makeKeyAndVisible()
+        (window as? MBFingerTipWindow)?.alwaysShowTouches = true
+        (window as? MBFingerTipWindow)?.strokeColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+        (window as? MBFingerTipWindow)?.fillColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 0.8)
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
