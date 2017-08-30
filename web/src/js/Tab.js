@@ -17,7 +17,7 @@ export class TabUiWithAjax {
   }
 
   init() {
-    this.nav.addEventListener("click", function () {
+    this.nav.addEventListener("click", function (event) {
       this.tabOperate(event)
     }.bind(this), false);
   }
