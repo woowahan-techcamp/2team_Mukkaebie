@@ -137,7 +137,6 @@ export class MKBComment {
           const mkbResponse = res[0]["mkb"] ? res[0]["mkb"] : [];
           StoreUtil.showModal('#mkbModal');
           that.controllEditButton(clickedScope);
-          // that.previewImg(clickedScope);
           that.setModalImg(event);
 
           if (this.attributes["data-user"] != undefined || this.attributes["data-user"] != null) {

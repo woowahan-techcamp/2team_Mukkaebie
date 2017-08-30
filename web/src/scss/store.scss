@@ -253,6 +253,12 @@
   padding: 20px;
 }
 
+.storeTitleAddress{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .storeTitleLabel {
   padding: 3px 5px 3px 5px;
   background: rgb(9, 92, 89);
@@ -289,7 +295,7 @@
 /* 먹깨비 탭 관련 */
 
 .mkbGrandMkb {
-  font-size: 5vw;
+  font-size: 4.5vw;
 }
 
 .mkbGrandMkbQuote {
@@ -303,13 +309,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 0 5% 0 5%;
+  border-bottom: 3px solid #2acac8;
 }
 #mkbCommentOutsideId{
   font-size: 2vw;
   color: $bmOrangeColor;
 }
 #mkbCommentOutsideMsg{
-  font-size: 5vw;
+  font-size: 4.5vw;
 }
 .logInRequired {
   display: none;
@@ -459,6 +466,7 @@
 
   .mobileTitleArea {
     display: block !important;
+    clear: both;
   }
 
   .header {
@@ -737,17 +745,18 @@
   position: absolute;
   top:10px;
   left:10px;
-  font-size: 1.4vw;
+  font-size: 1vw;
+  color:rgb(178, 178, 178);
 }
 .mkbCommentOutsideBadge img {
-  width: 40px;
+  width: 3vw;
 }
 .mkbCommentOutsideBubble {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
-  top: 4vh;
+  top: 1vh;
   border-radius: .4em;
   width: 90%;
   margin: 0 auto;
@@ -1009,15 +1018,15 @@
 
 @media only screen and (min-width: 1000px) {
   .mkbGrandMkb {
-    font-size: 50px;
+    font-size: 48px;
   }
 
   #mkbCommentOutsideMsg{
-    font-size: 50px;
+    font-size: 48px;
   }
 
   #mkbCommentOutsideId{
-    font-size: 21px;
+    font-size: 20px;
   }
 }
 
@@ -1287,11 +1296,13 @@
   padding: 20px;
   position: relative;
   border: 1px solid #888;
-  width: 55vw;
+  width: 100%;
   background-image: url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-9/20638907_1511321425557830_1012068021037519992_n.jpg?oh=ebf5e4cc0c87b104147c1410630d08ec&oe=5A18C729');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height: 25vw;
+  height: 40vw;
+  max-width: 600px;
+  max-height: 300px;
 }
 
 .mkbModalClose {
