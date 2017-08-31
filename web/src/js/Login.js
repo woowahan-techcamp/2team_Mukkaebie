@@ -5,11 +5,14 @@ import StoreUtil from './Util.js'
 
 export class Login {
   constructor(){
-    this.init()
+    this.init();
+    this.makeEnterSubmit ();
   }
 
   init(){
     document.querySelector("#topLoggedinButton").addEventListener("click", this.makeLoginModal);
+
+
 
     document.querySelector(".loginButton").addEventListener("click", function () {
       this.getInputInfo()
@@ -19,6 +22,16 @@ export class Login {
           .catch(this.failLogin)
           .then(this.logout)
     }.bind(this));
+  }
+
+  makeEnterSubmit (){
+    document.querySelector(".loginPWInput")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          if (event.keyCode == 13) {
+            document.querySelector(".loginButton").click();
+          }
+        });
   }
 
   makeLoginModal(){
@@ -78,7 +91,7 @@ export class Login {
       }
 
       session = userId;
-
+      document.querySelector("#loginMsg").innerText = "";
       document.querySelector(".loginIDInput").value = "";
       document.querySelector(".loginPWInput").value = "";
       resolve();

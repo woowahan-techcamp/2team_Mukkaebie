@@ -1,5 +1,20 @@
 @import './variables';
 
+.mkbLaunchScreen {
+  height: 100%;
+  width: 70%;
+  margin: 30px auto;
+  background-image: url("../img/launch.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  transition: opacity 1s ease-in-out;
+}
+.mkbHiddenMain {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+}
+
 /*페이지 레이아웃*/
 
 
@@ -281,10 +296,11 @@
 
 /* 메뉴 탭 관련 */
 .menuTabMsg{
-  width:70%;
-  font-size:1.5vw;
-  margin: 20px auto -60px auto;
-  text-align: center
+  width:80%;
+  font-size:3vw;
+  margin: 45px auto -60px auto;
+  text-align: center;
+  color:$bmMintColor;
 }
 
 .menuTabContent {
@@ -295,7 +311,8 @@
 /* 먹깨비 탭 관련 */
 
 .mkbGrandMkb {
-  font-size: 4.5vw;
+  font-size: 3vw;
+  color: rgb(178,178,178);
 }
 
 .mkbGrandMkbQuote {
@@ -309,11 +326,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 0 5% 0 5%;
-  border-bottom: 3px solid #2acac8;
+  margin-top: 10px;
 }
 #mkbCommentOutsideId{
   font-size: 2vw;
-  color: $bmOrangeColor;
+  color: $bmMintColor;
 }
 #mkbCommentOutsideMsg{
   font-size: 4.5vw;
@@ -585,6 +602,13 @@
     fill: white;
     pointer-events: none;
   }
+
+  .menuTabMsg{
+    font-size: 6vw;
+  }
+  .mkbLaunchScreen {
+    margin: 230px auto;
+  }
 }
 
 @media screen and (max-width: 420px) {
@@ -598,6 +622,14 @@
     height: 1.2em;
     fill: white;
     pointer-events: none;
+  }
+
+  .menuTabMsg{
+    font-size: 5vw;
+  }
+
+  .mkbLaunchScreen {
+    margin: 170px auto;
   }
 }
 
@@ -1027,6 +1059,14 @@
 
   #mkbCommentOutsideId{
     font-size: 20px;
+  }
+
+
+}
+
+@media only screen and (min-width: 1500px) {
+  .menuTabMsg{
+    font-size: 2vw;
   }
 }
 

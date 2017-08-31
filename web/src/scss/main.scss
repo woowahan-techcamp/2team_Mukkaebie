@@ -9,8 +9,13 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #222;
-  background-color: $mkbBackgroundColor;
+  background-color: $whiteColor;
   margin: 0 auto;
+  height: 100%;
+}
+
+html{
+  height:100%;
 }
 
 footer {

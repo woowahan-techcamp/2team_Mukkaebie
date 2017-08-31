@@ -54,9 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.querySelector(".baeminMainLogo").addEventListener("click", function(){
-    const chickenStoreList = new StoreList("치킨");
+    chickenStoreList.getStoreList("치킨");
   })
 
+  document.querySelector(".mobileTitleImg").addEventListener("click", function(){
+    chickenStoreList.getStoreList("치킨");
+  })
+
+  StoreUtil.launchMkb();
 });
 
 

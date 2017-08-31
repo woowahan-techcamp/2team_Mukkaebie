@@ -79,7 +79,7 @@ let StoreUtil = {
       setTimeout(function () {
         modal.style.display = "none";
       }, 500)
-    }, 3000)
+    }, 1500)
   },
 
 
@@ -261,6 +261,26 @@ let StoreUtil = {
       targetDomNode.style.display = "none";
     }, 200)
   },
+
+  launchMkb(){
+
+    const hiddenMain = document.querySelector(".mkbHiddenMain");
+    const launchScreen = document.querySelector(".mkbLaunchScreen");
+    document.body.style.overflow = "hidden";
+    setTimeout(function () {
+      launchScreen.style.opacity = "0";
+
+    }, 1000);
+
+    setTimeout(function () {
+      launchScreen.style.display = "none";
+    },1800);
+
+    setTimeout(function () {
+      hiddenMain.style.opacity= "1" ;
+      document.body.style.overflow = "auto";
+    },2000);
+  }
 };
 
 

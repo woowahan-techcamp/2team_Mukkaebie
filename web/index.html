@@ -192,7 +192,9 @@
             <img src="./src/img/piegraph.png" alt="">
             우리가게 인기메뉴
           </div>
-          <div class="menuTabMsg">사장님만 안다는<br> 이 가게 가장 많이 팔리는 메뉴!!!<br> 실시간으로 알려줌</div>
+          <div class="menuTabMsg">
+            사장님만 아는<br> 우리가게 실시간 인기메뉴!!!
+          </div>
           <div class="menuTabGraph">
             <div class="dateTab"></div>
             <figure class="donutFigure">
@@ -347,229 +349,223 @@
 
 </script>
 
-<div class="float-right p-a-1 loginMenu">
+<div class="mkbLaunchScreen">
+</div>
+
+<div class="mkbHiddenMain">
+  <div class="float-right p-a-1 loginMenu">
   <span id="topLoggedinButton">로그인</span>
   <span id="topLoggedinInfo"></span>
   <span id="topLogoutButton">로그아웃</span>
 </div>
-<div class="row header m-x-0">
+  <div class="row header m-x-0">
 
-  <div class="baeminMainLogo"></div>
+    <div class="baeminMainLogo"></div>
 
-  <div class="searchArea">
-    <div class="float-left p-r-1">
-      <div class="locationSelect">
-        송파구 방이동
+    <div class="searchArea">
+      <div class="float-left p-r-1">
+        <div class="locationSelect">
+          송파구 방이동
+        </div>
+        <div class="locationSelectButton"></div>
       </div>
-      <div class="locationSelectButton"></div>
-    </div>
-    <div class="float-left">
-      <input class="searchBox" type="text">
-      <div class="searchBoxButton"></div>
-    </div>
-  </div>
-</div>
-
-<div class="mobileTitleArea row m-x-0">
-  <div class="float-left mobileTitleButton"></div>
-  <div class="mobileTitleImg"></div>
-</div>
-
-<div class="row blackMenuArea m-x-0">
-  <ul class="categoryWrapper">
-    <li class="blackMenuChicken blackMenu" data="치킨"></li>
-    <li class="blackMenuChinese blackMenu" data="중국집"></li>
-    <li class="blackMenuPizza blackMenu" data="피자"></li>
-    <li class="blackMenuKorean blackMenu" data="한식"></li>
-    <li class="blackMenuPigfeet blackMenu" data="족발"></li>
-    <li class="blackMenuNight blackMenu" data="야식"></li>
-    <li class="blackMenuJapanese blackMenu" data="일식"></li>
-    <li class="blackMenuSoup blackMenu" data="찜탕"></li>
-    <li class="blackMenuVento blackMenu" data="도시락"></li>
-    <li class="blackMenuFastfood blackMenu" data="패스트푸드"></li>
-    <li class="blackMenuTogether blackMenu" data="모아보기"></li>
-  </ul>
-</div>
-
-<div class="mobileCategory">
-  <div class="mobileCategorySearch col-xs-12">
-    <input id="mobileSearchBox" type="text" placeholder="업소명을 검색해주세요">
-    <span class="mobileSearchButton"><button class="searchIcon">검색</button></span>
-  </div>
-  <div class="mobileMenuWrapAll">
-    <div class="mobileMenuWrap">
-      <div class="col-xs-4 mobileMenu" data="치킨">치킨</div>
-      <div class="col-xs-4 mobileMenu" data="중국집">중국집</div>
-      <div class="col-xs-4 mobileMenu" data="피자">피자</div>
-    </div>
-    <div class="mobileMenuWrap">
-      <div class="col-xs-4 mobileMenu" data="한식">한식,분식</div>
-      <div class="col-xs-4 mobileMenu" data="족발">족발,보쌈</div>
-      <div class="col-xs-4 mobileMenu" data="야식">야식</div>
-    </div>
-    <div class="mobileMenuWrap">
-      <div class="col-xs-4 mobileMenu" data="일식">돈까스,회,일식</div>
-      <div class="col-xs-4 mobileMenu" data="찜탕">찜,탕</div>
-      <div class="col-xs-4 mobileMenu" data="도시락">도시락</div>
-    </div>
-    <div class="mobileMenuWrap">
-      <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
-      <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
+      <div class="float-left">
+        <input class="searchBox" type="text">
+        <div class="searchBoxButton"></div>
+      </div>
     </div>
   </div>
-</div>
+  <div class="mobileTitleArea row m-x-0">
+    <div class="float-left mobileTitleButton"></div>
+    <div class="mobileTitleImg"></div>
+  </div>
+  <div class="row blackMenuArea m-x-0">
+    <ul class="categoryWrapper">
+      <li class="blackMenuChicken blackMenu" data="치킨"></li>
+      <li class="blackMenuChinese blackMenu" data="중국집"></li>
+      <li class="blackMenuPizza blackMenu" data="피자"></li>
+      <li class="blackMenuKorean blackMenu" data="한식"></li>
+      <li class="blackMenuPigfeet blackMenu" data="족발"></li>
+      <li class="blackMenuNight blackMenu" data="야식"></li>
+      <li class="blackMenuJapanese blackMenu" data="일식"></li>
+      <li class="blackMenuSoup blackMenu" data="찜탕"></li>
+      <li class="blackMenuVento blackMenu" data="도시락"></li>
+      <li class="blackMenuFastfood blackMenu" data="패스트푸드"></li>
+      <li class="blackMenuTogether blackMenu" data="모아보기"></li>
+    </ul>
+  </div>
+  <div class="mobileCategory">
+    <div class="mobileCategorySearch col-xs-12">
+      <input id="mobileSearchBox" type="text" placeholder="업소명을 검색해주세요">
+      <span class="mobileSearchButton"><button class="searchIcon">검색</button></span>
+    </div>
+    <div class="mobileMenuWrapAll">
+      <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="치킨">치킨</div>
+        <div class="col-xs-4 mobileMenu" data="중국집">중국집</div>
+        <div class="col-xs-4 mobileMenu" data="피자">피자</div>
+      </div>
+      <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="한식">한식,분식</div>
+        <div class="col-xs-4 mobileMenu" data="족발">족발,보쌈</div>
+        <div class="col-xs-4 mobileMenu" data="야식">야식</div>
+      </div>
+      <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="일식">돈까스,회,일식</div>
+        <div class="col-xs-4 mobileMenu" data="찜탕">찜,탕</div>
+        <div class="col-xs-4 mobileMenu" data="도시락">도시락</div>
+      </div>
+      <div class="mobileMenuWrap">
+        <div class="col-xs-4 mobileMenu" data="패스트푸드">패스트푸드</div>
+        <div class="col-xs-4 mobileMenu" data="모아보기">모아보기</div>
+      </div>
+    </div>
+  </div>
+  <div class="row storeLayout m-x-auto"></div>
+  <footer>
 
-<div class="row storeLayout m-x-auto"></div>
+    <section class="footer-area">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <ul class="link xsmall">
+            <li>
+              <a href="https://www.baemin.com/service/service" target="_blank">배달의민족 소개</a> <em>|</em>
+            </li>
+            <li>
+              <a href="https://www.baemin.com/service/baro" target="_blank">바로결제란</a> <em>|</em>
+            </li>
+            <li>
+              <a href="https://www.baemin.com/service/terms/1" target="_blank">이용약관</a> <em>|</em>
+            </li>
+            <li>
+              <a href="https://www.baemin.com/service/terms/7" target="_blank">전자금융거래 이용약관</a> <em>|</em>
+            </li>
+            <li>
+              <a href="https://www.baemin.com/service/terms/2" target="_blank"><strong>개인정보처리방침</strong></a> <em>|</em>
+            </li>
+            <li>
+              <a href="http://ceo.baemin.com/info/baemin/Ad_HowTo/" target="_blank">광고신청</a> <em>|</em>
+            </li>
+            <li>
+              <a href="https://www.baemin.com/service/qna" target="_blank">문의하기</a> <em>|</em>
+            </li>
+            <li>
+              <a href="http://www.woowahan.com" target="_blank">회사소개</a> <em>|</em>
+            </li>
+            <li><a href="http://ceo.baemin.com" target="_blank">사장님사이트</a> <em>|</em>
+            </li>
+            <li class="blog">
+              <a href="http://blog.baemin.com/" target="_blank">블로그 바로가기</a> <em>|</em>
+            </li>
+            <li class="fb">
+              <a href="https://www.facebook.com/smartbaedal" target="_blank">페이스북 바로가기</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="woowa-info xsmall text-muted">
+            <div>
+              배달의민족 콜센터 : 1644-0025 (24시간운영, 연중무휴) <a href="https://www.baemin.com/service/qna">메일보내기</a>
+            </div>
+            <div>
+              (주)우아한형제들
+              <span>대표 : 김봉진</span>
+              <span>사업자번호 : 120-87-65763</span>
+              <a class="bizinfo" target="_blank"
+                 href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2012323019830200515&amp;area1=&amp;area2=&amp;currpage=1&amp;searchKey=04&amp;searchVal=1208765763&amp;stdate=&amp;enddate=">사업자정보확인</a>
+            </div>
+            <div>
+              통신판매업 : 서울 송파 -0515
+              <span>주소 : <address>서울특별시 송파구 위례성대로 2 장은빌딩 18층</address></span>
+            </div>
+            <div class="cs-fc">
+              <p>전자금융분쟁처리</p>
+              <span>Tel : 1644-0025</span>
+              <span>Fax : 02-532-5854</span>
+              <span>메일 : help@woowahan.com</span>
+            </div>
+            <div class="copyright">copyright Woowa Brothers in Song-pa</div>
+          </div> <!--/.woowa-info -->
+        </div>
+      </div> <!--/.row -->
+      <div class="foot-info xsmall text-muted">
+        배달의민족은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 배달의민족은 상품 거래정보 및 거래에 대해 책임지지 않습니다.
+      </div>
+    </section> <!--./footer-area -->
 
 
-<footer>
-
-  <section class="footer-area">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <ul class="link xsmall">
-          <li>
-            <a href="https://www.baemin.com/service/service" target="_blank">배달의민족 소개</a> <em>|</em>
-          </li>
-          <li>
-            <a href="https://www.baemin.com/service/baro" target="_blank">바로결제란</a> <em>|</em>
-          </li>
-          <li>
-            <a href="https://www.baemin.com/service/terms/1" target="_blank">이용약관</a> <em>|</em>
-          </li>
-          <li>
-            <a href="https://www.baemin.com/service/terms/7" target="_blank">전자금융거래 이용약관</a> <em>|</em>
-          </li>
-          <li>
-            <a href="https://www.baemin.com/service/terms/2" target="_blank"><strong>개인정보처리방침</strong></a> <em>|</em>
-          </li>
-          <li>
-            <a href="http://ceo.baemin.com/info/baemin/Ad_HowTo/" target="_blank">광고신청</a> <em>|</em>
-          </li>
-          <li>
-            <a href="https://www.baemin.com/service/qna" target="_blank">문의하기</a> <em>|</em>
-          </li>
-          <li>
-            <a href="http://www.woowahan.com" target="_blank">회사소개</a> <em>|</em>
-          </li>
-          <li><a href="http://ceo.baemin.com" target="_blank">사장님사이트</a> <em>|</em>
-          </li>
-          <li class="blog">
-            <a href="http://blog.baemin.com/" target="_blank">블로그 바로가기</a> <em>|</em>
-          </li>
-          <li class="fb">
-            <a href="https://www.facebook.com/smartbaedal" target="_blank">페이스북 바로가기</a>
-          </li>
+    <section class="award-area">
+      <div class="caroufredsel_wrapper">
+        <ul id="award" class="award list-inline xsmall">
+          <li><span class="award1">kisa</span><em>대한민국 인터넷 대상<br>국무총리상 수상</em></li>
+          <li><span class="award2">kisa</span><em>지식경제부 선정<br>올해의 청년기업인</em></li>
+          <li><span class="award3">kisa</span><em>2012 스마트앱어워드<br>생활편의부분 대상</em></li>
+          <li><span class="award1">kisa</span><em>2012 한국인터넷진흥원<br>중소벤처 유망 LBS 선정</em></li>
+          <li><span class="award4">kisa</span><em>대한민국 스마트 TV 앱<br>이노베이션 선정</em></li>
         </ul>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="woowa-info xsmall text-muted">
-          <div>
-            배달의민족 콜센터 : 1644-0025 (24시간운영, 연중무휴) <a href="https://www.baemin.com/service/qna">메일보내기</a>
-          </div>
-          <div>
-            (주)우아한형제들
-            <span>대표 : 김봉진</span>
-            <span>사업자번호 : 120-87-65763</span>
-            <a class="bizinfo" target="_blank"
-               href="http://www.ftc.go.kr/info/bizinfo/communicationView.jsp?apv_perm_no=2012323019830200515&amp;area1=&amp;area2=&amp;currpage=1&amp;searchKey=04&amp;searchVal=1208765763&amp;stdate=&amp;enddate=">사업자정보확인</a>
-          </div>
-          <div>
-            통신판매업 : 서울 송파 -0515
-            <span>주소 : <address>서울특별시 송파구 위례성대로 2 장은빌딩 18층</address></span>
-          </div>
-          <div class="cs-fc">
-            <p>전자금융분쟁처리</p>
-            <span>Tel : 1644-0025</span>
-            <span>Fax : 02-532-5854</span>
-            <span>메일 : help@woowahan.com</span>
-          </div>
-          <div class="copyright">copyright Woowa Brothers in Song-pa</div>
-        </div> <!--/.woowa-info -->
+    </section>
+
+  </footer>
+  <div id="loginModal" class="mkbShow">
+    <div class="loginModal-content">
+      <div class="loginModalTitle">LOG IN</div>
+      <div>아이디</div>
+      <input class="loginIDInput" type="text" placeholder="Identification">
+      <div id="loginMsg"></div>
+      <div>비밀번호</div>
+      <input class="loginPWInput" type="password" placeholder="Password">
+      <div class="m-t-1">
+        <button class="loginButton">로그인</button>
+        <button id="nonmemberBtn">비회원으로 계속하기</button>
       </div>
-    </div> <!--/.row -->
-    <div class="foot-info xsmall text-muted">
-      배달의민족은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 배달의민족은 상품 거래정보 및 거래에 대해 책임지지 않습니다.
-    </div>
-  </section> <!--./footer-area -->
-
-
-  <section class="award-area">
-    <div class="caroufredsel_wrapper">
-      <ul id="award" class="award list-inline xsmall">
-        <li><span class="award1">kisa</span><em>대한민국 인터넷 대상<br>국무총리상 수상</em></li>
-        <li><span class="award2">kisa</span><em>지식경제부 선정<br>올해의 청년기업인</em></li>
-        <li><span class="award3">kisa</span><em>2012 스마트앱어워드<br>생활편의부분 대상</em></li>
-        <li><span class="award1">kisa</span><em>2012 한국인터넷진흥원<br>중소벤처 유망 LBS 선정</em></li>
-        <li><span class="award4">kisa</span><em>대한민국 스마트 TV 앱<br>이노베이션 선정</em></li>
-      </ul>
-    </div>
-  </section>
-
-</footer>
-
-<div id="loginModal" class="mkbShow">
-  <div class="loginModal-content">
-    <div class="loginModalTitle">LOG IN</div>
-    <div>아이디</div>
-    <input class="loginIDInput" type="text" placeholder="Identification">
-    <div id="loginMsg"></div>
-    <div>비밀번호</div>
-    <input class="loginPWInput" type="password" placeholder="Password">
-    <div class="m-t-1">
-      <button class="loginButton">로그인</button>
-      <button id="nonmemberBtn">비회원으로 계속하기</button>
     </div>
   </div>
-</div>
-
-<div id="afterLoginModal" class="afterLoginModal">
-  <div class="afterLoginModal-content">
+  <div id="afterLoginModal" class="afterLoginModal">
+    <div class="afterLoginModal-content">
+    </div>
   </div>
-</div>
-
-<div id="thxModal" class="thxModal">
-  <div class="thxModal-content">
+  <div id="thxModal" class="thxModal">
+    <div class="thxModal-content">
+    </div>
   </div>
-</div>
-
-
-<div id="loginRequiredModal" class="logInRequiredModal">
-  <div class="logInRequiredModal-content">
-    <div class="logInRequiredModalTop">이 서비스가 어떤 서비스입니까?</div>
-    <div class="logInRequiredModalBtm">로그인이 필요한 서비스</div>
+  <div id="loginRequiredModal" class="logInRequiredModal">
+    <div class="logInRequiredModal-content">
+      <div class="logInRequiredModalTop">이 서비스가 어떤 서비스입니까?</div>
+      <div class="logInRequiredModalBtm">로그인이 필요한 서비스</div>
+    </div>
   </div>
-</div>
-
-<div id="orderModal" class="orderModal">
-  <div class="modal-content"></div>
-</div>
-
-<div id="mkbModal" class="mkbModal">
-  <div class="mkbModal-content">
-    <button class="mkbModalClose">&times;</button>
-    <div class="mkbImgPreview"></div>
-    <div id="mkbCommentUserId"></div>
-    <div id="mkbComment"></div>
-    <button class="mkbEdit">수정</button>
-    <div class="logInRequired">
-      <div class="commentBox">
-        <div id="commentList"></div>
-        <div class="commentWriteBox p-a-1">
-          <p name="userId" value=""></p>
-          <textarea id="commentTextInput" type="text" name="content"></textarea>
+  <div id="orderModal" class="orderModal">
+    <div class="modal-content"></div>
+  </div>
+  <div id="mkbModal" class="mkbModal">
+    <div class="mkbModal-content">
+      <button class="mkbModalClose">&times;</button>
+      <div class="mkbImgPreview"></div>
+      <div id="mkbCommentUserId"></div>
+      <div id="mkbComment"></div>
+      <button class="mkbEdit">수정</button>
+      <div class="logInRequired">
+        <div class="commentBox">
+          <div id="commentList"></div>
+          <div class="commentWriteBox p-a-1">
+            <p name="userId" value=""></p>
+            <textarea id="commentTextInput" type="text" name="content"></textarea>
+          </div>
         </div>
+        <form id="file-form" method="POST">
+          <input type="file" id="file-select"/>
+          <button class="float-right" type="submit" id="upload-button">적용</button>
+        </form>
+        <button id="cancelRevise" class="float-right">취소</button>
+        <button id="resetProfile" class="float-right">사진제거</button>
+        <button id="chooseImg" class="float-right">사진선택</button>
       </div>
-      <form id="file-form" method="POST">
-        <input type="file" id="file-select"/>
-        <button class="float-right" type="submit" id="upload-button">적용</button>
-      </form>
-      <button id="cancelRevise" class="float-right">취소</button>
-      <button id="resetProfile" class="float-right">사진제거</button>
-      <button id="chooseImg" class="float-right">사진선택</button>
     </div>
   </div>
 </div>
+
+
 <script src="./dist/env.js"></script>
 <script src="./dist/index.bundle.js"></script>
 </body>
