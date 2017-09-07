@@ -18,6 +18,9 @@ module.exports = function(app) {
     // .post(mkb.create_a_store);
     .post(mkb.update_category);
 
+  app.route('/stores/new')
+      .post(mkb.create_a_store);
+
   app.route('/stores/bycategory/:category')
       .get(mkb.list_categorical_stores)
 
