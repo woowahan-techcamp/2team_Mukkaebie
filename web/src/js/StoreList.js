@@ -61,7 +61,8 @@ export class StoreList {
           response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
-            const storeImg = store.storeImg;
+            // const storeImg = store.storeImg;
+            const storeImg = "http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/7/23/689649_201707231457.jpg";
             const storeName = store.storeName;
             const address = store.address;
             if (store.review) {
