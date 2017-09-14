@@ -251,7 +251,7 @@ export class Graph {
         let top3_order = document.querySelectorAll('.orders');
         let top3UserList = [];
         for (let i = 0; i < 3; i++) {
-          let name = ""
+          let name = "";
           if (i < top3.length) {
             name = top3[i].toString().split(",")[0];
           }
