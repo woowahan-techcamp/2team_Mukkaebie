@@ -7,10 +7,13 @@ export class TabUiWithAjax {
 
   constructor(inputObj) {
     this.nav = document.querySelector("#" + inputObj.containerName);
+
     this.selectedTabName = inputObj.selectedTabName;
     this.selectedTab = "." + inputObj.selectedTabName;
+
     this.selectedContentName = inputObj.selectedContentName;
     this.selectedContent = "." + inputObj.selectedContentName;
+
     this.generalContentPrefix = inputObj.generalContentPrefix;
 
     this.init();
@@ -24,7 +27,8 @@ export class TabUiWithAjax {
 
   tabOperate(event) {
     let currentTabId = "";
-    document.querySelector(this.selectedTab).classList.remove(this.selectedTabName);
+    const selectedTab = document.querySelector(this.selectedTab);
+    selectedTab.classList.remove(this.selectedTabName);
 
     if (event.target && event.target.tagName === "LI") {
       event.target.classList.add(this.selectedTabName);
@@ -38,7 +42,8 @@ export class TabUiWithAjax {
 
     const targetContentName = this.generalContentPrefix + currentTabId;
     const targetContent = document.querySelector(targetContentName);
-    document.querySelector(this.selectedContent).classList.remove(this.selectedContentName);
+    const selectedContent = document.querySelector(this.selectedContent);
+    selectedContent.classList.remove(this.selectedContentName);
     targetContent.classList.add(this.selectedContentName);
   }
 
