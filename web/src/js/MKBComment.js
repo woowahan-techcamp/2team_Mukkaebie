@@ -5,15 +5,56 @@ export class MKBComment {
 
   constructor(storeId, topThreeList) {
 
+    this.previewImg();
+
     this.storeId = storeId;
     this.topThreeList = topThreeList;
     this.addMkbModalEventListener(storeId, topThreeList);
 
 
-    this.sendImage(storeId, topThreeList)
-        .then(this.setProfilePics)
-        .then(this.postComment)
-        .then(this.applyChange)
+    const form = document.getElementById('upload-button');
+
+    form.addEventListener("click", function (e) {
+      this.sendImage(storeId, topThreeList,e)
+          .then(this.setProfilePics)
+          .then(this.postComment)
+          .then(this.applyChange)
+    }.bind(this));
+
+
+  }
+
+  previewImg(){
+    const fileSelect = document.getElementById('file-select');
+    function mimicFileUpload(evt){
+      evt.preventDefault();
+      fileSelect.click();
+      console.log("yes")
+    }
+
+    document.querySelector("#chooseImg").removeEventListener("click", mimicFileUpload);
+      if (!document.querySelector("#chooseImg").data) {
+        function handleFileSelect(evt) {
+          var files = evt.target.files;
+          for (var i = 0, f; f = files[i]; i++) {
+            if (!f.type.match('image.*')) {
+              continue;
+            }
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+              return function(e) {
+
+                document.querySelector('.mkbImgPreview').style.backgroundImage = "url('"+ e.target.result +"')"
+              };
+            })(f);
+            reader.readAsDataURL(f);
+          }
+        }
+        fileSelect.addEventListener('change', handleFileSelect, false);
+        document.querySelector("#chooseImg").addEventListener("click", mimicFileUpload);
+        document.querySelector("#chooseImg").data = true;
+      }
   }
 
   initialRendering() {
@@ -35,11 +76,11 @@ export class MKBComment {
 
   setModalTextarea(clickedMkb) {
     const modalTextarea = document.getElementById("commentTextInput");
-    if (clickedMkb) {
-      modalTextarea["value"] = clickedMkb["mkbComment"];
+    if (clickedMkb["mkbComment"] === undefined || clickedMkb["mkbComment"] === "undefined") {
+      modalTextarea["value"] = "";
     }
     else {
-      modalTextarea["value"] = "";
+      modalTextarea["value"] = clickedMkb["mkbComment"];
     }
   }
 
@@ -54,7 +95,10 @@ export class MKBComment {
       mkbComment.innerText = "먹깨비 없음";
     }
     else if (clickedMkb["mkbComment"] == undefined) {
-      mkbComment.innerText = "우하하 나는 먹깨비다!";
+      const mkbRandomMsgs = ["우하하! 나는 먹깨비다!", "먹기위해 살아도 된다!", "살 찌는 것은 죄가 아니다!",
+        "저는 위에서 시키는 대로 했을 뿐입니다.", "오늘 먹을 음식을 내일로 미루지 말라!"];
+      let randNum = Math.floor((Math.random() * 5));
+      mkbComment.innerText = mkbRandomMsgs[randNum];
     } else {
       mkbComment.innerText = clickedMkb["mkbComment"];
     }
@@ -119,6 +163,7 @@ export class MKBComment {
       const editBox = document.querySelector(".logInRequired");
       const editBtn = document.querySelector(".mkbEdit");
       modal.style.opacity = "0";
+      document.querySelector("#file-form input").value = "";
 
       setTimeout(function () {
         modal.style.display = "none";
@@ -156,7 +201,10 @@ export class MKBComment {
   renderGoldMkb (comment, mkbOutsideCommentId, mkbOutsideCommentMsg){
     if (typeof(comment) === "string") {
       mkbOutsideCommentId.innerHTML = comment;
-      mkbOutsideCommentMsg.innerHTML = "우하하! 나는 먹깨비다";
+      const mkbRandomMsgs = ["우하하! 나는 먹깨비다!", "먹기위해 살아도 된다!", "살 찌는 것은 죄가 아니다!",
+      "저는 위에서 시키는 대로 했을 뿐입니다.", "오늘 먹을 음식을 내일로 미루지 말라!"];
+      let randNum = Math.floor((Math.random() * 5));
+      mkbOutsideCommentMsg.innerHTML = mkbRandomMsgs[randNum];
       if (comment === "") {
         mkbOutsideCommentId.innerHTML = "大 먹깨비 공석";
       }
@@ -196,7 +244,7 @@ export class MKBComment {
   }
 
 
-  sendImage(storeId, topThreeList) {
+  sendImage(storeId, topThreeList, e) {
     return new Promise(function (resolve) {
       const form = document.getElementById('file-form');
       const fileSelect = document.getElementById('file-select');
@@ -237,10 +285,16 @@ export class MKBComment {
 
   resetProfile(){
     const profileResetButton = document.querySelector("#resetProfile");
+    const cancelReviseButton = document.querySelector("#cancelRevise");
     const profilePic = document.querySelector(".mkbImgPreview");
     profileResetButton.addEventListener("click", function () {
       document.querySelector("#file-form input").value = "";
+      profilePic.style.backgroundImage = "url(" + DEFAULT_PROFILE_IMG + ")";
     });
+    cancelReviseButton.addEventListener("click", function () {
+      document.querySelector(".mkbModalClose").click();
+    })
+
   }
 
 
@@ -288,6 +342,5 @@ export class MKBComment {
     if (targetLevel === "gold") {
       document.querySelector("#mkbCommentOutsideMsg").innerText = document.querySelector("#commentTextInput").value;
     }
-    const newMkb = new MKBComment(inputObj["storeId"], inputObj["topThreeList"])
   }
 }

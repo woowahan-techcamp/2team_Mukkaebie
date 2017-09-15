@@ -5,21 +5,48 @@ import StoreUtil from './Util.js'
 
 export class Login {
   constructor(){
-    this.init()
+    this.init();
+    this.makeEnterSubmit ();
   }
 
   init(){
-    document.querySelector("#topLoggedinInfo").addEventListener("click", function () {
-      document.querySelector("#loginModal").style.display = "block";
-      setTimeout(function () {
-        document.querySelector("#loginModal").style.opacity = "1";
-      }, 100)
+    document.querySelector("#topLoggedinButton").addEventListener("click", this.makeLoginModal);
+
+
+
+    document.querySelector(".loginButton").addEventListener("click", function () {
+      this.getInputInfo()
+          .then(this.sendLoginInfo)
+          .then(this.checkValidity)
+          .then(this.succeedLogin)
+          .catch(this.failLogin)
+          .then(this.logout)
+    }.bind(this));
+  }
+
+  makeEnterSubmit (){
+    document.querySelector(".loginPWInput")
+        .addEventListener("keyup", function(event) {
+          event.preventDefault();
+          if (event.keyCode == 13) {
+            document.querySelector(".loginButton").click();
+          }
+        });
+  }
+
+  makeLoginModal(){
+    document.querySelector("#loginModal").style.display = "block";
+    setTimeout(function () {
+      document.querySelector("#loginModal").style.opacity = "1";
+    }, 100)
+  }
+
+  getInputInfo(){
+    return new Promise(function (resolve) {
+      const idInfo = document.querySelector(".loginIDInput").value;
+      const packet = {"userId" : idInfo};
+      resolve(packet);
     });
-    this.getInputInfo()
-        .then(this.sendLoginInfo)
-        .then(this.checkValidity)
-        .then(this.succeedLogin)
-        .catch(this.failLogin)
   }
 
   sendLoginInfo(userId){
@@ -35,21 +62,10 @@ export class Login {
     })
   }
 
-
-  getInputInfo(){
-    return new Promise(function (resolve) {
-      document.querySelector(".loginButton").addEventListener("click", function () {
-        const idInfo = document.querySelector(".loginIDInput").value;
-        const packet = {"userId" : idInfo};
-        resolve(packet);
-      })
-    });
-  }
-
   checkValidity(pwd){
     return new Promise(function (resolve, reject) {
       const pwInfo = document.querySelector(".loginPWInput").value;
-      if (pwd["_id"] === pwInfo){
+      if (pwd["pwd"] === pwInfo){
         resolve(pwd["userId"])
       }
       else {
@@ -59,17 +75,43 @@ export class Login {
   }
 
   succeedLogin(userId){
-    StoreUtil.makeAfterLoginModal();
-    document.querySelector("#loginModal").style.display = "none";
-    const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
-    topLoggedinInfo.innerText = userId;
-    session = userId;
-    document.querySelector(".review-user").innerText = session;
+
+    return new Promise(function(resolve){
+      StoreUtil.makeAfterLoginModal();
+      document.querySelector("#loginModal").style.display = "none";
+      const topLoginButton = document.querySelector("#topLoggedinButton");
+      const topLogoutButton = document.querySelector("#topLogoutButton");
+      const topLoggedinInfo = document.querySelector("#topLoggedinInfo");
+      topLoginButton.style.display = "none";
+      topLogoutButton.style.display = "block";
+      topLoggedinInfo.innerText = userId + " 님";
+
+      if (document.querySelector("p.review-user")) {
+        document.querySelector("p.review-user").innerText = userId;
+      }
+
+      session = userId;
+      document.querySelector("#loginMsg").innerText = "";
+      document.querySelector(".loginIDInput").value = "";
+      document.querySelector(".loginPWInput").value = "";
+      resolve();
+    })
   }
 
   failLogin(msg){
     document.querySelector("#loginMsg").innerText = msg;
-    const newLogin = new Login();
   }
 
+  logout(){
+
+    document.querySelector("#topLogoutButton").addEventListener("click", function (event) {
+      document.querySelector("#topLoggedinButton").style.display = "block";
+      document.querySelector("#topLogoutButton").style.display = "none";
+      document.querySelector("#topLoggedinInfo").innerText = "";
+      session = "비회원";
+      if (document.querySelector("p.review-user")) {
+        document.querySelector("p.review-user").innerText = "비회원";
+      }
+    })
+  }
 }

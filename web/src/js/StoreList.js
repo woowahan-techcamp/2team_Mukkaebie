@@ -8,6 +8,14 @@ export class StoreList {
   }
 
   getStoreList(cat) {
+    let urlCategoryPart = "/stores/bycategory/";
+    if (cat === "모아보기") {
+      urlCategoryPart = "/stores"
+    }
+    else {
+      urlCategoryPart += cat;
+    }
+
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -53,7 +61,8 @@ export class StoreList {
           response.slice(size, size = size + 30).forEach(function (oneStore) {
             const store = oneStore;
             const storeId = store.storeId;
-            const storeImg = store.storeImg;
+            // const storeImg = store.storeImg;
+            const storeImg = "http://woowahan1.vipweb.kr/cache/usr/shoplogoc/2017/7/23/689649_201707231457.jpg";
             const storeName = store.storeName;
             const address = store.address;
             if (store.review) {
@@ -93,7 +102,7 @@ export class StoreList {
 
         function processScroll(scroll_pos) {
           let contentHeight = renderTarget.offsetHeight;
-          let y = scroll_pos + 300;
+          let y = scroll_pos + 100;
           if (y >= contentHeight) {
             preventFadeIn();
 
@@ -117,7 +126,7 @@ export class StoreList {
               let ticking = false;
               if (timer !== null) clearTimeout(timer);
               timer = setTimeout(function () {
-                last_known_scroll_position = window.scrollY;
+                last_known_scroll_position = renderTarget.scrollHeight;
                 if (!ticking) {
                   window.requestAnimationFrame(function () {
                     processScroll(last_known_scroll_position);
@@ -134,23 +143,25 @@ export class StoreList {
         function gotoStoreDetail() {
 
           let clickedStore = document.querySelector(".storeCardRow");
+          let storeLayout = document.querySelector(".storeLayout");
 
           clickedStore.addEventListener("click", function (e) {
-            if (e.target && e.target.className == "storeCard") {
-              var realTarget = e.target;
-            } else if (e.target.className == "col-xs-4") {
-              var realTarget = e.target.children[0];
-            } else if (e.target.className == 'col-xs-12') {
-              var realTarget = e.target.children[0].children[0];
-            } else {
-              var realTarget = e.target.closest(".storeCard");
+            if (e.target && e.target.closest(".storeCard")) {
+              storeLayout.style.opacity = "0";
+              setTimeout(function () {
+                let realTarget = e.target.closest(".storeCard");
+                let storeInfo = new StoreInfo(realTarget.id);
+              },500)
+              setTimeout(function () {
+                storeLayout.style.opacity = "1";
+              },500)
             }
-            let storeInfo = new StoreInfo(realTarget.id);
           });
-        }
+
+        };
       }
     };
-    xhr.open("GET", SERVER_BASE_URL + "/stores/bycategory/" + cat, true);
+    xhr.open("GET", SERVER_BASE_URL + urlCategoryPart, true);
     xhr.send();
   }
 }
