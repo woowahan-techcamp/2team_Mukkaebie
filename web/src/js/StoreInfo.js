@@ -1,7 +1,7 @@
 import {Graph} from './Graph.js';
 import {Review} from './Review.js';
 import {Cart} from './Cart.js';
-import {TabUiWithAjax} from './Tab.js';
+import {TabUi} from './Tab.js';
 import StoreUtil from "./Util.js";
 
 
@@ -40,7 +40,7 @@ export class StoreInfo {
   }
 
   applyOtherJS(storeId){
-    let tab = new TabUiWithAjax(
+    let tab = new TabUi(
         {
           containerName: "storeTabWrapper",
           selectedTabName: "selectedTab",

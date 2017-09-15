@@ -1,51 +1,60 @@
 
 
 
-
-
-export class TabUiWithAjax {
+export class TabUi {
 
   constructor(inputObj) {
     this.nav = document.querySelector("#" + inputObj.containerName);
-
     this.selectedTabName = inputObj.selectedTabName;
     this.selectedTab = "." + inputObj.selectedTabName;
-
     this.selectedContentName = inputObj.selectedContentName;
     this.selectedContent = "." + inputObj.selectedContentName;
-
     this.generalContentPrefix = inputObj.generalContentPrefix;
-
+    this.currentTabId = "";
     this.init();
   }
 
   init() {
     this.nav.addEventListener("click", function (event) {
-      this.tabOperate(event)
-    }.bind(this), false);
+
+      this.unselectCurrentTab();
+
+      if (event.target && event.target.tagName === "LI") {
+        this.clickCorrectTab(event);
+      }
+      else {
+        this.clickTabDelegation()
+      }
+
+      this.showAndHideTabContent()
+
+    }.bind(this));
   }
 
-  tabOperate(event) {
-    let currentTabId = "";
+
+  unselectCurrentTab(){
+    this.currentTabId = "";
     const selectedTab = document.querySelector(this.selectedTab);
     selectedTab.classList.remove(this.selectedTabName);
-
-    if (event.target && event.target.tagName === "LI") {
-      event.target.classList.add(this.selectedTabName);
-      currentTabId += event.target.id;
-    }
-    else {
-      let correctedTarget = document.querySelector("#mkbTab");
-      correctedTarget.classList.add(this.selectedTabName);
-      currentTabId += correctedTarget.id;
-    }
-
-    const targetContentName = this.generalContentPrefix + currentTabId;
-    const targetContent = document.querySelector(targetContentName);
-    const selectedContent = document.querySelector(this.selectedContent);
-    selectedContent.classList.remove(this.selectedContentName);
-    targetContent.classList.add(this.selectedContentName);
   }
 
+  clickCorrectTab(event){
+    event.target.classList.add(this.selectedTabName);
+    this.currentTabId += event.target.id;
+  }
+
+  clickTabDelegation(){
+    let correctedTarget = event.target.closest("li.storeTab");
+    correctedTarget.classList.add(this.selectedTabName);
+    this.currentTabId += correctedTarget.id;
+  }
+
+  showAndHideTabContent(){
+    const nextContentName = this.generalContentPrefix + this.currentTabId;
+    const nextContent = document.querySelector(nextContentName);
+    const currentContent = document.querySelector(this.selectedContent);
+    currentContent.classList.remove(this.selectedContentName);
+    nextContent.classList.add(this.selectedContentName);
+  }
 
 }
