@@ -6,6 +6,17 @@ var  Models = require('./api/models/mkbModel');
 var  bodyParser = require('body-parser');
 var cors = require('cors');
 
+// img server part start
+var path = require('path');
+var profile = require('./routes/profile');
+
+app.set('views', './views');
+app.set('view engine', 'jade');
+app.use('/uploads', express.static('./uploads'));
+
+
+// img server part end
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/mkb', {useMongoClient:true,});
 

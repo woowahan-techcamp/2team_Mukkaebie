@@ -24,7 +24,6 @@ module.exports = function(app) {
   app.route('/stores/bycategory/:category')
       .get(mkb.list_categorical_stores);
 
-
   app.route('/stores/delete')
     .post(mkb.delete_a_store);
 
@@ -49,6 +48,36 @@ module.exports = function(app) {
 
   app.route('/orders/:sellerId/:buyerId')
     .get(mkb.read_an_order);
+
+  //img server
+  var multer = require('multer');
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+    }
+  });
+
+  var upload = multer({ storage: storage }).single('profileImage');
+
+
+  app.post('/uploads', function (req, res) {
+    upload(req, res, function (err) {
+      if (err) {
+        // An error occurred when uploading
+      }
+      res.json({
+        success: true,
+        message: 'Image uploaded!',
+        filename: req.file.filename
+      });
+
+      // Everything went fine
+    })
+  });
 
 
 };
