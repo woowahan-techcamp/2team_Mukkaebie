@@ -9,8 +9,6 @@ let mongoose = require('mongoose'),
 
 
 
-
-
 // Order methods
 exports.list_all_orders = function(req, res) {
   Order.find({},{ _id: 0 }, function(err, task) {

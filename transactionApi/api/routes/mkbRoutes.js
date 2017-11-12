@@ -22,7 +22,7 @@ module.exports = function(app) {
       .post(mkb.create_a_store);
 
   app.route('/stores/bycategory/:category')
-      .get(mkb.list_categorical_stores)
+      .get(mkb.list_categorical_stores);
 
 
   app.route('/stores/delete')
