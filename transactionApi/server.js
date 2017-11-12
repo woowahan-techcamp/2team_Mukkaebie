@@ -8,7 +8,6 @@ var cors = require('cors');
 
 // img server part start
 var path = require('path');
-var profile = require('./routes/profile');
 
 app.set('views', './views');
 app.set('view engine', 'jade');
