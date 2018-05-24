@@ -49,7 +49,13 @@
 - Master Merge 후,  작동하지 하지 않을 시, hot fix
 
 # Links
-기획서     [Link](https://docs.google.com/presentation/d/1bONN96E_VlYV0avebcv1sVgio55d7_kNEum1BP8DNOI/edit#slide=id.g241cd29e37_0_0)
+기획서     [Link](https://drive.google.com/open?id=1t8ZvKBKkRT-mzvhGyxLW_rWmnuuHLES8)
+
+최종 발표   [Link](https://drive.google.com/open?id=1V4yOy9ZSiYGEwhjOCDaljdKwO1qB-8rI)
+
+App Demo [Link](https://www.youtube.com/watch?v=2awzOKbBkPA&t=2s)
+
+Web Demo [Link](https://www.youtube.com/watch?v=mZugo-lLtdc&feature=youtu.be)
 
 백로그     [Link](https://docs.google.com/spreadsheets/d/1_QHCNvqrEN_MwbqzYJK6CxNQQ7oLvExSOWSW9LNYADs/edit#gid=0)
 
